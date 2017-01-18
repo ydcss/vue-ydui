@@ -20,8 +20,7 @@
     "mobile ui"
   ],
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "scripts": {
     "dev": "webpack-dev-server --content-base example/ --port 4321 --inline --hot --config build/webpack.dev.conf.js",
