@@ -1,0 +1,78 @@
+@import "../common/variables";
+@import "../common/mixins";
+
+.m-tab {
+}
+
+.tab-nav {
+  display: flex;
+  position: relative;
+  z-index: 0;
+  &:after {
+    .bottom-line(@tab-bottom-border-color, 3);
+  }
+}
+
+.tab-nav-item {
+  width: 1%;
+  flex: 1;
+  position: relative;
+  text-align: center;
+  color: @tab-color;
+  font-size: @tab-fontsize;
+  line-height: @tab-height;
+  display: block;
+  &.tab-active {
+    .tap-color(@tab-bg, 1);
+  }
+  .tap-color(@tab-bg, .97);
+  a {
+    display: inherit;
+    color: inherit;
+  }
+  &:not(:last-child):after {
+    position: absolute;
+    top: 35%;
+    right: 0;
+    content: '';
+    width: 1px;
+    height: 30%;
+    transform: scaleX(.5);
+    border-right: 1px solid @tab-break-color;
+  }
+  &.tab-active {
+    color: @tab-active-color;
+    &:before {
+      content: '';
+      width: 70%;
+      height: 2px;
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      margin-left: -35%;
+      z-index: 4;
+      background-color: currentColor;
+    }
+  }
+}
+
+.tab-panel {
+  position: relative;
+  overflow: hidden;
+  background-color: #FFF;
+  .tab-panel-item {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    padding: @body-padding-vertical;
+    transform: translateX(-100%);
+    &.tab-active {
+      position: relative;
+      transition: transform .15s;
+      transform: translateX(0);
+      & ~ .tab-panel-item {
+        transform: translateX(100%);
+      }
+    }
+  }
+}

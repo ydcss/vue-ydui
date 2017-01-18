@@ -1,0 +1,162 @@
+<template>
+
+    <yd-layout title="Cell">
+
+        <yd-cell-group class="demo-small-pitch">
+            <yd-cell-item>
+                <span slot="left">姓名：</span>
+                <input slot="right" type="text" placeholder="请输入您的姓名">
+            </yd-cell-item>
+
+            <yd-cell-item arrow>
+                <input slot="right" type="text" placeholder="请输入您的姓名">
+            </yd-cell-item>
+
+            <yd-cell-item>
+                <span slot="left">配送方式</span>
+                <span slot="right">顺丰快递</span>
+            </yd-cell-item>
+        </yd-cell-group>
+
+        <yd-cell-group title="带图标的">
+            <yd-cell-item>
+                <div slot="left">
+                    <i class="cell-icon demo-icons-phone"></i>
+                </div>
+                <input slot="right" type="number" pattern="[0-9]*" placeholder="请输入手机号码" autocomplete="off">
+                <yd-button slot="right" type="warning">获取短信验证码</yd-button>
+            </yd-cell-item>
+
+            <yd-cell-item href="#" type="link">
+                <i slot="left" class="cell-icon demo-icons-like"></i>
+                <span slot="left">我的收藏</span>
+
+                <span slot="right" class="badge badge-danger">8</span>
+            </yd-cell-item>
+
+            <yd-cell-item arrow href="tel:400-888-8888" type="link">
+                <i slot="left" class="cell-icon demo-icons-tel"></i>
+                <span slot="left">联系客服</span>
+
+                <span slot="right">400-888-8888</span>
+            </yd-cell-item>
+
+            <yd-cell-item href="#" arrow>
+                <i slot="left" class="cell-icon demo-icons-order"></i>
+                <span slot="left">我的订单</span>
+
+                <span slot="right">查看全部订单</span>
+            </yd-cell-item>
+
+            <yd-cell-item href="#" arrow type="link">
+                <span slot="left" class="cell-icon"><img src="http://static.ydcss.com/ydui/img/logo.png"></span>
+                <span slot="left">图标</span>
+
+                <span slot="right">图标是image</span>
+            </yd-cell-item>
+        </yd-cell-group>
+
+        <yd-cell-group title="下拉框">
+            <yd-cell-item arrow type="label">
+                <select slot="right">
+                    <option value="">支付方式</option>
+                    <option value="1">支付宝</option>
+                    <option value="2">微信</option>
+                    <option value="3">财付通</option>
+                </select>
+            </yd-cell-item>
+
+            <yd-cell-item arrow>
+                <span slot="left">性别：</span>
+                    <select slot="right">
+                        <option value="">请选择性别</option>
+                        <option value="1">男</option>
+                        <option value="2">女</option>
+                        <option value="3">未知</option>
+                    </select>
+            </yd-cell-item>
+        </yd-cell-group>
+
+        <yd-cell-group title="多选(checkbox改为radio样式通用)">
+            <yd-cell-item type="label">
+                <span slot="left">多选一</span>
+                <span slot="right">
+                    <input type="checkbox" value="Han MeiMei" v-model="checkedNames"/>
+                    <i class="cell-checkbox-icon"></i>
+                </span>
+            </yd-cell-item>
+
+            <yd-cell-item type="label">
+                <span slot="left">多选二</span>
+                <span slot="right">
+                    <input type="checkbox" value="Li Lei" v-model="checkedNames"/>
+                    <i class="cell-checkbox-icon"></i>
+                </span>
+            </yd-cell-item>
+
+            <yd-cell-item type="label">
+                <span slot="left">多选三</span>
+                <span slot="right">
+                    <input type="checkbox" value="Jim Green" v-model="checkedNames"/>
+                    <i class="cell-checkbox-icon"></i>
+                </span>
+            </yd-cell-item>
+
+            <yd-cell-item>
+                <span slot="left">选中的值：</span>
+                <span slot="right">{{checkedNames}}</span>
+            </yd-cell-item>
+        </yd-cell-group>
+
+        <yd-cell-group title="单选(radio改为checkbox样式通用)">
+            <yd-cell-item type="label">
+                <span slot="left">单选一</span>
+                <span slot="right">
+                    <input type="radio" value="Lili" v-model="picked"/>
+                    <i class="cell-radio-icon"></i>
+                </span>
+            </yd-cell-item>
+
+            <yd-cell-item type="label">
+                <span slot="left">单选二</span>
+                <span slot="right">
+                    <input type="radio" value="Lucy" v-model="picked"/>
+                    <i class="cell-radio-icon"></i>
+                </span>
+            </yd-cell-item>
+
+            <yd-cell-item>
+                <span slot="left">选中的值：</span>
+                <span slot="right">{{picked}}</span>
+            </yd-cell-item>
+        </yd-cell-group>
+
+        <yd-cell-group title="复选框">
+            <yd-cell-item type="label">
+                <div slot="left">设为默认地址 - {{ydswitch1}}</div>
+                <yd-switch slot="right" v-model="ydswitch1"></yd-switch>
+            </yd-cell-item>
+        </yd-cell-group>
+
+        <yd-cell-group title="文本域">
+            <yd-cell-item>
+                <textarea slot="right" placeholder="请输入您的银行卡卡号和密码"></textarea>
+            </yd-cell-item>
+        </yd-cell-group>
+
+    </yd-layout>
+
+</template>
+
+<script type="text/babel">
+    export default {
+        data() {
+            return {
+                checkedNames: [],
+                picked: 'Lucy',
+                ydswitch1: false,
+                ydswitch2: true,
+            }
+        }
+    }
+</script>

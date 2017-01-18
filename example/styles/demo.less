@@ -1,0 +1,359 @@
+//微软雅黑字体
+@FONT-YAHEI: \5fae\8f6f\96c5\9ed1;
+
+.demo-logo {
+  text-align: center;
+  img {
+    display: inline-block;
+    height: 1.8rem;
+    padding: .5rem 0 .4rem;
+  }
+}
+
+.demo-detail-title {
+  color: #888;
+  font-size: .28rem;
+  margin-bottom: .5rem;
+  font-weight: normal;
+  line-height: 0.42rem;
+  text-align: center;
+}
+
+.demo-loading {
+  margin-bottom: 20px;
+  li {
+    a {
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+    }
+    img {
+      width: .6rem;
+      height: .6rem;
+      display: inline-block;
+    }
+  }
+}
+
+.demo-tip {
+  color: #B1B1B1;
+  font-size: .24rem;
+  padding: .2rem .24rem .4rem;
+  line-height: 18px;
+  font-family: @FONT-YAHEI;
+  position: relative;
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: .2rem;
+    left: 0;
+    width: 100%;
+    border-bottom: 1px dashed #B2B2B2;
+    transform: scaleY(.5);
+    transform-origin: 0 100%;
+  }
+  i {
+    margin-right: 3px;
+  }
+  a {
+    color: #5AA700;
+  }
+}
+
+.demo-upload {
+  overflow: hidden;
+  li {
+    width: 1rem;
+    height: 1rem;
+    float: left;
+    margin-right: 0.2rem;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.demo-upload-big {
+  width: 2rem;
+  height: 2rem;
+  margin-top: 0.4rem;
+}
+
+.demo-upload-rectangle {
+  width: 4rem;
+  height: 2rem;
+  margin-top: 0.4rem;
+}
+
+.demo-components {
+  background-color: #FFF;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.demo-upload {
+  overflow: hidden;
+  li {
+    float: left;
+    img {
+      width: 1rem;
+      height: 1rem;
+      margin-right: .2rem;
+    }
+  }
+}
+
+.demo-pitch {
+  margin-top: .5rem;
+}
+
+.demo-small-pitch {
+  margin-top: .2rem;
+}
+
+.demo-progressbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 .24rem;
+}
+
+.demo-spinner {
+  background-color: #FFF;
+  padding: .24rem;
+}
+
+.demo-spinner-tip {
+  font-size: .3rem;
+  display: inline-block;
+  vertical-align: top;
+  color: #999;
+  margin-left: .2rem;
+}
+
+.demo-spinner-title {
+  font-size: .26rem;
+  color: #888;
+  display: block;
+  margin-bottom: .1rem;
+}
+
+.demo-badege {
+  padding: 0 .24rem .5rem .24rem;
+  background-color: #FFF;
+  .demo-badege-title {
+    font-size: .26rem;
+    padding-top: .5rem;
+    padding-bottom: .15rem;
+    color: #777;
+    position: relative;
+    &:after {
+      content: '';
+      position: absolute;
+      z-index: 2;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: #D9D9D9;
+      border-bottom: 1px solid #D9D9D9;
+      transform: scaleY(.5);
+      transform-origin: 0 100%;
+    }
+  }
+  .badge {
+    margin-right: .1rem;
+  }
+}
+
+.demo-icons {
+  [class^="icon-"]:before, [class*=" icon-"]:before {
+    font-size: .6rem;
+    color: #FF685D;
+  }
+}
+
+.demo-progress-line {
+  width: 100%;
+}
+
+.demo-progress-cricle {
+  width: 2rem;
+  height: 2rem;
+}
+
+.nav-center .nav-title {
+  font-family: @FONT-YAHEI;
+}
+
+@demo-icons: 'demo-icons';
+
+@font-face {
+  font-family: @demo-icons;
+  src: url('http://at.alicdn.com/t/font_1474965703_1820433.ttf') format('truetype');
+}
+
+[class^="demo-icons-"]:before, [class*=" demo-icons-"]:before {
+  font-family: @demo-icons;
+  font-size: .54rem;
+}
+
+.demo-icons-weixin:before {
+  content: '\e60b';
+}
+
+.demo-icons-me:before {
+  content: '\e610';
+}
+
+.demo-icons-contact:before {
+  content: '\e60c';
+}
+
+.demo-icons-discover:before {
+  content: '\e611';
+}
+
+.demo-icons-phone:before {
+  content: '\e60e';
+}
+
+.demo-icons-tel:before {
+  content: '\e616';
+}
+
+.demo-icons-like:before {
+  content: '\e60d';
+}
+
+.demo-icons-order:before {
+  content: '\e60f';
+}
+
+.demo-icons-button:before {
+  content: '\e602';
+  color: #FF685E;
+}
+
+.demo-icons-sendcode:before {
+  content: '\e60a';
+  color: #8B78E2;
+}
+
+.demo-icons-dialog:before {
+  content: '\e603';
+  color: #3CC51E;
+}
+
+.demo-icons-keyboard:before {
+  content: '\e613';
+  color: #FC746C;
+}
+
+.demo-icons-cell:before {
+  content: '\e600';
+  color: #FC746C;
+}
+
+.demo-icons-tabs:before {
+  content: '\e607';
+  color: #FF8D20;
+}
+
+.demo-icons-list:before {
+  content: '\e605';
+  color: #FF8D20;
+}
+
+.demo-icons-actionsheet:before {
+  content: '\e601';
+  color: #3CCD1C;
+}
+
+.demo-icons-progressbar:before {
+  content: '\e612';
+  color: #FF8D20;
+}
+
+.demo-icons-icons:before {
+  content: '\e604';
+  color: #8B78E2;
+}
+
+.demo-icons-tabbar:before {
+  content: '\e606';
+  color: #3CC51E;
+}
+
+.demo-icons-badge:before {
+  content: '\e608';
+  color: #EF4F4F;
+}
+
+.demo-icons-grids:before {
+  content: '\e609';
+  color: #8B78E2;
+}
+
+.demo-icons-slider:before {
+  content: '\e614';
+  color: #8B78E2;
+}
+
+.demo-icons-spinner:before {
+  content: '\e615';
+  color: #FF8D20;
+}
+
+.demo-icons-cityselect:before {
+  content: '\e617';
+  color: #FF685E;
+}
+
+@demo-category-icons: 'demo-category-icons';
+
+@font-face {
+  font-family: @demo-category-icons;
+  src: url('http://at.alicdn.com/t/font_1477296366_4593668.ttf') format('truetype');
+}
+
+[class^="demo-icons-category"]:before, [class*=" demo-icons-category"]:before {
+  font-family: @demo-category-icons;
+  font-size: .48rem;
+  color: #5B5D5C;
+}
+
+.demo-icons-category1:before {
+  content: '\E604';
+}
+
+.demo-icons-category2:before {
+  content: '\E602';
+}
+
+.demo-icons-category3:before {
+  content: '\E605';
+}
+
+.demo-icons-category4:before {
+  content: '\E603';
+}
+
+.demo-icons-category5:before {
+  content: '\E607';
+}
+
+.demo-icons-category6:before {
+  content: '\E600';
+}
+
+.demo-icons-category7:before {
+  content: '\E606';
+}
+
+.demo-icons-category8:before {
+  content: '\E601';
+}

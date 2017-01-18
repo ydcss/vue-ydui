@@ -1,0 +1,40 @@
+<template>
+    <yd-layout>
+        <h1 class="demo-logo"><img src="http://static.ydcss.com/ydui/img/logo.png"></h1>
+        <h2 class="demo-detail-title">基于Vue.js 2.0的移动端&微信UI。- YDUI Touch</h2>
+
+        <yd-grids-group rows="4">
+            <yd-grids-item v-for="item in list" :link="item.link">
+                <i slot="icon" :class="item.icon"></i>
+                <span slot="text">{{item.name}}</span>
+            </yd-grids-item>
+        </yd-grids-group>
+    </yd-layout>
+</template>
+
+<script type="text/babel">
+    export default {
+        data() {
+            return {
+                list: [
+                    {icon: 'demo-icons-button', name: 'Button', link: '/button'},
+                    {icon: 'demo-icons-dialog', name: 'Dialog', link: '/dialog'},
+                    {icon: 'demo-icons-cell', name: 'Cell', link: '/cell'},
+                    {icon: 'demo-icons-icons', name: 'Icons', link: '/icons'},
+                    {icon: 'demo-icons-grids', name: 'Grids', link: '/grids'},
+                    {icon: 'demo-icons-list', name: 'List', link: '/list'},
+                    {icon: 'demo-icons-badge', name: 'Badge', link: '/badge'},
+                    {icon: 'demo-icons-tabbar', name: 'AsideBar', link: '/asidebar'},
+                    {icon: 'demo-icons-tabs', name: 'Tabs', link: '/tabs'},
+                    {icon: 'demo-icons-actionsheet', name: 'ActionSheet', link: '/actionsheet'},
+                    {icon: 'demo-icons-sendcode', name: 'SendCode', link: '/sendcode'},
+                    {icon: 'demo-icons-progressbar', name: 'ProgressBar', link: '/progressbar'},
+                    {icon: 'demo-icons-keyboard', name: 'KeyBoard', link: '/keyboard'},
+                    {icon: 'demo-icons-slider', name: 'Slider', link: '/slider'},
+                    {icon: 'demo-icons-spinner', name: 'Spinner', link: '/spinner'},
+                    {icon: 'demo-icons-cityselect', name: 'CitySelect', link: '/cityselect'}
+                ]
+            }
+        }
+    }
+</script>

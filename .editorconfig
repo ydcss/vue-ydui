@@ -1,0 +1,20 @@
+# editorconfig.org
+
+root = true
+
+[*]
+index_size = 2
+charset = utf-8
+end_of_line = lf
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.md]
+trim_trailing_whitespace = false
+
+[*.js]
+index_size = 4
+
+[*.less]
+index_size = 2

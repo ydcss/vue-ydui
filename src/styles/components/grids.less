@@ -1,0 +1,79 @@
+@import "../common/variables";
+@import "../common/mixins";
+
+.m-grids() {
+  overflow: hidden;
+  position: relative;
+  background-color: @grids-bg;
+  &:before {
+    .bottom-line(@grids-line-high-color, 1);
+  }
+}
+
+.m-grids-2 {
+  .m-grids();
+  .grids-item {
+    width: 50%;
+    &:not(:nth-child(2n)):before {
+      .right-line(@grids-line-color);
+    }
+  }
+}
+
+.m-grids-3 {
+  .m-grids();
+  .grids-item {
+    width: 33.333333%;
+    &:not(:nth-child(3n)):before {
+      .right-line(@grids-line-color);
+    }
+  }
+}
+
+.m-grids-4 {
+  .m-grids();
+  .grids-item {
+    width: 25%;
+    &:not(:nth-child(4n)):before {
+      .right-line(@grids-line-color);
+    }
+  }
+}
+
+.m-grids-5 {
+  .m-grids();
+  .grids-item {
+    width: 20%;
+    &:not(:nth-child(5n)):before {
+      .right-line(@grids-line-color);
+    }
+  }
+}
+
+.grids-item {
+  width: 25%;
+  float: left;
+  position: relative;
+  z-index: 0;
+  padding: @grids-padding-horizontal 0;
+  font-size: @grids-fontsize;
+  &:after {
+    .bottom-line(@grids-line-color);
+  }
+}
+
+.grids-icon {
+  height: .68rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    height: 70%;
+  }
+}
+
+.grids-txt {
+  .text-overflow(center);
+  color: @grids-color;
+  padding: 0 .2rem;
+}

@@ -1,0 +1,94 @@
+.g-view {
+  margin: 0 auto;
+  max-width: @max-width;
+  min-width: @min-width;
+  &:before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: @navbar-height;
+  }
+  &:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: @body-padding-bottom * 3;
+  }
+}
+
+.g-flexview {
+  height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: @max-width;
+  min-width: @min-width;
+}
+
+.g-scrollview {
+  width: 100%;
+  height: 100%;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  margin-bottom: -1px;
+  &:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: @body-padding-bottom;
+  }
+}
+
+.g-linetitle {
+  padding: .15rem + .2rem @body-padding-vertical .1rem;
+  font-size: @cell-title-fontsize;
+  text-align: left;
+  color: @cell-title-color;
+  position: relative;
+  z-index: 1;
+  background-color: @body-bg;
+  &:after {
+    .bottom-line(@line-color, 3);
+  }
+}
+
+.ios .g-scrollview {
+  margin-top: 1px;
+}
+
+.hairline .g-scrollview {
+  margin-top: 0.5px;
+}
+
+.g-fix-ios-overflow-scrolling-bug {
+  -webkit-overflow-scrolling: auto;
+}
+
+.mask-black-dialog {
+  .mask(rgba(0, 0, 0, .4), @base-zindex * 1500);
+}
+
+.mask-black {
+  .mask(rgba(0, 0, 0, .4), @base-zindex * 500);
+}
+
+.mask-white-dialog {
+  .mask(rgba(0, 0, 0, 0), @base-zindex * 1500);
+}
+
+.mask-white {
+  .mask(rgba(0, 0, 0, 0), @base-zindex * 500);
+}

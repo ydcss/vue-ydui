@@ -1,0 +1,134 @@
+// 按下去背景颜色
+// -----------------------------------------------------------------------------
+.tap-color(@color, @opacity: .9) {
+  background-color: @color;
+  &:active {
+    background-color: @color * @opacity;
+  }
+}
+
+// 遮罩层
+// -----------------------------------------------------------------------------
+.mask(@bgcolor: rgba(0, 0, 0, .4), @z-index: @base-zindex * 1500) {
+  background-color: @bgcolor;
+  position: fixed;
+  z-index: @z-index;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+// 多行文本溢出显示省略号
+// -----------------------------------------------------------------------------
+.line-clamp(@line: 2, @line-height: .38rem) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: @line;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  line-height: @line-height;
+  max-height: @line-height * @line + .2rem;
+}
+
+// 单行文本溢出显示省略号
+// -----------------------------------------------------------------------------
+.text-overflow(@align: justify) {
+  word-wrap: normal;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: @align;
+}
+
+// 三角形箭头
+// -----------------------------------------------------------------------------
+// @deg:  45deg - right
+//       135deg - down
+//       -45deg - up
+//      -135deg - left
+// ------------------------------------------------------------------------
+.arrow(@color: #DDD, @width: .2rem, @border-width: 2px, @deg: 45deg) {
+  content: '';
+  display: inline-block;
+  width: @width;
+  height: @width;
+  border-style: solid;
+  border-color: @color;
+  border-width: @border-width @border-width 0 0;
+  -webkit-transform: rotate(@deg);
+  transform: rotate(@deg);
+}
+
+// 一像素边框
+// -----------------------------------------------------------------------------
+.top-line(@color, @zindex: 0) {
+  content: '';
+  position: absolute;
+  z-index: @zindex;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  border-top: 1px solid @color;
+  -webkit-transform: scaleY(.5);
+  transform: scaleY(.5);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+
+.bottom-line(@color, @zindex: 0) {
+  content: '';
+  position: absolute;
+  z-index: @zindex;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px solid @color;
+  -webkit-transform: scaleY(.5);
+  transform: scaleY(.5);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+
+.left-line(@color, @zindex: 0) {
+  content: '';
+  position: absolute;
+  z-index: @zindex;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-left: 1px solid @color;
+  -webkit-transform: scaleX(.5);
+  transform: scaleX(.5);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+
+.right-line(@color, @zindex: 0) {
+  content: '';
+  position: absolute;
+  z-index: @zindex;
+  top: 0;
+  right: 0;
+  height: 100%;
+  border-right: 1px solid @color;
+  -webkit-transform: scaleX(.5);
+  transform: scaleX(.5);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
