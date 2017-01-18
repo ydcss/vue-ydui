@@ -3,7 +3,7 @@
 Home: 开发中...  
 Docs: 编写中...
 Blog: <a href="http://www.ydcss.com">http://www.ydcss.com</a>
-基于jQuery的原始版本: <a href="http://www.ydui.org">http://www.ydui.org</a>
+基于jQuery2.0+的原始版本: <a href="http://www.ydui.org">http://www.ydui.org</a>
 
 #### 参考、使用的项目
 
