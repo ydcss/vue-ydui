@@ -1,7 +1,7 @@
 {
   "name": "vue-ydui",
   "description": "A mobile components Library with Vue2.js. - vue-ydui",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "",
   "main": "dist/ydui.js",
   "keywords": [
@@ -20,7 +20,8 @@
     "mobile ui"
   ],
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "scripts": {
     "dev": "webpack-dev-server --content-base example/ --port 4321 --inline --hot --config build/webpack.dev.conf.js",
