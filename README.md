@@ -1,18 +1,9 @@
-# vue-ydui
+#### 基于Vue.js 2.0的移动端&微信UI。- YDUI Touch
 
-> A Vue.js project
+Blog: <a href="http://www.ydcss.com">http://www.ydcss.com</a>
 
-## Build Setup
+#### 参考、使用的项目
 
-``` bash
-# install dependencies
-npm install
+* <a href="https://github.com/ftlabs/fastclick" target="_blank">[fastclick]</a> (<a href="https://github.com/ftlabs/fastclick/blob/master/LICENSE" target="_blank">[MIT License]</a>)
 
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-```
-
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+#### Developed with Open Source Licensed <a href="http://www.jetbrains.com/webstorm/" target="_blank">WebStorm</a>
