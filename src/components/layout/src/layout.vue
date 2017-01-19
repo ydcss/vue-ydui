@@ -29,3 +29,7 @@
         }
     }
 </script>
+
+<style lang="less">
+    @import "../../../styles/components/layout.less";
+</style>

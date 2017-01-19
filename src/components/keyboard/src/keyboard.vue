@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="mask-black" v-show="show" @click.stop="close"></div>
+        <div class="mask-keyboard" v-show="show" @click.stop="close"></div>
         <div class="m-keyboard" :class="show ? 'keyboard-active' : ''">
             <div class="keyboard-head">
                 <strong ref="laoxu">输入数字密码</strong>

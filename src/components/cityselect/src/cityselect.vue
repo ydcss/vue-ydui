@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="mask-black" v-show="show" @click.stop="close"></div>
+        <div class="mask-cityselect" v-show="show" @click.stop="close"></div>
         <div class="m-cityselect" :class="show ? 'cityselect-active' : ''">
             <div class="cityselect-header">
                 <p class="cityselect-title">所在地区</p>

@@ -1,6 +1,10 @@
 @import "../common/variables";
 @import "../common/mixins";
 
+.mask-keyboard {
+  .mask(rgba(0, 0, 0, .4), @base-zindex * 500);
+}
+
 .m-keyboard {
   position: fixed;
   bottom: 0;

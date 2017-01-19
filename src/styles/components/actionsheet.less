@@ -1,6 +1,10 @@
 @import "../common/variables";
 @import "../common/mixins";
 
+.mask-actionsheet {
+  .mask(rgba(0, 0, 0, .4), @base-zindex * 500);
+}
+
 .m-actionsheet {
   text-align: center;
   position: fixed;

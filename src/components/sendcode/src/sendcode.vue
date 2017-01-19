@@ -10,7 +10,7 @@
 </template>
 
 <script type="text/babel">
-    import Button from '../../button';
+    import Button from '../../button/src/button.vue';
 
     export default {
         name: 'yd-sendcode',

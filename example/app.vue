@@ -4,4 +4,5 @@
 
 <style lang="less">
     @import "./styles/demo.less";
+    @import "../src/styles/index.less";
 </style>

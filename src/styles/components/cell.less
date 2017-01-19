@@ -144,3 +144,16 @@
     content: '\e608';
   }
 }
+
+.m-celltitle {
+  padding: .15rem + .2rem @body-padding-vertical .1rem;
+  font-size: @cell-title-fontsize;
+  text-align: left;
+  color: @cell-title-color;
+  position: relative;
+  z-index: 1;
+  background-color: @body-bg;
+  &:after {
+    .bottom-line(@line-color, 3);
+  }
+}

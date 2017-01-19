@@ -1,6 +1,6 @@
 <template>
     <div class="m-cell">
-        <div class="g-linetitle" v-if="title">{{title}}</div>
+        <div class="m-celltitle" v-if="title">{{title}}</div>
         <slot></slot>
     </div>
 </template>
@@ -13,3 +13,7 @@
         }
     }
 </script>
+
+<style>
+
+</style>
