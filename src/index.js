@@ -1,4 +1,4 @@
-import './styles/index.less';
+import './styles/base.less';
 
 import Dialog from './components/dialog';
 import Layout from './components/layout';

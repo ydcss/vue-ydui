@@ -1,4 +1,6 @@
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
   outline: none;
 }
@@ -45,10 +47,9 @@ ol, ul {
 a {
   text-decoration: none;
   color: inherit;
-}
-
-a:hover {
-  text-decoration: none
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 a, label, button, input, select {
@@ -69,7 +70,7 @@ input[type="reset"]::-moz-focus-inner,
 input[type="button"]::-moz-focus-inner,
 input[type="submit"]::-moz-focus-inner,
 input[type="file"] > input[type="button"]::-moz-focus-inner {
-  border: none
+  border: none;
 }
 
 input[type=checkbox], input[type=radio] {
@@ -95,9 +96,4 @@ textarea {
   overflow: auto;
   resize: none;
   font: 100% tahoma, \5b8b\4f53, arial;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
 }
