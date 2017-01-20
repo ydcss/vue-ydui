@@ -2,7 +2,8 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Resource from 'vue-resource';
 
-import YDUI from '../src/index';
+import YDUI from '../src';
+
 import Index from './routers/index.vue';
 import Button from './routers/button.vue';
 import Dialog from './routers/dialog.vue';
@@ -34,7 +35,7 @@ Vue.use(VueRouter);
 Vue.use(Resource);
 Vue.use(YDUI);
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     typeof FastClick == 'function' && FastClick.attach(document.body);
 }, false);
 

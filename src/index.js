@@ -1,6 +1,6 @@
 import './styles/base.less';
 
-import {Dialog} from './components/dialog';
+import {Confirm, Alert, Toast, Notify, Loading} from './components/dialog';
 import {Layout} from './components/layout';
 import {Button, ButtonGroup} from './components/button';
 import {NavBar, NavBarBackIcon, NavBarNextIcon} from './components/navbar';
@@ -26,7 +26,7 @@ import {ProgressBar} from './components/progressbar';
 window.document.addEventListener('touchstart', function (event) {
     /* Do Nothing */
 }, false);
-console.log(Layout);
+
 const install = function (Vue) {
     Vue.component(Layout.name, Layout);
     Vue.component(Button.name, Button);
@@ -63,7 +63,14 @@ const install = function (Vue) {
     Vue.component(ProgressBar.name, ProgressBar);
 
     Vue.prototype.$yduiBus = new Vue();
-    Vue.prototype.$dialog = Dialog;
+
+    Vue.prototype.$dialog = {
+        confirm: Confirm,
+        alert: Alert,
+        toast: Toast,
+        notify: Notify,
+        loadin: Loading,
+    };
 };
 
 if (typeof window !== 'undefined' && window.Vue) {
@@ -71,6 +78,5 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-    install,
-    version: '0.0.1'
+    install
 };
