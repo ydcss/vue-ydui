@@ -1,32 +1,32 @@
 import './styles/base.less';
 
-import Dialog from './components/dialog';
-import Layout from './components/layout';
+import {Dialog} from './components/dialog';
+import {Layout} from './components/layout';
 import {Button, ButtonGroup} from './components/button';
 import {NavBar, NavBarBackIcon, NavBarNextIcon} from './components/navbar';
 import {CellItem, CellGroup} from './components/cell';
-import Switch from './components/switch';
+import {Switch} from './components/switch';
 import {GridsItem, GridsGroup} from './components/grids';
-import Icons from './components/icons';
+import {Icons} from './components/icons';
 import {ListTheme, ListItem, ListOther} from './components/list';
-import InfiniteScroll from './components/infinitescroll';
-import PullRefresh from './components/pullrefresh';
+import {InfiniteScroll} from './components/infinitescroll';
+import {PullRefresh} from './components/pullrefresh';
 import {Badge, BadgeRadius} from './components/badge';
 import {TabBar, TabBarItem} from './components/tabbar';
 import {Tab, TabPanel} from './components/tab';
 import {ScrollTab, ScrollTabPanel} from './components/scrolltab';
-import ActionSheet from './components/actionsheet';
-import SendCode from './components/sendcode';
-import KeyBoard from './components/keyboard';
+import {ActionSheet} from './components/actionsheet';
+import {SendCode} from './components/sendcode';
+import {KeyBoard} from './components/keyboard';
 import {Slider, SliderItem} from './components/slider';
-import Spinner from './components/spinner';
-import CitySelect from './components/cityselect';
-import ProgressBar from './components/progressbar';
+import {Spinner} from './components/spinner';
+import {CitySelect} from './components/cityselect';
+import {ProgressBar} from './components/progressbar';
 
 window.document.addEventListener('touchstart', function (event) {
     /* Do Nothing */
 }, false);
-
+console.log(Layout);
 const install = function (Vue) {
     Vue.component(Layout.name, Layout);
     Vue.component(Button.name, Button);
