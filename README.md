@@ -1,6 +1,6 @@
 #### 基于Vue2.js 的移动端&微信UI。- YDUI Touch
 
-Home: 开发中...  
+Home: <a href="http://vue.ydui.org"> http://vue.ydui.org </a>  
 Docs: 编写中...  
 Blog: <a href="http://www.ydcss.com"> http://www.ydcss.com </a>  
 Original version: <a href="http://www.ydui.org"> http://www.ydui.org </a>  
