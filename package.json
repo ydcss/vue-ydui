@@ -1,9 +1,9 @@
 {
   "name": "vue-ydui",
-  "description": "A mobile components Library with Vue2.js. - vue-ydui",
-  "version": "0.0.6",
-  "author": "",
-  "main": "dist/ydui999.js",
+  "description": "A mobile components Library with Vue2.js.",
+  "version": "0.0.8",
+  "author": "ydcss.com",
+  "main": "dist/ydui.js",
   "style": "dist/ydui.css",
   "keywords": [
     "YDUI Touch",
