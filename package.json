@@ -23,15 +23,17 @@
   "files": [
     "dist"
   ],
+  "homepage": "http://vue.ydui.org",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ydcss/vue-ydui.git"
+  },
   "scripts": {
     "dev": "webpack-dev-server --content-base example/ --port 4321 --inline --hot --config build/webpack.dev.conf.js",
     "build:components": "webpack --config build/webpack.dist.components.conf.js",
     "build:prod": "webpack --config build/webpack.dist.prod.conf.js",
     "build:style": "gulp --gulpfile build/build.style.js",
     "build": "npm run build:components && npm run build:prod && npm run build:style"
-  },
-  "dependencies": {
-    "vue": "^2.1.8"
   },
   "devDependencies": {
     "autoprefixer": "^6.6.1",
@@ -49,6 +51,7 @@
     "less-loader": "^2.2.3",
     "style-loader": "^0.13.1",
     "vue-loader": "^10.0.2",
+    "vue": "^2.1.8",
     "vue-resource": "^1.0.3",
     "vue-router": "^2.1.1",
     "vue-template-compiler": "^2.1.8",
