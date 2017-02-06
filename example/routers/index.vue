@@ -1,7 +1,7 @@
 <template>
     <yd-layout>
         <h1 class="demo-logo"><img src="http://static.ydcss.com/ydui/img/logo.png"></h1>
-        <h2 class="demo-detail-title">基于Vue.js 2.0的移动端&微信UI。- YDUI Touch</h2>
+        <h2 class="demo-detail-title">基于Vue2.js 的移动端&微信UI。- YDUI Touch</h2>
 
         <yd-grids-group rows="4">
             <yd-grids-item v-for="item in list" :link="item.link">

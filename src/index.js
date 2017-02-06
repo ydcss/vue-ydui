@@ -69,7 +69,7 @@ const install = function (Vue) {
         alert: Alert,
         toast: Toast,
         notify: Notify,
-        loadin: Loading,
+        loading: Loading,
     };
 };
 
