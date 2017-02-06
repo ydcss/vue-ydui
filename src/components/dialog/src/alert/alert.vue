@@ -1,5 +1,5 @@
 <template>
-    <div class="mask-black-dialog">
+    <div class="mask-black-dialog" @click.stop="closeAlert">
         <div class="m-confirm m-alert">
             <div class="confirm-bd" v-html="mes"></div>
             <div class="confirm-ft">

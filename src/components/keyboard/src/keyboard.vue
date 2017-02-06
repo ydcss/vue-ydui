@@ -24,6 +24,8 @@
 </template>
 
 <script type="text/babel">
+    import Vue from 'vue';
+
     export default {
         name: 'yd-keyboard',
         data() {
@@ -107,6 +109,8 @@
             }
         },
         mounted() {
+            Vue.prototype.$yduiBus = this.$yduiBus || new Vue();
+
             this.$yduiBus.$on('keyboard.error', (error) => {
                 this.setError(error);
             });

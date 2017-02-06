@@ -14,6 +14,8 @@
 </template>
 
 <script type="text/babel">
+    import Vue from 'vue';
+
     export default {
         name: 'yd-infinitescroll',
         data() {
@@ -30,6 +32,7 @@
         },
         methods: {
             init() {
+                Vue.prototype.$yduiBus = this.$yduiBus || new Vue();
 
                 this.scrollview = this.getScrollview();
 

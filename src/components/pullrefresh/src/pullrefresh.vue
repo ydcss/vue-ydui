@@ -18,6 +18,8 @@
 </template>
 
 <script type="text/babel">
+    import Vue from 'vue';
+
     export default {
         name: 'yd-pullrefresh',
         props: {
@@ -48,6 +50,8 @@
         },
         methods: {
             init() {
+                Vue.prototype.$yduiBus = this.$yduiBus || new Vue();
+
                 this.offsetTop = this.$refs.dragBox.getBoundingClientRect().top;
 
                 this.bindEvents();

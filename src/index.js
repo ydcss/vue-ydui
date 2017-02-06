@@ -62,8 +62,6 @@ const install = function (Vue) {
     Vue.component(CitySelect.name, CitySelect);
     Vue.component(ProgressBar.name, ProgressBar);
 
-    Vue.prototype.$yduiBus = new Vue();
-
     Vue.prototype.$dialog = {
         confirm: Confirm,
         alert: Alert,
