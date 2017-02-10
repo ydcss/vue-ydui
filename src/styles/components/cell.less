@@ -50,6 +50,34 @@
   input[type="time"] {
     line-height: @cell-height;
   }
+  input[type="radio"],
+  input[type="checkbox"]:not(.m-switch) {
+    position: absolute;
+    left: -9999em;
+    & + .cell-radio-icon:after,
+    & + .cell-checkbox-icon:after {
+      font-family: @iconfont-inlay;
+      font-size: .44rem;
+    }
+    & + .cell-radio-icon:after {
+      content: '\e600';
+      color: #4CD864;
+      display: none;
+    }
+    & + .cell-checkbox-icon:after {
+      content: '\e604';
+      color: #D9D9D9;
+    }
+    &:checked {
+      & + .cell-radio-icon:after {
+        display: inline-block;
+      }
+      & + .cell-checkbox-icon:after {
+        color: #4CD864;
+        content: '\e601';
+      }
+    }
+  }
   &:active {
     background: none; /* for firefox */
   }
@@ -86,36 +114,6 @@
     color: @cell-select-color;
     font-size: @cell-select-fontsize;
     margin-left: -.08rem; /* 去除select默认缩进 */
-  }
-}
-
-.cell-choose {
-  input[type="radio"],
-  input[type="checkbox"] {
-    &:after {
-      font-family: @iconfont-inlay;
-      font-size: .44rem;
-    }
-  }
-  input[type="checkbox"] {
-    &:after {
-      content: '\e604';
-      color: #D9D9D9;
-    }
-    &:checked:after {
-      color: #4CD864;
-      content: '\e601';
-    }
-  }
-  input[type="radio"] {
-    &:after {
-      content: '\e600';
-      color: #4CD864;
-      display: none;
-    }
-    &:checked:after {
-      display: inline-block;
-    }
   }
 }
 

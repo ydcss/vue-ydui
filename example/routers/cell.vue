@@ -76,17 +76,17 @@
         </yd-cell-group>
 
         <yd-cell-group title="多选">
-            <yd-cell-item type="choose">
+            <yd-cell-item type="checkbox">
                 <span slot="left">多选一</span>
                 <input slot="right" type="checkbox" value="Han MeiMei" v-model="checkedNames"/>
             </yd-cell-item>
 
-            <yd-cell-item type="choose">
+            <yd-cell-item type="checkbox">
                 <span slot="left">多选二</span>
                 <input slot="right" type="checkbox" value="Li Lei" v-model="checkedNames"/>
             </yd-cell-item>
 
-            <yd-cell-item type="choose">
+            <yd-cell-item type="checkbox">
                 <span slot="left">多选三</span>
                 <input slot="right" type="checkbox" value="Jim Green" v-model="checkedNames"/>
             </yd-cell-item>
@@ -98,12 +98,12 @@
         </yd-cell-group>
 
         <yd-cell-group title="单选">
-            <yd-cell-item type="choose">
+            <yd-cell-item type="radio">
                 <span slot="left">单选一</span>
                 <input slot="right" type="radio" value="Lili" v-model="picked"/>
             </yd-cell-item>
 
-            <yd-cell-item type="choose">
+            <yd-cell-item type="radio">
                 <span slot="left">单选二</span>
                 <input slot="right" type="radio" value="Lucy" v-model="picked"/>
             </yd-cell-item>

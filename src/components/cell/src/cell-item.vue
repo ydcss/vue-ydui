@@ -1,11 +1,13 @@
 <template>
-    <label class="cell-item" v-if="type == 'label' || type == 'choose'">
+    <label class="cell-item" v-if="type == 'label' || type == 'checkbox' || type == 'radio'">
         <div class="cell-left" v-if="checkLeft">
             <span class="cell-icon"><slot name="icon"></slot></span>
             <slot name="left"></slot>
         </div>
         <div class="cell-right" :class="classes">
             <slot name="right"></slot>
+            <i v-if="type == 'checkbox'" class="cell-checkbox-icon"></i>
+            <i v-if="type == 'radio'" class="cell-radio-icon"></i>
         </div>
     </label>
     <router-link class="cell-item" :to="href" v-else-if="type == 'link' || !!href">
@@ -35,7 +37,7 @@
             type: {
                 type: String,
                 validator (value) {
-                    return ['link', 'label', 'div', 'choose'].indexOf(value) > -1;
+                    return ['link', 'label', 'div', 'checkbox', 'radio'].indexOf(value) > -1;
                 }
             },
             arrow: {
@@ -51,11 +53,7 @@
                 return !!this.$slots.left || !!this.$slots.icon;
             },
             classes() {
-                let _class = '';
-                if (this.type == 'choose') {
-                    _class += 'cell-choose ';
-                }
-                return _class += (this.arrow ? 'cell-arrow' : '');
+                return this.arrow ? 'cell-arrow' : '';
             }
         }
     }
