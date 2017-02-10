@@ -36,6 +36,9 @@
         computed: {
             typesClass() {
                 if (this.bgcolor) {
+                    if (this.shape == 'square') {
+                        return ' badge-radius';
+                    }
                     return '';
                 }
                 return (this.type ? 'badge-' + this.type : '') + (this.shape == 'square' ? ' badge-radius' : '');
