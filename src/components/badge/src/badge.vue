@@ -14,6 +14,12 @@
                     return ['primary', 'danger', 'warning', 'hollow'].indexOf(value) > -1;
                 }
             },
+            shape: {
+                type: String,
+                validator(value) {
+                    return ['circle', 'square'].indexOf(value) > -1;
+                }
+            },
             color: {
                 type: String,
                 validator(value) {
@@ -32,7 +38,7 @@
                 if (this.bgcolor) {
                     return '';
                 }
-                return this.type ? 'badge-' + this.type : '';
+                return (this.type ? 'badge-' + this.type : '') + (this.shape == 'square' ? ' badge-radius' : '');
             }
         }
     }

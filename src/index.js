@@ -46,7 +46,6 @@ const install = function (Vue) {
     Vue.component(InfiniteScroll.name, InfiniteScroll);
     Vue.component(PullRefresh.name, PullRefresh);
     Vue.component(Badge.name, Badge);
-    Vue.component(BadgeRadius.name, BadgeRadius);
     Vue.component(TabBar.name, TabBar);
     Vue.component(TabBarItem.name, TabBarItem);
     Vue.component(Tab.name, Tab);

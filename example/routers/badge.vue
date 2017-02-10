@@ -26,20 +26,20 @@
 
             <div class="demo-badege-title">方形角标：</div>
             <div class="demo-small-pitch">
-                <yd-badge-radius>1</yd-badge-radius>
-                <yd-badge-radius type="primary">2</yd-badge-radius>
-                <yd-badge-radius type="danger">3</yd-badge-radius>
-                <yd-badge-radius type="warning">4</yd-badge-radius>
-                <yd-badge-radius type="hollow">5</yd-badge-radius>
+                <yd-badge shape="square">1</yd-badge>
+                <yd-badge shape="square" type="primary">2</yd-badge>
+                <yd-badge shape="square" type="danger">3</yd-badge>
+                <yd-badge shape="square" type="warning">4</yd-badge>
+                <yd-badge shape="square" type="hollow">5</yd-badge>
             </div>
 
             <div class="demo-small-pitch">
-                <yd-badge-radius>123</yd-badge-radius>
-                <yd-badge-radius type="primary">321</yd-badge-radius>
-                <yd-badge-radius type="danger">333</yd-badge-radius>
-                <yd-badge-radius type="warning">4444</yd-badge-radius>
-                <yd-badge-radius type="hollow">55555</yd-badge-radius>
-                <yd-badge-radius bgcolor="#000" color="#FFF">custom color</yd-badge-radius>
+                <yd-badge shape="square">123</yd-badge>
+                <yd-badge shape="square" type="primary">321</yd-badge>
+                <yd-badge shape="square" type="danger">333</yd-badge>
+                <yd-badge shape="square" type="warning">4444</yd-badge>
+                <yd-badge shape="square" type="hollow">55555</yd-badge>
+                <yd-badge shape="square" bgcolor="#000" color="#FFF">custom color</yd-badge>
             </div>
 
         </div>
