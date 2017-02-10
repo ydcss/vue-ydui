@@ -75,29 +75,20 @@
             </yd-cell-item>
         </yd-cell-group>
 
-        <yd-cell-group title="多选(checkbox改为radio样式通用)">
-            <yd-cell-item type="label">
+        <yd-cell-group title="多选">
+            <yd-cell-item type="choose">
                 <span slot="left">多选一</span>
-                <span slot="right">
-                    <input type="checkbox" value="Han MeiMei" v-model="checkedNames"/>
-                    <i class="cell-checkbox-icon"></i>
-                </span>
+                <input slot="right" type="checkbox" value="Han MeiMei" v-model="checkedNames"/>
             </yd-cell-item>
 
-            <yd-cell-item type="label">
+            <yd-cell-item type="choose">
                 <span slot="left">多选二</span>
-                <span slot="right">
-                    <input type="checkbox" value="Li Lei" v-model="checkedNames"/>
-                    <i class="cell-checkbox-icon"></i>
-                </span>
+                <input slot="right" type="checkbox" value="Li Lei" v-model="checkedNames"/>
             </yd-cell-item>
 
-            <yd-cell-item type="label">
+            <yd-cell-item type="choose">
                 <span slot="left">多选三</span>
-                <span slot="right">
-                    <input type="checkbox" value="Jim Green" v-model="checkedNames"/>
-                    <i class="cell-checkbox-icon"></i>
-                </span>
+                <input slot="right" type="checkbox" value="Jim Green" v-model="checkedNames"/>
             </yd-cell-item>
 
             <yd-cell-item>
@@ -106,21 +97,15 @@
             </yd-cell-item>
         </yd-cell-group>
 
-        <yd-cell-group title="单选(radio改为checkbox样式通用)">
-            <yd-cell-item type="label">
+        <yd-cell-group title="单选">
+            <yd-cell-item type="choose">
                 <span slot="left">单选一</span>
-                <span slot="right">
-                    <input type="radio" value="Lili" v-model="picked"/>
-                    <i class="cell-radio-icon"></i>
-                </span>
+                <input slot="right" type="radio" value="Lili" v-model="picked"/>
             </yd-cell-item>
 
-            <yd-cell-item type="label">
+            <yd-cell-item type="choose">
                 <span slot="left">单选二</span>
-                <span slot="right">
-                    <input type="radio" value="Lucy" v-model="picked"/>
-                    <i class="cell-radio-icon"></i>
-                </span>
+                <input slot="right" type="radio" value="Lucy" v-model="picked"/>
             </yd-cell-item>
 
             <yd-cell-item>
@@ -131,8 +116,8 @@
 
         <yd-cell-group title="复选框">
             <yd-cell-item type="label">
-                <div slot="left">设为默认地址 - {{ydswitch1}}</div>
-                <yd-switch slot="right" v-model="ydswitch1"></yd-switch>
+                <div slot="left">设为默认地址 - {{ydswitch}}</div>
+                <yd-switch slot="right" v-model="ydswitch"></yd-switch>
             </yd-cell-item>
         </yd-cell-group>
 
@@ -152,8 +137,7 @@
             return {
                 checkedNames: [],
                 picked: 'Lucy',
-                ydswitch1: false,
-                ydswitch2: true,
+                ydswitch: true
             }
         }
     }

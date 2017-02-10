@@ -1,5 +1,5 @@
 <template>
-    <label class="cell-item" v-if="type == 'label'">
+    <label class="cell-item" v-if="type == 'label' || type == 'choose'">
         <div class="cell-left" v-if="checkLeft">
             <span class="cell-icon"><slot name="icon"></slot></span>
             <slot name="left"></slot>
@@ -35,7 +35,7 @@
             type: {
                 type: String,
                 validator (value) {
-                    return ['link', 'label', 'div'].indexOf(value) > -1;
+                    return ['link', 'label', 'div', 'choose'].indexOf(value) > -1;
                 }
             },
             arrow: {
@@ -43,7 +43,7 @@
                 default: false
             },
             href: {
-
+                type: String
             }
         },
         computed: {
@@ -51,7 +51,11 @@
                 return !!this.$slots.left || !!this.$slots.icon;
             },
             classes() {
-                return this.arrow ? 'cell-arrow' : ''
+                let _class = '';
+                if (this.type == 'choose') {
+                    _class += 'cell-choose ';
+                }
+                return _class += (this.arrow ? 'cell-arrow' : '');
             }
         }
     }

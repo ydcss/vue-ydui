@@ -1,5 +1,5 @@
 <template>
-    <input type="checkbox" @change="changeVal" class="m-switch" v-model="checked"/>
+    <input type="checkbox" class="m-switch" v-model="checked"/>
 </template>
 
 <script type="text/babel">
@@ -19,10 +19,6 @@
         watch: {
             checked(val) {
                 this.$emit('input', val);
-            }
-        },
-        methods: {
-            changeVal() {
             }
         },
         mounted() {
