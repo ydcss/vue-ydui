@@ -123,10 +123,12 @@
 
 .cell-icon {
   display: block;
-  &:before, &:after {
-    color: #A6A5A5;
-    font-size: @cell-icon-fontsize !important;
-    margin-right: .1rem;
+  * {
+    &:before, &:after {
+      color: #A6A5A5;
+      font-size: @cell-icon-fontsize !important;
+      margin-right: .1rem;
+    }
   }
   img {
     height: 0.4rem;

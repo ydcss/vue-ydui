@@ -20,36 +20,34 @@
 
         <yd-cell-group title="带图标的">
             <yd-cell-item>
-                <div slot="left">
-                    <i class="cell-icon demo-icons-phone"></i>
-                </div>
+                <i slot="icon" class="demo-icons-phone"></i>
                 <input slot="right" type="number" pattern="[0-9]*" placeholder="请输入手机号码" autocomplete="off">
                 <yd-button slot="right" type="warning">获取短信验证码</yd-button>
             </yd-cell-item>
 
             <yd-cell-item href="#" type="link">
-                <i slot="left" class="cell-icon demo-icons-like"></i>
+                <i slot="icon" class="demo-icons-like"></i>
                 <span slot="left">我的收藏</span>
 
                 <span slot="right" class="badge badge-danger">8</span>
             </yd-cell-item>
 
             <yd-cell-item arrow href="tel:400-888-8888" type="link">
-                <i slot="left" class="cell-icon demo-icons-tel"></i>
+                <i slot="icon" class="demo-icons-tel"></i>
                 <span slot="left">联系客服</span>
 
                 <span slot="right">400-888-8888</span>
             </yd-cell-item>
 
             <yd-cell-item href="#" arrow>
-                <i slot="left" class="cell-icon demo-icons-order"></i>
+                <i slot="icon" class="demo-icons-order"></i>
                 <span slot="left">我的订单</span>
 
                 <span slot="right">查看全部订单</span>
             </yd-cell-item>
 
             <yd-cell-item href="#" arrow type="link">
-                <span slot="left" class="cell-icon"><img src="http://static.ydcss.com/ydui/img/logo.png"></span>
+                <img slot="icon" src="http://static.ydcss.com/ydui/img/logo.png">
                 <span slot="left">图标</span>
 
                 <span slot="right">图标是image</span>

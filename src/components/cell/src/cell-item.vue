@@ -1,6 +1,7 @@
 <template>
     <label class="cell-item" v-if="type == 'label'">
-        <div class="cell-left" v-if="checkLeft">
+        <div class="cell-left">
+            <span class="cell-icon"><slot name="icon"></slot></span>
             <slot name="left"></slot>
         </div>
         <div class="cell-right" :class="classes">
@@ -8,7 +9,8 @@
         </div>
     </label>
     <router-link class="cell-item" :to="href" v-else-if="type == 'link' || !!href">
-        <div class="cell-left" v-if="checkLeft">
+        <div class="cell-left">
+            <span class="cell-icon"><slot name="icon"></slot></span>
             <slot name="left"></slot>
         </div>
         <div class="cell-right" :class="classes">
@@ -16,7 +18,8 @@
         </div>
     </router-link>
     <div class="cell-item" v-else>
-        <div class="cell-left" v-if="checkLeft">
+        <div class="cell-left">
+            <span class="cell-icon"><slot name="icon"></slot></span>
             <slot name="left"></slot>
         </div>
         <div class="cell-right" :class="classes">
@@ -44,9 +47,6 @@
             }
         },
         computed: {
-            checkLeft() {
-                return !!this.$slots.left;
-            },
             classes() {
                 return this.arrow ? 'cell-arrow' : ''
             }

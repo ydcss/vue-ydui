@@ -2,7 +2,7 @@
     <yd-layout title="SendCode">
         <yd-cell-group class="demo-small-pitch">
             <yd-cell-item>
-                <i slot="left" class="cell-icon demo-icons-phone"></i>
+                <i slot="icon" class="demo-icons-phone"></i>
                 <input type="text" slot="right" placeholder="请输入手机号码">
 
                 <!-- ↓↓关键代码是这里↓↓ -->
