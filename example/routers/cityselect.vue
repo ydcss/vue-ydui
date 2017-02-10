@@ -1,7 +1,7 @@
 <template>
     <yd-layout title="CitySelect">
 
-        <yd-cell-group title="默认调用">
+        <yd-cell-group title="默认调用" class="demo-small-pitch">
             <yd-cell-item arrow>
                 <span slot="left">所在地区：</span>
                 <input slot="right" type="text" @click.stop="show1 = true" v-model="model1" readonly class="cell-input" placeholder="请选择收货地址">

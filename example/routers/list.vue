@@ -1,7 +1,7 @@
 <template>
     <yd-layout title="List">
 
-        <yd-cell-group title="排版样式">
+        <yd-cell-group title="排版样式" class="demo-small-pitch">
             <yd-cell-item arrow type="link" href="/list.theme/1">
                 <span slot="left">theme1</span>
             </yd-cell-item>

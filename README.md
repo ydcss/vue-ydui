@@ -1,4 +1,4 @@
-#### 基于Vue2.js 的移动端&微信UI。- YDUI Touch
+#### 一只基于Vue2.x的移动端&微信UI。 -YDUI Touch
 
 Home: <a href="http://vue.ydui.org"> http://vue.ydui.org </a>  
 Docs: 编写中...  
