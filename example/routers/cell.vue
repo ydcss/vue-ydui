@@ -32,7 +32,7 @@
                 <span slot="right" class="badge badge-danger">8</span>
             </yd-cell-item>
 
-            <yd-cell-item arrow href="tel:400-888-8888" type="link">
+            <yd-cell-item arrow href="tel:400-888-8888" type="a">
                 <i slot="icon" class="demo-icons-tel"></i>
                 <span slot="left">联系客服</span>
 
@@ -135,7 +135,7 @@
     export default {
         data() {
             return {
-                checkedNames: [],
+                checkedNames: ['Han MeiMei'],
                 picked: 'Lucy',
                 ydswitch: true
             }
