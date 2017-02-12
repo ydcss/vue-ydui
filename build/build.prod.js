@@ -10,7 +10,7 @@ gulp.task('css:base', function () {
 
 gulp.task('css:ydui', function () {
     gulp.src('../dist/ydui.css')
-        .pipe(require('ydcss-rem2px')())
+        .pipe(require('ydcss-rem2px')(50))
         .pipe(cleanCss())
         .pipe(require('gulp-rename')('ydui.px.css'))
         .pipe(gulp.dest('../dist'));
