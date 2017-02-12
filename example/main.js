@@ -2,7 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Resource from 'vue-resource';
 
-import YDUI from '../src';
+import YDUI from '../src/ydui.js';
 
 import Index from './routers/index.vue';
 import Button from './routers/button.vue';

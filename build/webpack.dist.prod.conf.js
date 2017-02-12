@@ -4,7 +4,7 @@ const distCommonWebpackConfig = require('./webpack.dist.common.conf');
 
 module.exports = merge(distCommonWebpackConfig, {
     entry: {
-        ydui: './src/index.js'
+        ydui: './src/ydui.js'
     },
     vue: {
         loaders: {

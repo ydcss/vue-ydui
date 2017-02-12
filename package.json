@@ -1,7 +1,7 @@
 {
   "name": "vue-ydui",
   "description": "A mobile components Library with Vue2.js.",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "author": "ydcss.com",
   "main": "dist/ydui.js",
   "style": "dist/ydui.css",
@@ -32,8 +32,7 @@
     "dev": "webpack-dev-server --content-base example/ --port 4321 --inline --hot --config build/webpack.dev.conf.js",
     "build:components": "webpack --config build/webpack.dist.components.conf.js",
     "build:prod": "webpack --config build/webpack.dist.prod.conf.js",
-    "build:style": "gulp --gulpfile build/build.style.js",
-    "build": "npm run build:components && npm run build:prod && npm run build:style"
+    "build": "npm run build:components && npm run build:prod && gulp --gulpfile build/build.prod.js"
   },
   "devDependencies": {
     "autoprefixer": "^6.6.1",
@@ -46,6 +45,7 @@
     "gulp-clean-css": "^2.3.2",
     "gulp-less": "^3.3.0",
     "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^2.0.1",
     "json-loader": "^0.5.4",
     "less": "^2.7.2",
     "less-loader": "^2.2.3",
@@ -57,7 +57,8 @@
     "vue-template-compiler": "^2.1.8",
     "webpack": "^1.14.0",
     "webpack-dev-server": "^1.16.2",
-    "webpack-merge": "^2.4.0"
+    "webpack-merge": "^2.4.0",
+    "ydcss-rem2px": "^1.0.0"
   },
   "license": "MIT"
 }
