@@ -12,7 +12,7 @@
             validator(value){
                 return ['1', '2', '3', '4', '5'].indexOf(value + '') > -1;
             },
-            default: '2'
+            default: '1'
         },
         computed: {
             classes() {

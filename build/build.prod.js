@@ -1,18 +1,20 @@
 var gulp = require('gulp');
 var cleanCss = require('gulp-clean-css');
+var rename = require('gulp-rename');
 
 gulp.task('css:base', function () {
     gulp.src('../src/styles/base.less')
         .pipe(require('gulp-less')())
         .pipe(cleanCss())
-        .pipe(gulp.dest('../dist/lib'));
+        .pipe(rename('ydui.base.css'))
+        .pipe(gulp.dest('../dist'));
 });
 
 gulp.task('css:ydui', function () {
     gulp.src('../dist/ydui.css')
         .pipe(require('ydcss-rem2px')(50))
         .pipe(cleanCss())
-        .pipe(require('gulp-rename')('ydui.px.css'))
+        .pipe(rename('ydui.px.css'))
         .pipe(gulp.dest('../dist'));
 });
 
