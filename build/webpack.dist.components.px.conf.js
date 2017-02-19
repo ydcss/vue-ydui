@@ -1,6 +1,5 @@
 const merge = require('webpack-merge');
 const distCommonWebpackConfig = require('./webpack.dist.common.conf');
-const rem2px = require('./px2rem');
 
 module.exports = merge(distCommonWebpackConfig, {
     entry: {
@@ -27,7 +26,7 @@ module.exports = merge(distCommonWebpackConfig, {
         "/lib.px/tab/index": "./src/components/tab/index.js",
         "/lib.px/tabbar/index": "./src/components/tabbar/index.js"
     },
-    plugins: [
-        new rem2px(50)
-    ]
+    vue: {
+        postcss: [require('./rem2px')(50)]
+    }
 });
