@@ -1,5 +1,5 @@
 <template>
-    <router-link :to="link" class="tabbar-item" :class="classes">
+    <router-link :to="link" class="tabbar-item" :class="classes" :style="styles">
         <span class="tabbar-icon">
             <slot name="icon"></slot>
             <span class="tabbar-badge">
@@ -23,6 +23,9 @@
         computed: {
             classes() {
                 return this.active ? 'tabbar-active' : '';
+            },
+            styles() {
+                return {color: this.active ? this.activeColor : '#979797'};
             }
         }
     }

@@ -44,6 +44,7 @@
             fillColor: {
                 type: String,
                 validator(value) {
+                    if(!value) return true;
                     return isColor(value);
                 }
             },
@@ -56,6 +57,7 @@
             strokeColor: {
                 type: String,
                 validator(value) {
+                    if(!value) return true;
                     return isColor(value);
                 },
                 default: '#E5E5E5'
@@ -70,6 +72,7 @@
             trailColor: {
                 type: String,
                 validator(value) {
+                    if(!value) return true;
                     return isColor(value);
                 },
                 default: '#646464'

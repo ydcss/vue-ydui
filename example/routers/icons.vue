@@ -17,7 +17,7 @@
             return {
                 list: [
                     'home', 'home-outline', 'shopcart', 'shopcart-outline', 'ucenter',
-                    'ucenter-outline', 'star', 'star-outline', 'error', 'error-outline', 'warn', 
+                    'ucenter-outline', 'star', 'star-outline', 'error', 'error-outline', 'warn',
                     'warn-outline', 'shield', 'shield-outline', 'like', 'like-outline', 'weibo', 'weixin',
                     'tencent-weibo', 'qq', 'phone1', 'phone2', 'phone3', 'share1', 'share2',
                     'share3', 'order', 'prev', 'play', 'next', 'good', 'bad', 'feedback', 'compose',

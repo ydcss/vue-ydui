@@ -12,9 +12,9 @@
             color: {
                 type: String,
                 validator(value) {
+                    if(!value) return true;
                     return isColor(value);
-                },
-                default: '#333'
+                }
             },
             size: {
                 type: String,

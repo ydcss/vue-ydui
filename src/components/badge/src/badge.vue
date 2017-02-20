@@ -5,6 +5,8 @@
 </template>
 
 <script type="text/babel">
+    import {isColor} from '../../../utils/assist';
+
     export default {
         name: 'yd-badge',
         props: {
@@ -23,13 +25,15 @@
             color: {
                 type: String,
                 validator(value) {
-                    return value || isColor(value);
+                    if(!value) return true;
+                    return isColor(value);
                 }
             },
             bgcolor: {
                 type: String,
                 validator(value) {
-                    return value || isColor(value);
+                    if(!value) return true;
+                    return isColor(value);
                 }
             }
         },

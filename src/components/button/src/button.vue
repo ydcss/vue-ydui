@@ -27,12 +27,14 @@
             bgcolor: {
                 type: String,
                 validator(value) {
-                    return value || isColor(value);
+                    if(!value) return true;
+                    return isColor(value);
                 }
             },
             color: {
                 type: String,
                 validator(value) {
+                    if(!value) return true;
                     return isColor(value);
                 }
             }

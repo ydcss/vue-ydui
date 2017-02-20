@@ -1,14 +1,24 @@
 <template>
-    <footer class="m-tabbar" :class="classes">
+    <footer class="m-tabbar" :class="classes" :style="{color: activeColor}">
         <slot></slot>
     </footer>
 </template>
 
 <script type="text/babel">
+    import {isColor} from '../../../utils/assist';
+
     export default {
         name: 'yd-tabbar',
         props: {
-            fixed: Boolean
+            fixed: Boolean,
+            activeColor: {
+                type: String,
+                validator(value) {
+                    if(!value) return true;
+                    return isColor(value);
+                },
+                default: '#09BB07'
+            }
         },
         computed: {
             classes() {
