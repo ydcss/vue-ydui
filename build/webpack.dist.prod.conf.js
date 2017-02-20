@@ -12,6 +12,6 @@ module.exports = merge(distCommonWebpackConfig, {
         }
     },
     plugins: [
-        new ExtractTextPlugin('ydui.css')
+        new ExtractTextPlugin('ydui.rem.css')
     ]
 });

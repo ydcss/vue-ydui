@@ -11,7 +11,7 @@ gulp.task('css:base', function () {
 });
 
 gulp.task('css:ydui', function () {
-    gulp.src('../dist/ydui.css')
+    gulp.src('../dist/ydui.rem.css')
         .pipe(require('ydcss-rem2px')(50))
         .pipe(cleanCss())
         .pipe(rename('ydui.px.css'))
