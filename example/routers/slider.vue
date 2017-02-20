@@ -3,7 +3,7 @@
 
         <div class="demo-small-pitch">
 
-            <yd-slider :autoplay="3000">
+            <yd-slider autoplay="3000">
                 <yd-slider-item>
                     <a href="http://www.ydcss.com">
                         <img src="http://static.ydcss.com/uploads/ydui/1.jpg">

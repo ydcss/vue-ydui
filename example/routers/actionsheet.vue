@@ -40,7 +40,7 @@
                         method: () => {
                             this.$dialog.toast({mes: 'Say: 我是不会关闭的！'});
                         },
-                        unclose: true // 不关闭
+                        stay: true // 不关闭
                     },
                     {
                         label: '示例菜单二 - 自动关闭',

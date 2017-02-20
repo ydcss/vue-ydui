@@ -36,7 +36,7 @@
             itemClick(item) {
                 if(item) {
                     typeof item.method == 'function' && item.method();
-                    !item.unclose && this.close();
+                    !item.stay && this.close();
                 }
             },
             close() {

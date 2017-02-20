@@ -96,6 +96,7 @@
                 this.lastItem = itemArr[itemArr.length - 1].$el.innerHTML;
             },
             touchStartHandler(event) {
+                console.log('fjdslkjflkdsf');
                 const touches = this.touches;
 
                 touches.allowClick = true;
