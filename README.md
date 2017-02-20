@@ -1,7 +1,7 @@
 #### 一只基于Vue2.x的移动端&微信UI。 -YDUI Touch
 
 Home: <a href="http://vue.ydui.org"> http://vue.ydui.org </a>  
-Docs: 编写中...  
+Docs: <a href="http://vue.ydui.org/docs"> http://vue.ydui.org/docs </a>  
 Blog: <a href="http://www.ydcss.com"> http://www.ydcss.com </a>  
 Original version: <a href="http://www.ydui.org"> http://www.ydui.org </a>  
 
