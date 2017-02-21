@@ -3,10 +3,10 @@
 Home: <a href="http://vue.ydui.org"> http://vue.ydui.org </a>  
 Docs: <a href="http://vue.ydui.org/docs"> http://vue.ydui.org/docs </a>  
 Blog: <a href="http://www.ydcss.com"> http://www.ydcss.com </a>  
-Original version: <a href="http://www.ydui.org"> http://www.ydui.org </a>  
+jQuery version: <a href="http://www.ydui.org"> http://www.ydui.org </a>  
 
 #### 请用扫码查看
-<img style="border: 1px solid #E5E5E5;" width="222" height="222" src="http://static.ydcss.com/ydui/img/qrcode2.png" />
+<img width="200" height="200" src="http://static.ydcss.com/ydui/img/qrcode.jpg" />
 
 #### 参考、使用的项目
 
