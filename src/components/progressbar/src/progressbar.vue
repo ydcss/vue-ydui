@@ -19,7 +19,7 @@
 </template>
 
 <script type="text/babel">
-    import {isColor} from '../../../utils/assist';
+    import {isColor, getScrollview} from '../../../utils/assist';
 
     export default {
         name: 'yd-progressbar',
@@ -44,7 +44,7 @@
             fillColor: {
                 type: String,
                 validator(value) {
-                    if(!value) return true;
+                    if (!value) return true;
                     return isColor(value);
                 }
             },
@@ -57,7 +57,7 @@
             strokeColor: {
                 type: String,
                 validator(value) {
-                    if(!value) return true;
+                    if (!value) return true;
                     return isColor(value);
                 },
                 default: '#E5E5E5'
@@ -72,7 +72,7 @@
             trailColor: {
                 type: String,
                 validator(value) {
-                    if(!value) return true;
+                    if (!value) return true;
                     return isColor(value);
                 },
                 default: '#646464'
@@ -90,7 +90,7 @@
                 this.stroke.dashoffset = length;
                 this.stroke.dasharray = length + ',' + length;
 
-                this.scrollview = this.getScrollview();
+                this.scrollview = getScrollview(this.$el);
 
                 this.show = true;
 
@@ -103,17 +103,6 @@
                 }, 0);
 
                 this.bindEvent();
-            },
-            getScrollview() {
-                const overflowY = document.defaultView.getComputedStyle(this.$el.parentNode).overflowY;
-
-                if (overflowY == 'scroll' || overflowY == 'auto') {
-                    return this.$el.parentNode;
-                } else if (this.$parent.$refs.scrollview) {
-                    return this.$parent.$refs.scrollview;
-                } else {
-                    return window;
-                }
             },
             checkInview() {
                 const scrollView = this.scrollview;

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div ref="dragBox">
-            <slot name="list"></slot>
+            <slot></slot>
             <div class="pullrefresh-dragtip" ref="dragTip"
                  :class="dragTip.animationTiming"
                  :style="{ 'transform': 'translate3d(0, ' + dragTip.translate + 'px, 0) scale(' + dragTip.scale + ')' }"

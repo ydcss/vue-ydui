@@ -6,7 +6,7 @@ Blog: <a href="http://www.ydcss.com"> http://www.ydcss.com </a>
 Original version: <a href="http://www.ydui.org"> http://www.ydui.org </a>  
 
 #### 请用扫码查看
-<img width="222" height="222" src="http://static.ydcss.com/ydui/img/qrcode2.png" />
+<img style="border: 1px solid #E5E5E5;" width="222" height="222" src="http://static.ydcss.com/ydui/img/qrcode2.png" />
 
 #### 参考、使用的项目
 

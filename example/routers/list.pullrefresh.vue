@@ -8,7 +8,7 @@
 
         <yd-pullrefresh :on-infinite="loadList">
 
-            <yd-list theme="4" slot="list">
+            <yd-list theme="4">
                 <yd-list-item v-for="item in list">
                     <img slot="img" :src="item.img">
                     <span slot="title">{{item.title}}</span>

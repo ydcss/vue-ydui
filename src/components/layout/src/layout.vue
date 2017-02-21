@@ -8,7 +8,7 @@
             </yd-navbar>
         </slot>
 
-        <section class="g-scrollview" ref="scrollview">
+        <section class="g-scrollview">
             <slot></slot>
         </section>
 
