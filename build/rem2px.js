@@ -11,6 +11,8 @@ module.exports = postcss.plugin('vue-ydui-rem2px', function (size) {
             newCssText = oldCssText.replace(/(\d*\.?\d+)rem/g, function (match, m1) {
                 return m1 * size + 'px';
             });
+        } else {
+            return oldCssText;
         }
 
         result.root = postcss.parse(newCssText);
