@@ -9,6 +9,8 @@
 </template>
 
 <script type="text/babel">
+    import {addClass, removeClass} from '../../../utils/assist';
+
     export default {
         name: 'yd-actionsheet',
         data() {
@@ -29,6 +31,8 @@
         },
         watch: {
             value(val) {
+                val && this.isIOS && addClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
+
                 this.show = val;
             }
         },
@@ -40,11 +44,18 @@
                 }
             },
             close() {
+                this.isIOS && removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
+
                 this.$emit('input', false);
             }
         },
         destroyed() {
             this.close();
+        },
+        mounted() {
+            this.scrollView = this.$parent.$refs.scrollView;
+
+            this.isIOS = !!(window.navigator && window.navigator.userAgent || '').match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
         }
     }
 </script>

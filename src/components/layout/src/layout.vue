@@ -8,7 +8,7 @@
             </yd-navbar>
         </slot>
 
-        <section class="g-scrollview" :class="iosScrollBug">
+        <section class="g-scrollview" ref="scrollView">
             <slot></slot>
         </section>
 
@@ -19,22 +19,12 @@
 <script type="text/babel">
     export default {
         name: 'yd-layout',
-        data() {
-            return {
-                iosScrollBug: ''
-            }
-        },
         props: {
             link: String,
             title: String,
             showNavbar: {
                 type: Boolean,
                 default: true
-            }
-        },
-        mounted() {
-            if(!!(window.navigator && window.navigator.userAgent || '').match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
-                this.iosScrollBug = 'g-fix-ios-overflow-scrolling-bug';
             }
         }
     }

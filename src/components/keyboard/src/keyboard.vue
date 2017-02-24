@@ -25,6 +25,7 @@
 
 <script type="text/babel">
     import Vue from 'vue';
+    import {addClass, removeClass} from '../../../utils/assist';
 
     export default {
         name: 'yd-keyboard',
@@ -55,6 +56,8 @@
         },
         watch: {
             value(val) {
+                val && this.isIOS && addClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
+
                 this.nums = '';
                 this.error = '';
                 this.show = val;
@@ -101,6 +104,8 @@
                 return arr;
             },
             close() {
+                this.isIOS && removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
+
                 this.$emit('input', false);
             },
             setError(error) {
@@ -117,7 +122,11 @@
 
             this.$yduiBus.$on('keyboard.close', this.close);
 
-            //TODO 非常快速点击问题 看看v-tap 吧，现在搞不动了https://github.com/MeCKodo/vue-tap
+            //TODO 非常快速点击问题 https://github.com/MeCKodo/vue-tap
+
+            this.scrollView = this.$parent.$refs.scrollView;
+
+            this.isIOS = !!(window.navigator && window.navigator.userAgent || '').match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
         },
         destroyed() {
             this.close();
