@@ -9,7 +9,7 @@ module.exports = postcss.plugin('vue-ydui-rem2px', function (size) {
 
         if (/\d*\.?\d+rem/.test(oldCssText)) {
             newCssText = oldCssText.replace(/(\d*\.?\d+)rem/g, function (match, m1) {
-                return m1 * size + 'px';
+                return parseInt(m1 * size) + 'px';
             });
         } else {
             return oldCssText;
