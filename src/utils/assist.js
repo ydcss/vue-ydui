@@ -38,6 +38,16 @@ const getScrollview = function (el) {
     return window;
 };
 
+const checkInview = function (scrollView, el) {
+    const contentHeight = scrollView == window ? document.body.offsetHeight : scrollView.offsetHeight;
+    const contentTop = scrollView === window ? 0 : scrollView.getBoundingClientRect().top;
+
+    const post = el.getBoundingClientRect().top - contentTop;
+    const posb = post + el.offsetHeight;
+
+    return (post >= 0 && post < contentHeight) || (posb > 0 && posb <= contentHeight);
+};
+
 const hasClass = function (elem, cls) {
     cls = cls || '';
     if (cls.replace(/\s/g, '').length == 0) return false;
@@ -60,4 +70,4 @@ const removeClass = function (ele, cls) {
     }
 };
 
-export {pageScroll, isColor, getScrollview, addClass, removeClass};
+export {pageScroll, isColor, getScrollview, checkInview, addClass, removeClass};

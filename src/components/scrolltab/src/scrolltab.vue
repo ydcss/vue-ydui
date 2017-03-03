@@ -40,8 +40,8 @@
                 this.setDefault();
             },
             bindEvent() {
-                this.scrollView.addEventListener('scroll', this.checkInview);
-                this.scrollView.addEventListener('resize', this.checkInview);
+                this.scrollView.addEventListener('scroll', this.scrollHandler);
+                window.addEventListener('resize', this.scrollHandler);
             },
             setDefault() {
                 const panels = this.getPanels();
@@ -78,7 +78,7 @@
                     this.scrolling = false;
                 }, 6);
             },
-            checkInview() {
+            scrollHandler() {
                 if (this.scrolling)return;
 
                 const panels = this.getPanels();
@@ -104,8 +104,8 @@
             this.init();
         },
         destroyed() {
-            this.scrollView.removeEventListener('scroll', this.checkInview);
-            this.scrollView.removeEventListener('resize', this.checkInview);
+            this.scrollView.removeEventListener('scroll', this.scrollHandler);
+            window.removeEventListener('resize', this.scrollHandler);
         }
     }
 </script>

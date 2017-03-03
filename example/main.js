@@ -28,6 +28,7 @@ import KeyBoard from './routers/keyboard.vue';
 import Slider from './routers/slider.vue';
 import Spinner from './routers/spinner.vue';
 import CitySelect from './routers/cityselect.vue';
+import LazyImg from './routers/lazyimg.vue';
 
 import App from './app.vue';
 
@@ -64,7 +65,8 @@ const router = new VueRouter({
         {path: '/keyboard', component: KeyBoard},
         {path: '/slider', component: Slider},
         {path: '/spinner', component: Spinner},
-        {path: '/cityselect', component: CitySelect}
+        {path: '/cityselect', component: CitySelect},
+        {path: '/lazyimg', component: LazyImg}
     ]
 });
 

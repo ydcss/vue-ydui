@@ -19,7 +19,7 @@
 </template>
 
 <script type="text/babel">
-    import {isColor, getScrollview} from '../../../utils/assist';
+    import {isColor, getScrollview, checkInview} from '../../../utils/assist';
 
     export default {
         name: 'yd-progressbar',
@@ -29,7 +29,7 @@
                 show: false,
                 stroke: {
                     dasharray: '',
-                    dashoffset: '',
+                    dashoffset: ''
                 }
             }
         },
@@ -99,30 +99,23 @@
                 }
 
                 setTimeout(() => {
-                    this.checkInview();
+                    this.scrollHandler();
                 }, 0);
 
                 this.bindEvent();
             },
-            checkInview() {
-                const scrollView = this.scrollview;
-                const contentHeight = scrollView == window ? document.body.offsetHeight : scrollView.offsetHeight;
-                const contentTop = scrollView === window ? 0 : scrollView.getBoundingClientRect().top;
-
-                const post = this.$el.getBoundingClientRect().top - contentTop;
-                const posb = post + this.$el.offsetHeight;
-
-                if ((post >= 0 && post < contentHeight) || (posb > 0 && posb <= contentHeight)) {
+            scrollHandler() {
+                if (checkInview(this.scrollview, this.$el)) {
                     this.stroke.dashoffset = this.length - this.progress * this.length;
                 }
             },
             bindEvent() {
-                this.scrollview.addEventListener('scroll', this.checkInview);
-                this.scrollview.addEventListener('resize', this.checkInview);
+                this.scrollview.addEventListener('scroll', this.scrollHandler);
+                window.addEventListener('resize', this.scrollHandler);
             },
             unbindEvent() {
-                this.scrollview.removeEventListener('scroll', this.checkInview);
-                this.scrollview.removeEventListener('resize', this.checkInview);
+                this.scrollview.removeEventListener('scroll', this.scrollHandler);
+                window.removeEventListener('resize', this.scrollHandler);
             }
         },
         watch: {

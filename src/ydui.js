@@ -22,6 +22,7 @@ import {Slider, SliderItem} from './components/slider';
 import {Spinner} from './components/spinner';
 import {CitySelect} from './components/cityselect';
 import {ProgressBar} from './components/progressbar';
+import {LazyImg} from './components/lazyimg';
 
 window.document.addEventListener('touchstart', function (event) {
     /* Do Nothing */
@@ -60,6 +61,7 @@ const install = function (Vue) {
     Vue.component(Spinner.name, Spinner);
     Vue.component(CitySelect.name, CitySelect);
     Vue.component(ProgressBar.name, ProgressBar);
+    Vue.component(LazyImg.name, LazyImg);
 
     Vue.prototype.$dialog = {
         confirm: Confirm,

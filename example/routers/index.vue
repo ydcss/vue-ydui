@@ -32,7 +32,8 @@
                     {icon: 'demo-icons-keyboard', name: 'KeyBoard', link: '/keyboard'},
                     {icon: 'demo-icons-slider', name: 'Slider', link: '/slider'},
                     {icon: 'demo-icons-spinner', name: 'Spinner', link: '/spinner'},
-                    {icon: 'demo-icons-cityselect', name: 'CitySelect', link: '/cityselect'}
+                    {icon: 'demo-icons-cityselect', name: 'CitySelect', link: '/cityselect'},
+                    {icon: 'demo-icons-lazyimg', name: 'LazyImg', link: '/lazyimg'},
                 ]
             }
         }
