@@ -30,6 +30,7 @@ import Spinner from './routers/spinner.vue';
 import CitySelect from './routers/cityselect.vue';
 import LazyImg from './routers/lazyimg.vue';
 import CountDown from './routers/countdown.vue';
+import Rate from './routers/rate.vue';
 
 import App from './app.vue';
 
@@ -69,6 +70,7 @@ const router = new VueRouter({
         {path: '/cityselect', component: CitySelect},
         {path: '/lazyimg', component: LazyImg},
         {path: '/countdown', component: CountDown},
+        {path: '/rate', component: Rate},
     ]
 });
 

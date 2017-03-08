@@ -1,0 +1,24 @@
+@import "../common/variables";
+@import "../common/mixins";
+
+.m-rate {
+  display: flex;
+  align-items: center;
+  a {
+    &:after {
+      content: '\E630';
+      font-family: @iconfont-inlay;
+      font-size: inherit;
+      color: inherit;
+    }
+    &.rate-active:after {
+      content: '\E631';
+    }
+  }
+  .rate-text {
+    color: #657180;
+    margin-left: .15rem;
+    font-size: .28rem;
+    vertical-align: middle;
+  }
+}

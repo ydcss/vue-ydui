@@ -8,9 +8,10 @@
             </yd-cell-item>
             <yd-cell-item>
                 <span slot="left">自定义参数模板：</span>
-                <yd-countdown slot="right" time="2017-06-06 06:06:06" format="{%s}秒 {%h}时 {%m}分 {%d}天"></yd-countdown>
+                <yd-countdown slot="right" time="2017-06-06 06:06:06" format="{%s}秒】{%h}时】{%m}分】{%d}天】"></yd-countdown>
             </yd-cell-item>
         </yd-cell-group>
+
         <yd-cell-group title="通过Slot自定义HTML模板">
             <yd-cell-item>
                 <span slot="left">个位十位一体：</span>
@@ -23,13 +24,14 @@
             </yd-cell-item>
             <yd-cell-item>
                 <span slot="left">个位十位分开：</span>
-                <yd-countdown slot="right" time="2017/03/08 00:00:00" class="demo-countdown">
-                    <em>{%d0}</em><em>{%d1}</em><em>{%d2天}</em>
+                <yd-countdown slot="right" time="2017/09/08 00:00:00" class="demo-countdown">
+                    <em>{%d0}</em><em>{%d1}</em><em>{%d2}</em>天
                     <em>{%h1}</em><em>{%h2}</em>小时
                     <em>{%m1}</em><em>{%m2}</em>时
                     <em>{%s1}</em><em>{%s2}</em>秒
                 </yd-countdown>
             </yd-cell-item>
         </yd-cell-group>
+
     </yd-layout>
 </template>

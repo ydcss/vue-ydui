@@ -35,6 +35,7 @@
                     {icon: 'demo-icons-cityselect', name: 'CitySelect', link: '/cityselect'},
                     {icon: 'demo-icons-lazyimg', name: 'LazyImg', link: '/lazyimg'},
                     {icon: 'demo-icons-countdown', name: 'CountDown', link: '/countdown'},
+                    {icon: 'demo-icons-rate', name: 'Rate', link: '/rate'},
                 ]
             }
         }

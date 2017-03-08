@@ -6,8 +6,6 @@
 </template>
 
 <script type="text/babel">
-    //TODO 开关显示是否需要显示0
-
     export default {
         name: 'yd-countdown',
         data() {
@@ -69,9 +67,9 @@
                 arr.forEach((val) => {
                     const day = ment(t[val]).toString().split('');
                     format = format.replace('{%' + val + '}', ment(t[val]));
+                    format = format.replace('{%' + val + '0}', ~~day[0] != 0 ? day[0] : '');
                     format = format.replace('{%' + val + '1}', ~~day[day.length - 2]);
                     format = format.replace('{%' + val + '2}', ~~day[day.length - 1]);
-                    format = format.replace('{%' + val + '0}', ~~day[0] != 0 ? day[0] : '');
                 });
 
                 return format;
@@ -83,6 +81,9 @@
                 this.showTpl = false;
                 this.run();
             });
+        },
+        destroyed() {
+            clearInterval(this.timer);
         }
     }
 </script>

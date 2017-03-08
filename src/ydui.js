@@ -24,6 +24,7 @@ import {CitySelect} from './components/cityselect';
 import {ProgressBar} from './components/progressbar';
 import {LazyImg} from './components/lazyimg';
 import {CountDown} from './components/countdown';
+import {Rate} from './components/rate';
 
 window.document.addEventListener('touchstart', function (event) {
     /* Do Nothing */
@@ -64,6 +65,7 @@ const install = function (Vue) {
     Vue.component(ProgressBar.name, ProgressBar);
     Vue.component(LazyImg.name, LazyImg);
     Vue.component(CountDown.name, CountDown);
+    Vue.component(Rate.name, Rate);
 
     Vue.prototype.$dialog = {
         confirm: Confirm,
