@@ -1,8 +1,8 @@
 <template>
     <span class="m-rate" :style="{fontSize: size, color: color}">
-        <a href="javascript:;" v-for="item in count"
+        <a href="javascript:;" v-for="item in ~~count"
            :class="index >= item ? 'rate-active' : ''"
-           :style="{color: index >= item ? activeColor : color}"
+           :style="{color: index >= item ? activeColor : color, paddingRight: padding}"
            @click="!disabled && choose(item)"
         ></a>
         <span class="rate-text" v-if="!!str" v-html="str"></span>
@@ -33,7 +33,7 @@
                 validator(value) {
                     return /^(\.|\d+\.)?\d+(px|rem)$/.test(value);
                 },
-                default: '.56rem'
+                default: '.5rem'
             },
             color: {
                 type: String,
@@ -62,6 +62,13 @@
             disabled: {
                 type: Boolean,
                 default: false
+            },
+            padding: {
+                type: String,
+                validator(value) {
+                    return /^(\.|\d+\.)?\d+(px|rem)$/.test(value);
+                },
+                default: '.06rem'
             }
         },
         methods: {
