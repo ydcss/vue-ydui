@@ -1,0 +1,53 @@
+@import "../common/variables";
+@import "../common/mixins";
+
+.m-popup {
+  position: fixed;
+  background-color: #FFF;
+  z-index: @base-zindex * 1500 + 1;
+  transition: transform .3s;
+  &.popup-left {
+    transform: translate(-100%, 0);
+    left: 0;
+    top: 0;
+    height: 100%;
+  }
+  &.popup-right {
+    transform: translate(100%, 0);
+    right: 0;
+    top: 0;
+    height: 100%;
+  }
+  &.popup-bottom {
+    transform: translate(0, 100%);
+    right: 0;
+    bottom: 0;
+  }
+  &.popup-center {
+
+  }
+  &.popup-show {
+    transform: translate(0, 0);
+  }
+}
+
+.m-popup-center {
+  background-color: #FFF;
+  z-index: @base-zindex * 1500 + 2;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0);
+  transform-origin: 50% 50%;
+  transition: transform .2s;
+  border-radius: 2px;
+  &.popup-show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.m-popup-mask {
+  .mask(rgba(0, 0, 0, .4), @base-zindex * 1500);
+}

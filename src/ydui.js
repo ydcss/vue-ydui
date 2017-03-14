@@ -26,6 +26,7 @@ import {LazyImg} from './components/lazyimg';
 import {CountDown} from './components/countdown';
 import {Rate} from './components/rate';
 import {TextArea} from './components/textarea';
+import {Popup} from './components/popup';
 
 window.document.addEventListener('touchstart', function (event) {
     /* Do Nothing */
@@ -68,6 +69,7 @@ const install = function (Vue) {
     Vue.component(CountDown.name, CountDown);
     Vue.component(Rate.name, Rate);
     Vue.component(TextArea.name, TextArea);
+    Vue.component(Popup.name, Popup);
 
     Vue.prototype.$dialog = {
         confirm: Confirm,

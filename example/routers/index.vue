@@ -36,6 +36,7 @@
                     {icon: 'demo-icons-lazyimg', name: 'LazyImg', link: '/lazyimg'},
                     {icon: 'demo-icons-countdown', name: 'CountDown', link: '/countdown'},
                     {icon: 'demo-icons-rate', name: 'Rate', link: '/rate'},
+                    {icon: 'demo-icons-popup', name: 'Popup', link: '/popup'},
                 ]
             }
         }
