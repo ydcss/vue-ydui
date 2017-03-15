@@ -8,6 +8,8 @@
 </template>
 
 <script type="text/babel">
+    import {addClass, removeClass, getScrollview} from '../../../utils/assist';
+
     export default {
         name: 'yd-popup',
         data() {
@@ -38,6 +40,8 @@
         },
         watch: {
             value(val) {
+                val && this.isIOS && addClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
+
                 this.show = val;
             }
         },
@@ -57,12 +61,16 @@
                         'popup-' + this.position;
             },
             close() {
+                this.isIOS && removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
+
                 this.show = false;
                 this.$emit('input', false);
-            },
-            mounted() {
-
             }
+        },
+        mounted() {
+            this.scrollView = getScrollview(this.$el);
+
+            this.isIOS = !!(window.navigator && window.navigator.userAgent || '').match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
         }
     }
 </script>

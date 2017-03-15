@@ -53,7 +53,7 @@
 </template>
 
 <script type="text/babel">
-    import {addClass, removeClass} from '../../../utils/assist';
+    import {addClass, removeClass, getScrollview} from '../../../utils/assist';
     import Citys from './ydui.citys';
 
     export default {
@@ -66,7 +66,7 @@
                     index: 0,
                     txt1: '请选择',
                     txt2: '',
-                    txt3: '',
+                    txt3: ''
                 },
                 activeProvance: '',
                 activeCity: '',
@@ -197,7 +197,7 @@
         mounted() {
             this.setDefalutValue();
 
-            this.scrollView = this.$parent.$refs.scrollView;
+            this.scrollView = getScrollview(this.$el);
 
             this.isIOS = !!(window.navigator && window.navigator.userAgent || '').match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
         },

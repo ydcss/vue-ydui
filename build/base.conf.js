@@ -25,11 +25,6 @@ module.exports = {
                 test: /\.json$/,
                 loader: 'json',
                 exclude: /node_modules/
-            },
-            {
-                test: /\.ttf$/,
-                loader: "file",
-                exclude: /node_modules/
             }
         ]
     },

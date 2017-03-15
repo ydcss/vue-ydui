@@ -6,6 +6,7 @@
   background-color: #FFF;
   z-index: @base-zindex * 1500 + 1;
   transition: transform .3s;
+  pointer-events: none;
   &.popup-left {
     transform: translate(-100%, 0);
     left: 0;
@@ -27,6 +28,7 @@
 
   }
   &.popup-show {
+    pointer-events: auto;
     transform: translate(0, 0);
   }
 }
@@ -38,11 +40,13 @@
   top: 50%;
   left: 50%;
   opacity: 0;
-  transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(.8);
   transform-origin: 50% 50%;
-  transition: transform .2s;
+  transition: all .1s;
   border-radius: 2px;
+  pointer-events: none;
   &.popup-show {
+    pointer-events: auto;
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
   }

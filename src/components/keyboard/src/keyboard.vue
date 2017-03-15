@@ -25,7 +25,7 @@
 
 <script type="text/babel">
     import Vue from 'vue';
-    import {addClass, removeClass} from '../../../utils/assist';
+    import {addClass, removeClass, getScrollview} from '../../../utils/assist';
 
     export default {
         name: 'yd-keyboard',
@@ -124,7 +124,7 @@
 
             //TODO 非常快速点击问题 https://github.com/MeCKodo/vue-tap
 
-            this.scrollView = this.$parent.$refs.scrollView;
+            this.scrollView = getScrollview(this.$el);
 
             this.isIOS = !!(window.navigator && window.navigator.userAgent || '').match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
         },

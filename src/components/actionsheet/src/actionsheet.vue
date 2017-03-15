@@ -9,7 +9,7 @@
 </template>
 
 <script type="text/babel">
-    import {addClass, removeClass} from '../../../utils/assist';
+    import {addClass, removeClass, getScrollview} from '../../../utils/assist';
 
     export default {
         name: 'yd-actionsheet',
@@ -53,7 +53,7 @@
             this.close();
         },
         mounted() {
-            this.scrollView = this.$parent.$refs.scrollView;
+            this.scrollView = getScrollview(this.$el);
 
             this.isIOS = !!(window.navigator && window.navigator.userAgent || '').match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
         }

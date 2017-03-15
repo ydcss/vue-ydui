@@ -18,7 +18,7 @@ gulp.task('css:ydui', function () {
         .pipe(gulp.dest('../dist'));
 });
 
-gulp.task('flexible', function(){
+gulp.task('flexible', function () {
     gulp.src('../src/ydui.flexible.js')
         .pipe(require('gulp-uglify')())
         .pipe(gulp.dest('../dist'));
