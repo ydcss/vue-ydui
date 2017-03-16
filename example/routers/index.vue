@@ -33,7 +33,7 @@
                     {icon: 'demo-icons-slider', name: 'Slider', link: '/slider'},
                     {icon: 'demo-icons-spinner', name: 'Spinner', link: '/spinner'},
                     {icon: 'demo-icons-cityselect', name: 'CitySelect', link: '/cityselect'},
-                    {icon: 'demo-icons-lazyimg', name: 'LazyImg', link: '/lazyimg'},
+                    {icon: 'demo-icons-countup', name: 'CountUp', link: '/countup'},
                     {icon: 'demo-icons-countdown', name: 'CountDown', link: '/countdown'},
                     {icon: 'demo-icons-rate', name: 'Rate', link: '/rate'},
                     {icon: 'demo-icons-popup', name: 'Popup', link: '/popup'},

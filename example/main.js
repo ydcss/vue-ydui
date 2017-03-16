@@ -32,6 +32,7 @@ import LazyImg from './routers/lazyimg.vue';
 import CountDown from './routers/countdown.vue';
 import Rate from './routers/rate.vue';
 import Popup from './routers/popup.vue';
+import CountUp from './routers/countup.vue';
 
 import App from './app.vue';
 
@@ -73,6 +74,7 @@ const router = new VueRouter({
         {path: '/countdown', component: CountDown},
         {path: '/rate', component: Rate},
         {path: '/popup', component: Popup},
+        {path: '/countup', component: CountUp},
     ]
 });
 

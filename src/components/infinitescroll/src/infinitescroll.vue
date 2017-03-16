@@ -37,6 +37,8 @@
 
                 this.scrollview = getScrollview(this.$el);
 
+                console.log(this.scrollview);
+
                 this.scrollview.addEventListener('scroll', () => {
                     this.throttle(this.scrollHandler);
                 });

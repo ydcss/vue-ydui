@@ -1,8 +1,9 @@
 <template>
-    <img :dataSrc="src">
+    <img :src="defaultSrc" :datasrc="src">
 </template>
 
 <script type="text/babel">
+    // TODO 还未完善
     import {getScrollview, checkInview} from '../../../utils/assist';
 
     export default {
@@ -10,6 +11,10 @@
         props: {
             src: {
                 type: String
+            },
+            defaultSrc: {
+                type: String,
+                default: 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='
             }
         },
         methods: {
@@ -22,7 +27,7 @@
             },
             scrollHandler() {
                 if (checkInview(this.scrollview, this.$el)) {
-                    this.$el.setAttribute('src', this.$el.getAttribute('dataSrc'));
+                    this.$el.setAttribute('src', this.$el.getAttribute('datasrc'));
                     this.unbindEvent();
                 }
             },
@@ -36,7 +41,9 @@
             }
         },
         mounted() {
-            this.init();
+            this.$nextTick(() => {
+                this.init();
+            });
         },
         destoryed() {
             this.unbindEvent();

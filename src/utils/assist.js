@@ -62,7 +62,7 @@ const addClass = function (ele, cls) {
 
 const removeClass = function (ele, cls) {
     if (hasClass(ele, cls)) {
-        var newClass = ' ' + ele.className.replace(/[\t\r\n]/g, '') + ' ';
+        let newClass = ' ' + ele.className.replace(/[\t\r\n]/g, '') + ' ';
         while (newClass.indexOf(' ' + cls + ' ') >= 0) {
             newClass = newClass.replace(' ' + cls + ' ', ' ');
         }

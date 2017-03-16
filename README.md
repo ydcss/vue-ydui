@@ -1,3 +1,11 @@
+<p align="center">
+    <br>
+    <a href="//vue.ydui.org">
+        <img width="200" src="//static.ydcss.com/ydui/img/logo.png">
+    </a>
+    <br>
+</p>
+<br/>
 #### 一只基于Vue2.x的移动端&微信UI。 -YDUI Touch
 <br/>
 Home: <a href="http://vue.ydui.org"> http://vue.ydui.org </a>  
@@ -11,5 +19,9 @@ jQuery version: <a href="http://www.ydui.org"> http://www.ydui.org </a>
 #### 参考、使用的项目
 
 * <a href="https://github.com/ftlabs/fastclick" target="_blank">[fastclick]</a> (<a href="https://github.com/ftlabs/fastclick/blob/master/LICENSE" target="_blank">[MIT License]</a>)
+* <a href="https://github.com/inorganik/CountUp.js" target="_blank">[countup.js]</a> (<a href="https://github.com/inorganik/countUp.js/blob/master/LICENSE.md" target="_blank">[MIT License]</a>)
+* <a href="https://github.com/iview/iview" target="_blank">[iview]</a> (<a href="https://github.com/iview/iview/blob/2.0/LICENSE" target="_blank">[MIT License]</a>)
+* <a href="https://github.com/kimmobrunfeldt/progressbar.js" target="_blank">[progressbar.js]</a> (<a href="https://github.com/kimmobrunfeldt/progressbar.js/blob/master/LICENSE" target="_blank">[MIT License]</a>)
+* <a href="https://github.com/daneden/animate.css" target="_blank">[animate.css]</a> (<a href="https://github.com/daneden/animate.css/blob/master/LICENSE" target="_blank">[MIT License]</a>)
 
 #### Developed with Open Source Licensed <a href="http://www.jetbrains.com/webstorm/" target="_blank">WebStorm</a>
