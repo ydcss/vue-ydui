@@ -12,27 +12,23 @@
         props: {
             disabled: Boolean,
             type: {
-                type: String,
                 validator(value) {
                     return ['primary', 'danger', 'warning', 'hollow', 'disabled'].indexOf(value) > -1;
                 },
                 default: 'primary'
             },
             size: {
-                type: String,
                 validator(value) {
                     return ['small', 'large'].indexOf(value) > -1;
                 }
             },
             bgcolor: {
-                type: String,
                 validator(value) {
                     if(!value) return true;
                     return isColor(value);
                 }
             },
             color: {
-                type: String,
                 validator(value) {
                     if(!value) return true;
                     return isColor(value);

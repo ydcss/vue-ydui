@@ -10,14 +10,12 @@
         props: {
             name: String,
             color: {
-                type: String,
                 validator(value) {
                     if(!value) return true;
                     return isColor(value);
                 }
             },
             size: {
-                type: String,
                 validator(value) {
                     return /^(\.|\d+\.)?\d+(px|rem)$/.test(value);
                 },

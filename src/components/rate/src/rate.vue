@@ -3,7 +3,7 @@
         <a href="javascript:;" v-for="item in ~~count"
            :class="index >= item ? 'rate-active' : ''"
            :style="{color: index >= item ? activeColor : color, paddingRight: padding}"
-           @click="!disabled && choose(item)"
+           @click="!readonly && choose(item)"
         ></a>
         <span class="rate-text" v-if="!!str" v-html="str"></span>
     </span>
@@ -22,21 +22,18 @@
         },
         props: {
             count: {
-                type: [Number, String],
                 validator(val) {
                     return /^(([1-9]\d*)|0)$/.test(val);
                 },
                 default: 5
             },
             size: {
-                type: String,
                 validator(value) {
                     return /^(\.|\d+\.)?\d+(px|rem)$/.test(value);
                 },
                 default: '.5rem'
             },
             color: {
-                type: String,
                 validator(value) {
                     if(!value) return true;
                     return isColor(value);
@@ -44,7 +41,6 @@
                 default: '#CCC'
             },
             activeColor: {
-                type: String,
                 validator(value) {
                     if(!value) return true;
                     return isColor(value);
@@ -59,12 +55,11 @@
             showText: {
                 type: Array
             },
-            disabled: {
+            readonly: {
                 type: Boolean,
                 default: false
             },
             padding: {
-                type: String,
                 validator(value) {
                     return /^(\.|\d+\.)?\d+(px|rem)$/.test(value);
                 },

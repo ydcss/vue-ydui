@@ -12,7 +12,6 @@
         props: {
             fixed: Boolean,
             activeColor: {
-                type: String,
                 validator(value) {
                     if(!value) return true;
                     return isColor(value);

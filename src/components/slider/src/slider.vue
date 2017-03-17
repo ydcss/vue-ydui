@@ -60,7 +60,6 @@
                 }
             },
             direction: {
-                type: String,
                 validator(val) {
                     return ['horizontal', 'vertical'].indexOf(val) > -1;
                 },

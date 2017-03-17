@@ -24,10 +24,10 @@
                 type: String,
                 default: '{%d}天{%h}时{%m}分{%s}秒'
             },
-            timeout: {
+            callback: {
                 type: Function
             },
-            timeoutText: {
+            doneText: {
                 type: String,
                 default: '已结束'
             }
@@ -40,8 +40,8 @@
                     if (leftTime > 0) {
                         this.str = this.timestampTotime(leftTime);
                     } else {
-                        typeof this.timeout == 'function' && this.timeout();
-                        this.str = this.timeoutText;
+                        typeof this.callback == 'function' && this.callback();
+                        this.str = this.doneText;
                         clearInterval(this.timer);
                     }
                 }, 1000);

@@ -8,11 +8,12 @@
     export default {
         name: 'yd-list',
         props: {
-            theme: [Number, String],
-            validator(value){
-                return ['1', '2', '3', '4', '5'].indexOf(value + '') > -1;
-            },
-            default: '1'
+            theme: {
+                validator(value){
+                    return ['1', '2', '3', '4', '5'].indexOf(value + '') > -1;
+                },
+                default: '1'
+            }
         },
         computed: {
             classes() {

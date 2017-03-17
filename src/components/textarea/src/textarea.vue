@@ -1,6 +1,6 @@
 <template>
     <div class="m-textarea">
-        <textarea v-model="fuck"
+        <textarea v-model="mlstr"
                   :placeholder="placeholder"
                   :maxlength="maxlength"
                   :readonly="readonly"
@@ -15,7 +15,7 @@
         data() {
             return {
                 num: 0,
-                fuck: ''
+                mlstr: ''
             }
         },
         props: {
@@ -44,7 +44,7 @@
             }
         },
         watch: {
-            fuck(val) {
+            mlstr(val) {
                 this.$emit('input', val);
                 typeof this.change == 'function' && this.change();
                 if (this.showCounter) this.num = val.length;
@@ -54,7 +54,7 @@
             this.$nextTick(() => {
                 const v = this.value;
                 if (!v)return;
-                this.fuck = v.length > this.maxlength ? v.substr(v, this.maxlength) : v;
+                this.mlstr = v.length > this.maxlength ? v.substr(v, this.maxlength) : v;
             });
         }
     }

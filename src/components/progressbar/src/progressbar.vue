@@ -35,14 +35,12 @@
         },
         props: {
             type: {
-                type: String,
                 validator(value) {
                     return ['circle', 'line'].indexOf(value) > -1;
                 },
                 default: 'circle'
             },
             fillColor: {
-                type: String,
                 validator(value) {
                     if (!value) return true;
                     return isColor(value);
@@ -55,7 +53,6 @@
                 default: 0
             },
             strokeColor: {
-                type: String,
                 validator(value) {
                     if (!value) return true;
                     return isColor(value);
@@ -70,7 +67,6 @@
                 require: true
             },
             trailColor: {
-                type: String,
                 validator(value) {
                     if (!value) return true;
                     return isColor(value);

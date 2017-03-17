@@ -49,10 +49,6 @@
                 type: String,
                 default: ''
             },
-            decimal: {
-                type: String,
-                default: '.'
-            },
             prefix: {
                 type: String,
                 default: ''
@@ -80,7 +76,7 @@
                 if (!this.instance) {
 
                     const options = {
-                        decimal: this.decimal,
+                        decimal: '.',
                         useEasing: this.useEasing,
                         separator: this.separator,
                         prefix: this.prefix,

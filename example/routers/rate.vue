@@ -22,7 +22,7 @@
                 <span slot="right">自定义大小</span>
             </yd-cell-item>
             <yd-cell-item>
-                <yd-rate slot="left" v-model="rate6" :disabled="true"></yd-rate>
+                <yd-rate slot="left" v-model="rate6" :readonly="true"></yd-rate>
                 <span slot="right">只读</span>
             </yd-cell-item>
         </yd-cell-group>

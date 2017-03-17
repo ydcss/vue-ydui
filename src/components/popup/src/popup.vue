@@ -19,7 +19,6 @@
         },
         props: {
             position: {
-                type: String,
                 validator(value) {
                     return ['bottom', 'center', 'left', 'right'].indexOf(value) > -1;
                 },

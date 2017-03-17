@@ -12,7 +12,6 @@
         name: 'yd-grids-group',
         props: {
             rows: {
-                type: [Number, String],
                 validator(value) {
                     return ['2', '3', '4', '5'].indexOf(value + '') > -1;
                 },

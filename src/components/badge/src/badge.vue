@@ -11,26 +11,22 @@
         name: 'yd-badge',
         props: {
             type: {
-                type: String,
                 validator(value) {
                     return ['primary', 'danger', 'warning', 'hollow'].indexOf(value) > -1;
                 }
             },
             shape: {
-                type: String,
                 validator(value) {
                     return ['circle', 'square'].indexOf(value) > -1;
                 }
             },
             color: {
-                type: String,
                 validator(value) {
                     if(!value) return true;
                     return isColor(value);
                 }
             },
             bgcolor: {
-                type: String,
                 validator(value) {
                     if(!value) return true;
                     return isColor(value);
