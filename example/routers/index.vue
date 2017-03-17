@@ -34,8 +34,8 @@
                     {icon: 'demo-icons-spinner', name: 'Spinner', link: '/spinner'},
                     {icon: 'demo-icons-cityselect', name: 'CitySelect', link: '/cityselect'},
                     {icon: 'demo-icons-countup', name: 'CountUp', link: '/countup'},
-                    {icon: 'demo-icons-countdown', name: 'CountDown', link: '/countdown'},
                     {icon: 'demo-icons-rate', name: 'Rate', link: '/rate'},
+                    {icon: 'demo-icons-countdown', name: 'CountDown', link: '/countdown'},
                     {icon: 'demo-icons-popup', name: 'Popup', link: '/popup'},
                 ]
             }

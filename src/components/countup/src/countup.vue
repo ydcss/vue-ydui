@@ -18,19 +18,27 @@
                 default: true
             },
             startnum: {
-                type: Number,
+                validator(val) {
+                    return /^([0]|[1-9]\d*)(\.\d*)?$/.test(val);
+                },
                 default: 0
             },
             endnum: {
-                type: Number,
+                validator(val) {
+                    return /^([0]|[1-9]\d*)(\.\d*)?$/.test(val);
+                },
                 required: true
             },
             decimals: {
-                type: Number,
+                validator(val) {
+                    return /^\d*$/.test(val);
+                },
                 default: 0
             },
             duration: {
-                type: Number,
+                validator(val) {
+                    return /^([0]|[1-9]\d*)(\.\d*)?$/.test(val);
+                },
                 default: 2
             },
             useEasing: {
@@ -88,34 +96,10 @@
             }
         },
         mounted() {
-            this.$nextTick(() => {
-                this.init();
-            });
+            this.init();
         },
         destroyed() {
             this.instance = null;
-        },
-//        start(callback) {
-//            if (this.instance && this.instance.start) {
-//                this.instance.start(() => {
-//                    callback && callback(this.instance);
-//                });
-//            }
-//        },
-//        pauseResume() {
-//            if (this.instance && this.instance.pauseResume) {
-//                this.instance.pauseResume();
-//            }
-//        },
-//        reset() {
-//            if (this.instance && this.instance.reset) {
-//                this.instance.reset();
-//            }
-//        },
-//        update(newEndVal) {
-//            if (this.instance && this.instance.update) {
-//                this.instance.update(newEndVal);
-//            }
-//        }
+        }
     };
 </script>

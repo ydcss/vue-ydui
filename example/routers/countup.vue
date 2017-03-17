@@ -1,13 +1,12 @@
 <template>
     <yd-layout title="CountUp">
+
         <yd-cell-group class="demo-small-pitch">
 
             <yd-cell-item>
                 <yd-countup
                         slot="left"
-                        :startnum="0"
-                        :endnum="1200"
-                        :duration="2.5"
+                        endnum="1200"
                 ></yd-countup>
                 <span slot="right">普通调用</span>
             </yd-cell-item>
@@ -15,10 +14,8 @@
             <yd-cell-item>
                 <yd-countup
                         slot="left"
-                        :startnum="0"
-                        :endnum="100"
-                        :duration="2.5"
-                        :decimals="2"
+                        endnum="100"
+                        decimals="2"
                 ></yd-countup>
                 <span slot="right">添加小数</span>
             </yd-cell-item>
@@ -26,10 +23,8 @@
             <yd-cell-item>
                 <yd-countup
                         slot="left"
-                        :startnum="0"
-                        :endnum="100"
-                        :duration="2.5"
-                        :decimals="2"
+                        endnum="100"
+                        decimals="2"
                         prefix="$"
                         suffix="&"
                 ></yd-countup>
@@ -39,10 +34,8 @@
             <yd-cell-item>
                 <yd-countup
                         slot="left"
-                        :startnum="0"
-                        :endnum="9998"
-                        :duration="2.5"
-                        :decimals="2"
+                        endnum="9998"
+                        decimals="2"
                         separator=","
                 ></yd-countup>
                 <span slot="right">添加分割符</span>
@@ -51,7 +44,26 @@
             <yd-cell-item>
                 <yd-countup
                         slot="left"
-                        :startnum="0"
+                        endnum="998.658"
+                        decimals="3"
+                        :useEasing="true"
+                ></yd-countup>
+                <span slot="right">使用Easy动画效果</span>
+            </yd-cell-item>
+
+            <yd-cell-item>
+                <yd-countup
+                        slot="left"
+                        endnum="9998"
+                        duration="5"
+                        decimals="2"
+                ></yd-countup>
+                <span slot="right">设置动画时长</span>
+            </yd-cell-item>
+
+            <yd-cell-item>
+                <yd-countup
+                        slot="left"
                         :endnum="initnum"
                         separator=","
                         decimal="."
@@ -62,9 +74,7 @@
             <yd-cell-item>
                 <yd-countup
                         slot="left"
-                        :startnum="0"
-                        :endnum="100"
-                        :duration="2"
+                        endnum="100"
                         suffix="%"
                         :start="start"
                 ></yd-countup>

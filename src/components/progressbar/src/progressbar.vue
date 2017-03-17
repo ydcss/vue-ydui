@@ -1,6 +1,6 @@
 <template>
     <div class="m-progressbar">
-        <div class="progressbar-content" v-if="type != 'line'">{{progress * 100}}%</div>
+        <div class="progressbar-content" v-if="type != 'line'"><slot></slot></div>
         <svg :viewBox="viewBox" v-show="show" :preserveAspectRatio="type == 'line' ? 'none' : ''">
             <path :fill-opacity="!!fillColor ? 1 : 0"
                   :d="getPathString"

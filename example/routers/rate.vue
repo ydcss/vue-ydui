@@ -11,7 +11,7 @@
             </yd-cell-item>
             <yd-cell-item>
                 <yd-rate slot="left" count="7" v-model="rate3"></yd-rate>
-                <span slot="right">设置个数</span>
+                <span slot="right">设置多个</span>
             </yd-cell-item>
             <yd-cell-item>
                 <yd-rate slot="left" v-model="rate4" color="#00FF16" activeColor="#0078D7"></yd-rate>
