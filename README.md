@@ -8,7 +8,6 @@
 <br/>
 
 #### 一只基于Vue2.x的移动端&微信UI。 -YDUI Touch
-<br/>
 
 Home: <a href="http://vue.ydui.org"> http://vue.ydui.org </a>  
 Docs: <a href="http://vue.ydui.org/docs"> http://vue.ydui.org/docs </a>  
