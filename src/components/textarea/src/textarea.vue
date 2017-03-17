@@ -5,7 +5,7 @@
                   :maxlength="maxlength"
                   :readonly="readonly"
         ></textarea>
-        <div class="textarea-counter" v-if="showCounter">{{num}}/{{maxlength}}</div>
+        <div class="textarea-counter" v-if="showCounter && maxlength">{{num}}/{{maxlength}}</div>
     </div>
 </template>
 
@@ -20,8 +20,8 @@
         },
         props: {
             maxlength: {
-                type: [Number, String],
                 validator(val) {
+                    if(!val) return true;
                     return /^(([1-9]\d*)|0)$/.test(val);
                 }
             },
