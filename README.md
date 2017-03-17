@@ -1,7 +1,7 @@
 <p align="center">
     <br>
     <a href="//vue.ydui.org">
-        <img width="200" src="//static.ydcss.com/ydui/img/logo.png">
+        <img width="200" src="http://static.ydcss.com/ydui/img/logo.png">
     </a>
     <br>
 </p>
