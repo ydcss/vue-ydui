@@ -29,7 +29,8 @@ module.exports = merge(distCommonWebpackConfig, {
         "/lib.px/countup/index": "./src/components/countup/index.js",
         "/lib.px/popup/index": "./src/components/popup/index.js",
         "/lib.px/rate/index": "./src/components/rate/index.js",
-        "/lib.px/countdown/index": "./src/components/countdown/index.js"
+        "/lib.px/countdown/index": "./src/components/countdown/index.js",
+        "/lib.px/textarea/index": "./src/components/textarea/index.js"
     },
     vue: {
         postcss: [require('./rem2px')(50)]
