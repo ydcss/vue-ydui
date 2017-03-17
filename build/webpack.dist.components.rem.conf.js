@@ -24,6 +24,11 @@ module.exports = merge(distCommonWebpackConfig, {
         "/lib.rem/spinner/index": "./src/components/spinner/index.js",
         "/lib.rem/switch/index": "./src/components/switch/index.js",
         "/lib.rem/tab/index": "./src/components/tab/index.js",
-        "/lib.rem/tabbar/index": "./src/components/tabbar/index.js"
+        "/lib.rem/tabbar/index": "./src/components/tabbar/index.js",
+        "/lib.rem/lazyimg/index": "./src/components/lazyimg/index.js",
+        "/lib.rem/countup/index": "./src/components/countup/index.js",
+        "/lib.rem/popup/index": "./src/components/popup/index.js",
+        "/lib.rem/rate/index": "./src/components/rate/index.js",
+        "/lib.rem/countdown/index": "./src/components/countdown/index.js"
     }
 });

@@ -24,7 +24,12 @@ module.exports = merge(distCommonWebpackConfig, {
         "/lib.px/spinner/index": "./src/components/spinner/index.js",
         "/lib.px/switch/index": "./src/components/switch/index.js",
         "/lib.px/tab/index": "./src/components/tab/index.js",
-        "/lib.px/tabbar/index": "./src/components/tabbar/index.js"
+        "/lib.px/tabbar/index": "./src/components/tabbar/index.js",
+        "/lib.px/lazyimg/index": "./src/components/lazyimg/index.js",
+        "/lib.px/countup/index": "./src/components/countup/index.js",
+        "/lib.px/popup/index": "./src/components/popup/index.js",
+        "/lib.px/rate/index": "./src/components/rate/index.js",
+        "/lib.px/countdown/index": "./src/components/countdown/index.js"
     },
     vue: {
         postcss: [require('./rem2px')(50)]
