@@ -47,6 +47,10 @@
             }
         },
         props: {
+            ready: {
+                type: Boolean,
+                default: true
+            },
             speed: {
                 default: 300,
                 validator(val) {
@@ -68,6 +72,8 @@
         },
         methods: {
             init() {
+                if (!this.ready)return;
+
                 this.itemsArr = this.$children.filter(item => item.$options.name === 'yd-slider-item');
 
                 this.itemNums = this.itemsArr.length;
@@ -161,7 +167,7 @@
                 const moveOffset = touches.moveOffset;
                 const warpperSize = this.direction == 'vertical' ? this.$el.clientHeight : this.$refs.warpper.offsetWidth;
 
-                setTimeout(function () {
+                setTimeout(() => {
                     touches.allowClick = true;
                 }, 0);
 
@@ -179,6 +185,7 @@
                     } else {
                         this.setTranslate(this.speed, -((moveOffset > 0 ? --this.index : ++this.index) * warpperSize));
                     }
+                    this.autoPlay();
                 }
             },
             autoPlay() {
@@ -259,6 +266,9 @@
                 const itemNums = this.itemNums;
                 const tm = (index - 1) % itemNums;
                 this.paginationIndex = tm < 0 ? itemNums - 1 : tm;
+            },
+            ready(val) {
+                val && setTimeout(this.init, 0);
             }
         },
         mounted() {

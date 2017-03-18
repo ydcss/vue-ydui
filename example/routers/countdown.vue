@@ -4,11 +4,11 @@
         <yd-cell-group title="普通调用" class="demo-small-pitch">
             <yd-cell-item>
                 <span slot="left">默认模板：</span>
-                <yd-countdown slot="right" time="2017-06-06 06:06:06"></yd-countdown>
+                <yd-countdown slot="right" time="2017/06/06 06:06:06"></yd-countdown>
             </yd-cell-item>
             <yd-cell-item>
                 <span slot="left">自定义参数模板：</span>
-                <yd-countdown slot="right" time="2017-06-06 06:06:06" format="{%s}秒】{%m}分】{%h}时】{%d}天】"></yd-countdown>
+                <yd-countdown slot="right" time="2017/06/06 06:06:06" format="{%s}秒】{%m}分】{%h}时】{%d}天】"></yd-countdown>
             </yd-cell-item>
         </yd-cell-group>
 
