@@ -32,8 +32,15 @@
                 default: '已结束'
             }
         },
+        watch: {
+            time(val) {
+                val && this.run();
+            }
+        },
         methods: {
             run() {
+                if (!this.time) return;
+
                 const lastTime = Math.floor(new Date(this.time).getTime() / 1000);
                 this.timer = setInterval(() => {
                     let leftTime = lastTime - Math.floor(new Date().getTime() / 1000);
