@@ -6,10 +6,20 @@
 
 .rollnotice-box {
   height: inherit;
+  &.align-left {
+    justify-content: flex-start;
+  }
+  &.align-right {
+    justify-content: flex-end;
+  }
+  &.align-center {
+    justify-content: center;
+  }
 }
 
 .rollnotice-item {
   height: inherit;
   display: flex;
   align-items: center;
+  justify-content: inherit;
 }

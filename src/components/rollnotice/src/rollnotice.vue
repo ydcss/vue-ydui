@@ -1,9 +1,8 @@
 <template>
     <div class="m-rollnotice" :style="{height: height + 'px'}">
-        <div class="rollnotice-box" :style="styles">
-            <div class="rollnotice-item" v-html="lastItem"></div>
+        <div class="rollnotice-box" :style="styles" :class="'align-' + align">
             <slot></slot>
-            <div class="rollnotice-item" v-html="firtstItem"></div>
+            <p class="rollnotice-item" v-html="firtstItem"></p>
         </div>
     </div>
 </template>
@@ -14,9 +13,8 @@
         data() {
             return {
                 timer: null,
-                index: 1,
+                index: 0,
                 totalNum: 0,
-                lastItem: '',
                 firtstItem: '',
                 styles: {
                     transform: 0,
@@ -27,7 +25,7 @@
         props: {
             ready: {
                 type: Boolean,
-                default: false
+                default: true
             },
             height: {
                 validator(val) {
@@ -47,38 +45,43 @@
                 },
                 default: 3000
             },
+            align: {
+                validator(value) {
+                    return ['left', 'center', 'right'].indexOf(value) > -1;
+                },
+                default: 'left'
+            }
+        },
+        watch: {
+            ready(val) {
+                val && setTimeout(this.init, 0);
+            }
         },
         methods: {
             init() {
+                if (!this.ready) return;
+
                 this.items = this.$children.filter(item => item.$options.name === 'yd-rollnotice-item');
 
                 this.totalNum = this.items.length;
 
                 if (this.totalNum <= 0) return;
 
-                this.cloneItem();
+                this.firtstItem = this.items[0].$el.innerHTML;
 
                 this.autoPlay();
             },
-            cloneItem() {
-                const itemArr = this.items;
-                this.firtstItem = itemArr[0].$el.innerHTML;
-                this.lastItem = itemArr[itemArr.length - 1].$el.innerHTML;
-
-                this.setTranslate(0, -this.height);
-            },
             autoPlay() {
                 this.timer = setInterval(() => {
-
-                    if (this.index > this.totalNum) {
-                        this.index = 1;
-                        this.setTranslate(0, -this.height);
-                        setTimeout(() => {
-                            this.setTranslate(this.speed, -(++this.index * this.height));
-                        }, 10);
-                        return;
-                    }
                     this.setTranslate(this.speed, -(++this.index * this.height));
+
+                    if (this.index >= this.totalNum) {
+                        this.index = 0;
+                        setTimeout(() => {
+                            this.setTranslate(0, 0);
+                        }, this.speed);
+                    }
+
                 }, this.autoplay);
             },
             setTranslate(speed, translate) {
