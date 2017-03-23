@@ -73,6 +73,19 @@
             }
         },
         methods: {
+            init() {
+                //TODO 非常快速点击问题 https://github.com/MeCKodo/vue-tap
+
+                this.scrollView = getScrollview(this.$el);
+
+                this.isIOS = !!(window.navigator && window.navigator.userAgent || '').match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+
+                this.$keyboard.$on('keyboard.error', (error) => {
+                    this.setError(error);
+                });
+
+                this.$keyboard.$on('keyboard.close', this.close);
+            },
             numclick(num) {
                 this.error = '';
                 if (this.nums.length >= 6)return;
@@ -114,19 +127,9 @@
             }
         },
         mounted() {
-            Vue.prototype.$yduiBus = this.$yduiBus || new Vue();
+            Vue.prototype.$keyboard = new Vue();
 
-            this.$yduiBus.$on('keyboard.error', (error) => {
-                this.setError(error);
-            });
-
-            this.$yduiBus.$on('keyboard.close', this.close);
-
-            //TODO 非常快速点击问题 https://github.com/MeCKodo/vue-tap
-
-            this.scrollView = getScrollview(this.$el);
-
-            this.isIOS = !!(window.navigator && window.navigator.userAgent || '').match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+            this.$nextTick(this.init);
         },
         destroyed() {
             this.close();

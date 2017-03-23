@@ -33,20 +33,18 @@
         },
         methods: {
             init() {
-                Vue.prototype.$yduiBus = this.$yduiBus || new Vue();
-
                 this.scrollview = getScrollview(this.$el);
 
                 this.scrollview.addEventListener('scroll', () => {
                     this.throttle(this.scrollHandler);
                 });
 
-                this.$yduiBus.$on('ydui.infinitescroll.loadedDone', () => {
+                this.$infinitescroll.$on('ydui.infinitescroll.loadedDone', () => {
                     this.isLoading = false;
                     this.isDone = true;
                 });
 
-                this.$yduiBus.$on('ydui.infinitescroll.finishLoad', () => {
+                this.$infinitescroll.$on('ydui.infinitescroll.finishLoad', () => {
                     this.isLoading = false;
                 });
             },
@@ -70,7 +68,9 @@
             }
         },
         mounted() {
-            this.init();
+            Vue.prototype.$infinitescroll = new Vue();
+
+            this.$nextTick(this.init);
         },
         destroyed() {
             this.scrollview.removeEventListener('scroll', this.scrollHandler);

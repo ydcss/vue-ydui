@@ -50,13 +50,11 @@
         },
         methods: {
             init() {
-                Vue.prototype.$yduiBus = this.$yduiBus || new Vue();
-
                 this.offsetTop = this.$refs.dragBox.getBoundingClientRect().top;
 
                 this.bindEvents();
 
-                this.$yduiBus.$on('ydui.pullrefresh.finishLoad', this.finishLoad);
+                this.$pullrefresh.$on('ydui.pullrefresh.finishLoad', this.finishLoad);
 
                 this.showHelp();
             },
@@ -182,7 +180,9 @@
             }
         },
         mounted() {
-            this.init();
+            Vue.prototype.$pullrefresh = new Vue();
+
+            this.$nextTick(this.init);
         },
         destroyed() {
             this.unbindEvents();
