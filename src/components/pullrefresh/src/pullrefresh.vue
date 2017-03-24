@@ -180,6 +180,7 @@
             }
         },
         mounted() {
+            Vue.prototype.$yduiBus = this.$yduiBus || new Vue();
             this.$nextTick(this.init);
         },
         destroyed() {
