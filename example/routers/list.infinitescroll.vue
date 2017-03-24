@@ -94,12 +94,12 @@
 
                     if (_list.length < this.pageSize || this.page == 3) {
                         // 所有数据加载完毕
-                        this.$infinitescroll.$emit('ydui.infinitescroll.loadedDone');
+                        this.$yduiBus.$emit('ydui.infinitescroll.loadedDone');
                         return;
                     }
 
                     // 单次请求数据完毕
-                    this.$infinitescroll.$emit('ydui.infinitescroll.finishLoad');
+                    this.$yduiBus.$emit('ydui.infinitescroll.finishLoad');
 
                     this.page++;
                 });

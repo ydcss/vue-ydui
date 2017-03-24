@@ -26,7 +26,7 @@
                 this.$dialog.loading.open('验证支付密码');
 
                 setTimeout(() => {
-                    this.$keyboard.$emit('keyboard.error', '对不起，您的支付密码不正确，请重新输入。');
+                    this.$yduiBus.$emit('ydui.keyboard.error', '对不起，您的支付密码不正确，请重新输入。');
                     this.$dialog.loading.close();
                 }, 2000);
             },
@@ -35,7 +35,7 @@
                 this.$dialog.loading.open('验证支付密码');
 
                 setTimeout(() => {
-                    this.$keyboard.$emit('keyboard.error', '对不起，您的支付密码不正确，请重新输入。');
+                    this.$yduiBus.$emit('ydui.keyboard.error', '对不起，您的支付密码不正确，请重新输入。');
                     this.$dialog.loading.close();
                 }, 2000);
             }

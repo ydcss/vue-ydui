@@ -39,12 +39,12 @@
                     this.throttle(this.scrollHandler);
                 });
 
-                this.$infinitescroll.$on('ydui.infinitescroll.loadedDone', () => {
+                this.$yduiBus.$on('ydui.infinitescroll.loadedDone', () => {
                     this.isLoading = false;
                     this.isDone = true;
                 });
 
-                this.$infinitescroll.$on('ydui.infinitescroll.finishLoad', () => {
+                this.$yduiBus.$on('ydui.infinitescroll.finishLoad', () => {
                     this.isLoading = false;
                 });
             },
@@ -68,8 +68,6 @@
             }
         },
         mounted() {
-            Vue.prototype.$infinitescroll = new Vue();
-
             this.$nextTick(this.init);
         },
         destroyed() {

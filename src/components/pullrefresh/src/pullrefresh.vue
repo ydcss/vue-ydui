@@ -54,7 +54,7 @@
 
                 this.bindEvents();
 
-                this.$pullrefresh.$on('ydui.pullrefresh.finishLoad', this.finishLoad);
+                this.$yduiBus.$on('ydui.pullrefresh.finishLoad', this.finishLoad);
 
                 this.showHelp();
             },
@@ -180,8 +180,6 @@
             }
         },
         mounted() {
-            Vue.prototype.$pullrefresh = new Vue();
-
             this.$nextTick(this.init);
         },
         destroyed() {

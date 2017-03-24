@@ -80,11 +80,11 @@
 
                 this.isIOS = !!(window.navigator && window.navigator.userAgent || '').match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
 
-                this.$keyboard.$on('keyboard.error', (error) => {
+                this.$yduiBus.$on('ydui.keyboard.error', (error) => {
                     this.setError(error);
                 });
 
-                this.$keyboard.$on('keyboard.close', this.close);
+                this.$yduiBus.$on('ydui.keyboard.close', this.close);
             },
             numclick(num) {
                 this.error = '';
@@ -127,8 +127,6 @@
             }
         },
         mounted() {
-            Vue.prototype.$keyboard = new Vue();
-
             this.$nextTick(this.init);
         },
         destroyed() {

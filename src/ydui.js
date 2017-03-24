@@ -80,6 +80,8 @@ const install = function (Vue) {
         notify: Notify,
         loading: Loading,
     };
+
+    Vue.prototype.$yduiBus = new Vue();
 };
 
 if (typeof window !== 'undefined' && window.Vue) {
