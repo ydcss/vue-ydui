@@ -27,6 +27,8 @@
     import Vue from 'vue';
     import {addClass, removeClass, getScrollview} from '../../../utils/assist';
 
+    window.$yduiBus = window.$yduiBus || new Vue();
+
     export default {
         name: 'yd-keyboard',
         data() {
@@ -80,11 +82,11 @@
 
                 this.isIOS = !!(window.navigator && window.navigator.userAgent || '').match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
 
-                this.$yduiBus.$on('ydui.keyboard.error', (error) => {
+                window.$yduiBus.$on('ydui.keyboard.error', (error) => {
                     this.setError(error);
                 });
 
-                this.$yduiBus.$on('ydui.keyboard.close', this.close);
+                window.$yduiBus.$on('ydui.keyboard.close', this.close);
             },
             numclick(num) {
                 this.error = '';
@@ -127,7 +129,6 @@
             }
         },
         mounted() {
-            Vue.prototype.$yduiBus = this.$yduiBus || new Vue();
             this.$nextTick(this.init);
         },
         destroyed() {
