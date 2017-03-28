@@ -55,7 +55,7 @@
                 default: false
             },
             href: {
-                type: String
+                type: [String, Object]
             }
         },
         computed: {

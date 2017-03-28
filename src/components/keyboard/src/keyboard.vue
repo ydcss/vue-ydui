@@ -27,6 +27,8 @@
     import Vue from 'vue';
     import {addClass, removeClass, getScrollview} from '../../../utils/assist';
 
+    window.$yduiBus = window.$yduiBus || new Vue();
+
     export default {
         name: 'yd-keyboard',
         data() {
@@ -73,6 +75,19 @@
             }
         },
         methods: {
+            init() {
+                //TODO 非常快速点击问题 https://github.com/MeCKodo/vue-tap
+
+                this.scrollView = getScrollview(this.$el);
+
+                this.isIOS = !!(window.navigator && window.navigator.userAgent || '').match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+
+                window.$yduiBus.$on('ydui.keyboard.error', (error) => {
+                    this.setError(error);
+                });
+
+                window.$yduiBus.$on('ydui.keyboard.close', this.close);
+            },
             numclick(num) {
                 this.error = '';
                 if (this.nums.length >= 6)return;
@@ -114,19 +129,7 @@
             }
         },
         mounted() {
-            Vue.prototype.$yduiBus = this.$yduiBus || new Vue();
-
-            this.$yduiBus.$on('keyboard.error', (error) => {
-                this.setError(error);
-            });
-
-            this.$yduiBus.$on('keyboard.close', this.close);
-
-            //TODO 非常快速点击问题 https://github.com/MeCKodo/vue-tap
-
-            this.scrollView = getScrollview(this.$el);
-
-            this.isIOS = !!(window.navigator && window.navigator.userAgent || '').match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+            this.$nextTick(this.init);
         },
         destroyed() {
             this.close();

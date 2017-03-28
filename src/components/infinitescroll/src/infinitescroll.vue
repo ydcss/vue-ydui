@@ -17,6 +17,8 @@
     import Vue from 'vue';
     import {getScrollview} from '../../../utils/assist';
 
+    window.$yduiBus = window.$yduiBus || new Vue();
+
     export default {
         name: 'yd-infinitescroll',
         data() {
@@ -33,20 +35,18 @@
         },
         methods: {
             init() {
-                Vue.prototype.$yduiBus = this.$yduiBus || new Vue();
-
                 this.scrollview = getScrollview(this.$el);
 
                 this.scrollview.addEventListener('scroll', () => {
                     this.throttle(this.scrollHandler);
                 });
 
-                this.$yduiBus.$on('ydui.infinitescroll.loadedDone', () => {
+                window.$yduiBus.$on('ydui.infinitescroll.loadedDone', () => {
                     this.isLoading = false;
                     this.isDone = true;
                 });
 
-                this.$yduiBus.$on('ydui.infinitescroll.finishLoad', () => {
+                window.$yduiBus.$on('ydui.infinitescroll.finishLoad', () => {
                     this.isLoading = false;
                 });
             },
@@ -70,7 +70,7 @@
             }
         },
         mounted() {
-            this.init();
+            this.$nextTick(this.init);
         },
         destroyed() {
             this.scrollview.removeEventListener('scroll', this.scrollHandler);

@@ -85,7 +85,7 @@
                         mes: _list.length > 0 ? '为您更新了' + _list.length + '条内容' : '已是最新内容'
                     });
 
-                    this.$yduiBus.$emit('ydui.pullrefresh.finishLoad');
+                    window.$yduiBus.$emit('ydui.pullrefresh.finishLoad');
 
                     this.page++;
                 });

@@ -20,6 +20,8 @@
 <script type="text/babel">
     import Vue from 'vue';
 
+    window.$yduiBus = window.$yduiBus || new Vue();
+
     export default {
         name: 'yd-pullrefresh',
         props: {
@@ -50,13 +52,11 @@
         },
         methods: {
             init() {
-                Vue.prototype.$yduiBus = this.$yduiBus || new Vue();
-
                 this.offsetTop = this.$refs.dragBox.getBoundingClientRect().top;
 
                 this.bindEvents();
 
-                this.$yduiBus.$on('ydui.pullrefresh.finishLoad', this.finishLoad);
+                window.$yduiBus.$on('ydui.pullrefresh.finishLoad', this.finishLoad);
 
                 this.showHelp();
             },
@@ -182,7 +182,7 @@
             }
         },
         mounted() {
-            this.init();
+            this.$nextTick(this.init);
         },
         destroyed() {
             this.unbindEvents();
