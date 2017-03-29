@@ -4,7 +4,7 @@
             <li class="tab-nav-item"
                 v-for="item in navList"
                 :class="item._uid == activeIndex ? 'tab-active' : ''"
-                @click="changeHandler(item._uid)">
+                @click="changeHandler(item._uid, item.label)">
                 <a href="javascript:;">{{item.label}}</a>
             </li>
         </ul>
@@ -23,6 +23,9 @@
                 activeIndex: 0
             }
         },
+        props: {
+            change: Function
+        },
         methods: {
             init() {
                 const tabPanels = this.$children.filter(item => item.$options.name === 'yd-tab-panel');
@@ -38,12 +41,12 @@
                         this.activeIndex = panel._uid;
                     } else {
                         ++num;
-                        if (num >= tabPanels.length)
-                            this.activeIndex = tabPanels[0]._uid;
+                        if (num >= tabPanels.length) this.activeIndex = tabPanels[0]._uid;
                     }
                 });
             },
-            changeHandler(uid) {
+            changeHandler(uid, label) {
+                typeof this.change == 'function' && this.change(label);
                 this.activeIndex = uid;
             }
         },
