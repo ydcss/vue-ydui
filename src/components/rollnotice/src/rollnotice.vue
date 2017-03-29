@@ -1,8 +1,9 @@
 <template>
     <div class="m-rollnotice" :style="{height: height + 'px'}">
         <div class="rollnotice-box" :style="styles" :class="'align-' + align">
+            <div class="rollnotice-item" v-html="lastItem"></div>
             <slot></slot>
-            <p class="rollnotice-item" v-html="firtstItem"></p>
+            <div class="rollnotice-item" v-html="firtstItem"></div>
         </div>
     </div>
 </template>
@@ -13,9 +14,10 @@
         data() {
             return {
                 timer: null,
-                index: 0,
+                index: 1,
                 totalNum: 0,
                 firtstItem: '',
+                lastItem: '',
                 styles: {
                     transform: 0,
                     transitionDuration: 0
@@ -50,6 +52,12 @@
                     return ['left', 'center', 'right'].indexOf(value) > -1;
                 },
                 default: 'left'
+            },
+            direction: {
+                validator(value) {
+                    return ['up', 'down'].indexOf(value) > -1;
+                },
+                default: 'up'
             }
         },
         watch: {
@@ -68,20 +76,31 @@
                 if (this.totalNum <= 0) return;
 
                 this.firtstItem = this.items[0].$el.innerHTML;
+                this.lastItem = this.items[this.totalNum - 1].$el.innerHTML;
+
+                this.setTranslate(0, -this.height);
 
                 this.autoPlay();
             },
             autoPlay() {
                 this.timer = setInterval(() => {
-                    this.setTranslate(this.speed, -(++this.index * this.height));
-
-                    if (this.index >= this.totalNum) {
-                        this.index = 0;
-                        setTimeout(() => {
-                            this.setTranslate(0, 0);
-                        }, this.speed);
+                    if (this.direction == 'up') {
+                        this.setTranslate(this.speed, -(++this.index * this.height));
+                        if (this.index >= this.totalNum) {
+                            this.index = 0;
+                            setTimeout(() => {
+                                this.setTranslate(0, 0);
+                            }, this.speed);
+                        }
+                    } else {
+                        this.setTranslate(this.speed, -(--this.index * this.height));
+                        if (this.index <= 0) {
+                            this.index = this.totalNum;
+                            setTimeout(() => {
+                                this.setTranslate(0, -this.totalNum * this.height);
+                            }, this.speed);
+                        }
                     }
-
                 }, this.autoplay);
             },
             setTranslate(speed, translate) {
