@@ -1,5 +1,6 @@
 const merge = require('webpack-merge');
 const distCommonWebpackConfig = require('./webpack.dist.common.conf');
+const StringReplacePlugin = require("string-replace-webpack-plugin");
 
 module.exports = merge(distCommonWebpackConfig, {
     entry: {
@@ -32,7 +33,27 @@ module.exports = merge(distCommonWebpackConfig, {
         "/lib.px/countdown/index": "./src/components/countdown/index.js",
         "/lib.px/textarea/index": "./src/components/textarea/index.js"
     },
+    module: {
+        loaders: [
+            {
+                test: /\.vue$/,
+                loader: StringReplacePlugin.replace({
+                    replacements: [
+                        {
+                            pattern: /(\d*\.?\d+)rem/g,
+                            replacement: function (match, p1) {
+                                return parseInt(p1 * 50) + 'px';
+                            }
+                        }
+                    ]
+                })
+            }
+        ]
+    },
     vue: {
         postcss: [require('./rem2px')(50)]
-    }
+    },
+    plugins: [
+        new StringReplacePlugin()
+    ]
 });

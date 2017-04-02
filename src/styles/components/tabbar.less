@@ -27,7 +27,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: @tabbar-color;
 }
 
 .tabbar-active {
@@ -63,11 +62,6 @@
   display: flex;
   align-items: center;
   position: relative;
-  * {
-    &:after, &:before {
-      font-size: .54rem;
-    }
-  }
   img {
     height: 70%;
   }
@@ -75,5 +69,5 @@
 
 .tabbar-txt {
   display: inline-block;
-  font-size: @tabbar-text-fontsize;
+  font-size: inherit;
 }
