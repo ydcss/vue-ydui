@@ -12,6 +12,8 @@
 </template>
 
 <script type="text/babel">
+    import {isColor} from '../../../utils/assist';
+
     export default {
         name: 'yd-tabbar-item',
         props: {
@@ -25,7 +27,7 @@
                 return this.active ? 'tabbar-active' : '';
             },
             styles() {
-                return {color: this.active ? this.activeColor : '#979797'};
+                return {color: this.active ? this.activeColor : this.$parent.color};
             }
         }
     }

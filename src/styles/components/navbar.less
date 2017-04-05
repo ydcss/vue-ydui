@@ -5,7 +5,6 @@
   height: @navbar-height;
   position: relative;
   display: flex;
-  background-color: @navbar-bg;
   &:after {
     .bottom-line(@navbar-border-color, 2);
   }
@@ -26,7 +25,7 @@
   overflow: hidden;
   display: flex;
   align-items: center;
-  color: @navbar-item-color;
+  color: inherit;
   &:first-child {
     order: 1;
     margin-right: -(100% - @navbar-center-width) / 2;
@@ -62,8 +61,6 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      font-size: @navbar-center-fontsize;
-      color: @navbar-center-color;
     }
     img {
       height: 60%;
@@ -75,7 +72,7 @@
   display: inline-block;
   font-family: @iconfont-inlay;
   font-size: @navbar-icon-fontsize;
-  color: @navbar-icon-color;
+  color: inherit;
 }
 
 .back-icon:before {

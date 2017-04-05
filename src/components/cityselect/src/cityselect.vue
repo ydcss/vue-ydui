@@ -4,7 +4,7 @@
         <div class="m-cityselect" :class="show ? 'cityselect-active' : ''">
             <div class="cityselect-header">
                 <p class="cityselect-title">所在地区</p>
-                <div class="cityselect-nav">
+                <div v-show="ready" class="cityselect-nav">
                     <a href="javascript:;"
                        v-show="!!nav.txt1"
                        @click.stop="backoffView(0)"
@@ -19,7 +19,8 @@
                        :class="nav.index == 2 ? 'cityselect-nav-active' : ''">{{nav.txt3}}</a>
                 </div>
             </div>
-            <ul class="cityselect-content" :class="activeClasses">
+            <div v-show="!ready" class="cityselect-loading">加载中</div>
+            <ul v-show="ready" class="cityselect-content" :class="activeClasses">
                 <li class="cityselect-item" ref="provanceBox">
                     <div class="cityselect-item-box">
                         <a href="javascript:;"
@@ -78,6 +79,10 @@
             }
         },
         props: {
+            ready: {
+                type: Boolean,
+                default: true
+            },
             provance: String,
             city: String,
             area: String,
@@ -92,9 +97,21 @@
                 val && this.isIOS && addClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
 
                 this.show = val;
+            },
+            ready(val) {
+                val && setTimeout(this.init, 0);
             }
         },
         methods: {
+            init() {
+                if (!this.ready)return;
+
+                this.setDefalutValue();
+
+                this.scrollView = getScrollview(this.$el);
+
+                this.isIOS = !!(window.navigator && window.navigator.userAgent || '').match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+            },
             chooseProvance(name, datas) {
                 this.nav.index = 1;
                 this.nav.txt1 = this.activeProvance = name;
@@ -195,11 +212,7 @@
             }
         },
         mounted() {
-            this.setDefalutValue();
-
-            this.scrollView = getScrollview(this.$el);
-
-            this.isIOS = !!(window.navigator && window.navigator.userAgent || '').match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+            this.init();
         },
         destroyed() {
             this.close();
