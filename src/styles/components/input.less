@@ -1,0 +1,59 @@
+@import "../common/variables";
+@import "../common/mixins";
+
+.m-input {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  > input {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: none;
+    font-size: inherit;
+  }
+  > .input-clear,
+  > .input-error,
+  > .input-password,
+  > .input-success {
+    padding-left: .2rem;
+    display: flex;
+    align-items: center;
+    &:after {
+      font-family: @iconfont-inlay;
+    }
+  }
+  > .input-clear {
+    &:after {
+      content: '\E60C';
+      color: #B2B2B2;
+      font-size: .3rem;
+    }
+  }
+  > .input-error {
+    &:after {
+      content: '\E614';
+      color: #F43530;
+      font-size: .4rem;
+    }
+  }
+  > .input-success {
+    &:after {
+      content: '\E601';
+      color: #09BB07;
+      font-size: .4rem;
+    }
+  }
+  > .input-password {
+    &:after {
+      content: '\E77E';
+      color: #B2B2B2;
+      font-size: .45rem;
+    }
+  }
+  > .input-password-open:after {
+    content: '\E77D';
+    color: #434343;
+  }
+}

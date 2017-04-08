@@ -44,7 +44,6 @@
         name: 'yd-cell-item',
         props: {
             type: {
-                type: String,
                 validator (value) {
                     return ['link', 'a', 'label', 'div', 'checkbox', 'radio'].indexOf(value) > -1;
                 },

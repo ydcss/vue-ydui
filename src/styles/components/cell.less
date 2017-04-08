@@ -1,11 +1,14 @@
 @import "../common/variables";
 @import "../common/mixins";
 
+.m-cell-box {
+  margin-bottom: .35rem;
+}
+
 .m-cell {
   background-color: #FFF;
   position: relative;
   z-index: 5;
-  margin-bottom: .35rem;
   &:after {
     .bottom-line(@line-high-color);
   }
@@ -81,11 +84,18 @@
   &:active {
     background: none; /* for firefox */
   }
+  .input-clear,
+  .input-password {
+    height: @cell-height;
+  }
 }
 
 .cell-right {
   input[type="text"],
   input[type="number"],
+  input[type="tel"],
+  input[type="url"],
+  input[type="email"],
   input[type="password"],
   input[type="datetime-local"],
   input[type="date"],

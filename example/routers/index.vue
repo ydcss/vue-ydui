@@ -37,7 +37,8 @@
                     {icon: 'demo-icons-rate', name: 'Rate', link: '/rate'},
                     {icon: 'demo-icons-countdown', name: 'CountDown', link: '/countdown'},
                     {icon: 'demo-icons-popup', name: 'Popup', link: '/popup'},
-                    {icon: 'demo-icons-rollnotice', name: 'RollNotice', link: '/rollnotice'}
+                    {icon: 'demo-icons-rollnotice', name: 'RollNotice', link: '/rollnotice'},
+                    {icon: 'demo-icons-input', name: 'Input', link: '/input'}
                 ]
             }
         }

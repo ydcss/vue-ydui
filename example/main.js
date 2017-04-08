@@ -34,6 +34,7 @@ import Rate from './routers/rate.vue';
 import Popup from './routers/popup.vue';
 import CountUp from './routers/countup.vue';
 import RollNotice from './routers/rollnotice.vue';
+import Input from './routers/input.vue';
 
 import App from './app.vue';
 
@@ -47,36 +48,37 @@ document.addEventListener('DOMContentLoaded', function () {
 
 const router = new VueRouter({
     routes: [
-        {path: '/', component: Index},
-        {path: '/button', component: Button},
-        {path: '/dialog', component: Dialog},
-        {path: '/cell', component: Cell},
-        {path: '/grids', component: Grids},
-        {path: '/icons', component: Icons},
-        {path: '/list', component: List},
-        {path: '/list.theme/:id', component: ListTheme},
-        {path: '/list.infinitescroll', component: ListInfinitescroll},
-        {path: '/list.pullrefresh', component: ListPullRefresh},
-        {path: '/badge', component: Badge},
-        {path: '/asidebar', component: AsideBar},
-        {path: '/tabbar', component: TabBar},
-        {path: '/navbar', component: NavBar},
-        {path: '/tabs', component: Tabs},
-        {path: '/tab', component: Tab},
-        {path: '/scrolltab', component: ScrollTab},
-        {path: '/actionsheet', component: ActionSheet},
-        {path: '/sendcode', component: SendCode},
-        {path: '/progressbar', component: ProgressBar},
-        {path: '/keyboard', component: KeyBoard},
-        {path: '/slider', component: Slider},
-        {path: '/spinner', component: Spinner},
-        {path: '/cityselect', component: CitySelect},
-        {path: '/lazyimg', component: LazyImg},
-        {path: '/countdown', component: CountDown},
-        {path: '/rate', component: Rate},
-        {path: '/popup', component: Popup},
-        {path: '/countup', component: CountUp},
-        {path: '/rollnotice', component: RollNotice}
+        {path: '/', name: 'index', component: Index},
+        {path: '/button', name: 'button', component: Button},
+        {path: '/dialog', name: 'dialog', component: Dialog},
+        {path: '/cell', name: 'cell', component: Cell},
+        {path: '/grids', name: 'grids', component: Grids},
+        {path: '/icons', name: 'icons', component: Icons},
+        {path: '/list', name: 'list', component: List},
+        {path: '/list.theme/:id', name: 'list.theme/:id', component: ListTheme},
+        {path: '/list.infinitescroll', name: 'list.infinitescroll', component: ListInfinitescroll},
+        {path: '/list.pullrefresh', name: 'list.pullrefresh', component: ListPullRefresh},
+        {path: '/badge', name: 'badge', component: Badge},
+        {path: '/asidebar', name: 'asidebar', component: AsideBar},
+        {path: '/tabbar', name: 'tabbar', component: TabBar},
+        {path: '/navbar', name: 'navbar', component: NavBar},
+        {path: '/tabs', name: 'tabs', component: Tabs},
+        {path: '/tab', name: 'tab', component: Tab},
+        {path: '/scrolltab', name: 'scrolltab', component: ScrollTab},
+        {path: '/actionsheet', name: 'actionsheet', component: ActionSheet},
+        {path: '/sendcode', name: 'sendcode', component: SendCode},
+        {path: '/progressbar', name: 'progressbar', component: ProgressBar},
+        {path: '/keyboard', name: 'keyboard', component: KeyBoard},
+        {path: '/slider', name: 'slider', component: Slider},
+        {path: '/spinner', name: 'spinner', component: Spinner},
+        {path: '/cityselect', name: 'cityselect', component: CitySelect},
+        {path: '/lazyimg', name: 'lazyimg', component: LazyImg},
+        {path: '/countdown', name: 'countdown', component: CountDown},
+        {path: '/rate', name: 'rate', component: Rate},
+        {path: '/popup', name: 'popup', component: Popup},
+        {path: '/countup', name: 'countup', component: CountUp},
+        {path: '/rollnotice', name: 'rollnotice', component: RollNotice},
+        {path: '/input', name: 'input', component: Input},
     ]
 });
 
@@ -84,3 +86,23 @@ const app = new Vue({
     router: router,
     render: v => v(App)
 }).$mount('#app');
+
+let scrollTop = 0;
+
+router.beforeEach((route, redirect, next) => {
+    if (redirect.path == '/') {
+        scrollTop = document.getElementById('scrollView').scrollTop;
+    }
+    document.title = 'YDUI Touch - ' + route.name;
+    next();
+});
+
+router.afterEach(route => {
+    if (route.path == '/') {
+        Vue.nextTick(() => {
+            document.getElementById('scrollView').scrollTop = scrollTop;
+        });
+    } else {
+        document.getElementById('scrollView').scrollTop = 0;
+    }
+});
