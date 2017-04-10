@@ -31,7 +31,10 @@ module.exports = merge(distCommonWebpackConfig, {
         "/lib.px/popup/index": "./src/components/popup/index.js",
         "/lib.px/rate/index": "./src/components/rate/index.js",
         "/lib.px/countdown/index": "./src/components/countdown/index.js",
-        "/lib.px/textarea/index": "./src/components/textarea/index.js"
+        "/lib.px/textarea/index": "./src/components/textarea/index.js",
+        "/lib.px/rollnotice/index": "./src/components/rollnotice/index.js",
+        "/lib.px/input/index": "./src/components/input/index.js",
+        "/lib.px/datetime/index": "./src/components/datetime/index.js",
     },
     module: {
         loaders: [

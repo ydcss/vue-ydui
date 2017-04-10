@@ -1,0 +1,98 @@
+@import "../common/variables";
+@import "../common/mixins";
+
+.mask-datatime {
+  .mask(rgba(0, 0, 0, .4), @base-zindex * 500);
+}
+
+.m-datetime {
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: @base-zindex * 1000;
+  background-color: #FFF;
+  transform: translate(0, 100%);
+  transition: transform .3s;
+  height: 70%;
+}
+
+.datetime-active {
+  transform: translate(0, 0);
+}
+
+.datetime-header {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  justify-content: space-around;
+  background-color: #F7F7F7;
+  a {
+    padding: 0 .4rem;
+    height: .8rem;
+    display: flex;
+    align-items: center;
+    font-size: .3rem;
+    color: #555;
+    &:last-child {
+      color: #04BE02;
+    }
+  }
+  &:after {
+    .bottom-line(#d9d9d9);
+  }
+}
+
+.datetime-content {
+  display: flex;
+  height: 100%;
+  padding-top: .8rem;
+  .datetime-item-box {
+    overflow-y: auto;
+    height: 100%;
+    width: 100%;
+    &:nth-child(2n){
+      background-color: #F5F5F5;
+    }
+  }
+}
+
+.datetime-item {
+  width: 100%;
+  height: inherit;
+  display: block;
+  padding: 0 .4rem;
+  > a {
+    color: #333;
+    font-size: .26rem;
+    height: 40px;
+    line-height: 40px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    &:before {
+      .bottom-line(@line-color);
+    }
+    &:active {
+      background: none; /* for firefox */
+    }
+    span {
+      flex: 1;
+      display: block;
+    }
+    &.cityselect-item-active {
+      color: #F23030;
+      &:after {
+        display: block;
+        content: '\E600';
+        font-family: @iconfont-inlay;
+      }
+    }
+  }
+}

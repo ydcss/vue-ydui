@@ -119,10 +119,6 @@
             init() {
                 this.currentValue = this.value;
 
-                if (!!this.currentValue) {
-                    this.isempty = false;
-                }
-
                 if (this.required && this.currentValue == '') {
                     this.setError('不能为空', 'NOT_NULL');
                     return;
