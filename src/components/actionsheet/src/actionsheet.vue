@@ -31,7 +31,13 @@
         },
         watch: {
             value(val) {
-                val && this.isIOS && addClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
+                if (this.isIOS) {
+                    if (val) {
+                        addClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
+                    } else {
+                        removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
+                    }
+                }
 
                 this.show = val;
             }
