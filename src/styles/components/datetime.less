@@ -15,7 +15,7 @@
   background-color: #FFF;
   transform: translate(0, 100%);
   transition: transform .3s;
-  height: 70%;
+  height: 40px * 8 + 35px;
 }
 
 .datetime-active {
@@ -24,18 +24,16 @@
 
 .datetime-header {
   display: flex;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  justify-content: space-around;
-  background-color: #F7F7F7;
+  background-color: #FFF;
+  position: relative;
   a {
-    padding: 0 .4rem;
-    height: .8rem;
+    padding: 0 20px;
+    height: 40px;
     display: flex;
     align-items: center;
-    font-size: .3rem;
+    flex: 1;
+    justify-content: center;
+    font-size: 15px;
     color: #555;
     &:last-child {
       color: #04BE02;
@@ -46,15 +44,35 @@
   }
 }
 
+.datetime-tip {
+  width: 100%;
+  height: 35px;
+  background-color: #F7F7F7;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  color: #999;
+  font-size: 12px;
+  position: relative;
+  a {
+    display: block;
+    flex: 1;
+  }
+  &:after {
+    .bottom-line(#d9d9d9);
+  }
+}
+
 .datetime-content {
   display: flex;
-  height: 100%;
-  padding-top: .8rem;
+  height: 40px * 7;
+  overflow: hidden;
+  position: relative;
   .datetime-item-box {
-    overflow-y: auto;
+    overflow: hidden;
     height: 100%;
-    width: 100%;
-    &:nth-child(2n){
+    flex: 1;
+    &.fuck {
       background-color: #F5F5F5;
     }
   }
@@ -62,29 +80,22 @@
 
 .datetime-item {
   width: 100%;
-  height: inherit;
+  height: 100%;
   display: block;
-  padding: 0 .4rem;
+  &:first-child {
+    background-color: #F00;
+  }
   > a {
     color: #333;
-    font-size: .26rem;
+    font-size: .3rem;
     height: 40px;
-    line-height: 40px;
-    overflow: hidden;
+    width: 100%;
     display: flex;
     align-items: center;
-    width: 100%;
-    position: relative;
-    z-index: 1;
-    &:before {
-      .bottom-line(@line-color);
-    }
+    background-color: #F5F5F5;
+    justify-content: center;
     &:active {
       background: none; /* for firefox */
-    }
-    span {
-      flex: 1;
-      display: block;
     }
     &.cityselect-item-active {
       color: #F23030;
@@ -94,5 +105,23 @@
         font-family: @iconfont-inlay;
       }
     }
+  }
+}
+
+.datetime-indicator {
+  height: 40px;
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: 50%;
+  margin-top: -.4rem;
+  pointer-events: none;
+  z-index: 999;
+  &:after {
+    .top-line(#CCC);
+  }
+  &:before {
+    .bottom-line(#CCC);
   }
 }

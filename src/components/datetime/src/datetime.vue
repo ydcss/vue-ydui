@@ -6,33 +6,37 @@
                 <a href="javascript:;">取消</a>
                 <a href="javascript:;">确定</a>
             </div>
-            <ul class="datetime-content">
-                <li class="datetime-item-box">
+            <div class="datetime-tip">
+                <a href="javascript:;">当前选择时间：2017-05-23 18:23</a>
+            </div>
+            <div class="datetime-content">
+                <div class="datetime-item-box">
                     <div class="datetime-item">
                         <a href="javascript:;" v-for="oldYear in fuckyear">{{oldYear}}</a>
                     </div>
-                </li>
-                <li class="datetime-item-box">
+                </div>
+                <div class="datetime-item-box">
                     <div class="datetime-item">
-                        <a href="javascript:;" v-for="i in 60">{{i}}</a>
+                        <a href="javascript:;" v-for="i in 12">{{i < 10 ? '0' + i : i}}</a>
                     </div>
-                </li>
-                <li class="datetime-item-box">
+                </div>
+                <div class="datetime-item-box">
                     <div class="datetime-item">
-                        <a href="javascript:;" v-for="i in 60">{{i}}</a>
+                        <a href="javascript:;" v-for="i in 31">{{i < 10 ? '0' + i : i}}</a>
                     </div>
-                </li>
-                <li class="datetime-item-box">
+                </div>
+                <div class="datetime-item-box fuck">
                     <div class="datetime-item">
-                        <a href="javascript:;" v-for="i in 60">{{i}}</a>
+                        <a href="javascript:;" v-for="i in 23">{{i < 10 ? '0' + i : i}}</a>
                     </div>
-                </li>
-                <li class="datetime-item-box">
+                </div>
+                <div class="datetime-item-box fuck">
                     <div class="datetime-item">
-                        <a href="javascript:;" v-for="i in 60">{{i}}</a>
+                        <a href="javascript:;" v-for="i in 60">{{i < 10 ? '0' + i : i}}</a>
                     </div>
-                </li>
-            </ul>
+                </div>
+                <div class="datetime-indicator"></div>
+            </div>
         </div>
     </div>
 </template>
