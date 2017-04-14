@@ -1,7 +1,7 @@
 <template>
     <span class="m-spinner">
         <a href="javascript:;" ref="minus"></a>
-        <input type="text" ref="numInput" :readonly="readonly" v-model="counter" placeholder=""/>
+        <input type="text" ref="numInput" class="spinner-input" :readonly="readonly" v-model="counter" placeholder=""/>
         <a href="javascript:;" ref="add"></a>
     </span>
 </template>
