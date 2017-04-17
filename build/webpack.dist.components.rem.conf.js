@@ -32,6 +32,5 @@ module.exports = merge(distCommonWebpackConfig, {
         "/lib.rem/countdown/index": "./src/components/countdown/index.js",
         "/lib.rem/rollnotice/index": "./src/components/rollnotice/index.js",
         "/lib.rem/input/index": "./src/components/input/index.js",
-        "/lib.rem/datetime/index": "./src/components/datetime/index.js",
     }
 });
