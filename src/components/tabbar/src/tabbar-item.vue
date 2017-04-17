@@ -1,5 +1,6 @@
 <template>
-    <router-link :to="link" class="tabbar-item" :class="classes" :style="styles">
+    <router-link :to="link" class="tabbar-item" :class="classes" :style="styles" :exact="$parent.exact"
+                 :active-class="$parent.activeClass">
         <span class="tabbar-icon">
             <slot name="icon"></slot>
             <span class="tabbar-badge">
@@ -27,7 +28,7 @@
                 return this.active ? 'tabbar-active' : '';
             },
             styles() {
-                return {color: this.active ? this.activeColor : this.$parent.color};
+                return !this.active ? {color: this.$parent.color} : {};
             }
         }
     }

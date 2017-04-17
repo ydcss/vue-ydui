@@ -14,7 +14,12 @@
                 <ul class="keyboard-numbers">
                     <li v-for="i in 4">
                         <a href="javascript:;" v-if="i == 4" @click.stop="close">取消</a>
-                        <a href="javascript:;" v-for="n in numsArr.slice((i - 1) * 3, i * 3)" @click.stop="numclick(n)">{{n}}</a>
+                        <template v-if="isMobile">
+                            <a href="javascript:;" v-for="n in numsArr.slice((i - 1) * 3, i * 3)" @touchstart.stop="numclick(n)">{{n}}</a>
+                        </template>
+                        <template v-else>
+                            <a href="javascript:;" v-for="n in numsArr.slice((i - 1) * 3, i * 3)" @click.stop="numclick(n)">{{n}}</a>
+                        </template>
                         <a href="javascript:;" v-if="i == 4" @click.stop="backspace"></a>
                     </li>
                 </ul>
@@ -82,11 +87,12 @@
         },
         methods: {
             init() {
-                //TODO 非常快速点击问题 https://github.com/MeCKodo/vue-tap
-
                 this.scrollView = getScrollview(this.$el);
 
-                this.isIOS = !!(window.navigator && window.navigator.userAgent || '').match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+                const ua = window.navigator && window.navigator.userAgent || '';
+
+                this.isIOS = !!ua.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+                this.isMobile = !!ua.match(/AppleWebKit.*Mobile.*/) || 'ontouchstart' in document.documentElement;
 
                 window.$yduiBus.$on('ydui.keyboard.error', (error) => {
                     this.setError(error);
@@ -134,8 +140,8 @@
                 this.nums = '';
             }
         },
-        mounted() {
-            this.$nextTick(this.init);
+        created() {
+            this.init();
         },
         destroyed() {
             this.close();

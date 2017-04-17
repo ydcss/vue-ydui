@@ -35,7 +35,7 @@
         </yd-tabbar>
 
         <yd-tabbar slot="tabbar">
-            <yd-tabbar-item title="微信" link="/asidebar" active>
+            <yd-tabbar-item title="微信" link="/tabbar" active>
                 <i slot="icon" class="demo-icons-weixin"></i>
                 <yd-badge slot="badge" type="danger">2</yd-badge>
             </yd-tabbar-item>

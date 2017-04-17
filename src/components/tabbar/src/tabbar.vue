@@ -11,6 +11,14 @@
         name: 'yd-tabbar',
         props: {
             fixed: Boolean,
+            exact: {
+                type: Boolean,
+                default: true
+            },
+            activeClass: {
+                type: String,
+                default: 'router-link-active'
+            },
             activeColor: {
                 validator(value) {
                     if (!value) return true;

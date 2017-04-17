@@ -26,11 +26,24 @@
                 timer: null
             }
         },
+        props: {
+            ready: {
+                type: Boolean,
+                default: true
+            }
+        },
+        watch: {
+            ready(val) {
+                val && setTimeout(this.init, 0);
+            }
+        },
         methods: {
             getPanels() {
                 return this.$children.filter(item => item.$options.name === 'yd-scrolltab-panel');
             },
             init() {
+                if (!this.ready)return;
+
                 this.scrollView = this.$refs.scrollView;
 
                 this.contentOffsetTop = this.scrollView.getBoundingClientRect().top;

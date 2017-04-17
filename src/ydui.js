@@ -30,7 +30,6 @@ import {Popup} from './components/popup';
 import {CountUp} from './components/countup';
 import {RollNotice, RollNoticeItem} from './components/rollnotice';
 import {Input} from './components/input';
-import {DateTime} from './components/datetime';
 
 window.document.addEventListener('touchstart', function (event) {
     /* Do Nothing */
@@ -78,7 +77,6 @@ const install = function (Vue) {
     Vue.component(RollNotice.name, RollNotice);
     Vue.component(RollNoticeItem.name, RollNoticeItem);
     Vue.component(Input.name, Input);
-    Vue.component(DateTime.name, DateTime);
 
     Vue.prototype.$dialog = {
         confirm: Confirm,
