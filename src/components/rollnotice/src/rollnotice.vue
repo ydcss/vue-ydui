@@ -21,14 +21,10 @@
                 styles: {
                     transform: 0,
                     transitionDuration: 0
-                },
+                }
             }
         },
         props: {
-            ready: {
-                type: Boolean,
-                default: true
-            },
             height: {
                 validator(val) {
                     return /^\d*$/.test(val);
@@ -60,14 +56,9 @@
                 default: 'up'
             }
         },
-        watch: {
-            ready(val) {
-                val && setTimeout(this.init, 0);
-            }
-        },
         methods: {
             init() {
-                if (!this.ready) return;
+                this.destroy();
 
                 this.items = this.$children.filter(item => item.$options.name === 'yd-rollnotice-item');
 
@@ -106,13 +97,13 @@
             setTranslate(speed, translate) {
                 this.styles.transitionDuration = speed + 'ms';
                 this.styles.transform = 'translate3d(0, ' + translate + 'px, 0)';
+            },
+            destroy() {
+                clearInterval(this.timer);
             }
         },
-        mounted() {
-            this.$nextTick(this.init);
-        },
         destroyed() {
-            clearInterval(this.timer);
+            this.destroy();
         }
     }
 </script>

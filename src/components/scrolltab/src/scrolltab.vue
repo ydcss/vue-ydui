@@ -33,8 +33,6 @@
                 this.contentOffsetTop = this.scrollView.getBoundingClientRect().top;
 
                 this.bindEvent();
-
-                this.setDefault();
             },
             addItem(panel) {
                 this.navList.push(panel);
@@ -95,6 +93,11 @@
                         this.activeIndex = panel._uid;
                     }
                 });
+            }
+        },
+        watch: {
+            navList() {
+                this.setDefault();
             }
         },
         mounted() {

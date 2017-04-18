@@ -4,6 +4,9 @@
 
 <script type="text/babel">
     export default {
-        name: 'yd-rollnotice-item'
+        name: 'yd-rollnotice-item',
+        mounted() {
+            this.$parent.init();
+        }
     }
 </script>

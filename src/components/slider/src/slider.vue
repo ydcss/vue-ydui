@@ -47,10 +47,6 @@
             }
         },
         props: {
-            ready: {
-                type: Boolean,
-                default: true
-            },
             speed: {
                 default: 300,
                 validator(val) {
@@ -70,9 +66,17 @@
                 default: 'horizontal'
             }
         },
+        watch: {
+            index() {
+                const index = this.index;
+                const itemNums = this.itemNums;
+                const tm = (index - 1) % itemNums;
+                this.paginationIndex = tm < 0 ? itemNums - 1 : tm;
+            }
+        },
         methods: {
             init() {
-                if (!this.ready)return;
+                this.destroy();
 
                 this.itemsArr = this.$children.filter(item => item.$options.name === 'yd-slider-item');
 
@@ -258,25 +262,14 @@
                     const width = this.$refs.warpper.offsetWidth;
                     this.dragStyleObject.transform = 'translate3d(' + -this.index * width + 'px, 0, 0)';
                 }
-            }
-        },
-        watch: {
-            index() {
-                const index = this.index;
-                const itemNums = this.itemNums;
-                const tm = (index - 1) % itemNums;
-                this.paginationIndex = tm < 0 ? itemNums - 1 : tm;
             },
-            ready(val) {
-                val && setTimeout(this.init, 0);
+            destroy() {
+                this.unbindEvents();
+                this.stopAutoplay();
             }
-        },
-        mounted() {
-            this.init();
         },
         destroyed() {
-            this.unbindEvents();
-            this.stopAutoplay();
+            this.destroy();
         }
     }
 </script>
