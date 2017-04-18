@@ -26,24 +26,8 @@
                 timer: null
             }
         },
-        props: {
-            ready: {
-                type: Boolean,
-                default: true
-            }
-        },
-        watch: {
-            ready(val) {
-                val && setTimeout(this.init, 0);
-            }
-        },
         methods: {
-            getPanels() {
-                return this.$children.filter(item => item.$options.name === 'yd-scrolltab-panel');
-            },
             init() {
-                if (!this.ready)return;
-
                 this.scrollView = this.$refs.scrollView;
 
                 this.contentOffsetTop = this.scrollView.getBoundingClientRect().top;
@@ -51,6 +35,12 @@
                 this.bindEvent();
 
                 this.setDefault();
+            },
+            addItem(panel) {
+                this.navList.push(panel);
+            },
+            getPanels() {
+                return this.$children.filter(item => item.$options.name === 'yd-scrolltab-panel');
             },
             bindEvent() {
                 this.scrollView.addEventListener('scroll', this.scrollHandler);
@@ -60,13 +50,7 @@
                 const panels = this.getPanels();
 
                 let num = 0;
-
                 panels.forEach((panel) => {
-                    this.navList.push({
-                        label: panel.label,
-                        _uid: panel._uid,
-                        icon: panel.icon
-                    });
                     if (panel.active) {
                         this.activeIndex = panel._uid;
                         this.moveHandler(panel._uid);
