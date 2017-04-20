@@ -35,6 +35,7 @@ import Popup from './routers/popup.vue';
 import CountUp from './routers/countup.vue';
 import RollNotice from './routers/rollnotice.vue';
 import Input from './routers/input.vue';
+import FlexBox from './routers/flexbox.vue';
 
 import App from './app.vue';
 
@@ -78,7 +79,8 @@ const router = new VueRouter({
         {path: '/popup', name: 'popup', component: Popup},
         {path: '/countup', name: 'countup', component: CountUp},
         {path: '/rollnotice', name: 'rollnotice', component: RollNotice},
-        {path: '/input', name: 'input', component: Input}
+        {path: '/input', name: 'input', component: Input},
+        {path: '/flexbox', name: 'flexbox', component: FlexBox}
     ]
 });
 

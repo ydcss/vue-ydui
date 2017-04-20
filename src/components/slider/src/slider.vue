@@ -96,7 +96,7 @@
                 this.cloneItem();
                 this.bindEvents();
 
-                this.autoplay > 0 && this.autoPlay();
+                this.autoPlay();
             },
             cloneItem() {
                 const itemArr = this.itemsArr;
@@ -193,6 +193,8 @@
                 }
             },
             autoPlay() {
+                if (this.autoplay <= 0) return;
+
                 this.autoPlayTimer = setInterval(() => {
                     const size = this.direction == 'vertical' ? this.$el.clientHeight : this.$refs.warpper.offsetWidth;
 

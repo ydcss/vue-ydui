@@ -184,7 +184,7 @@
         mounted() {
             this.$nextTick(this.init);
         },
-        destroyed() {
+        beforeDestroy() {
             this.unbindEvents();
         }
     }
