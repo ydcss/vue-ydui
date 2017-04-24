@@ -1,5 +1,5 @@
 <template>
-    <div id="J_Tab" class="m-tab">
+    <div class="m-tab">
         <ul class="tab-nav">
             <li class="tab-nav-item"
                 v-for="item in navList"

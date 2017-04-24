@@ -6,9 +6,9 @@
             <yd-button size="large" type="primary" @click.native="show2 = true">打开 - 打乱键盘顺序</yd-button>
         </yd-button-group>
 
-        <yd-keyboard v-model="show1" :input-done="done1"></yd-keyboard>
+        <yd-keyboard v-model="show1" :input-done="done1" ref="kbdemo1"></yd-keyboard>
 
-        <yd-keyboard v-model="show2" :input-done="done2" disorder></yd-keyboard>
+        <yd-keyboard v-model="show2" :input-done="done2" disorder ref="kbdemo2"></yd-keyboard>
     </yd-layout>
 </template>
 
@@ -26,7 +26,7 @@
                 this.$dialog.loading.open('验证支付密码');
 
                 setTimeout(() => {
-                    window.$yduiBus.$emit('ydui.keyboard.error', '对不起，您的支付密码不正确，请重新输入。');
+                    this.$refs.kbdemo1.$emit('ydui.keyboard.error', '对不起，您的支付密码不正确，请重新输入。');
                     this.$dialog.loading.close();
                 }, 2000);
             },
@@ -35,7 +35,7 @@
                 this.$dialog.loading.open('验证支付密码');
 
                 setTimeout(() => {
-                    window.$yduiBus.$emit('ydui.keyboard.error', '对不起，您的支付密码不正确，请重新输入。');
+                    this.$refs.kbdemo2.$emit('ydui.keyboard.error', '对不起，您的支付密码不正确，请重新输入。');
                     this.$dialog.loading.close();
                 }, 2000);
             }

@@ -7,7 +7,7 @@
             </router-link>
         </yd-navbar>
 
-        <yd-infinitescroll :on-infinite="loadList">
+        <yd-infinitescroll :on-infinite="loadList" ref="lsdemo">
 
             <yd-list theme="1" slot="list">
                 <yd-list-item v-for="item in list">
@@ -94,12 +94,12 @@
 
                     if (_list.length < this.pageSize || this.page == 3) {
                         // 所有数据加载完毕
-                        window.$yduiBus.$emit('ydui.infinitescroll.loadedDone');
+                        this.$refs.lsdemo.$emit('ydui.infinitescroll.loadedDone');
                         return;
                     }
 
                     // 单次请求数据完毕
-                    window.$yduiBus.$emit('ydui.infinitescroll.finishLoad');
+                    this.$refs.lsdemo.$emit('ydui.infinitescroll.finishLoad');
 
                     this.page++;
                 });

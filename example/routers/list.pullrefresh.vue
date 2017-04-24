@@ -6,7 +6,7 @@
             </router-link>
         </yd-navbar>
 
-        <yd-pullrefresh :on-infinite="loadList">
+        <yd-pullrefresh :on-infinite="loadList" ref="prdemo">
 
             <yd-list theme="4">
                 <yd-list-item v-for="item in list">
@@ -85,7 +85,7 @@
                         mes: _list.length > 0 ? '为您更新了' + _list.length + '条内容' : '已是最新内容'
                     });
 
-                    window.$yduiBus.$emit('ydui.pullrefresh.finishLoad');
+                    this.$refs.prdemo.$emit('ydui.pullrefresh.finishLoad');
 
                     this.page++;
                 });

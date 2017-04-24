@@ -20,8 +20,6 @@
 <script type="text/babel">
     import Vue from 'vue';
 
-    window.$yduiBus = window.$yduiBus || new Vue();
-
     export default {
         name: 'yd-pullrefresh',
         props: {
@@ -56,7 +54,7 @@
 
                 this.bindEvents();
 
-                window.$yduiBus.$on('ydui.pullrefresh.finishLoad', this.finishLoad);
+                this.$on('ydui.pullrefresh.finishLoad', this.finishLoad);
 
                 this.showHelp();
             },
