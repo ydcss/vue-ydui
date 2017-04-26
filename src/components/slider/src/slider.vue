@@ -38,7 +38,6 @@
                 },
                 touches: {
                     moveTag: 0,
-                    startClientPosition: 0,
                     moveOffset: 0,
                     touchStartTime: 0,
                     isTouchEvent: false,
@@ -78,11 +77,13 @@
             init() {
                 this.destroy();
 
+                this.isVertical = this.direction == 'vertical';
+
                 this.itemsArr = this.$children.filter(item => item.$options.name === 'yd-slider-item');
 
                 this.itemNums = this.itemsArr.length;
 
-                if (this.direction == 'vertical') {
+                if (this.isVertical) {
                     this.$refs.slider.style.height = '100%';
                     const height = this.$el.clientHeight;
                     this.itemHeight.height = height + 'px';
@@ -116,11 +117,8 @@
                 if (touches.moveTag == 0) {
                     touches.moveTag = 1;
 
-                    if (this.direction == 'vertical') {
-                        touches.startClientPosition = event.touches ? event.touches[0].clientY : event.clientY;
-                    } else {
-                        touches.startClientPosition = event.touches ? event.touches[0].clientX : event.clientX;
-                    }
+                    touches.startX = event.touches ? event.touches[0].clientX : event.clientX;
+                    touches.startY = event.touches ? event.touches[0].clientY : event.clientY;
 
                     touches.touchStartTime = Date.now();
 
@@ -128,18 +126,18 @@
 
                     if (this.index == 0) {
                         this.index = itemNums;
-                        this.setTranslate(0, -itemNums * (this.direction == 'vertical' ? this.$el.clientHeight : this.$refs.warpper.offsetWidth));
+                        this.setTranslate(0, -itemNums * (this.isVertical ? this.$el.clientHeight : this.$refs.warpper.offsetWidth));
                         return;
                     }
 
                     if (this.index > itemNums) {
                         this.index = 1;
-                        this.setTranslate(0, this.direction == 'vertical' ? -this.$el.clientHeight : -this.$refs.warpper.offsetWidth);
+                        this.setTranslate(0, this.isVertical ? -this.$el.clientHeight : -this.$refs.warpper.offsetWidth);
                     }
                 }
             },
             touchMoveHandler(event) {
-                event.preventDefault();
+                this.isVertical && event.preventDefault();
 
                 const touches = this.touches;
 
@@ -147,29 +145,35 @@
 
                 if (touches.isTouchEvent && event.type === 'mousemove') return;
 
-                let position = 0;
-                if (this.direction == 'vertical') {
-                    position = event.touches ? event.touches[0].clientY : event.clientY;
-                } else {
-                    position = event.touches ? event.touches[0].clientX : event.clientX;
+                const currentY = event.touches ? event.touches[0].clientY : event.clientY;
+                const currentX = event.touches ? event.touches[0].clientX : event.clientX;
+
+                const touchAngle = Math.atan2(Math.abs(currentY - touches.startY), Math.abs(currentX - touches.startX)) * 180 / Math.PI;
+
+                if (!this.isVertical ? touchAngle > 45 : (90 - touchAngle > 45)) {
+                    touches.moveTag = 3;
+                    this.stopAutoplay();
+                    this.setTranslate(0, -this.index * (this.isVertical ? this.$el.clientHeight : this.$refs.warpper.offsetWidth));
+                    return;
                 }
 
-                const deltaSlide = touches.moveOffset = position - touches.startClientPosition;
+                const deltaSlide = touches.moveOffset = this.isVertical ? (currentY - touches.startY) : (currentX - touches.startX);
 
                 if (deltaSlide != 0 && touches.moveTag != 0) {
                     if (touches.moveTag == 1) {
                         this.stopAutoplay();
                         touches.moveTag = 2;
                     }
+
                     if (touches.moveTag == 2) {
-                        this.setTranslate(0, -this.index * (this.direction == 'vertical' ? this.$el.clientHeight : this.$refs.warpper.offsetWidth) + deltaSlide);
+                        this.setTranslate(0, -this.index * (this.isVertical ? this.$el.clientHeight : this.$refs.warpper.offsetWidth) + deltaSlide);
                     }
                 }
             },
             touchEndHandler() {
                 const touches = this.touches;
                 const moveOffset = touches.moveOffset;
-                const warpperSize = this.direction == 'vertical' ? this.$el.clientHeight : this.$refs.warpper.offsetWidth;
+                const warpperSize = this.isVertical ? this.$el.clientHeight : this.$refs.warpper.offsetWidth;
 
                 setTimeout(() => {
                     touches.allowClick = true;
@@ -190,13 +194,19 @@
                         this.setTranslate(this.speed, -((moveOffset > 0 ? --this.index : ++this.index) * warpperSize));
                     }
                     this.autoPlay();
+                    return;
+                }
+
+                if (touches.moveTag == 3) {
+                    touches.moveTag = 0;
+                    this.autoPlay();
                 }
             },
             autoPlay() {
                 if (this.autoplay <= 0) return;
 
                 this.autoPlayTimer = setInterval(() => {
-                    const size = this.direction == 'vertical' ? this.$el.clientHeight : this.$refs.warpper.offsetWidth;
+                    const size = this.isVertical ? this.$el.clientHeight : this.$refs.warpper.offsetWidth;
 
                     if (this.index > this.itemNums) {
                         this.index = 1;
@@ -250,14 +260,14 @@
             },
             setTranslate(speed, translate) {
                 this.dragStyleObject.transitionDuration = speed + 'ms';
-                if (this.direction == 'vertical') {
+                if (this.isVertical) {
                     this.dragStyleObject.transform = 'translate3d(0, ' + translate + 'px, 0)';
                 } else {
                     this.dragStyleObject.transform = 'translate3d(' + translate + 'px, 0, 0)';
                 }
             },
             resizeSlides() {
-                if (this.direction == 'vertical') {
+                if (this.isVertical) {
                     const height = this.$el.clientHeight;
                     this.dragStyleObject.transform = 'translate3d(0, ' + -this.index * height + 'px, 0)';
                 } else {
