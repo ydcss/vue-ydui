@@ -10,6 +10,10 @@
                 <span slot="left">自定义参数模板：</span>
                 <yd-countdown slot="right" time="2017/06/06 06:06:06" format="{%s}秒】{%m}分】{%h}时】{%d}天】"></yd-countdown>
             </yd-cell-item>
+            <yd-cell-item>
+                <span slot="left">传入时间为（秒）：</span>
+                <yd-countdown slot="right" :time="666666" timetype="second"></yd-countdown>
+            </yd-cell-item>
         </yd-cell-group>
 
         <yd-cell-group title="通过Slot自定义HTML模板">

@@ -1,7 +1,7 @@
 {
   "name": "vue-ydui",
   "description": "A mobile components Library with Vue2.js.",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "author": "ydcss.com",
   "main": "dist/ydui.js",
   "style": "dist/ydui.css",
@@ -60,7 +60,7 @@
     "vue-router": "^2.1.1",
     "vue-template-compiler": "^2.1.8",
     "webpack": "^1.14.0",
-    "webpack-dev-server": "^1.16.2",
+    "webpack-dev-server": "1.16.3",
     "webpack-merge": "^2.4.0",
     "ydcss-rem2px": "^1.0.0"
   },
