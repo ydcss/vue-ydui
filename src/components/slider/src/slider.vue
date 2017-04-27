@@ -137,7 +137,9 @@
                 }
             },
             touchMoveHandler(event) {
-                this.isVertical && event.preventDefault();
+                if(!this.supportTouch || this.isVertical) {
+                    event.preventDefault();
+                }
 
                 const touches = this.touches;
 
@@ -150,7 +152,7 @@
 
                 const touchAngle = Math.atan2(Math.abs(currentY - touches.startY), Math.abs(currentX - touches.startX)) * 180 / Math.PI;
 
-                if (!this.isVertical ? touchAngle > 45 : (90 - touchAngle > 45)) {
+                if ((!this.isVertical ? touchAngle > 45 : (90 - touchAngle > 45)) && this.supportTouch) {
                     touches.moveTag = 3;
                     this.stopAutoplay();
                     this.setTranslate(0, -this.index * (this.isVertical ? this.$el.clientHeight : this.$refs.warpper.offsetWidth));
@@ -248,7 +250,7 @@
                 window.removeEventListener('resize', this.resizeSlides);
             },
             touchEvents() {
-                const supportTouch = (window.Modernizr && !!window.Modernizr.touch) || (function () {
+                const supportTouch = this.supportTouch = (window.Modernizr && !!window.Modernizr.touch) || (function () {
                             return !!(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch);
                         })();
 
