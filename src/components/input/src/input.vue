@@ -109,6 +109,9 @@
             },
         },
         watch: {
+            value(val) {
+                this.currentValue = val;
+            },
             currentValue(val) {
                 this.isempty = !val;
                 this.validatorInput(val);
