@@ -114,8 +114,12 @@
             },
             currentValue(val) {
                 this.isempty = !val;
-                this.validatorInput(val);
+                this.validatorInput(val, true);
                 this.emitInput();
+            },
+            required(val) {
+                this.required = val;
+                this.validatorInput(this.currentValue, false);
             }
         },
         methods: {
@@ -131,12 +135,12 @@
                     this.setError(`最少输入${this.min}位字符`, 'NOT_MIN_SIZE');
                 }
             },
-            validatorInput(val) {
+            validatorInput(val, showError) {
                 if (val == '') {
                     if (this.required) {
                         this.setError('不能为空', 'NOT_NULL');
-                        this.iserror = true;
-                        this.checkRequired = true;
+                        this.iserror = showError;
+                        this.checkRequired = showError;
                     }
                     return;
                 }
@@ -162,7 +166,7 @@
                 this.errorCode = '';
             },
             blurHandler() {
-                this.validatorInput(this.currentValue);
+                this.validatorInput(this.currentValue, true);
 
                 setTimeout(() => {
                     this.showClear = false;

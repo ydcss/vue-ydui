@@ -47,6 +47,11 @@
                 this.$on('ydui.infinitescroll.finishLoad', () => {
                     this.isLoading = false;
                 });
+
+                this.$on('ydui.infinitescroll.reInit', () => {
+                    this.isLoading = false;
+                    this.isDone = false;
+                });
             },
             scrollHandler() {
                 if (this.isLoading || this.isDone)return;
