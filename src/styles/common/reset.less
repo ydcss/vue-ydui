@@ -61,6 +61,9 @@ input, select, button {
   vertical-align: baseline;
   border-radius: 0;
   background-color: transparent;
+}
+
+select {
   -webkit-appearance: none;
   -moz-appearance: none;
 }
@@ -77,8 +80,8 @@ input[type=checkbox], input[type=radio] {
   vertical-align: middle;
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none !important;
   -moz-appearance: none !important;
   margin: 0;

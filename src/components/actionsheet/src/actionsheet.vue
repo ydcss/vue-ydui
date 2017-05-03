@@ -15,7 +15,7 @@
         name: 'yd-actionsheet',
         data() {
             return {
-                show: false
+                show: this.value
             }
         },
         props: {

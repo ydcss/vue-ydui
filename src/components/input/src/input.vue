@@ -106,7 +106,7 @@
                 validator(val) {
                     return /^\d*$/.test(val);
                 }
-            },
+            }
         },
         watch: {
             value(val) {

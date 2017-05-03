@@ -15,7 +15,7 @@
         <yd-cell-group title="验证 - 内置正则">
             <yd-cell-item>
                 <span slot="left">邮箱：</span>
-                <yd-input slot="right" v-model="input3" :debug="true" regex="email" placeholder="请输入邮箱地址"></yd-input>
+                <yd-input slot="right" v-model="input3" regex="email" placeholder="请输入邮箱地址"></yd-input>
             </yd-cell-item>
 
             <yd-cell-item>

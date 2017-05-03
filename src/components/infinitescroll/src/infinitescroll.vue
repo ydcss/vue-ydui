@@ -52,8 +52,14 @@
                 if (this.isLoading || this.isDone)return;
 
                 const scrollview = this.scrollview;
-                const contentHeight = scrollview == window ? document.body.offsetHeight : scrollview.offsetHeight;
-                const offsetTop = scrollview == window ? 0 : scrollview.getBoundingClientRect().top;
+
+                let contentHeight = document.body.offsetHeight;
+                let offsetTop = 0;
+
+                if (scrollview && scrollview != window) {
+                    contentHeight = scrollview.offsetHeight;
+                    offsetTop = scrollview.getBoundingClientRect().top;
+                }
 
                 if (this.$refs.tag.getBoundingClientRect().top <= offsetTop + contentHeight + contentHeight / 10) {
                     this.isLoading = true;

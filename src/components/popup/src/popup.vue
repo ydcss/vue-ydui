@@ -14,7 +14,7 @@
         name: 'yd-popup',
         data() {
             return {
-                show: false
+                show: this.value
             }
         },
         props: {
@@ -33,8 +33,7 @@
                 default: '50%'
             },
             value: {
-                type: Boolean,
-                default: false
+                type: Boolean
             }
         },
         watch: {

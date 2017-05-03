@@ -62,7 +62,7 @@
         data() {
             return {
                 citys: Citys,
-                show: false,
+                show: this.value,
                 nav: {
                     index: 0,
                     txt1: '请选择',
