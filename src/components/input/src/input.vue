@@ -37,7 +37,7 @@
             >
         </template>
         <a href="javascript:;" class="input-clear" tabindex="-1" @click="clearInput" v-show="showClearIcon && showClear && !isempty"></a>
-        <span class="input-error" v-if="showErrorIcon" v-show="((!!regex || !!min || !!max || required) && type != 'password' && iserror) || checkRequired"></span>
+        <span class="input-error" v-if="showErrorIcon" v-show="(!!regex || !!min || !!max || required) && type != 'password' && iserror && initError"></span>
         <span class="input-success" v-if="showSuccessIcon" v-show="(!!regex || !!min || !!max || required) && type != 'password' && !iserror && currentValue != ''"></span>
         <a href="javascript:;" v-if="type == 'password'" class="input-password" :class="showPwd ? 'input-password-open' : ''" tabindex="-1" @click.stop="showPwd = !showPwd"></a>
     </div>
@@ -48,12 +48,12 @@
         name: 'yd-input',
         data() {
             return {
-                currentValue: '',
+                currentValue: this.value,
                 isempty: true,
                 iserror: false,
                 showPwd: false,
                 showClear: false,
-                checkRequired: false,
+                initError: false,
                 valid: true,
                 errorMsg: '',
                 errorCode: '',
@@ -123,28 +123,15 @@
             }
         },
         methods: {
-            init() {
-                this.currentValue = this.value;
-
-                if (this.required && this.currentValue == '') {
-                    this.setError('不能为空', 'NOT_NULL');
-                    return;
-                }
-
-                if (this.min && this.currentValue.length < this.min) {
-                    this.setError(`最少输入${this.min}位字符`, 'NOT_MIN_SIZE');
-                }
-            },
             validatorInput(val, showError) {
-                if (val == '') {
-                    if (this.required) {
-                        this.setError('不能为空', 'NOT_NULL');
-                        this.iserror = showError;
-                        this.checkRequired = showError;
-                    }
+
+                this.initError = showError;
+
+                if(this.required && val == '') {
+                    this.setError('不能为空', 'NOT_NULL');
+                    this.iserror = true;
                     return;
                 }
-                this.checkRequired = false;
 
                 if (this.min && val.length < this.min && val.length != 0) {
                     this.setError(`最少输入${this.min}位字符`, 'NOT_MIN_SIZE');
@@ -198,8 +185,8 @@
                 return str;
             }
         },
-        created() {
-            this.init();
+        mounted() {
+            this.validatorInput(this.currentValue, false);
         }
     }
 </script>
