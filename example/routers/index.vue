@@ -39,9 +39,11 @@
                     {icon: 'demo-icons-popup', name: 'Popup', link: '/popup'},
                     {icon: 'demo-icons-rollnotice', name: 'RollNotice', link: '/rollnotice'},
                     {icon: 'demo-icons-input', name: 'Input', link: '/input'},
-                    {icon: 'demo-icons-flexbox', name: 'FlexBox', link: '/flexbox'}
+                    {icon: 'demo-icons-flexbox', name: 'FlexBox', link: '/flexbox'},
+                    {icon: 'demo-icons-cr', name: 'C&R', link: '/cr'},
                 ]
             }
+
         }
     }
 </script>

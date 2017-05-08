@@ -14,7 +14,7 @@
     </div>
 </template>
 
-<script type="text/ecmascript-6">
+<script type="text/babel">
     export default {
         name: 'yd-tab',
         data() {
@@ -27,18 +27,22 @@
             change: Function
         },
         methods: {
-            init() {
+            init(update) {
                 const tabPanels = this.$children.filter(item => item.$options.name === 'yd-tab-panel');
 
                 let num = 0;
 
                 tabPanels.forEach((panel) => {
-                    this.navList.push({
-                        label: panel.label,
-                        _uid: panel._uid
-                    });
+                    if (!update) {
+                        this.navList.push({
+                            label: panel.label,
+                            _uid: panel._uid
+                        });
+                    }
+
                     if (panel.active) {
                         this.activeIndex = panel._uid;
+                        this.changeHandler(panel._uid, panel.label);
                     } else {
                         ++num;
                         if (num >= tabPanels.length) this.activeIndex = tabPanels[0]._uid;
@@ -51,7 +55,7 @@
             }
         },
         mounted() {
-            this.init();
+            this.init(false);
         }
     }
 </script>

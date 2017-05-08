@@ -1,8 +1,10 @@
 <template>
-    <input type="checkbox" class="m-switch" v-model="checked"/>
+    <input type="checkbox" class="m-switch" :disabled="disabled" v-model="checked" :style="{color: color}"/>
 </template>
 
 <script type="text/babel">
+    import {isColor} from '../../../utils/assist';
+
     /**
      * 不兼容鸟包火狐
      */
@@ -10,19 +12,30 @@
         name: 'yd-switch',
         data() {
             return {
-                checked: false
+                checked: this.value
             }
         },
         props: {
-            value: Boolean
+            value: Boolean,
+            disabled: {
+                type: Boolean,
+                default: false
+            },
+            color: {
+                validator(value) {
+                    if(!value) return true;
+                    return isColor(value);
+                },
+                default: '#4CD864'
+            }
         },
         watch: {
             checked(val) {
                 this.$emit('input', val);
+            },
+            value(val) {
+                this.checked = val;
             }
-        },
-        mounted() {
-            this.checked = this.value;
         }
     }
 </script>

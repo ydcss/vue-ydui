@@ -19,6 +19,5 @@
             <yd-tab-panel label="选项三">333333</yd-tab-panel>
             <yd-tab-panel label="选项四">444444</yd-tab-panel>
         </yd-tab>
-
     </yd-layout>
 </template>

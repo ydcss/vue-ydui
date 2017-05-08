@@ -15,6 +15,11 @@
             classes() {
                 return this.$parent.activeIndex == this._uid ? 'tab-active' : '';
             }
+        },
+        watch: {
+            active() {
+                this.$parent.init(true);
+            }
         }
     }
 </script>

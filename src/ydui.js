@@ -31,6 +31,8 @@ import {CountUp} from './components/countup';
 import {RollNotice, RollNoticeItem} from './components/rollnotice';
 import {Input} from './components/input';
 import {FlexBox, FlexBoxItem} from './components/flexbox';
+import {Radio, RadioGroup} from './components/radio';
+import {CheckBox, CheckBoxGroup} from './components/checkbox';
 
 window.document.addEventListener('touchstart', function (event) {
     /* Do Nothing */
@@ -80,6 +82,10 @@ const install = function (Vue) {
     Vue.component(Input.name, Input);
     Vue.component(FlexBox.name, FlexBox);
     Vue.component(FlexBoxItem.name, FlexBoxItem);
+    Vue.component(Radio.name, Radio);
+    Vue.component(RadioGroup.name, RadioGroup);
+    Vue.component(CheckBox.name, CheckBox);
+    Vue.component(CheckBoxGroup.name, CheckBoxGroup);
 
     Vue.prototype.$dialog = {
         confirm: Confirm,

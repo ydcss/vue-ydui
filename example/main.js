@@ -36,6 +36,10 @@ import CountUp from './routers/countup.vue';
 import RollNotice from './routers/rollnotice.vue';
 import Input from './routers/input.vue';
 import FlexBox from './routers/flexbox.vue';
+import CR from './routers/cr.vue';
+import Switch from './routers/switch.vue';
+import Radio from './routers/radio.vue';
+import CheckBox from './routers/checkbox.vue';
 
 import App from './app.vue';
 
@@ -80,7 +84,11 @@ const router = new VueRouter({
         {path: '/countup', name: 'countup', component: CountUp},
         {path: '/rollnotice', name: 'rollnotice', component: RollNotice},
         {path: '/input', name: 'input', component: Input},
-        {path: '/flexbox', name: 'flexbox', component: FlexBox}
+        {path: '/flexbox', name: 'flexbox', component: FlexBox},
+        {path: '/cr', name: 'C&R', component: CR},
+        {path: '/switch', name: 'switch', component: Switch},
+        {path: '/radio', name: 'radio', component: Radio},
+        {path: '/checkbox', name: 'checkbox', component: CheckBox}
     ]
 });
 

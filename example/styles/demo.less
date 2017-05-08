@@ -193,7 +193,7 @@
 
 @font-face {
   font-family: @demo-icons;
-  src: url('//at.alicdn.com/t/font_u97d9yulxwc7syvi.ttf') format('truetype');
+  src: url('//at.alicdn.com/t/font_xprpo8kk5twyu8fr.ttf') format('truetype');
 }
 
 [class^="demo-icons-"]:before, [class*=" demo-icons-"]:before {
@@ -361,6 +361,11 @@
   color: #FF685E;
 }
 
+.demo-icons-cr:before {
+  content: '\e787';
+  color: #3CC51E;
+}
+
 @demo-category-icons: 'demo-category-icons';
 
 @font-face {
@@ -479,4 +484,15 @@
   color: #555;
   font-weight: normal;
   padding: .3rem .1rem .1rem;
+}
+
+.demo-cr {
+  background-color: #fff;
+  padding: .24rem;
+  display: flex;
+  > span {
+    height: 32px;
+    line-height: 36px;
+    margin-left: 10px;
+  }
 }
