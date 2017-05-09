@@ -50,7 +50,7 @@
 
         <yd-cell-group title="自定义图标大小">
             <yd-cell-item>
-                <yd-radio-group v-model="radio6" size="30" slot="left">
+                <yd-radio-group v-model="radio5" size="30" slot="left">
                     <yd-radio val="1"><span style="font-size: 24px;">男</span></yd-radio>
                     <yd-radio val="2"><span style="font-size: 24px;">女</span></yd-radio>
                     <yd-radio val="3"><span style="font-size: 24px;">未知</span></yd-radio>
@@ -68,8 +68,7 @@
                 radio2: 2,
                 radio3: '喔喔喔',
                 radio4: '啊啊啊',
-                radio5: 1,
-                radio6: 2
+                radio5: 2
             }
         }
     }

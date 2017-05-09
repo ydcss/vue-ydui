@@ -78,11 +78,6 @@
                 checkbox5: ["1"],
                 checkbox6: ["3"]
             }
-        },
-        mounted() {
-            setTimeout(() => {
-                this.checkbox2 = ['啦啦啦','啊啊啊'];
-            }, 3000);
         }
     }
 </script>

@@ -61,12 +61,23 @@
                 let contentHeight = document.body.offsetHeight;
                 let offsetTop = 0;
 
-                if (scrollview && scrollview != window) {
+                if(!scrollview) {
+                    console.error('Can\'t find the scrollview!');
+                    return;
+                }
+
+                if(!this.$refs.tag) {
+                    console.error('Can\'t find the refs.tag!');
+                    return;
+                }
+
+                if (scrollview != window) {
                     contentHeight = scrollview.offsetHeight;
                     offsetTop = scrollview.getBoundingClientRect().top;
                 }
 
-                if (this.$refs.tag.getBoundingClientRect().top <= offsetTop + contentHeight + contentHeight / 10) {
+                const tagOffsetTop = this.$refs.tag.getBoundingClientRect().top;
+                if (tagOffsetTop > offsetTop && tagOffsetTop <= offsetTop + contentHeight + contentHeight / 10) {
                     this.isLoading = true;
                     this.onInfinite();
                 }
