@@ -4,7 +4,7 @@
             <li class="tab-nav-item"
                 v-for="item in navList"
                 :class="item._uid == activeIndex ? 'tab-active' : ''"
-                @click="changeHandler(item._uid, item.label)">
+                @click="changeHandler(item._uid, item.label, item.tabkey)">
                 <a href="javascript:;">{{item.label}}</a>
             </li>
         </ul>
@@ -14,13 +14,14 @@
     </div>
 </template>
 
-<script type="text/babel">
+<script type="text/ecmascript-6">
     export default {
         name: 'yd-tab',
         data() {
             return {
                 navList: [],
-                activeIndex: 0
+                activeIndex: 0,
+                tmpIndex: 0
             }
         },
         props: {
@@ -36,22 +37,25 @@
                     if (!update) {
                         this.navList.push({
                             label: panel.label,
-                            _uid: panel._uid
+                            _uid: panel._uid,
+                            tabkey: panel.tabkey
                         });
                     }
 
                     if (panel.active) {
-                        this.activeIndex = panel._uid;
-                        this.changeHandler(panel._uid, panel.label);
+                        this.activeIndex = this.tmpIndex = panel._uid;
+                        this.changeHandler(panel._uid, panel.label, panel.tabkey);
                     } else {
                         ++num;
-                        if (num >= tabPanels.length) this.activeIndex = tabPanels[0]._uid;
+                        if (num >= tabPanels.length) this.activeIndex = this.tmpIndex = tabPanels[0]._uid;
                     }
                 });
             },
-            changeHandler(uid, label) {
-                typeof this.change == 'function' && this.change(label);
-                this.activeIndex = uid;
+            changeHandler(uid, label, tabkey) {
+                if (this.tmpIndex != uid) {
+                    typeof this.change == 'function' && this.change(label, tabkey);
+                    this.activeIndex = this.tmpIndex = uid;
+                }
             }
         },
         mounted() {

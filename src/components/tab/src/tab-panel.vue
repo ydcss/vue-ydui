@@ -9,7 +9,8 @@
         name: 'yd-tab-panel',
         props: {
             label: String,
-            active: Boolean
+            active: Boolean,
+            tabkey: [String, Number]
         },
         computed: {
             classes() {
