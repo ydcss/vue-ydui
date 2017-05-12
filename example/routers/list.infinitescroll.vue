@@ -31,6 +31,7 @@
 
         </yd-infinitescroll>
 
+        <yd-backtop></yd-backtop>
     </yd-layout>
 </template>
 

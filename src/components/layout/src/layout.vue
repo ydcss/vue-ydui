@@ -8,9 +8,13 @@
             </yd-navbar>
         </slot>
 
+        <slot name="top"></slot>
+
         <section class="g-scrollview" ref="scrollView" id="scrollView">
             <slot></slot>
         </section>
+
+        <slot name="bottom"></slot>
 
         <slot name="tabbar"></slot>
     </section>

@@ -40,6 +40,7 @@ import CR from './routers/cr.vue';
 import Switch from './routers/switch.vue';
 import Radio from './routers/radio.vue';
 import CheckBox from './routers/checkbox.vue';
+import BackTop from './routers/backtop.vue';
 
 import App from './app.vue';
 
@@ -88,7 +89,8 @@ const router = new VueRouter({
         {path: '/cr', name: 'C&R', component: CR},
         {path: '/switch', name: 'switch', component: Switch},
         {path: '/radio', name: 'radio', component: Radio},
-        {path: '/checkbox', name: 'checkbox', component: CheckBox}
+        {path: '/checkbox', name: 'checkbox', component: CheckBox},
+        {path: '/backtop', name: 'backtop', component: BackTop},
     ]
 });
 

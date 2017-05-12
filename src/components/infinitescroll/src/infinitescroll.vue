@@ -35,9 +35,7 @@
             init() {
                 this.scrollview = getScrollview(this.$el);
 
-                this.scrollview.addEventListener('scroll', () => {
-                    this.throttle(this.scrollHandler);
-                });
+                this.scrollview.addEventListener('scroll', this.throttledCheck, false);
 
                 this.$on('ydui.infinitescroll.loadedDone', () => {
                     this.isLoading = false;
@@ -62,12 +60,12 @@
                 let offsetTop = 0;
 
                 if(!scrollview) {
-                    console.error('Can\'t find the scrollview!');
+                    console.warn('Can\'t find the scrollview!');
                     return;
                 }
 
                 if(!this.$refs.tag) {
-                    console.error('Can\'t find the refs.tag!');
+                    console.warn('Can\'t find the refs.tag!');
                     return;
                 }
 
@@ -87,13 +85,16 @@
                 method.tId = setTimeout(() => {
                     method.call(context);
                 }, 100);
+            },
+            throttledCheck() {
+                this.throttle(this.scrollHandler);
             }
         },
         mounted() {
             this.$nextTick(this.init);
         },
         destroyed() {
-            this.scrollview.removeEventListener('scroll', this.scrollHandler);
+            this.scrollview.removeEventListener('scroll', this.throttledCheck);
         }
     }
 </script>

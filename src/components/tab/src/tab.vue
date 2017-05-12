@@ -14,7 +14,7 @@
     </div>
 </template>
 
-<script type="text/ecmascript-6">
+<script type="text/babel">
     export default {
         name: 'yd-tab',
         data() {
@@ -44,17 +44,23 @@
 
                     if (panel.active) {
                         this.activeIndex = this.tmpIndex = panel._uid;
-                        this.changeHandler(panel._uid, panel.label, panel.tabkey);
+                        this.emitChange(panel.label, panel.tabkey);
                     } else {
                         ++num;
-                        if (num >= tabPanels.length) this.activeIndex = this.tmpIndex = tabPanels[0]._uid;
+                        if (num >= tabPanels.length) {
+                            this.activeIndex = this.tmpIndex = tabPanels[0]._uid;
+                            this.emitChange(tabPanels[0].label, tabPanels[0].tabkey);
+                        }
                     }
                 });
             },
+            emitChange(label, tabkey) {
+                typeof this.change == 'function' && this.change(label, tabkey);
+            },
             changeHandler(uid, label, tabkey) {
                 if (this.tmpIndex != uid) {
-                    typeof this.change == 'function' && this.change(label, tabkey);
                     this.activeIndex = this.tmpIndex = uid;
+                    this.emitChange(label, tabkey);
                 }
             }
         },

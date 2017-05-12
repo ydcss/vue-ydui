@@ -33,6 +33,7 @@ import {Input} from './components/input';
 import {FlexBox, FlexBoxItem} from './components/flexbox';
 import {Radio, RadioGroup} from './components/radio';
 import {CheckBox, CheckBoxGroup} from './components/checkbox';
+import {BackTop} from './components/backtop';
 
 window.document.addEventListener('touchstart', function (event) {
     /* Do Nothing */
@@ -86,6 +87,7 @@ const install = function (Vue) {
     Vue.component(RadioGroup.name, RadioGroup);
     Vue.component(CheckBox.name, CheckBox);
     Vue.component(CheckBoxGroup.name, CheckBoxGroup);
+    Vue.component(BackTop.name, BackTop);
 
     Vue.prototype.$dialog = {
         confirm: Confirm,

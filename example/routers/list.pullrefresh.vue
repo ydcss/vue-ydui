@@ -23,6 +23,8 @@
             </yd-list>
 
         </yd-pullrefresh>
+
+        <yd-backtop></yd-backtop>
     </yd-layout>
 </template>
 

@@ -41,6 +41,7 @@
                     {icon: 'demo-icons-input', name: 'Input', link: '/input'},
                     {icon: 'demo-icons-flexbox', name: 'FlexBox', link: '/flexbox'},
                     {icon: 'demo-icons-cr', name: 'C&R', link: '/cr'},
+                    {icon: 'demo-icons-backtop', name: 'BackTop', link: '/backtop'}
                 ]
             }
 

@@ -34,6 +34,7 @@ module.exports = merge(distCommonWebpackConfig, {
         "/lib.rem/input/index": "./src/components/input/index.js",
         "/lib.rem/flexbox/index": "./src/components/flexbox/index.js",
         "/lib.rem/radio/index": "./src/components/radio/index.js",
-        "/lib.rem/checkbox/index": "./src/components/checkbox/index.js"
+        "/lib.rem/checkbox/index": "./src/components/checkbox/index.js",
+        "/lib.rem/backtop/index": "./src/components/backtop/index.js"
     }
 });
