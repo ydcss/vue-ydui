@@ -38,6 +38,7 @@
         </template>
         <a href="javascript:;" class="input-clear" tabindex="-1" @click="clearInput" v-show="showClearIcon && showClear && !isempty"></a>
         <span class="input-error" v-if="showErrorIcon" v-show="(!!regex || !!min || !!max || required) && type != 'password' && iserror && initError"></span>
+        <span class="input-warn" v-if="showRequiredIcon && showErrorIcon" v-show="(required || (!!min && min > 0)) && type != 'password' && isempty && showWarn"></span>
         <span class="input-success" v-if="showSuccessIcon" v-show="(!!regex || !!min || !!max || required) && type != 'password' && !iserror && currentValue != ''"></span>
         <a href="javascript:;" v-if="type == 'password'" class="input-password" :class="showPwd ? 'input-password-open' : ''" tabindex="-1" @click.stop="showPwd = !showPwd"></a>
     </div>
@@ -49,10 +50,11 @@
         data() {
             return {
                 currentValue: this.value,
-                isempty: true,
+                isempty: !this.value,
                 iserror: false,
                 showPwd: false,
                 showClear: false,
+                showWarn: true,
                 initError: false,
                 valid: true,
                 errorMsg: '',
@@ -87,6 +89,10 @@
                 type: Boolean,
                 default: true
             },
+            showRequiredIcon: {
+                type: Boolean,
+                default: true
+            },
             required: {
                 type: Boolean,
                 default: false
@@ -111,6 +117,7 @@
         watch: {
             value(val) {
                 this.currentValue = val;
+                this.emitInput();
             },
             currentValue(val) {
                 this.isempty = !val;
@@ -127,13 +134,15 @@
 
                 this.initError = showError;
 
+                if(showError) this.showWarn = false;
+
                 if(this.required && val == '') {
                     this.setError('不能为空', 'NOT_NULL');
                     this.iserror = true;
                     return;
                 }
 
-                if (this.min && val.length < this.min && val.length != 0) {
+                if (this.min && val.length < this.min) {
                     this.setError(`最少输入${this.min}位字符`, 'NOT_MIN_SIZE');
                     this.iserror = true;
                     return;
@@ -141,7 +150,7 @@
 
                 const v = this.regex == 'bankcard' ? val.replace(/\s/g, '') : val;
                 const reg = this.regexObj[this.regex] ? this.regexObj[this.regex] : this.trim(this.regex, '/');
-                if (this.regex && !new RegExp(reg).test(v)) {
+                if (!!v && this.regex && !new RegExp(reg).test(v)) {
                     this.setError('输入字符不符合规则', 'NOT_REGEX_RULE');
                     this.iserror = true;
                     return;
