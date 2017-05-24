@@ -100,11 +100,7 @@
                     return;
                 }
 
-                if (min < 0) {
-                    this.setValue(unit);
-                } else {
-                    this.setValue(min);
-                }
+                this.setValue(min < 0 ? unit : min);
             },
             calculation(type) {
                 const max = ~~this.max;
@@ -113,7 +109,7 @@
 
                 if (this.readonly)return;
 
-                let val = this.counter;
+                let val = ~~this.counter;
                 let newval;
 
                 if (type == 'add') {
@@ -211,7 +207,7 @@
                 });
 
                 this.$refs.numInput.addEventListener('change', () => {
-                    this.setValue(this.counter);
+                    this.setValue(~~this.counter);
                 });
             }
         },
