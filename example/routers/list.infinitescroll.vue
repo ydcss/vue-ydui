@@ -11,6 +11,7 @@
 
             <yd-list theme="1" slot="list">
                 <yd-list-item v-for="item in list">
+
                     <img slot="img" :src="item.img">
                     <span slot="title">{{item.title}}</span>
                     <yd-list-other slot="other">
@@ -77,6 +78,18 @@
                         title: "男装衣服男夏t恤 男士短袖t恤圆领夏季潮牌宽松原宿风半截袖男",
                         marketprice: 56.23,
                         productprice: 89.36
+                    },
+                    {
+                        img: "http://img1.shikee.com/try/2016/06/03/12173920932544716516.jpg",
+                        title: "superman短袖t恤日潮牌男士日韩夏装水洗做旧修身个性短袖t恤衣服",
+                        marketprice: 56.23,
+                        productprice: 89.36
+                    },
+                    {
+                        img: "http://img1.shikee.com/try/2016/09/28/14575020926479478831.jpg",
+                        title: "买一送二新款青少年潮男大码T恤 学生字半袖修身款衣服半截袖青年",
+                        marketprice: 56.23,
+                        productprice: 89.36
                     }
                 ]
             }
@@ -93,7 +106,7 @@
 
                     this.list = [...this.list, ..._list];
 
-                    if (_list.length < this.pageSize || this.page == 3) {
+                    if (_list.length < this.pageSize || this.page >= 4) {
                         // 所有数据加载完毕
                         this.$refs.lsdemo.$emit('ydui.infinitescroll.loadedDone');
                         return;

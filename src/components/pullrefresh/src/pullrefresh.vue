@@ -3,6 +3,7 @@
         <div ref="dragBox">
             <slot></slot>
             <div class="pullrefresh-dragtip" ref="dragTip"
+                 v-show="touches.isDraging"
                  :class="dragTip.animationTiming"
                  :style="{ 'transform': 'translate3d(0, ' + dragTip.translate + 'px, 0) scale(' + dragTip.scale + ')' }"
             >
@@ -18,8 +19,6 @@
 </template>
 
 <script type="text/babel">
-    import Vue from 'vue';
-
     export default {
         name: 'yd-pullrefresh',
         props: {
@@ -77,7 +76,7 @@
                 dragBox.addEventListener('touchmove', this.touchMoveHandler);
                 dragBox.addEventListener('touchend', this.touchEndHandler);
 
-                document.body.addEventListener('touchmove', this.stopWeixinDrag);
+                document.body.addEventListener('touchmove', this.stopDragEvent);
             },
             unbindEvents() {
                 const dragBox = this.$refs.dragBox;
@@ -86,9 +85,9 @@
                 dragBox.removeEventListener('touchmove', this.touchMoveHandler);
                 dragBox.removeEventListener('touchend', this.touchEndHandler);
 
-                document.body.removeEventListener('touchmove', this.stopWeixinDrag);
+                document.body.removeEventListener('touchmove', this.stopDragEvent);
             },
-            stopWeixinDrag(event) {
+            stopDragEvent(event) {
                 this.touches.isDraging && event.preventDefault();
             },
             touchStartHandler(event) {
@@ -111,7 +110,7 @@
                     return;
                 }
 
-                if (this.touches.startClientY > touches.clientY || this.$refs.dragBox.getBoundingClientRect().top < this.offsetTop || this.touches.loading) {
+                if (this.touches.startClientY > touches.clientY || this.$refs.dragBox.getBoundingClientRect().top < this.offsetTop) {
                     return;
                 }
 
@@ -129,6 +128,7 @@
 
                 this.touches.moveOffset = this.dragTip.translate = deltaSlide;
             },
+
             touchEndHandler(event) {
                 const touches = this.touches;
 

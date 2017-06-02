@@ -1,7 +1,6 @@
 <template>
     <div>
         <slot name="list"></slot>
-        <div ref="tag"></div>
 
         <div class="list-donetip" v-show="!isLoading && isDone">
             <slot name="doneTip">没有更多数据了</slot>
@@ -10,11 +9,12 @@
         <div class="list-loading" v-show="isLoading">
             <slot name="loadingTip">加载中</slot>
         </div>
+
+        <div ref="tag" style="height: 1px;"></div>
     </div>
 </template>
 
 <script type="text/babel">
-    import Vue from 'vue';
     import {getScrollview} from '../../../utils/assist';
 
     export default {
@@ -22,13 +22,20 @@
         data() {
             return {
                 isLoading: false,
-                isDone: false
+                isDone: false,
+                num: 1
             }
         },
         props: {
             onInfinite: {
                 type: Function,
                 required: true
+            },
+            distance: {
+                default: 0,
+                validator(val) {
+                    return /^\d*$/.test(val);
+                }
             }
         },
         methods: {
@@ -55,36 +62,33 @@
                 if (this.isLoading || this.isDone)return;
 
                 const scrollview = this.scrollview;
+                const contentHeight = document.body.offsetHeight;
+                const offsetTop = scrollview == window ? 0 : scrollview.getBoundingClientRect().top;
 
-                let contentHeight = document.body.offsetHeight;
-                let offsetTop = 0;
-
-                if(!scrollview) {
+                if (!scrollview) {
                     console.warn('Can\'t find the scrollview!');
                     return;
                 }
 
-                if(!this.$refs.tag) {
+                if (!this.$refs.tag) {
                     console.warn('Can\'t find the refs.tag!');
                     return;
                 }
 
-                if (scrollview != window) {
-                    contentHeight = scrollview.offsetHeight;
-                    offsetTop = scrollview.getBoundingClientRect().top;
-                }
+                const tagOffsetTop = Math.floor(this.$refs.tag.getBoundingClientRect().top) - 1;
+                const distance = !!this.distance && this.distance > 0 ? ~~this.distance : Math.floor(contentHeight / 10);
 
-                const tagOffsetTop = this.$refs.tag.getBoundingClientRect().top;
-                if (tagOffsetTop > offsetTop && tagOffsetTop <= offsetTop + contentHeight + contentHeight / 10) {
+                if (tagOffsetTop > offsetTop && tagOffsetTop - (distance + offsetTop) * this.num <= contentHeight) {
                     this.isLoading = true;
                     this.onInfinite();
+                    this.num++;
                 }
             },
             throttle(method, context) {
                 clearTimeout(method.tId);
                 method.tId = setTimeout(() => {
                     method.call(context);
-                }, 100);
+                }, 50);
             },
             throttledCheck() {
                 this.throttle(this.scrollHandler);

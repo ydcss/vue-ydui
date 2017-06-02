@@ -41,7 +41,8 @@
                     moveOffset: 0,
                     touchStartTime: 0,
                     isTouchEvent: false,
-                    allowClick: false
+                    allowClick: false,
+                    isDraging: false
                 }
             }
         },
@@ -137,7 +138,7 @@
                 }
             },
             touchMoveHandler(event) {
-                if(!this.supportTouch || this.isVertical) {
+                if (!this.supportTouch || this.isVertical) {
                     event.preventDefault();
                 }
 
@@ -159,6 +160,8 @@
                     return;
                 }
 
+                touches.isDraging = true;
+
                 const deltaSlide = touches.moveOffset = this.isVertical ? (currentY - touches.startY) : (currentX - touches.startX);
 
                 if (deltaSlide != 0 && touches.moveTag != 0) {
@@ -177,13 +180,14 @@
                 const moveOffset = touches.moveOffset;
                 const warpperSize = this.isVertical ? this.$el.clientHeight : this.$refs.warpper.offsetWidth;
 
-                setTimeout(() => {
-                    touches.allowClick = true;
-                }, 0);
-
                 if (touches.moveTag == 1) {
                     touches.moveTag = 0;
                 }
+
+                setTimeout(() => {
+                    touches.allowClick = true;
+                touches.isDraging = false;
+            }, this.speed);
 
                 if (touches.moveTag == 2) {
                     touches.moveTag = 0;
@@ -225,6 +229,9 @@
             stopAutoplay() {
                 clearInterval(this.autoPlayTimer);
             },
+            stopDrag(event) {
+                this.touches.isDraging && event.preventDefault();
+            },
             bindEvents() {
                 const _events = this.touchEvents();
 
@@ -234,11 +241,13 @@
 
                 this.$el.addEventListener('click', (e) => {
                     if (!this.touches.allowClick) {
-                        e.preventDefault();
-                    }
-                });
+                    e.preventDefault();
+                }
+            });
 
                 window.addEventListener('resize', this.resizeSlides);
+
+                document.body.addEventListener('touchmove', this.stopDrag);
             },
             unbindEvents() {
                 const _events = this.touchEvents();
@@ -248,6 +257,8 @@
                 this.$el.removeEventListener(_events.end, this.touchEndHandler);
 
                 window.removeEventListener('resize', this.resizeSlides);
+
+                document.body.removeEventListener('touchmove', this.stopDrag);
             },
             touchEvents() {
                 const supportTouch = this.supportTouch = (window.Modernizr && !!window.Modernizr.touch) || (function () {

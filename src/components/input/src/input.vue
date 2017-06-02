@@ -37,9 +37,9 @@
             >
         </template>
         <a href="javascript:;" class="input-clear" tabindex="-1" @click="clearInput" v-show="showClearIcon && showClear && !isempty"></a>
-        <span class="input-error" v-if="showErrorIcon" v-show="(!!regex || !!min || !!max || required) && type != 'password' && iserror && initError"></span>
-        <span class="input-warn" v-if="showRequiredIcon && showErrorIcon" v-show="(required || (!!min && min > 0)) && type != 'password' && isempty && showWarn"></span>
-        <span class="input-success" v-if="showSuccessIcon" v-show="(!!regex || !!min || !!max || required) && type != 'password' && !iserror && currentValue != ''"></span>
+        <span class="input-error" v-if="showErrorIcon" v-show="(!!regex || !!min || !!max || required) && iserror && initError"></span>
+        <span class="input-warn" v-if="showRequiredIcon && showErrorIcon" v-show="(required || (!!min && min > 0)) && isempty && showWarn"></span>
+        <span class="input-success" v-if="showSuccessIcon" v-show="(!!regex || !!min || !!max || required) && !iserror && currentValue != ''"></span>
         <a href="javascript:;" v-if="type == 'password'" class="input-password" :class="showPwd ? 'input-password-open' : ''" tabindex="-1" @click.stop="showPwd = !showPwd"></a>
     </div>
 </template>

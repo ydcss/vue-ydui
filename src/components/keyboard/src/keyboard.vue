@@ -3,7 +3,7 @@
         <div class="mask-keyboard" v-show="show" @click.stop="close"></div>
         <div class="m-keyboard" :class="show ? 'keyboard-active' : ''">
             <div class="keyboard-head">
-                <strong ref="laoxu">输入数字密码</strong>
+                <strong>输入数字密码</strong>
             </div>
             <div class="keyboard-error">{{error}}</div>
             <ul class="keyboard-password">
@@ -29,7 +29,6 @@
 </template>
 
 <script type="text/babel">
-    import Vue from 'vue';
     import {addClass, removeClass, getScrollview} from '../../../utils/assist';
 
     export default {
