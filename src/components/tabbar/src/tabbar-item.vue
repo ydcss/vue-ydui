@@ -18,7 +18,7 @@
     export default {
         name: 'yd-tabbar-item',
         props: {
-            link: String,
+            link: [String, Object],
             title: String,
             active: Boolean,
             dot: Boolean
