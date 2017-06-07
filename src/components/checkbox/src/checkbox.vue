@@ -83,6 +83,9 @@
         watch: {
             checked(val) {
                 this.$emit('input', val);
+            },
+            value(val) {
+                this.checked = val;
             }
         },
         created() {
