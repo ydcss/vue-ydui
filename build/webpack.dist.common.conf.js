@@ -1,4 +1,5 @@
 const path = require('path');
+const os = require('os');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const baseWebpackConfig = require('./base.conf');
@@ -14,7 +15,7 @@ module.exports = merge(baseWebpackConfig, {
         libraryTarget: 'umd'
     },
     externals: {
-        vue: 'vue'
+        vue: os.type === 'linux' ? 'vue' : 'Vue'
     },
     plugins: [
         new webpack.BannerPlugin(pkg.name + ' v' + pkg.version + ' by YDCSS (c) ' + new Date().getFullYear() + ' Licensed ' + pkg.license),
