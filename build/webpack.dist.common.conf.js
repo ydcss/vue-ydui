@@ -14,7 +14,12 @@ module.exports = merge(baseWebpackConfig, {
         libraryTarget: 'umd'
     },
     externals: {
-        vue: 'vue'
+        vue: {
+            commonjs: "vue",
+            commonjs2: "vue",
+            amd: "vue",
+            root: "Vue"
+        }
     },
     plugins: [
         new webpack.BannerPlugin(pkg.name + ' v' + pkg.version + ' by YDCSS (c) ' + new Date().getFullYear() + ' Licensed ' + pkg.license),
