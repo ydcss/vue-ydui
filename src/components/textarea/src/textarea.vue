@@ -48,7 +48,10 @@
                 this.$emit('input', val);
                 typeof this.change == 'function' && this.change();
                 if (this.showCounter) this.num = val.length;
-            }
+            },
+			value(val) {
+                this.mlstr = val;
+			}
         },
         mounted() {
             this.$nextTick(() => {
