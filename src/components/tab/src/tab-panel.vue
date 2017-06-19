@@ -20,7 +20,10 @@
         watch: {
             active() {
                 this.$parent.init(true);
-            }
+            },
+	          label() {
+                this.$parent.init('label')
+	          }
         }
     }
 </script>
