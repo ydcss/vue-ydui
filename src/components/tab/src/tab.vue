@@ -33,7 +33,11 @@
 
                 let num = 0;
 
-                tabPanels.forEach((panel) => {
+                tabPanels.forEach((panel, index) => {
+                    if(update === 'label') {
+                      return this.navList[index] = panel;
+                    }
+                  
                     if (!update) {
                         this.navList.push({
                             label: panel.label,
