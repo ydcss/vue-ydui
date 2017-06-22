@@ -37,7 +37,8 @@ module.exports = merge(distCommonWebpackConfig, {
         "/lib.px/flexbox/index": "./src/components/flexbox/index.js",
         "/lib.px/radio/index": "./src/components/radio/index.js",
         "/lib.px/checkbox/index": "./src/components/checkbox/index.js",
-        "/lib.px/backtop/index": "./src/components/backtop/index.js"
+        "/lib.px/backtop/index": "./src/components/backtop/index.js",
+        "/lib.px/accordion/index": "./src/components/accordion/index.js"
     },
     module: {
         loaders: [
