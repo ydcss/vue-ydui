@@ -18,18 +18,34 @@
         name: 'yd-accordion-item',
         data() {
             return {
-                show: false,
+                show: this.open,
                 height: 0
             }
         },
         props: {
-            title: String
+            title: String,
+            open: {
+                type: Boolean,
+                default: false
+            }
+        },
+        watch: {
+            open(val) {
+                this.show = val;
+                this.setHeight();
+            }
         },
         methods: {
             toggle() {
-                this.$parent.toggle(this._uid);
+                this.$parent.open(this._uid);
+                this.setHeight();
+            },
+            setHeight() {
                 this.height = (this.show ? this.$refs.content.offsetHeight : 0) + 'px';
             }
+        },
+        mounted() {
+            this.setHeight();
         }
     }
 </script>
