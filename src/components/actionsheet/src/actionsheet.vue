@@ -9,7 +9,7 @@
 </template>
 
 <script type="text/babel">
-    import {addClass, removeClass, getScrollview} from '../../../utils/assist';
+    import {addClass, removeClass, getScrollview, pageScroll} from '../../../utils/assist';
 
     export default {
         name: 'yd-actionsheet',
@@ -33,8 +33,10 @@
             value(val) {
                 if (this.isIOS) {
                     if (val) {
+                        pageScroll.lock();
                         addClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
                     } else {
+                        pageScroll.unlock();
                         removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
                     }
                 }
@@ -45,7 +47,7 @@
         methods: {
             itemClick(item) {
                 if(item) {
-                    typeof item.method == 'function' && item.method();
+                    typeof item.method == 'function' && item.method(item);
                     !item.stay && this.close();
                 }
             },

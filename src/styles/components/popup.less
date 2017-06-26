@@ -7,6 +7,8 @@
   z-index: @base-zindex * 1500 + 1;
   transition: transform .3s;
   pointer-events: none;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   &.popup-left {
     transform: translate(-100%, 0);
     left: 0;

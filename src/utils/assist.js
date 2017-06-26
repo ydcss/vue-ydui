@@ -70,7 +70,7 @@ const removeClass = function (ele, cls) {
     }
 };
 
-//Copy to iView. https://www.iviewui.com/
+//Copy from iView. https://www.iviewui.com/
 const scrollTop = function (el, from = 0, to, duration = 500) {
     if (!window.requestAnimationFrame) {
         window.requestAnimationFrame = (

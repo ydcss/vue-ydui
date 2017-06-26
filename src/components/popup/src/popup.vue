@@ -1,13 +1,15 @@
 <template>
     <div>
         <div class="m-popup-mask" v-show="show" @click.stop="close"></div>
-        <div :class="classes()" :style="styles()">
-            <slot></slot>
+        <div :class="classes()" :style="styles()" ref="box">
+            <div ref="content">
+                <slot></slot>
+            </div>
         </div>
     </div>
 </template>
 
-<script type="text/babel">
+<script type="text/ecmascript-6">
     import {addClass, removeClass, getScrollview, pageScroll} from '../../../utils/assist';
 
     export default {
@@ -41,9 +43,19 @@
                 if (this.isIOS) {
                     if (val) {
                         pageScroll.lock();
+
+                        if (this.$refs.content.offsetHeight > this.$refs.box.offsetHeight) {
+                            this.$refs.box.addEventListener('touchmove', this.stopPropagation);
+                        }
+
                         addClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
                     } else {
                         pageScroll.unlock();
+
+                        if (this.$refs.content.offsetHeight > this.$refs.box.offsetHeight) {
+                            this.$refs.box.removeEventListener('touchmove', this.stopPropagation);
+                        }
+
                         removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
                     }
                 }
@@ -52,6 +64,9 @@
             }
         },
         methods: {
+            stopPropagation(e) {
+                e.stopPropagation();
+            },
             styles() {
                 if (this.position == 'left' || this.position == 'right') {
                     return {width: this.width};

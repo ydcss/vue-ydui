@@ -25,15 +25,15 @@
         </yd-popup>
 
         <yd-popup v-model="show2" position="bottom" height="60%">
-            <yd-button type="warning" style="margin: 30px;" @click.native="show2 = false">Close Bottom Popup</yd-button>
+            <p v-for="n in 30" style="height: 30px;line-height: 30px;padding-left: 5px;">IOS下禁止滚动下方容器{{n}}</p>
         </yd-popup>
 
         <yd-popup v-model="show3" position="left" width="60%">
-            <yd-button type="danger" style="margin: 30px;" @click.native="show3 = false">Close Left Popup</yd-button>
+            <yd-button type="danger" style="margin: 20px;" @click.native="show3 = false">Close Left Popup</yd-button>
         </yd-popup>
 
         <yd-popup v-model="show4" position="right">
-            <yd-button type="danger" style="margin: 30px;" @click.native="show4 = false">Close Right Popup</yd-button>
+            <yd-button type="danger" style="margin: 20px;" @click.native="show4 = false">Close Right Popup</yd-button>
         </yd-popup>
 
     </yd-layout>
