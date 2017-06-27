@@ -7,8 +7,14 @@
   z-index: @base-zindex * 1500 + 1;
   transition: transform .3s;
   pointer-events: none;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
+  .popup-content {
+    flex: 1;
+    position: relative;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
   &.popup-left {
     transform: translate(-100%, 0);
     left: 0;
@@ -25,9 +31,6 @@
     transform: translate(0, 100%);
     right: 0;
     bottom: 0;
-  }
-  &.popup-center {
-
   }
   &.popup-show {
     pointer-events: auto;

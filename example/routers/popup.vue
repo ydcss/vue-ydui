@@ -25,7 +25,11 @@
         </yd-popup>
 
         <yd-popup v-model="show2" position="bottom" height="60%">
-            <p v-for="n in 30" style="height: 30px;line-height: 30px;padding-left: 5px;">IOS下禁止滚动下方容器{{n}}</p>
+            <div slot="top" style="height: 30px;line-height: 30px;background-color:#E8E8E8;">top</div>
+            <div>
+                <p v-for="n in 30" style="height: 30px;line-height: 30px;">该容器超出内容出现滚动条，IOS上禁止滚动底层容器{{n}}</p>
+            </div>
+            <div slot="bottom" style="height: 30px;line-height: 30px;background-color:#E8E8E8;">bottom</div>
         </yd-popup>
 
         <yd-popup v-model="show3" position="left" width="60%">

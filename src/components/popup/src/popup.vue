@@ -2,8 +2,16 @@
     <div>
         <div class="m-popup-mask" v-show="show" @click.stop="close"></div>
         <div :class="classes()" :style="styles()" ref="box">
-            <div ref="content">
-                <slot></slot>
+            <div v-if="!!$slots.top && position != 'center'" ref="top">
+                <slot name="top"></slot>
+            </div>
+            <div class="popup-content">
+                <div ref="content">
+                    <slot></slot>
+                </div>
+            </div>
+            <div v-if="!!$slots.bottom && position != 'center'" ref="bottom">
+                <slot name="bottom"></slot>
             </div>
         </div>
     </div>
@@ -41,19 +49,25 @@
         watch: {
             value(val) {
                 if (this.isIOS) {
+
+                    const $refs = this.$refs;
+                    const topHeight = !!this.$slots.top && this.position != 'center' ? $refs.top.offsetHeight : 0;
+                    const bottomHeight = !!this.$slots.bottom && this.position != 'center' ? $refs.bottom.offsetHeight : 0;
+                    const contentHeight = topHeight + $refs.content.offsetHeight + bottomHeight;
+
                     if (val) {
                         pageScroll.lock();
 
-                        if (this.$refs.content.offsetHeight > this.$refs.box.offsetHeight) {
-                            this.$refs.box.addEventListener('touchmove', this.stopPropagation);
+                        if (contentHeight > $refs.box.offsetHeight) {
+                            $refs.box.addEventListener('touchmove', this.stopPropagation);
                         }
 
                         addClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
                     } else {
                         pageScroll.unlock();
 
-                        if (this.$refs.content.offsetHeight > this.$refs.box.offsetHeight) {
-                            this.$refs.box.removeEventListener('touchmove', this.stopPropagation);
+                        if (contentHeight > $refs.box.offsetHeight) {
+                            $refs.box.removeEventListener('touchmove', this.stopPropagation);
                         }
 
                         removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
