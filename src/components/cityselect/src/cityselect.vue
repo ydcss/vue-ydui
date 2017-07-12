@@ -54,7 +54,7 @@
 </template>
 
 <script type="text/babel">
-    import {addClass, removeClass, getScrollview} from '../../../utils/assist';
+    import {addClass, removeClass, getScrollview, isIOS} from '../../../utils/assist';
     import Citys from './ydui.citys';
 
     export default {
@@ -94,7 +94,7 @@
         },
         watch: {
             value(val) {
-                if (this.isIOS) {
+                if (isIOS) {
                     if (val) {
                         addClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
                     } else {
@@ -115,8 +115,6 @@
                 this.setDefalutValue();
 
                 this.scrollView = getScrollview(this.$el);
-
-                this.isIOS = !!(window.navigator && window.navigator.userAgent || '').match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
             },
             chooseProvance(name, datas) {
                 this.nav.index = 1;
@@ -203,7 +201,7 @@
                 this.close();
             },
             close() {
-                this.isIOS && removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
+                isIOS && removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
 
                 this.$emit('input', false);
                 this.show = false;

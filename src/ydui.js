@@ -35,6 +35,7 @@ import {Radio, RadioGroup} from './components/radio';
 import {CheckBox, CheckBoxGroup} from './components/checkbox';
 import {BackTop} from './components/backtop';
 import {Accordion, AccordionItem} from './components/accordion';
+import {DateTime} from './components/datetime';
 
 window.document.addEventListener('touchstart', function (event) {
     /* Do Nothing */
@@ -89,8 +90,9 @@ const install = function (Vue) {
     Vue.component(CheckBox.name, CheckBox);
     Vue.component(CheckBoxGroup.name, CheckBoxGroup);
     Vue.component(BackTop.name, BackTop);
-    Vue.component(Accordion.name, Accordion);
+	Vue.component(Accordion.name, Accordion);
     Vue.component(AccordionItem.name, AccordionItem);
+    Vue.component(DateTime.name, DateTime);
 
     Vue.prototype.$dialog = {
         confirm: Confirm,

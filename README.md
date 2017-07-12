@@ -1,6 +1,6 @@
 <p align="center">
     <br>
-    <a href="//vue.ydui.org">
+    <a href="http://vue.ydui.org">
         <img width="200" src="http://static.ydcss.com/ydui/img/logo.png">
     </a>
     <br>
@@ -36,6 +36,7 @@ jQuery version: <a href="http://www.ydui.org"> http://www.ydui.org </a>
 * <a href="https://github.com/ElemeFE/mint-ui" target="_blank">[mint-ui]</a> (<a href="https://github.com/ElemeFE/mint-ui/blob/master/LICENSE" target="_blank">[MIT License]</a>)
 * <a href="https://github.com/kimmobrunfeldt/progressbar.js" target="_blank">[progressbar.js]</a> (<a href="https://github.com/kimmobrunfeldt/progressbar.js/blob/master/LICENSE" target="_blank">[MIT License]</a>)
 * <a href="https://github.com/daneden/animate.css" target="_blank">[animate.css]</a> (<a href="https://github.com/daneden/animate.css/blob/master/LICENSE" target="_blank">[MIT License]</a>)
+* <a href="https://github.com/pbakaus/scroller" target="_blank">[scroller]</a> (<a href="https://github.com/pbakaus/scroller/blob/master/LICENSE.txt" target="_blank">[MIT License]</a>)
 
 #### Developed with Open Source Licensed <a href="http://www.jetbrains.com/webstorm/" target="_blank">WebStorm</a>
 

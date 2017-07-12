@@ -18,7 +18,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-    import {addClass, removeClass, getScrollview, pageScroll} from '../../../utils/assist';
+    import {addClass, removeClass, getScrollview, pageScroll, isIOS} from '../../../utils/assist';
 
     export default {
         name: 'yd-popup',
@@ -48,7 +48,7 @@
         },
         watch: {
             value(val) {
-                if (this.isIOS) {
+                if (isIOS) {
 
                     const $refs = this.$refs;
                     const topHeight = !!this.$slots.top && this.position != 'center' ? $refs.top.offsetHeight : 0;
@@ -96,7 +96,7 @@
                         'popup-' + this.position;
             },
             close() {
-                this.isIOS && removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
+                isIOS && removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
 
                 this.show = false;
                 this.$emit('input', false);
@@ -104,8 +104,6 @@
         },
         mounted() {
             this.scrollView = getScrollview(this.$el);
-
-            this.isIOS = !!(window.navigator && window.navigator.userAgent || '').match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
         }
     }
 </script>

@@ -18,6 +18,8 @@ const pageScroll = (function () {
     };
 })();
 
+const isIOS = !!(window.navigator && window.navigator.userAgent || '').match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+
 const isColor = function (value) {
     const colorReg = /^#([a-fA-F0-9]){3}(([a-fA-F0-9]){3})?$/;
     const rgbaReg = /^[rR][gG][bB][aA]\(\s*((25[0-5]|2[0-4]\d|1?\d{1,2})\s*,\s*){3}\s*(\.|\d+\.)?\d+\s*\)$/;
@@ -104,4 +106,4 @@ const scrollTop = function (el, from = 0, to, duration = 500) {
     scroll(from, to, step);
 };
 
-export {pageScroll, isColor, getScrollview, checkInview, addClass, removeClass, scrollTop};
+export {pageScroll, isIOS, isColor, getScrollview, checkInview, addClass, removeClass, scrollTop};

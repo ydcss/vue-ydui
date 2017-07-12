@@ -42,7 +42,8 @@
                     {icon: 'demo-icons-flexbox', name: 'FlexBox', link: '/flexbox'},
                     {icon: 'demo-icons-cr', name: 'C&R', link: '/cr'},
                     {icon: 'demo-icons-backtop', name: 'BackTop', link: '/backtop'},
-                    {icon: 'demo-icons-accordion', name: 'Accordion', link: '/accordion'}
+					{icon: 'demo-icons-accordion', name: 'Accordion', link: '/accordion'},
+                    {icon: 'demo-icons-datetime', name: 'DateTime', link: '/datetime'},
                 ]
             }
         }

@@ -42,6 +42,7 @@ import Radio from './routers/radio.vue';
 import CheckBox from './routers/checkbox.vue';
 import BackTop from './routers/backtop.vue';
 import Accordion from './routers/accordion.vue';
+import DateTime from './routers/datetime.vue';
 
 import App from './app.vue';
 
@@ -92,7 +93,8 @@ const router = new VueRouter({
         {path: '/radio', name: 'radio', component: Radio},
         {path: '/checkbox', name: 'checkbox', component: CheckBox},
         {path: '/backtop', name: 'backtop', component: BackTop},
-        {path: '/accordion', name: 'accordion', component: Accordion}
+		{path: '/accordion', name: 'accordion', component: Accordion},
+        {path: '/datetime', name: 'datetime', component: DateTime}
     ]
 });
 

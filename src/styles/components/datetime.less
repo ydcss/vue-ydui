@@ -1,0 +1,115 @@
+@import "../common/variables";
+@import "../common/mixins";
+
+@datetime-item-height: 38px;
+
+.mask-datetime {
+  .mask(rgba(0, 0, 0, .4), @base-zindex * 500);
+}
+
+.m-datetime {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: @base-zindex * 500;
+  background-color: #FFF;
+  transform: translate(0, 100%);
+  transition: transform .25s;
+  touch-action: none;
+  &.datetime-active {
+    transform: translate(0, 0);
+  }
+}
+
+.datetime-input {
+  width: 100%;
+}
+
+.datetime-head {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  background-color: #FBFBFB;
+  &:after {
+    .bottom-line(@line-color);
+  }
+  > a {
+    height: 43px;
+    padding: 0 30px;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    color: #555;
+  }
+  > a:last-child {
+    color: #0BB20C;
+  }
+}
+
+.datetime-content {
+  position: relative;
+  width: 100%;
+  height: @datetime-item-height * 7;
+  overflow: hidden;
+  display: flex;
+}
+
+.datetime-item {
+  font-size: 16px;
+  height: 100%;
+  position: relative;
+  flex: 1;
+}
+
+.datetime-item-content {
+  > span {
+    width: 100%;
+    display: block;
+    height: @datetime-item-height;
+    line-height: @datetime-item-height;
+    text-align: center;
+  }
+}
+
+.datetime-item-box {
+  height: 100%;
+}
+
+.datetime-mask,
+.datetime-indicator {
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.datetime-mask {
+  z-index: 3;
+  transform: translateZ(0px);
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.6)), linear-gradient(to top, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.6));
+  background-position: top, bottom;
+  background-size: 100% @datetime-item-height * 3;
+  background-repeat: no-repeat;
+}
+
+.datetime-indicator {
+  z-index: 4;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  > span {
+    display: block;
+    width: 100%;
+    height: @datetime-item-height;
+    position: relative;
+    &:after {
+      .top-line(@line-color);
+    }
+    &:before {
+      .bottom-line(@line-color);
+    }
+  }
+}

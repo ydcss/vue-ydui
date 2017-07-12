@@ -29,7 +29,7 @@
 </template>
 
 <script type="text/babel">
-    import {addClass, removeClass, getScrollview, pageScroll} from '../../../utils/assist';
+    import {addClass, removeClass, getScrollview, pageScroll, isIOS} from '../../../utils/assist';
 
     export default {
         name: 'yd-keyboard',
@@ -60,7 +60,7 @@
         },
         watch: {
             value(val) {
-                if (this.isIOS) {
+                if (isIOS) {
                     if (val) {
                         pageScroll.lock();
                         addClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
@@ -87,11 +87,6 @@
         methods: {
             init() {
                 this.scrollView = getScrollview(this.$el);
-
-                const ua = window.navigator && window.navigator.userAgent || '';
-
-                this.isIOS = !!ua.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
-                this.isMobile = !!ua.match(/AppleWebKit.*Mobile.*/) || 'ontouchstart' in document.documentElement;
 
                 this.$on('ydui.keyboard.error', (error) => {
                     this.setError(error);
@@ -130,7 +125,7 @@
                 return arr;
             },
             close() {
-                this.isIOS && removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
+                isIOS && removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
 
                 this.$emit('input', false);
             },
@@ -140,7 +135,11 @@
             }
         },
         created() {
-            this.init();
+            const ua = window.navigator && window.navigator.userAgent || '';
+
+            this.isMobile = !!ua.match(/AppleWebKit.*Mobile.*/) || 'ontouchstart' in document.documentElement;
+
+            this.$nextTick(this.init);
         },
         destroyed() {
             this.close();
