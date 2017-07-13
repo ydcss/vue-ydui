@@ -1,6 +1,7 @@
 <template>
     <div>
-        <div class="mask-keyboard" v-show="show" @click.stop="close"></div>
+        <div class="mask-keyboard" v-if="triggerClose" v-show="show" @click.stop="close"></div>
+        <div class="mask-keyboard" v-else v-show="show"></div>
         <div class="m-keyboard" :class="show ? 'keyboard-active' : ''">
             <div class="keyboard-head">
                 <strong>输入数字密码</strong>
@@ -13,7 +14,12 @@
                 <div class="keyboard-title">{{title}}</div>
                 <ul class="keyboard-numbers">
                     <li v-for="i in 4">
-                        <a href="javascript:;" v-if="i == 4" @click.stop="close">取消</a>
+                        <template v-if="triggerClose">
+                            <a href="javascript:;" v-if="i == 4" @click.stop="close">取消</a>
+                        </template>
+                        <template v-else>
+                            <a href="javascript:;" v-if="i == 4"></a>
+                        </template>
                         <template v-if="isMobile">
                             <a href="javascript:;" v-for="n in numsArr.slice((i - 1) * 3, i * 3)" @touchstart.stop="numclick(n)">{{n}}</a>
                         </template>
@@ -56,6 +62,10 @@
             title: {
                 type: String,
                 default: 'YDUI安全键盘'
+            },
+            triggerClose: {
+                type: Boolean,
+                default: true
             }
         },
         watch: {
