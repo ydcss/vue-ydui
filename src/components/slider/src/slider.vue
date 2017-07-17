@@ -8,7 +8,8 @@
             <slot></slot>
             <div class="slider-item" :style="itemHeight" v-html="firtstItem"></div>
         </div>
-        <div class="slider-pagination" :class="direction == 'vertical' ? 'slider-pagination-vertical' : ''">
+        <div class="slider-pagination" v-if="itemsArr.length > 1"
+             :class="direction == 'vertical' ? 'slider-pagination-vertical' : ''">
             <span class="slider-pagination-item"
                   v-for="(t, i) in itemNums"
                   :class="paginationIndex == i ? 'slider-pagination-item-active': ''"
@@ -101,6 +102,8 @@
                 this.autoPlay();
             },
             cloneItem() {
+                if (this.itemsArr.length <= 1) return;
+
                 const itemArr = this.itemsArr;
 
                 this.firtstItem = itemArr[0].$el.innerHTML;
@@ -186,15 +189,15 @@
 
                 setTimeout(() => {
                     touches.allowClick = true;
-                touches.isDraging = false;
-            }, this.speed);
+                    touches.isDraging = false;
+                }, this.speed);
 
                 if (touches.moveTag == 2) {
                     touches.moveTag = 0;
 
                     const timeDiff = Date.now() - touches.touchStartTime;
 
-                    if (timeDiff > 300 && Math.abs(moveOffset) <= warpperSize * .5) {
+                    if (timeDiff > 300 && Math.abs(moveOffset) <= warpperSize * .5 || this.itemsArr.length <= 1) {
                         this.setTranslate(this.speed, -this.index * warpperSize);
                     } else {
                         this.setTranslate(this.speed, -((moveOffset > 0 ? --this.index : ++this.index) * warpperSize));
@@ -209,7 +212,7 @@
                 }
             },
             autoPlay() {
-                if (this.autoplay <= 0) return;
+                if (this.autoplay <= 0 || this.itemsArr.length <= 1) return;
 
                 this.autoPlayTimer = setInterval(() => {
                     const size = this.isVertical ? this.$el.clientHeight : this.$refs.warpper.offsetWidth;
@@ -241,9 +244,9 @@
 
                 this.$el.addEventListener('click', (e) => {
                     if (!this.touches.allowClick) {
-                    e.preventDefault();
-                }
-            });
+                        e.preventDefault();
+                    }
+                });
 
                 window.addEventListener('resize', this.resizeSlides);
 

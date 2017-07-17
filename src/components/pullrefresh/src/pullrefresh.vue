@@ -19,6 +19,8 @@
 </template>
 
 <script type="text/babel">
+    import {getScrollview} from '../../../utils/assist';
+
     export default {
         name: 'yd-pullrefresh',
         props: {
@@ -44,7 +46,8 @@
                     startClientY: 0,
                     moveOffset: 0,
                     isDraging: false
-                }
+                },
+                limitSpeed: 0
             }
         },
         methods: {
@@ -96,27 +99,41 @@
                     return;
                 }
 
-                if (this.$refs.dragBox.getBoundingClientRect().top < this.offsetTop) {
+                if (this.scrollview.scrollTop > 0 || this.$refs.dragBox.getBoundingClientRect().top < this.offsetTop) {
                     return;
                 }
 
+                this.touches.startClientX = event.touches[0].clientX;
                 this.touches.startClientY = event.touches[0].clientY;
             },
             touchMoveHandler(event) {
-                const touches = event.touches[0];
+                const touches = this.touches;
 
                 if (this.touches.loading) {
                     event.preventDefault();
                     return;
                 }
 
-                if (this.touches.startClientY > touches.clientY || this.$refs.dragBox.getBoundingClientRect().top < this.offsetTop) {
+                if (this.scrollview.scrollTop > 0) {
+                    this.dragTip.translate = 0;
+                    this.resetParams();
                     return;
                 }
 
-                this.touches.isDraging = true;
+                const currentY = event.touches[0].clientY;
+                const currentX = event.touches[0].clientX;
 
-                let deltaSlide = touches.clientY - this.touches.startClientY;
+                if (touches.startClientY > currentY || this.$refs.dragBox.getBoundingClientRect().top < this.offsetTop) {
+                    return;
+                }
+
+                touches.isDraging = true;
+
+                const touchAngle = Math.atan2(Math.abs(currentY - touches.startClientY), Math.abs(currentX - touches.startClientX)) * 180 / Math.PI;
+
+                let deltaSlide = currentY - touches.startClientY;
+
+                if (90 - touchAngle > 45) return;
 
                 this.dragTip.iconOpacity = deltaSlide / 100;
 
@@ -126,9 +143,12 @@
 
                 this.dragTip.iconRotate = deltaSlide / 0.25;
 
-                this.touches.moveOffset = this.dragTip.translate = deltaSlide;
+                this.limitSpeed += 10;
+                if (this.limitSpeed < deltaSlide) {
+                    deltaSlide = this.limitSpeed;
+                }
+                touches.moveOffset = this.dragTip.translate = deltaSlide;
             },
-
             touchEndHandler(event) {
                 const touches = this.touches;
 
@@ -136,6 +156,8 @@
                     event.preventDefault();
                     return;
                 }
+
+                this.limitSpeed = 0;
 
                 if (this.$refs.dragBox.getBoundingClientRect().top < this.offsetTop) {
                     return;
@@ -180,6 +202,8 @@
             }
         },
         mounted() {
+            this.scrollview = getScrollview(this.$el);
+
             this.$nextTick(this.init);
         },
         beforeDestroy() {
@@ -187,3 +211,7 @@
         }
     }
 </script>
+
+<style lang="less">
+    @import '../../../styles/components/pullrefresh.less';
+</style>

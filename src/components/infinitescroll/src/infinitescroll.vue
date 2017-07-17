@@ -102,3 +102,7 @@
         }
     }
 </script>
+
+<style lang="less">
+    @import '../../../styles/components/infinitescroll.less';
+</style>
