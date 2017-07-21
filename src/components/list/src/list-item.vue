@@ -10,7 +10,7 @@
             <slot name="other"></slot>
         </div>
     </router-link>
-    <a :href="href || 'javascript:;'" class="list-item" v-else>
+    <a :href="href || 'javascript:;'" class="list-item" v-else-if="type == 'a'">
         <div class="list-img">
             <slot name="img"></slot>
         </div>
@@ -21,6 +21,17 @@
             <slot name="other"></slot>
         </div>
     </a>
+    <div class="list-item" v-else>
+        <div class="list-img">
+            <slot name="img"></slot>
+        </div>
+        <div class="list-mes">
+            <div class="list-title">
+                <slot name="title"></slot>
+            </div>
+            <slot name="other"></slot>
+        </div>
+    </div>
 </template>
 
 <script type="text/babel">
@@ -30,7 +41,7 @@
             type: {
                 type: String,
                 validator (value) {
-                    return ['link', 'a'].indexOf(value) > -1;
+                    return ['link', 'a', 'div'].indexOf(value) > -1;
                 },
                 default: 'a'
             },
