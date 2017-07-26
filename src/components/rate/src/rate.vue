@@ -20,6 +20,11 @@
                 str: ''
             }
         },
+        watch: {
+            value(val) {
+                this.choose(val);
+            }
+        },
         props: {
             count: {
                 validator(val) {
@@ -35,14 +40,14 @@
             },
             color: {
                 validator(value) {
-                    if(!value) return true;
+                    if (!value) return true;
                     return isColor(value);
                 },
                 default: '#CCC'
             },
             activeColor: {
                 validator(value) {
-                    if(!value) return true;
+                    if (!value) return true;
                     return isColor(value);
                 },
                 default: '#FF5D50'
