@@ -27,9 +27,6 @@
             <!-- 数据全部加载完毕显示 -->
             <span slot="doneTip">啦啦啦，啦啦啦，没有数据啦~~</span>
 
-            <!-- 加载中提示 -->
-            <img slot="loadingTip" src="http://static.ydcss.com/uploads/ydui/loading/loading10.svg"/>
-
         </yd-infinitescroll>
 
         <yd-backtop></yd-backtop>
@@ -102,20 +99,22 @@
                         pagesize: this.pageSize
                     }
                 }).then(function (response) {
-                    const _list = response.body;
+                    setTimeout(() => { // 请求太快了，延迟一下方便看效果！
+                        const _list = response.body;
 
-                    this.list = [...this.list, ..._list];
+                        this.list = [...this.list, ..._list];
 
-                    if (_list.length < this.pageSize || this.page >= 4) {
-                        // 所有数据加载完毕
-                        this.$refs.lsdemo.$emit('ydui.infinitescroll.loadedDone');
-                        return;
-                    }
+                        if (_list.length < this.pageSize || this.page >= 4) {
+                            // 所有数据加载完毕
+                            this.$refs.lsdemo.$emit('ydui.infinitescroll.loadedDone');
+                            return;
+                        }
 
-                    // 单次请求数据完毕
-                    this.$refs.lsdemo.$emit('ydui.infinitescroll.finishLoad');
+                        // 单次请求数据完毕
+                        this.$refs.lsdemo.$emit('ydui.infinitescroll.finishLoad');
 
-                    this.page++;
+                        this.page++;
+                    }, 1000);
                 });
             }
         }

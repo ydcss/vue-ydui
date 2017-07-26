@@ -2,23 +2,29 @@
     <div>
         <slot name="list"></slot>
 
+        <div ref="tag" style="height: 1px;"></div>
+
+        <div class="list-loading" v-if="!isDone">
+            <div v-show="isLoading">
+                <slot name="loadingTip">
+                    <spinner></spinner>
+                </slot>
+            </div>
+        </div>
+
         <div class="list-donetip" v-show="!isLoading && isDone">
             <slot name="doneTip">没有更多数据了</slot>
         </div>
-
-        <div class="list-loading" v-show="isLoading">
-            <slot name="loadingTip">加载中</slot>
-        </div>
-
-        <div ref="tag" style="height: 1px;"></div>
     </div>
 </template>
 
 <script type="text/babel">
+    import Spinner from './spinner.vue';
     import {getScrollview} from '../../../utils/assist';
 
     export default {
         name: 'yd-infinitescroll',
+        components: {Spinner},
         data() {
             return {
                 isLoading: false,
@@ -36,11 +42,23 @@
                 validator(val) {
                     return /^\d*$/.test(val);
                 }
+            },
+            scrollTop: {
+                type: Boolean,
+                default: true
             }
         },
         methods: {
             init() {
                 this.scrollview = getScrollview(this.$el);
+
+                if (this.scrollTop) {
+                    if (this.scrollview === window) {
+                        window.scrollTo(0, 0)
+                    } else {
+                        this.scrollview.scrollTop = 0;
+                    }
+                }
 
                 this.scrollview.addEventListener('scroll', this.throttledCheck, false);
 
@@ -49,7 +67,7 @@
                     this.isDone = true;
                 });
 
-                this.$on('ydui.infinitescroll.finishLoad', () => {
+                this.$on('ydui.infinitescroll.finishLoad', (ret) => {
                     this.isLoading = false;
                 });
 
@@ -59,11 +77,13 @@
                 });
             },
             scrollHandler() {
-                if (this.isLoading || this.isDone)return;
+                if (this.isLoading || this.isDone) return;
 
                 const scrollview = this.scrollview;
                 const contentHeight = document.body.offsetHeight;
-                const offsetTop = scrollview == window ? 0 : scrollview.getBoundingClientRect().top;
+                const isWindow = scrollview === window;
+                const offsetTop = isWindow ? 0 : scrollview.getBoundingClientRect().top;
+                const scrollviewHeight = isWindow ? contentHeight : scrollview.offsetHeight;
 
                 if (!scrollview) {
                     console.warn('Can\'t find the scrollview!');
@@ -78,7 +98,7 @@
                 const tagOffsetTop = Math.floor(this.$refs.tag.getBoundingClientRect().top) - 1;
                 const distance = !!this.distance && this.distance > 0 ? ~~this.distance : Math.floor(contentHeight / 10);
 
-                if (tagOffsetTop > offsetTop && tagOffsetTop - (distance + offsetTop) * this.num <= contentHeight) {
+                if (tagOffsetTop > offsetTop && tagOffsetTop - (distance + offsetTop) * this.num <= contentHeight && this.$el.offsetHeight > scrollviewHeight) {
                     this.isLoading = true;
                     this.onInfinite();
                     this.num++;
@@ -88,7 +108,7 @@
                 clearTimeout(method.tId);
                 method.tId = setTimeout(() => {
                     method.call(context);
-                }, 50);
+                }, 30);
             },
             throttledCheck() {
                 this.throttle(this.scrollHandler);

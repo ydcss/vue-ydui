@@ -1,13 +1,22 @@
 .list-loading {
-  margin-top: .2rem;
+  padding: .1rem 0;
   text-align: center;
   font-size: .26rem;
   color: #999;
   height: .66rem;
-  line-height: .66rem;
+  box-sizing: content-box;
+  .list-loading-box {
+    height: .66rem;
+    overflow: hidden;
+    line-height: .66rem;
+  }
   img {
-    height: inherit;
+    height: .66rem;
     display: inline-block;
+  }
+  svg {
+    width: .66rem;
+    height: .66rem;
   }
 }
 
