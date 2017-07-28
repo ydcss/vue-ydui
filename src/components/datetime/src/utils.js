@@ -10,17 +10,19 @@ export default {
     },
     getYearItems(config) {
         const years = [];
+        const startYear = ~~config.startYear;
+        const endYear = ~~config.endYear;
         let today = new Date();
 
         let start = today.getFullYear() - 10;
         let end = today.getFullYear() + 10;
 
-        if (config.startYear != 0) {
-            start = ~~config.startYear;
+        if (startYear !== 0) {
+            start = startYear;
         }
 
-        if (config.endYear != 0) {
-            end = ~~config.endYear;
+        if (endYear !== 0) {
+            end = endYear;
         }
 
         if (end < start) {
@@ -33,6 +35,18 @@ export default {
 
         if (config.endDate) {
             end = new Date(config.endDate.replace(/-/g, '/')).getFullYear();
+        }
+
+        if (config.startDate > config.endDate) {
+            end = start + 10;
+        }
+
+        if (start < startYear && startYear !== 0) {
+            start = startYear;
+        }
+
+        if (end > endYear && endYear !== 0) {
+            end = endYear;
         }
 
         while (start <= end) {
@@ -49,16 +63,14 @@ export default {
 
         if (config.startDate) {
             const startDate = new Date(config.startDate.replace(/-/g, '/'));
-            if (startDate.getFullYear() == config.currentYear) {
+            if (startDate.getFullYear() === ~~config.currentYear) {
                 startMonth = startDate.getMonth() + 1;
-                endMonth = 12;
             }
         }
 
         if (config.endDate) {
             const endDate = new Date(config.endDate.replace(/-/g, '/'));
-            if (endDate.getFullYear() == config.currentYear) {
-                startMonth = 1;
+            if (endDate.getFullYear() === ~~config.currentYear) {
                 endMonth = endDate.getMonth() + 1;
             }
         }
@@ -85,12 +97,12 @@ export default {
 
         if ([0, 2, 4, 6, 7, 9, 11].indexOf(month) > -1) {
             end = 31
-        } else if (month == 1) {
-            end = year % 100 == 0 ? (year % 400 == 0 ? 29 : 28) : (year % 4 == 0 ? 29 : 28)
+        } else if (month === 1) {
+            end = year % 100 === 0 ? (year % 400 === 0 ? 29 : 28) : (year % 4 === 0 ? 29 : 28)
         }
         if (config.endDate) {
             const endDate = new Date(config.endDate.replace(/-/g, '/'));
-            if (endDate.getMonth() + 1 == config.currentMonth && endDate.getFullYear() == config.currentYear && endDate.getDate() < end) {
+            if (endDate.getMonth() + 1 === ~~config.currentMonth && endDate.getFullYear() === ~~config.currentYear && endDate.getDate() < end) {
                 end = endDate.getDate();
             }
         }
@@ -98,7 +110,7 @@ export default {
         let d = 1;
         if (config.startDate) {
             const startDate = new Date(config.startDate.replace(/-/g, '/'));
-            if (startDate.getMonth() + 1 == config.currentMonth && startDate.getFullYear() == config.currentYear) {
+            if (startDate.getMonth() + 1 === ~~config.currentMonth && startDate.getFullYear() === ~~config.currentYear) {
                 d = startDate.getDate();
             }
         }
@@ -113,8 +125,10 @@ export default {
     },
     getHourItems(config) {
         const hours = [];
-        let start = ~~config.startHour;
-        let end = ~~config.endHour;
+        const startHour = ~~config.startHour;
+        const endHour = ~~config.endHour;
+        let start = startHour;
+        let end = endHour;
 
         if (end < start) {
             end = 23;
@@ -122,15 +136,22 @@ export default {
 
         if (config.startDate) {
             const startDate = new Date(config.startDate.replace(/-/g, '/'));
-            if (startDate.getFullYear() == config.currentYear && startDate.getMonth() + 1 == config.currentMonth && startDate.getDate() == config.currentDay) {
+            if (startDate.getFullYear() === ~~config.currentYear && startDate.getMonth() + 1 === ~~config.currentMonth && startDate.getDate() === ~~config.currentDay && start <= startHour) {
                 start = startDate.getHours();
+                if (start < startHour) {
+                    start = startHour;
+                }
+
             }
         }
 
         if (config.endDate) {
             const endDate = new Date(config.endDate.replace(/-/g, '/'));
-            if (endDate.getFullYear() == config.currentYear && endDate.getMonth() + 1 == config.currentMonth && endDate.getDate() == config.currentDay) {
+            if (endDate.getFullYear() === ~~config.currentYear && endDate.getMonth() + 1 === ~~config.currentMonth && endDate.getDate() === ~~config.currentDay) {
                 end = endDate.getHours();
+            }
+            if (end > endHour) {
+                end = endHour;
             }
         }
 
@@ -149,14 +170,14 @@ export default {
 
         if (config.startDate) {
             const startDate = new Date(config.startDate.replace(/-/g, '/'));
-            if (startDate.getFullYear() == config.currentYear && startDate.getMonth() + 1 == config.currentMonth && startDate.getDate() == config.currentDay && startDate.getHours() == config.currentHour) {
+            if (startDate.getFullYear() === ~~config.currentYear && startDate.getMonth() + 1 === ~~config.currentMonth && startDate.getDate() === ~~config.currentDay && startDate.getHours() === ~~config.currentHour) {
                 start = startDate.getMinutes();
             }
         }
 
         if (config.endDate) {
             const endDate = new Date(config.endDate.replace(/-/g, '/'));
-            if (endDate.getFullYear() == config.currentYear && endDate.getMonth() + 1 == config.currentMonth && endDate.getDate() == config.currentDay && endDate.getHours() == config.currentHour) {
+            if (endDate.getFullYear() === ~~config.currentYear && endDate.getMonth() + 1 === ~~config.currentMonth && endDate.getDate() === ~~config.currentDay && endDate.getHours() === ~~config.currentHour) {
                 end = endDate.getMinutes();
             }
         }

@@ -41,7 +41,6 @@
 
         <yd-button-group>
             <yd-button size="large" @click.native="open">手动打开</yd-button>
-
         </yd-button-group>
     </yd-layout>
 </template>

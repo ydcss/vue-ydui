@@ -95,30 +95,30 @@
                     currentValue = _this.currentValue = _this.endDate;
                 }
 
+                const yearItems = _this.items['Year'] = Utils.getYearItems({
+                    format: _this.yearFormat,
+                    startDate: _this.startDate,
+                    endDate: _this.endDate,
+                    startYear: _this.startYear,
+                    endYear: _this.endYear
+                });
+
+                const monthItems = Utils.getMonthItems({
+                    format: _this.monthFormat,
+                    currentYear: yearItems[0].value,
+                    startDate: _this.startDate,
+                    endDate: _this.endDate
+                });
+
+                const dayItems = Utils.getDateItems({
+                    format: _this.dayFormat,
+                    currentYear: yearItems[0].value,
+                    currentMonth: monthItems[0].value,
+                    startDate: _this.startDate,
+                    endDate: _this.endDate
+                });
+
                 if (_this.type !== 'time') {
-                    const yearItems = _this.items['Year'] = Utils.getYearItems({
-                        format: _this.yearFormat,
-                        startDate: _this.startDate,
-                        endDate: _this.endDate,
-                        startYear: _this.startYear,
-                        endYear: _this.endYear
-                    });
-
-                    const monthItems = Utils.getMonthItems({
-                        format: _this.monthFormat,
-                        currentYear: _this.currentYear,
-                        startDate: _this.startDate,
-                        endDate: _this.endDate
-                    });
-
-                    const dayItems = Utils.getDateItems({
-                        format: _this.dayFormat,
-                        currentYear: _this.currentYear,
-                        currentMonth: _this.currentMonth,
-                        startDate: _this.startDate,
-                        endDate: _this.endDate
-                    });
-
                     if (currentValue) {
                         const currentDate = new Date(currentValue);
 
@@ -146,9 +146,9 @@
                 if (_this.type === 'datetime' || _this.type === 'time') {
                     const hourItems = Utils.getHourItems({
                         format: _this.hourFormat,
-                        currentYear: _this.currentYear,
-                        currentMonth: _this.currentMonth,
-                        currentDay: _this.currentDay,
+                        currentYear: yearItems[0].value,
+                        currentMonth: monthItems[0].value,
+                        currentDay: dayItems[0].value,
                         startDate: _this.startDate,
                         endDate: _this.endDate,
                         startHour: _this.startHour,
@@ -157,10 +157,10 @@
 
                     const minuteItems = Utils.getMinuteItems({
                         format: _this.minuteFormat,
-                        currentYear: _this.currentYear,
-                        currentMonth: _this.currentMonth,
-                        currentDay: _this.currentDay,
-                        currentHour: _this.currentHour,
+                        currentYear: yearItems[0].value,
+                        currentMonth: monthItems[0].value,
+                        currentDay: dayItems[0].value,
+                        currentHour: hourItems[0].value,
                         startDate: _this.startDate,
                         endDate: _this.endDate
                     });
