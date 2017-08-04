@@ -37,6 +37,7 @@ module.exports = merge(distCommonWebpackConfig, {
         "/lib.rem/checkbox/index": "./src/components/checkbox/index.js",
         "/lib.rem/backtop/index": "./src/components/backtop/index.js",
         "/lib.rem/accordion/index": "./src/components/accordion/index.js",
-        "/lib.rem/datetime/index": "./src/components/datetime/index.js"
+        "/lib.rem/datetime/index": "./src/components/datetime/index.js",
+        "/lib.rem/lightbox/index": "./src/components/lightbox/index.js",
     }
 });
