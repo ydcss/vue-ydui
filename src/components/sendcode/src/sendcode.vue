@@ -14,6 +14,7 @@
 
     export default {
         name: 'yd-sendcode',
+        extends: Button,
         components: {
             'yd-sendcode-button': Button
         },

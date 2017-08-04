@@ -231,7 +231,7 @@
                         this.setTranslate(this.speed, -((moveOffset > 0 ? --this.currentIndex : ++this.currentIndex) * warpperSize));
 
                         const f = this.currentIndex % this.itemNums;
-                        this.callback(f === 0 ? this.itemNums : f);
+                        this.callback && this.callback(f === 0 ? this.itemNums : f);
                     }
                     this.autoPlay();
                     return;
