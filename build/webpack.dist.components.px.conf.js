@@ -39,7 +39,8 @@ module.exports = merge(distCommonWebpackConfig, {
         "/lib.px/checkbox/index": "./src/components/checkbox/index.js",
         "/lib.px/backtop/index": "./src/components/backtop/index.js",
         "/lib.px/accordion/index": "./src/components/accordion/index.js",
-        "/lib.px/datetime/index": "./src/components/datetime/index.js"
+        "/lib.px/datetime/index": "./src/components/datetime/index.js",
+        "/lib.px/lightbox/index": "./src/components/lightbox/index.js",
     },
     module: {
         loaders: [
