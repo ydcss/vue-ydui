@@ -1,12 +1,12 @@
 <template>
-    <yd-button :size="size"
+    <yd-sendcode-button :size="size"
                :type="type"
                :disabled="start"
                :class="start ? 'btn-disabled' : ''"
                :style="{backgroundColor: bgcolor, color: color}"
     >
         {{tmpStr}}
-    </yd-button>
+    </yd-sendcode-button>
 </template>
 
 <script type="text/babel">
@@ -14,7 +14,9 @@
 
     export default {
         name: 'yd-sendcode',
-        extends: Button,
+        components: {
+            'yd-sendcode-button': Button
+        },
         data() {
             return {
                 tmpStr: '获取短信验证码',

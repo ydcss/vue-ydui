@@ -8,7 +8,7 @@
     export default {
         name: 'yd-slider-item',
         mounted() {
-            this.$parent.init();
+            this.$nextTick(this.$parent.init);
         }
     }
 </script>

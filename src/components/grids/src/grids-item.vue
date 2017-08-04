@@ -6,6 +6,7 @@
         <div class="grids-txt" v-if="checkText">
             <slot name="text"></slot>
         </div>
+        <slot name="else"></slot>
     </router-link>
 </template>
 

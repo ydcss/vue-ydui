@@ -8,7 +8,7 @@
             <slot></slot>
             <div class="slider-item" :style="itemHeight" v-html="firtstItem"></div>
         </div>
-        <div class="slider-pagination" v-if="itemsArr.length > 1"
+        <div class="slider-pagination" v-if="itemsArr.length > 1 && showPagination"
              :class="direction == 'vertical' ? 'slider-pagination-vertical' : ''">
             <span class="slider-pagination-item"
                   v-for="(t, i) in itemNums"
@@ -25,8 +25,8 @@
             return {
                 firtstItem: '',
                 lastItem: '',
+                currentIndex: ~~this.index,
                 itemNums: 0,
-                index: 1,
                 itemsArr: [],
                 autoPlayTimer: null,
                 paginationIndex: 0,
@@ -48,6 +48,12 @@
             }
         },
         props: {
+            index: {
+                default: 1,
+                validator(val) {
+                    return /^\d*$/.test(val);
+                }
+            },
             speed: {
                 default: 300,
                 validator(val) {
@@ -65,13 +71,29 @@
                     return ['horizontal', 'vertical'].indexOf(val) > -1;
                 },
                 default: 'horizontal'
+            },
+            showPagination: {
+                type: Boolean,
+                default: true
+            },
+            callback: {
+                type: Function
             }
         },
         watch: {
-            index() {
-                const index = this.index;
+            index(val) {
+                val = ~~val;
+
+                if (val > this.itemNums) {
+                    val = this.itemNums;
+                }
+
+                this.currentIndex = val;
+                this.showItem(val);
+            },
+            currentIndex(val) {
                 const itemNums = this.itemNums;
-                const tm = (index - 1) % itemNums;
+                const tm = (val - 1) % itemNums;
                 this.paginationIndex = tm < 0 ? itemNums - 1 : tm;
             }
         },
@@ -79,27 +101,32 @@
             init() {
                 this.destroy();
 
-                this.isVertical = this.direction == 'vertical';
+                this.isVertical = this.direction === 'vertical';
 
                 this.itemsArr = this.$children.filter(item => item.$options.name === 'yd-slider-item');
 
                 this.itemNums = this.itemsArr.length;
 
+                this.cloneItem();
+
+                this.showItem(this.currentIndex);
+
+                this.bindEvents();
+
+                this.autoPlay();
+            },
+            showItem(index) {
                 if (this.isVertical) {
                     this.$refs.slider.style.height = '100%';
                     const height = this.$el.clientHeight;
                     this.itemHeight.height = height + 'px';
-                    this.setTranslate(0, -height);
+                    this.setTranslate(0, -height * index);
                     this.itemsArr.forEach((item) => {
                         item.$el.style.height = height + 'px';
                     });
                 } else {
-                    this.setTranslate(0, -this.$refs.warpper.offsetWidth);
+                    this.setTranslate(0, -this.$refs.warpper.offsetWidth * index);
                 }
-                this.cloneItem();
-                this.bindEvents();
-
-                this.autoPlay();
             },
             cloneItem() {
                 if (this.itemsArr.length <= 1) return;
@@ -118,7 +145,7 @@
 
                 if (!touches.isTouchEvent && 'which' in event && event.which === 3) return;
 
-                if (touches.moveTag == 0) {
+                if (touches.moveTag === 0) {
                     touches.moveTag = 1;
 
                     touches.startX = event.touches ? event.touches[0].clientX : event.clientX;
@@ -128,14 +155,14 @@
 
                     const itemNums = this.itemNums;
 
-                    if (this.index == 0) {
-                        this.index = itemNums;
+                    if (this.currentIndex === 0) {
+                        this.currentIndex = itemNums;
                         this.setTranslate(0, -itemNums * (this.isVertical ? this.$el.clientHeight : this.$refs.warpper.offsetWidth));
                         return;
                     }
 
-                    if (this.index > itemNums) {
-                        this.index = 1;
+                    if (this.currentIndex > itemNums) {
+                        this.currentIndex = 1;
                         this.setTranslate(0, this.isVertical ? -this.$el.clientHeight : -this.$refs.warpper.offsetWidth);
                     }
                 }
@@ -159,7 +186,7 @@
                 if ((!this.isVertical ? touchAngle > 45 : (90 - touchAngle > 45)) && this.supportTouch) {
                     touches.moveTag = 3;
                     this.stopAutoplay();
-                    this.setTranslate(0, -this.index * (this.isVertical ? this.$el.clientHeight : this.$refs.warpper.offsetWidth));
+                    this.setTranslate(0, -this.currentIndex * (this.isVertical ? this.$el.clientHeight : this.$refs.warpper.offsetWidth));
                     return;
                 }
 
@@ -167,14 +194,14 @@
 
                 const deltaSlide = touches.moveOffset = this.isVertical ? (currentY - touches.startY) : (currentX - touches.startX);
 
-                if (deltaSlide != 0 && touches.moveTag != 0) {
-                    if (touches.moveTag == 1) {
+                if (deltaSlide !== 0 && touches.moveTag !== 0) {
+                    if (touches.moveTag === 1) {
                         this.stopAutoplay();
                         touches.moveTag = 2;
                     }
 
-                    if (touches.moveTag == 2) {
-                        this.setTranslate(0, -this.index * (this.isVertical ? this.$el.clientHeight : this.$refs.warpper.offsetWidth) + deltaSlide);
+                    if (touches.moveTag === 2) {
+                        this.setTranslate(0, -this.currentIndex * (this.isVertical ? this.$el.clientHeight : this.$refs.warpper.offsetWidth) + deltaSlide);
                     }
                 }
             },
@@ -183,7 +210,7 @@
                 const moveOffset = touches.moveOffset;
                 const warpperSize = this.isVertical ? this.$el.clientHeight : this.$refs.warpper.offsetWidth;
 
-                if (touches.moveTag == 1) {
+                if (touches.moveTag === 1) {
                     touches.moveTag = 0;
                 }
 
@@ -192,21 +219,25 @@
                     touches.isDraging = false;
                 }, this.speed);
 
-                if (touches.moveTag == 2) {
+                if (touches.moveTag === 2) {
                     touches.moveTag = 0;
 
                     const timeDiff = Date.now() - touches.touchStartTime;
 
                     if (timeDiff > 300 && Math.abs(moveOffset) <= warpperSize * .5 || this.itemsArr.length <= 1) {
-                        this.setTranslate(this.speed, -this.index * warpperSize);
+                        this.setTranslate(this.speed, -this.currentIndex * warpperSize);
                     } else {
-                        this.setTranslate(this.speed, -((moveOffset > 0 ? --this.index : ++this.index) * warpperSize));
+
+                        this.setTranslate(this.speed, -((moveOffset > 0 ? --this.currentIndex : ++this.currentIndex) * warpperSize));
+
+                        const f = this.currentIndex % this.itemNums;
+                        this.callback(f === 0 ? this.itemNums : f);
                     }
                     this.autoPlay();
                     return;
                 }
 
-                if (touches.moveTag == 3) {
+                if (touches.moveTag === 3) {
                     touches.moveTag = 0;
                     this.autoPlay();
                 }
@@ -217,15 +248,15 @@
                 this.autoPlayTimer = setInterval(() => {
                     const size = this.isVertical ? this.$el.clientHeight : this.$refs.warpper.offsetWidth;
 
-                    if (this.index > this.itemNums) {
-                        this.index = 1;
+                    if (this.currentIndex > this.itemNums) {
+                        this.currentIndex = 1;
                         this.setTranslate(0, -size);
                         setTimeout(() => {
-                            this.setTranslate(this.speed, -(++this.index * size));
+                            this.setTranslate(this.speed, -(++this.currentIndex * size));
                         }, 100);
                         return;
                     }
-                    this.setTranslate(this.speed, -(++this.index * size));
+                    this.setTranslate(this.speed, -(++this.currentIndex * size));
 
                 }, this.autoplay);
             },
@@ -236,13 +267,12 @@
                 this.touches.isDraging && event.preventDefault();
             },
             bindEvents() {
-                const _events = this.touchEvents();
-
-                this.$el.addEventListener(_events.start, this.touchStartHandler);
-                this.$el.addEventListener(_events.move, this.touchMoveHandler);
-                this.$el.addEventListener(_events.end, this.touchEndHandler);
+                this.$el.addEventListener('touchstart', this.touchStartHandler);
+                this.$el.addEventListener('touchmove', this.touchMoveHandler);
+                this.$el.addEventListener('touchend', this.touchEndHandler);
 
                 this.$el.addEventListener('click', (e) => {
+
                     if (!this.touches.allowClick) {
                         e.preventDefault();
                     }
@@ -253,26 +283,13 @@
                 document.body.addEventListener('touchmove', this.stopDrag);
             },
             unbindEvents() {
-                const _events = this.touchEvents();
-
-                this.$el.removeEventListener(_events.start, this.touchStartHandler);
-                this.$el.removeEventListener(_events.move, this.touchMoveHandler);
-                this.$el.removeEventListener(_events.end, this.touchEndHandler);
+                this.$el.removeEventListener('touchstart', this.touchStartHandler);
+                this.$el.removeEventListener('touchmove', this.touchMoveHandler);
+                this.$el.removeEventListener('touchend', this.touchEndHandler);
 
                 window.removeEventListener('resize', this.resizeSlides);
 
                 document.body.removeEventListener('touchmove', this.stopDrag);
-            },
-            touchEvents() {
-                const supportTouch = this.supportTouch = (window.Modernizr && !!window.Modernizr.touch) || (function () {
-                            return !!(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch);
-                        })();
-
-                return {
-                    start: supportTouch ? 'touchstart' : 'mousedown',
-                    move: supportTouch ? 'touchmove' : 'mousemove',
-                    end: supportTouch ? 'touchend' : 'mouseup'
-                };
             },
             setTranslate(speed, translate) {
                 this.dragStyleObject.transitionDuration = speed + 'ms';
@@ -285,10 +302,10 @@
             resizeSlides() {
                 if (this.isVertical) {
                     const height = this.$el.clientHeight;
-                    this.dragStyleObject.transform = 'translate3d(0, ' + -this.index * height + 'px, 0)';
+                    this.dragStyleObject.transform = 'translate3d(0, ' + -this.currentIndex * height + 'px, 0)';
                 } else {
                     const width = this.$refs.warpper.offsetWidth;
-                    this.dragStyleObject.transform = 'translate3d(' + -this.index * width + 'px, 0, 0)';
+                    this.dragStyleObject.transform = 'translate3d(' + -this.currentIndex * width + 'px, 0, 0)';
                 }
             },
             destroy() {
