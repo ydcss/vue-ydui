@@ -6,35 +6,38 @@
   border-radius: 1px;
   display: inline-block;
   overflow: hidden;
-  height: .6rem;
   > a {
     float: left;
-    width: .6rem;
-    height: .6rem;
-    line-height: .62rem;
+    width: 25%;
+    height: inherit;
     text-align: center;
     font-weight: bold;
     color: #666;
     letter-spacing: 0;
+    position: relative;
     .tap-color(#F8F8F8, .95);
+    overflow: hidden;
     &:after {
       font-family: @iconfont-inlay;
       color: #777;
       font-size: .18rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
     &:first-child:after {
       content: '\E60B';
     }
     &:last-child:after {
-      content: '\E602'
+      content: '\E602';
     }
   }
   > input {
     letter-spacing: 0;
     float: left;
-    width: .85rem;
-    height: .6rem;
-    line-height: 2.4;
+    width: 50%;
+    height: inherit;
     text-align: center;
     color: #666;
     border: none;

@@ -13,7 +13,9 @@
             <yd-button size="large" type="warning">warning</yd-button>
             <yd-button size="large" type="disabled" disabled>disabled</yd-button>
             <yd-button size="large" type="hollow">hollow</yd-button>
-            <yd-button size="large" bgcolor="#000" color="#FFF">Custom Color</yd-button>
+
+            <yd-button size="large" type="primary" shape="circle">shape="circle"</yd-button>
+            <yd-button size="large" type="hollow" shape="circle">shape="circle"</yd-button>
 
         </yd-button-group>
 

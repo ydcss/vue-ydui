@@ -1,5 +1,5 @@
 <template>
-    <span class="m-spinner">
+    <span class="m-spinner" :style="{height: height, width: width}">
         <a href="javascript:;" ref="minus"></a>
         <input type="text" ref="numInput" class="spinner-input" :readonly="readonly" v-model="counter" placeholder=""/>
         <a href="javascript:;" ref="add"></a>
@@ -53,6 +53,18 @@
                 validator(val) {
                     return /^(([1-9]\d*)|0)$/.test(val);
                 }
+            },
+            width: {
+                validator(value) {
+                    return /^(\.|\d+\.)?\d+(px|rem)$/.test(value);
+                },
+                default: '2rem'
+            },
+            height: {
+                validator(value) {
+                    return /^(\.|\d+\.)?\d+(px|rem)$/.test(value);
+                },
+                default: '.6rem'
             }
         },
         methods: {
@@ -212,7 +224,7 @@
             }
         },
         mounted() {
-            this.init();
+            this.$nextTick(this.init);
         }
     }
 </script>

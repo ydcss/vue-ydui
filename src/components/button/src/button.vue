@@ -24,20 +24,26 @@
             },
             bgcolor: {
                 validator(value) {
-                    if(!value) return true;
+                    if (!value) return true;
                     return isColor(value);
                 }
             },
             color: {
                 validator(value) {
-                    if(!value) return true;
+                    if (!value) return true;
                     return isColor(value);
                 }
+            },
+            shape: {
+                validator(value) {
+                    return ['square', 'circle'].indexOf(value) > -1;
+                },
+                default: 'square'
             }
         },
         computed: {
             classes() {
-                let s = this.size == 'large' ? 'btn-block' : 'btn';
+                let s = this.size === 'large' ? 'btn-block' : 'btn';
                 let b = 'btn-' + this.type;
                 if (this.disabled) {
                     b = 'btn-disabled';
@@ -46,7 +52,7 @@
                 if (this.bgcolor) {
                     b = '';
                 }
-                return s + ' ' + b;
+                return s + ' ' + b + (this.shape === 'circle' ? ' btn-circle' : '');
             }
         }
     }

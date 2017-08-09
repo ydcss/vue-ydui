@@ -11,7 +11,7 @@
             name: String,
             color: {
                 validator(value) {
-                    if(!value) return true;
+                    if (!value) return true;
                     return isColor(value);
                 }
             },
@@ -20,10 +20,17 @@
                     return /^(\.|\d+\.)?\d+(px|rem)$/.test(value);
                 },
                 default: '.6rem'
+            },
+            custom: {
+                type: Boolean,
+                default: false
             }
         },
         computed: {
             classes() {
+                if (this.custom) {
+                    return 'icon-custom-' + this.name;
+                }
                 return 'icon-' + this.name;
             },
             styles() {
