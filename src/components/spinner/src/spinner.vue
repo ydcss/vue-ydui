@@ -22,6 +22,11 @@
                 }
             }
         },
+        watch: {
+            value() {
+                this.setDefalutValue();
+            }
+        },
         props: {
             unit: {
                 default: 1,
