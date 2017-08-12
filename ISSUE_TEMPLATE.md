@@ -1,3 +1,5 @@
+#### [如何提 issues（重要）](http://vue.ydui.org/docs/#/issues)
+
 #### 问题描述 
 
 （简明扼要地描述一下问题）
