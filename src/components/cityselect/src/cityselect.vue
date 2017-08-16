@@ -18,7 +18,6 @@
                 <li class="cityselect-item" v-for="index in columnNum" :ref="'itemBox' + index">
                     <div class="cityselect-item-box">
                         <a href="javascript:;"
-                           :data="item.v" :data2="active['itemValue' + index]"
                            v-for="item in columns['columnItems' + index]"
                            :class="currentClass(item.v, item.n, index)"
                            @click.stop="itemEvent(index, item.n, item.v, item.c)"
@@ -97,16 +96,38 @@
             init() {
                 this.scrollView = getScrollview(this.$el);
 
-                if (!this.ready)return;
+                if (!this.ready) return;
 
                 this.isArray(this.items) && this.provance && this.setDefalutValue(this.items, 'provance', 1);
+
+                this.$on('ydui.cityselect.reset', () => {
+                    for (let i = 1; i <= this.columnNum; i++) {
+
+                        this.active['itemValue' + i] = '';
+                        this.active['itemName' + i] = '';
+
+                        if ((i - 1) === 0) {
+                            this.navIndex = i;
+                            this.nav['txt' + i] = '请选择';
+                            this.$refs['itemBox' + i][0].scrollTop = 0;
+                            this.backoffView(false);
+                        } else {
+                            this.nav['txt' + i] = '';
+                            this.columns['columnItems' + i] = [];
+                        }
+
+                        if (i === this.columnNum) {
+                            this.returnValue();
+                        }
+                    }
+                });
             },
             navEvent(index) {
                 if (this.columnNum > 2) {
                     if (index >= this.columnNum) {
                         this.forwardView(true);
                     } else {
-                        this.backoffView();
+                        this.backoffView(true);
                     }
                 }
 
@@ -186,8 +207,8 @@
                 this.$emit('input', false);
                 this.show = false;
             },
-            backoffView() {
-                this.activeClasses = 'cityselect-move-animate cityselect-prev';
+            backoffView(animate) {
+                this.activeClasses = (animate ? 'cityselect-move-animate' : '') + ' cityselect-prev';
             },
             forwardView(animate) {
                 this.activeClasses = (animate ? 'cityselect-move-animate' : '') + ' cityselect-next';
