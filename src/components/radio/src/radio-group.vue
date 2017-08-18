@@ -56,7 +56,7 @@
             }
         },
         mounted() {
-            setTimeout(this.updateValue, 10);
+            this.$nextTick(this.updateValue);
         }
     }
 </script>

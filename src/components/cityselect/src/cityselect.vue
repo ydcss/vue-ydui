@@ -1,9 +1,9 @@
 <template>
     <div>
-        <div class="mask-cityselect" v-show="show" @click.stop="close"></div>
+        <div class="mask-cityselect" v-show="show" @click.stop="close" ref="mask"></div>
         <div class="m-cityselect" :class="show ? 'cityselect-active' : ''">
             <div class="cityselect-header">
-                <p class="cityselect-title">{{title}}</p>
+                <p class="cityselect-title" @touchstart.stop.prevent="">{{title}}</p>
                 <div v-show="ready" class="cityselect-nav">
                     <a href="javascript:;"
                        v-for="index in columnNum"
@@ -13,16 +13,27 @@
                     >{{nav['txt' + index]}}</a>
                 </div>
             </div>
-            <div v-show="!ready" class="cityselect-loading">加载中</div>
+            <div v-if="!ready" class="cityselect-loading">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+                    <path stroke="none" d="M3 50A47 47 0 0 0 97 50A47 49 0 0 1 3 50" fill="#bababa" transform="rotate(317.143 50 51)">
+                        <animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 51;360 50 51" keyTimes="0;1" dur="0.6s" begin="0s" repeatCount="indefinite"></animateTransform>
+                    </path>
+                </svg>
+            </div>
             <ul v-show="ready" class="cityselect-content" :class="activeClasses">
                 <li class="cityselect-item" v-for="index in columnNum" :ref="'itemBox' + index">
-                    <div class="cityselect-item-box">
-                        <a href="javascript:;"
-                           v-for="item in columns['columnItems' + index]"
-                           :class="currentClass(item.v, item.n, index)"
-                           @click.stop="itemEvent(index, item.n, item.v, item.c)"
-                        ><span>{{item.n}}</span></a>
-                    </div>
+                    <template v-if="columns['columnItems' + index].length > 0">
+                        <div class="cityselect-item-box">
+                            <a href="javascript:;"
+                               v-for="item in columns['columnItems' + index]"
+                               :class="currentClass(item.v, item.n, index)"
+                               @click.stop="itemEvent(index, item.n, item.v, item.c)"
+                            ><span>{{item.n}}</span></a>
+                        </div>
+                    </template>
+                    <template v-else>
+                        <div class="cityselect-item-box" @touchstart.stop.prevent=""></div>
+                    </template>
                 </li>
             </ul>
         </div>
@@ -30,7 +41,7 @@
 </template>
 
 <script type="text/babel">
-    import {addClass, removeClass, getScrollview, isIOS} from '../../../utils/assist';
+    import {addClass, removeClass, getScrollview, isIOS, pageScroll} from '../../../utils/assist';
 
     export default {
         name: 'yd-cityselect',
@@ -80,8 +91,10 @@
             value(val) {
                 if (isIOS) {
                     if (val) {
+                        pageScroll.lock(this.$refs.mask);
                         addClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
                     } else {
+                        pageScroll.unlock(this.$refs.mask);
                         removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
                     }
                 }
@@ -89,7 +102,7 @@
                 this.show = val;
             },
             ready(val) {
-                val && setTimeout(this.init, 0);
+                val && this.$nextTick(this.init);
             }
         },
         methods: {

@@ -6,14 +6,14 @@ const pageScroll = (function () {
     let islock = false;
 
     return {
-        lock: function () {
-            if (islock)return;
+        lock: function (el) {
+            if (islock) return;
             islock = true;
-            document.addEventListener('touchmove', fn);
+            (el || document).addEventListener('touchmove', fn);
         },
-        unlock: function () {
+        unlock: function (el) {
             islock = false;
-            document.removeEventListener('touchmove', fn);
+            (el || document).removeEventListener('touchmove', fn);
         }
     };
 })();

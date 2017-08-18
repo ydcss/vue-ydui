@@ -175,7 +175,7 @@
             emitInput() {
                 if (this.regex == 'bankcard') {
                     if (/\S{5}/.test(this.currentValue)) {
-                        this.currentValue = this.currentValue.replace(/\s/g, '').replace(/(.{4})/g, "$1 ");
+                        this.currentValue = this.currentValue.replace(/\s/g, '').replace(/(\d{4})(?=\d)/g, "$1 ");
                     }
                     this.$emit('input', this.currentValue.replace(/\s/g, ''));
                     return;
