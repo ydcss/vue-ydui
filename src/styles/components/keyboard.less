@@ -2,7 +2,7 @@
 @import "../common/mixins";
 
 .mask-keyboard {
-  .mask(rgba(0, 0, 0, .4), @base-zindex * 500);
+  .mask(rgba(0, 0, 0, .4), @base-zindex * 1500 + 2);
 }
 
 .m-keyboard {
@@ -10,7 +10,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  z-index: @base-zindex * 500;
+  z-index: @base-zindex * 1500 + 2;
   transform: translate(0, 100%);
   transition: transform .3s;
   background-color: #F7F7F7;

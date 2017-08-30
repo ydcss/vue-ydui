@@ -12,7 +12,8 @@
         data() {
             return {
                 picker: null,
-                currentValue: this.value
+                currentValue: this.value,
+                tmpNum: 0
             }
         },
         props: {
@@ -91,6 +92,10 @@
                     if (!value) return true;
                     return Utils.isDateTimeString(value) || Utils.isTimeString(value);
                 }
+            },
+            initEmit: {
+                type: Boolean,
+                default: true
             }
         },
         watch: {
@@ -132,8 +137,11 @@
                 document.body.appendChild(this.picker.$el);
 
                 this.picker.$on('pickerConfirm', (value) => {
-                    this.currentValue = value;
-                    this.$emit('input', value);
+                    if (this.tmpNum > 0 || this.initEmit) {
+                        this.currentValue = value;
+                        this.$emit('input', value);
+                    }
+                    this.tmpNum++;
                 });
             }
         },

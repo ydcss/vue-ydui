@@ -50,10 +50,16 @@
   transition: all .1s;
   border-radius: 2px;
   pointer-events: none;
+  * {
+    pointer-events: none;
+  }
   &.popup-show {
-    pointer-events: auto;
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
+    pointer-events: auto;
+    * {
+      pointer-events: auto;
+    }
   }
 }
 

@@ -15,12 +15,23 @@
         <yd-button-group>
             <yd-sendcode
                 v-model="start2"
-                @click.native="sendCode2"
+                @click.native="start2 = true"
                 second="15"
                 runStr="在{%s}秒后你就可以重新获取啦"
                 resetStr="你可以重新获取验证码啦"
                 size="large"
                 type="primary"
+            ></yd-sendcode>
+        </yd-button-group>
+
+        <yd-button-group>
+            <yd-sendcode
+                v-model="start3"
+                storageKey="dashuaibi"
+                @click.native="start3 = true"
+                size="large"
+                type="danger"
+                initStr="刷新页面倒计时还会继续"
             ></yd-sendcode>
         </yd-button-group>
     </yd-layout>
@@ -31,7 +42,8 @@
         data() {
             return {
                 start1: false,
-                start2: false
+                start2: false,
+                start3: false,
             }
         },
         methods: {
@@ -49,9 +61,6 @@
                     });
 
                 }, 1000);
-            },
-            sendCode2() {
-                this.start2 = true;
             }
         }
     }
