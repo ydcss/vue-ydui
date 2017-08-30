@@ -32,7 +32,7 @@
       border-right: 5px solid transparent;
       border-bottom: 7px solid #A0A0A0;
       display: block;
-      transition: transform .25s cubic-bezier(0.4, 0.6, 0.2, 1);
+      transition: transform .2s linear;
       transform: rotate(0deg);
     }
     &.accordion-rotated:after {
@@ -44,7 +44,7 @@
 .accordion-content {
   position: relative;
   overflow: hidden;
-  transition: height .25s cubic-bezier(0.4, 0.6, 0.2, 1);
+  transition: height .2s linear;
   &:after {
     .bottom-line(@line-color);
   }

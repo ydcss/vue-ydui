@@ -5,7 +5,7 @@
             <span v-else>{{title}}</span>
             <i :class="show ? 'accordion-rotated' : ''"></i>
         </div>
-        <div class="accordion-content" :style="{height: height}">
+        <div class="accordion-content" :style="styleHeight">
             <div ref="content">
                 <slot></slot>
             </div>
@@ -19,7 +19,8 @@
         data() {
             return {
                 show: this.open,
-                height: 0
+                height: 0,
+                styleHeight: {height: 0}
             }
         },
         props: {
@@ -31,21 +32,38 @@
         },
         watch: {
             open(val) {
-                this.show = val;
-                this.setHeight();
+                val ? this.$parent.open(this._uid) : this.closeItem();
             }
         },
         methods: {
             toggle() {
                 this.$parent.open(this._uid);
-                this.setHeight();
             },
-            setHeight() {
-                this.height = (this.show ? this.$refs.content.offsetHeight : 0) + 'px';
+            openItem() {
+                this.$parent.opening = true;
+                this.styleHeight = {height: this.$refs.content.offsetHeight + 'px'};
+                setTimeout(() => {
+                    this.styleHeight = {};
+                    this.$parent.opening = false;
+                }, 200);
+                this.show = true;
+            },
+            closeItem() {
+                if (this.styleHeight.height === undefined) {
+                    this.styleHeight = {height: this.$refs.content.offsetHeight + 'px'};
+                    setTimeout(() => {
+                        this.styleHeight = {height: 0};
+                    }, 50);
+                } else {
+                    this.styleHeight = {height: 0};
+                }
+                this.show = false;
             }
         },
         mounted() {
-            this.setHeight();
+            this.$nextTick(() => {
+                this.open && this.openItem();
+            });
         }
     }
 </script>

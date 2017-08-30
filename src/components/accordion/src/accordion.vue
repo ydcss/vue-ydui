@@ -7,6 +7,11 @@
 <script type="text/babel">
     export default {
         name: 'yd-accordion',
+        data() {
+            return {
+                opening: false
+            }
+        },
         props: {
             accordion: {
                 type: Boolean,
@@ -15,14 +20,13 @@
         },
         methods: {
             open(uid) {
+                if (this.opening) return;
+
                 this.$children.forEach(item => {
-                    if (item._uid == uid) {
-                        item.show = !item.show;
+                    if (item._uid === uid) {
+                        item.show ? item.closeItem() : item.openItem();
                     } else {
-                        if(!this.accordion) {
-                            item.show = false;
-                            item.height = 0;
-                        }
+                        !this.accordion && item.closeItem();
                     }
                 });
             }
