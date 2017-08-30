@@ -26,7 +26,11 @@
         props: {
             onInfinite: {
                 type: Function,
-                required: true
+                required: true,
+            },
+            stopDrag: {
+                type: Boolean,
+                default: false
             }
         },
         data() {
@@ -94,6 +98,8 @@
                 this.touches.isDraging && event.preventDefault();
             },
             touchStartHandler(event) {
+                if (this.stopDrag) return;
+
                 if (this.touches.loading) {
                     event.preventDefault();
                     return;
@@ -108,6 +114,8 @@
             },
             touchMoveHandler(event) {
                 const touches = this.touches;
+
+                if (this.stopDrag) return;
 
                 if (this.touches.loading) {
                     event.preventDefault();
@@ -150,6 +158,8 @@
                 touches.moveOffset = this.dragTip.translate = deltaSlide;
             },
             touchEndHandler(event) {
+                if (this.stopDrag) return;
+
                 const touches = this.touches;
 
                 if (touches.loading) {
