@@ -25,7 +25,8 @@
             }
         },
         props: {
-            change: Function
+            change: Function,
+            callback: Function,
         },
         methods: {
             init(update) {
@@ -37,7 +38,7 @@
                     if(update === 'label') {
                       return this.navList[index] = panel;
                     }
-                  
+
                     if (!update) {
                         this.navList.push({
                             label: panel.label,
@@ -59,7 +60,9 @@
                 });
             },
             emitChange(label, tabkey) {
-                typeof this.change == 'function' && this.change(label, tabkey);
+                // TODO 参数更名，即将删除
+                this.change && this.change(label, tabkey);
+                this.callback && this.callback(label, tabkey);
             },
             changeHandler(uid, label, tabkey) {
                 if (this.tmpIndex != uid) {

@@ -51,6 +51,9 @@
             inputDone: {
                 type: Function
             },
+            callback: {
+                type: Function
+            },
             disorder: {
                 type: Boolean,
                 default: false
@@ -90,7 +93,9 @@
             },
             nums(val) {
                 if (val.length >= 6) {
-                    this.inputDone && typeof this.inputDone == 'function' && this.inputDone(val);
+                    // TODO 参数更名，即将删除
+                    this.inputDone && this.inputDone(val);
+                    this.callback && this.callback(val);
                 }
             }
         },

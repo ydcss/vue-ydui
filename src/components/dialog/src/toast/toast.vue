@@ -18,7 +18,7 @@
         computed: {
             iconsClass() {
                 let _icon = '';
-                if (this.icon == 'success' || this.icon == 'error') {
+                if (this.icon === 'success' || this.icon === 'error') {
                     _icon = 'toast-' + this.icon + '-icon';
                 }
                 return _icon;

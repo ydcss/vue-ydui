@@ -51,8 +51,8 @@
                 if (isIOS) {
 
                     const $refs = this.$refs;
-                    const topHeight = !!this.$slots.top && this.position != 'center' ? $refs.top.offsetHeight : 0;
-                    const bottomHeight = !!this.$slots.bottom && this.position != 'center' ? $refs.bottom.offsetHeight : 0;
+                    const topHeight = !!this.$slots.top && this.position !== 'center' ? $refs.top.offsetHeight : 0;
+                    const bottomHeight = !!this.$slots.bottom && this.position !== 'center' ? $refs.bottom.offsetHeight : 0;
                     const contentHeight = topHeight + $refs.content.offsetHeight + bottomHeight;
 
                     if (val) {
@@ -82,16 +82,16 @@
                 e.stopPropagation();
             },
             styles() {
-                if (this.position == 'left' || this.position == 'right') {
+                if (this.position === 'left' || this.position === 'right') {
                     return {width: this.width};
-                } else if (this.position == 'bottom') {
+                } else if (this.position === 'bottom') {
                     return {width: '100%', height: this.height};
                 } else {
                     return {width: this.width};
                 }
             },
             classes() {
-                return (this.position == 'center' ? 'm-popup-center ' : 'm-popup ') +
+                return (this.position === 'center' ? 'm-popup-center ' : 'm-popup ') +
                         (this.show ? 'popup-show ' : '') +
                         'popup-' + this.position;
             },

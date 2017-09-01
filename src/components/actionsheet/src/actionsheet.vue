@@ -47,7 +47,9 @@
         methods: {
             itemClick(item) {
                 if(item) {
-                    typeof item.method == 'function' && item.method(item);
+                    // TODO 参数更名，即将删除
+                    typeof item.method === 'function' && item.method(item);
+                    typeof item.callback === 'function' && item.callback(item);
                     !item.stay && this.close();
                 }
             },

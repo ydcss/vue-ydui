@@ -6,9 +6,9 @@
             <yd-button size="large" type="primary" @click.native="show2 = true">打开 - 打乱键盘顺序</yd-button>
         </yd-button-group>
 
-        <yd-keyboard v-model="show1" :input-done="done1" ref="kbdemo1"></yd-keyboard>
+        <yd-keyboard v-model="show1" :callback="done1" ref="kbdemo1"></yd-keyboard>
 
-        <yd-keyboard v-model="show2" :input-done="done2" disorder ref="kbdemo2"></yd-keyboard>
+        <yd-keyboard v-model="show2" :callback="done2" disorder ref="kbdemo2"></yd-keyboard>
     </yd-layout>
 </template>
 

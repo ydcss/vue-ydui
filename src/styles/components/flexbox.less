@@ -13,5 +13,15 @@
   }
   .flexbox-item {
     flex: 1;
+    &.flexbox-item-start {
+      align-self: flex-start;
+      justify-self: flex-end;
+    }
+    &.flexbox-item-center {
+      align-self: center;
+    }
+    &.flexbox-item-end {
+      align-self: flex-end;
+    }
   }
 }

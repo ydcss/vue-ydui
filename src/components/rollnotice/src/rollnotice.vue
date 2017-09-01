@@ -75,7 +75,7 @@
             },
             autoPlay() {
                 this.timer = setInterval(() => {
-                    if (this.direction == 'up') {
+                    if (this.direction === 'up') {
                         this.setTranslate(this.speed, -(++this.index * this.height));
                         if (this.index >= this.totalNum) {
                             this.index = 0;

@@ -136,7 +136,7 @@
 
                 if(showError) this.showWarn = false;
 
-                if(this.required && val == '') {
+                if(this.required && val === '') {
                     this.setError('不能为空', 'NOT_NULL');
                     this.iserror = true;
                     return;
@@ -148,7 +148,7 @@
                     return;
                 }
 
-                const v = this.regex == 'bankcard' ? val.replace(/\s/g, '') : val;
+                const v = this.regex === 'bankcard' ? val.replace(/\s/g, '') : val;
                 const reg = this.regexObj[this.regex] ? this.regexObj[this.regex] : this.trim(this.regex, '/');
                 if (!!v && this.regex && !new RegExp(reg).test(v)) {
                     this.setError('输入字符不符合规则', 'NOT_REGEX_RULE');
@@ -173,7 +173,7 @@
                 this.emitInput();
             },
             emitInput() {
-                if (this.regex == 'bankcard') {
+                if (this.regex === 'bankcard') {
                     if (/\S{5}/.test(this.currentValue)) {
                         this.currentValue = this.currentValue.replace(/\s/g, '').replace(/(\d{4})(?=\d)/g, "$1 ");
                     }

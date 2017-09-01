@@ -74,6 +74,7 @@
             city: String,
             area: String,
             done: Function,
+            callback: Function,
             title: {
                 type: String,
                 default: '所在地区'
@@ -211,7 +212,9 @@
                 });
             },
             returnValue() {
-                this.done(this.active);
+                // TODO 参数更名，即将删除
+                this.done && this.done(this.active);
+                this.callback && this.callback(this.active);
                 this.close();
             },
             close() {

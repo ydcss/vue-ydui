@@ -22,14 +22,14 @@
                 myItems1: [
                     {
                         label: '拍照',
-                        method: () => {
+                        callback: () => {
                             this.$dialog.toast({mes: '咔擦，此人太帅！', timeout: 1000});
-                            //注意： method: function() {} 和 method() {}  这样是无法正常使用当前this的
+                            //注意： callback: function() {} 和 callback() {}  这样是无法正常使用当前this的
                         }
                     },
                     {
                         label: '从相册中偷取',
-                        method: () => {
+                        callback: () => {
                             this.$dialog.toast({mes: '看到了不该看到的东西！', timeout: 1000});
                         }
                     }
@@ -37,14 +37,14 @@
                 myItems2: [
                     {
                         label: '示例菜单一 - 我是不会关闭的',
-                        method: () => {
+                        callback: () => {
                             this.$dialog.toast({mes: 'Say: 我是不会关闭的！', timeout: 1000});
                         },
                         stay: true // 不关闭
                     },
                     {
                         label: '示例菜单二 - 自动关闭',
-                        method: () => {
+                        callback: () => {
                             this.$dialog.toast({mes: 'Say: 我关闭啦啦啦！', timeout: 1000});
                         }
                     },

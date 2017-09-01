@@ -7,7 +7,7 @@
             </router-link>
         </yd-navbar>
 
-        <yd-infinitescroll :on-infinite="loadList" ref="lsdemo">
+        <yd-infinitescroll :callback="loadList" ref="lsdemo">
 
             <yd-list theme="1" slot="list">
                 <yd-list-item v-for="item in list">

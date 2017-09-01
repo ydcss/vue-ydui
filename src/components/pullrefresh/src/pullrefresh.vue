@@ -25,10 +25,12 @@
         name: 'yd-pullrefresh',
         props: {
             onInfinite: {
-                type: Function,
-                required: true,
+                type: Function
             },
-            stopDrag: {
+            callback: {
+                type: Function
+            },
+			stopDrag: {
                 type: Boolean,
                 default: false
             }
@@ -187,7 +189,8 @@
             },
             triggerLoad() {
                 this.touches.loading = true;
-                this.onInfinite();
+                this.onInfinite && this.onInfinite();
+                this.callback && this.callback();
             },
             finishLoad() {
                 setTimeout(() => {

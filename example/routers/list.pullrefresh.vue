@@ -6,7 +6,7 @@
             </router-link>
         </yd-navbar>
 
-        <yd-pullrefresh :on-infinite="loadList" ref="prdemo">
+        <yd-pullrefresh :callback="loadList" ref="prdemo">
 
             <yd-list theme="4">
                 <yd-list-item v-for="item in list">

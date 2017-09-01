@@ -15,9 +15,9 @@
             </yd-cell-item>
         </yd-cell-group>
 
-        <yd-cityselect v-model="show1" :done="result1" :items="district"></yd-cityselect>
+        <yd-cityselect v-model="show1" :callback="result1" :items="district"></yd-cityselect>
 
-        <yd-cityselect v-model="show2" :done="result2" :items="district" provance="新疆" city="乌鲁木齐市" area="天山区"></yd-cityselect>
+        <yd-cityselect v-model="show2" :callback="result2" :items="district" provance="新疆" city="乌鲁木齐市" area="天山区"></yd-cityselect>
 
     </yd-layout>
 </template>

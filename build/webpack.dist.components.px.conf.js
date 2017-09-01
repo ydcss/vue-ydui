@@ -26,7 +26,6 @@ module.exports = merge(distCommonWebpackConfig, {
         "/lib.px/switch/index": "./src/components/switch/index.js",
         "/lib.px/tab/index": "./src/components/tab/index.js",
         "/lib.px/tabbar/index": "./src/components/tabbar/index.js",
-        "/lib.px/lazyimg/index": "./src/components/lazyimg/index.js",
         "/lib.px/countup/index": "./src/components/countup/index.js",
         "/lib.px/popup/index": "./src/components/popup/index.js",
         "/lib.px/rate/index": "./src/components/rate/index.js",
@@ -41,6 +40,9 @@ module.exports = merge(distCommonWebpackConfig, {
         "/lib.px/accordion/index": "./src/components/accordion/index.js",
         "/lib.px/datetime/index": "./src/components/datetime/index.js",
         "/lib.px/lightbox/index": "./src/components/lightbox/index.js",
+        "/lib.px/tiemaxis/index": "./src/components/tiemaxis/index.js",
+        "/lib.px/step/index": "./src/components/step/index.js",
+        "/lib.px/checklist/index": "./src/components/checklist/index.js",
     },
     module: {
         loaders: [

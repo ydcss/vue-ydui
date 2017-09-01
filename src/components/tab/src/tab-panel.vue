@@ -21,9 +21,9 @@
             active() {
                 this.$parent.init(true);
             },
-	          label() {
+            label() {
                 this.$parent.init('label')
-	          }
+            }
         }
     }
 </script>

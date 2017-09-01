@@ -64,7 +64,7 @@
         watch: {
             start(val) {
                 val && this.instance.start(() => {
-                    typeof this.callback == 'function' && this.callback(this.instance);
+                    this.callback && this.callback(this.instance);
                 });
             },
             endnum(value) {
@@ -86,7 +86,7 @@
                     this.instance = new CountUp(this.$el, this.startnum, this.endnum, this.decimals, this.duration, options);
 
                     this.start && this.instance.start(() => {
-                        typeof this.callback == 'function' && this.callback(this.instance);
+                        this.callback && this.callback(this.instance);
                     });
                 }
             }
