@@ -45,6 +45,9 @@
                     {icon: 'demo-icons-accordion', name: 'Accordion', link: '/accordion'},
                     {icon: 'demo-icons-datetime', name: 'DateTime', link: '/datetime'},
                     {icon: 'demo-icons-lightbox', name: 'LightBox', link: '/lightbox'},
+                    {icon: 'demo-icons-timeline', name: 'TimeLine', link: '/timeline'},
+                    {icon: 'demo-icons-step', name: 'Step', link: '/step'},
+                    {icon: 'demo-icons-checklist', name: 'CheckList', link: '/checklist'},
                 ]
             }
         }

@@ -10,7 +10,7 @@ let timer = null;
 let lock = false;
 
 NotifyConstructor.prototype.closeNotify = function () {
-    instance.classes = 'notify-out';
+    instance.classes = 'yd-notify-out';
 
     setTimeout(() => {
         const el = instance.$el;
@@ -18,7 +18,7 @@ NotifyConstructor.prototype.closeNotify = function () {
         lock = false;
     }, 150);
 
-    typeof this.callback == 'function' && this.callback();
+    typeof this.callback === 'function' && this.callback();
 };
 
 const Notify = (options = {}) => {

@@ -4,27 +4,27 @@
 
         <div ref="tag" style="height: 1px;"></div>
 
-        <div class="list-loading" v-if="!isDone">
+        <div class="yd-list-loading" v-if="!isDone">
             <div v-show="isLoading">
                 <slot name="loadingTip">
-                    <spinner></spinner>
+                    <loading></loading>
                 </slot>
             </div>
         </div>
 
-        <div class="list-donetip" v-show="!isLoading && isDone">
+        <div class="yd-list-donetip" v-show="!isLoading && isDone">
             <slot name="doneTip">没有更多数据了</slot>
         </div>
     </div>
 </template>
 
 <script type="text/babel">
-    import Spinner from './spinner.vue';
+    import Loading from './loading.vue';
     import {getScrollview} from '../../../utils/assist';
 
     export default {
         name: 'yd-infinitescroll',
-        components: {Spinner},
+        components: {Loading},
         data() {
             return {
                 isLoading: false,
@@ -34,8 +34,10 @@
         },
         props: {
             onInfinite: {
-                type: Function,
-                required: true
+                type: Function
+            },
+            callback: {
+                type: Function
             },
             distance: {
                 default: 0,
@@ -100,7 +102,9 @@
 
                 if (tagOffsetTop > offsetTop && tagOffsetTop - (distance + offsetTop) * this.num <= contentHeight && this.$el.offsetHeight > scrollviewHeight) {
                     this.isLoading = true;
-                    this.onInfinite();
+                    // TODO 参数更名，即将删除
+                    this.onInfinite && this.onInfinite();
+                    this.callback && this.callback();
                     this.num++;
                 }
             },

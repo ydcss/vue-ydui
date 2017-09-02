@@ -1,14 +1,14 @@
 <template>
-    <router-link :to="link" class="tabbar-item" :class="classes" :style="styles" :exact="$parent.exact"
+    <router-link :to="link" class="yd-tabbar-item" :class="classes" :style="styles" :exact="$parent.exact"
                  :active-class="$parent.activeClass">
-        <span class="tabbar-icon">
+        <span class="yd-tabbar-icon">
             <slot name="icon"></slot>
-            <span class="tabbar-badge">
+            <span class="yd-tabbar-badge">
                 <slot name="badge"></slot>
             </span>
-            <span class="tabbar-dot" v-if="dot"></span>
+            <span class="yd-tabbar-dot" v-if="dot"></span>
         </span>
-        <span class="tabbar-txt">{{title}}</span>
+        <span class="yd-tabbar-txt">{{title}}</span>
     </router-link>
 </template>
 
@@ -25,7 +25,7 @@
         },
         computed: {
             classes() {
-                return this.active ? 'tabbar-active' : '';
+                return this.active ? 'yd-tabbar-active' : '';
             },
             styles() {
                 return !this.active ? {color: this.$parent.color} : {};

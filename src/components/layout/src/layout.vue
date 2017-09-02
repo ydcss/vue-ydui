@@ -1,5 +1,5 @@
 <template>
-    <section class="g-flexview">
+    <section class="yd-flexview">
         <slot name="navbar" v-if="showNavbar">
             <yd-navbar :title="title" v-if="!!title">
                 <router-link :to="link || '/'" slot="left">
@@ -10,7 +10,7 @@
 
         <slot name="top"></slot>
 
-        <section class="g-scrollview" ref="scrollView" id="scrollView">
+        <section class="yd-scrollview" ref="scrollView" id="scrollView">
             <slot></slot>
         </section>
 

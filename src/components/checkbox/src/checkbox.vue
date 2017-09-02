@@ -1,19 +1,19 @@
 <template>
-    <label class="m-checkbox">
+    <label class="yd-checkbox" :class="shape == 'circle' ? 'yd-checkbox-circle' : ''">
         <template v-if="group">
-            <input type="checkbox" v-model="model" :value="val" @change="changeHandler" :disabled="disabled"/>
+            <input type="checkbox" v-model="model" :value="val" @change="changeHandler" :disabled="disabled" />
         </template>
         <template v-else>
-            <input type="checkbox" v-model="checked" :disabled="disabled"/>
+            <input type="checkbox" v-model="checked" :disabled="disabled" />
         </template>
 
-        <span class="checkbox-icon" :style="iconStyles()"><i :style="checkIconStyles()"></i></span>
+        <span class="yd-checkbox-icon" :style="iconStyles()"><i :style="checkIconStyles()"></i></span>
 
         <template v-if="!$slots.default">
-            <span class="checkbox-text">{{val}}</span>
+            <span class="yd-checkbox-text">{{val}}</span>
         </template>
         <template v-else>
-            <span class="checkbox-text"><slot></slot></span>
+            <span class="yd-checkbox-text"><slot></slot></span>
         </template>
     </label>
 </template>
@@ -54,12 +54,20 @@
                     return /^([1-9]\d*)$/.test(val);
                 },
                 default: 20
+            },
+            shape: {
+                validator(value) {
+                    return ['square', 'circle'].indexOf(value) > -1;
+                },
+                default: 'square'
             }
         },
         methods: {
-            changeHandler () {
+            changeHandler() {
                 if (this.disabled) return;
-                this.$parent.change(this.model);
+                setTimeout(() => {
+                    this.$parent.change(this.model);
+                }, 0);
             },
             iconStyles() {
                 const size = (this.group ? this.$parent.size : this.size) + 'px';
@@ -75,8 +83,8 @@
                 const size = this.group ? this.$parent.size : this.size;
 
                 return {
-                    width: Math.round(size / 2.8) + 'px',
-                    height: Math.round(size / 1.5) + 'px'
+                    width: Math.round(size / 3.2) + 'px',
+                    height: Math.round(size / 1.7) + 'px'
                 }
             }
         },

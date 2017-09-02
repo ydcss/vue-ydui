@@ -31,7 +31,7 @@
                 if (this.custom) {
                     return 'icon-custom-' + this.name;
                 }
-                return 'icon-' + this.name;
+                return 'yd-icon-' + this.name;
             },
             styles() {
                 const style = {};

@@ -13,7 +13,7 @@ AlertConstructor.prototype.closeAlert = function () {
     const el = instance.$el;
     el.parentNode && el.parentNode.removeChild(el);
 
-    typeof this.callback == 'function' && this.callback();
+    typeof this.callback === 'function' && this.callback();
 };
 
 const Alert = (options = {}) => {

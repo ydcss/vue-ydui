@@ -1,11 +1,11 @@
 <template>
     <div>
-        <div class="m-popup-mask" v-show="show" @click.stop="close"></div>
-        <div :class="classes()" :style="styles()" ref="box">
+        <div class="yd-popup-mask" v-show="show" @click.stop="close"></div>
+        <div :class="classes" :style="styles()" ref="box">
             <div v-if="!!$slots.top && position != 'center'" ref="top">
                 <slot name="top"></slot>
             </div>
-            <div class="popup-content">
+            <div class="yd-popup-content">
                 <div ref="content">
                     <slot></slot>
                 </div>
@@ -51,8 +51,8 @@
                 if (isIOS) {
 
                     const $refs = this.$refs;
-                    const topHeight = !!this.$slots.top && this.position != 'center' ? $refs.top.offsetHeight : 0;
-                    const bottomHeight = !!this.$slots.bottom && this.position != 'center' ? $refs.bottom.offsetHeight : 0;
+                    const topHeight = !!this.$slots.top && this.position !== 'center' ? $refs.top.offsetHeight : 0;
+                    const bottomHeight = !!this.$slots.bottom && this.position !== 'center' ? $refs.bottom.offsetHeight : 0;
                     const contentHeight = topHeight + $refs.content.offsetHeight + bottomHeight;
 
                     if (val) {
@@ -77,23 +77,24 @@
                 this.show = val;
             }
         },
+        computed: {
+            classes() {
+                return (this.position === 'center' ? 'yd-popup-center ' : 'yd-popup yd-popup-' + this.position) +
+                        (this.show ? ' yd-popup-show ' : '');
+            }
+        },
         methods: {
             stopPropagation(e) {
                 e.stopPropagation();
             },
             styles() {
-                if (this.position == 'left' || this.position == 'right') {
+                if (this.position === 'left' || this.position === 'right') {
                     return {width: this.width};
-                } else if (this.position == 'bottom') {
+                } else if (this.position === 'bottom') {
                     return {width: '100%', height: this.height};
                 } else {
                     return {width: this.width};
                 }
-            },
-            classes() {
-                return (this.position == 'center' ? 'm-popup-center ' : 'm-popup ') +
-                        (this.show ? 'popup-show ' : '') +
-                        'popup-' + this.position;
             },
             close() {
                 isIOS && removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');

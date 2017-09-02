@@ -1,5 +1,5 @@
 <template>
-    <div class="slider-item">
+    <div class="yd-slider-item">
         <slot></slot>
     </div>
 </template>

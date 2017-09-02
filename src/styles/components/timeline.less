@@ -1,0 +1,87 @@
+@import "../common/variables";
+@import "../common/mixins";
+
+.@{css-prefix} {
+  &-timeline {
+    background-color: #fff;
+    font-size: 13px;
+    color: #6e6e6e;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    &:after {
+      .top-line(@line-color);
+    }
+
+    &-content {
+      margin-left: 16px;
+      border-left: 1px solid #E4E5E9;
+      > li {
+        padding: 16px 12px 16px 0;
+        margin-left: 16px;
+        position: relative;
+        > em {
+          content: '';
+          width: 8px;
+          height: 8px;
+          border-radius: 99px;
+          position: absolute;
+          z-index: 1;
+          left: -20px;
+          display: block;
+          top: 19px;
+          background-color: #E4E5E9;
+        }
+        &:not(:last-child):after {
+          .bottom-line(@line-color);
+        }
+        &:first-child {
+          margin-top: 16px;
+          padding-top: 0;
+          color: #000;
+          > em {
+            top: 3px;
+            background-color: #F23030;
+            width: 10px;
+            height: 10px;
+            left: -21px;
+          }
+          &:before {
+            content: '';
+            width: 16px;
+            height: 16px;
+            position: absolute;
+            z-index: 0;
+            top: 0;
+            left: -24px;
+            background-color: #FBBFBF;
+            border-radius: 99px;
+          }
+        }
+        &:last-child:before {
+          content: '';
+          width: 1px;
+          height: 100%;
+          background-color: #FFF;
+          position: absolute;
+          left: -17px;
+          top: 19px;
+        }
+      }
+    }
+  }
+}
+
+.hairline {
+  .@{css-prefix}-timeline-content {
+    li > em {
+      left: -20.5px;
+    }
+    li:first-child:before {
+      left: -24.5px;
+    }
+    li:first-child > em {
+      left: -21.5px;
+    }
+  }
+}

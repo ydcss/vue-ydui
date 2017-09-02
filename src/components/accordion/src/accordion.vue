@@ -1,5 +1,5 @@
 <template>
-    <div class="m-accordion">
+    <div class="yd-accordion">
         <slot></slot>
     </div>
 </template>

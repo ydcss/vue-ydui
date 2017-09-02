@@ -1,9 +1,9 @@
 <template>
-    <router-link class="grids-item" :to="link || ''">
-        <div class="grids-icon" v-if="checkIcon">
+    <router-link class="yd-grids-item" :to="link || ''">
+        <div class="yd-grids-icon" v-if="checkIcon">
             <slot name="icon"></slot>
         </div>
-        <div class="grids-txt" v-if="checkText">
+        <div class="yd-grids-txt" v-if="checkText">
             <slot name="text"></slot>
         </div>
         <slot name="else"></slot>

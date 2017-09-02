@@ -193,7 +193,7 @@
 
 @font-face {
   font-family: @demo-icons;
-  src: url('//at.alicdn.com/t/font_h3fvt20idzog8pvi.ttf') format('truetype');
+  src: url('//at.alicdn.com/t/font_87685_vlbssumywn42huxr.ttf') format('truetype');
 }
 
 [class^="demo-icons-"]:before, [class*=" demo-icons-"]:before {
@@ -266,9 +266,19 @@
   color: #3CC51E;
 }
 
+.demo-icons-checklist:before {
+  content: '\e7a6';
+  color: #FF8D20;
+}
+
 .demo-icons-keyboard:before {
   content: '\e613';
   color: #FC746C;
+}
+
+.demo-icons-step:before {
+  content: '\e7A1';
+  color: #3CCD1C;
 }
 
 .demo-icons-lazyimg:before {
@@ -298,6 +308,11 @@
 
 .demo-icons-rate:before {
   content: '\e76e';
+  color: #FC746C;
+}
+
+.demo-icons-timeline:before {
+  content: '\E79F';
   color: #FC746C;
 }
 
@@ -468,7 +483,7 @@
   font-family: arial, serif;
 }
 
-.flexbox-horizontal .demo-flexbox-text {
+.yd-flexbox-horizontal .demo-flexbox-text {
   background-color: #dcdcdc;
   margin: 0 4px;
   height: .7rem;
@@ -480,7 +495,7 @@
   font-size: .2rem;
 }
 
-.flexbox-vertical {
+.yd-flexbox-vertical {
   padding: 8px;
   .demo-flexbox-text {
     background-color: #dcdcdc;
@@ -534,4 +549,41 @@
 .demo-meizu {
   background-color: #38B4EB;
   padding: 0 .02rem 0 .1rem;
+}
+
+.demo-checklist-img {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #ECECEC;
+  margin-right: 15px;
+}
+
+.list-price {
+  font-size: .3rem;
+  color: #EB5211;
+  > em {
+    font-size: .22rem;
+  }
+}
+
+.list-del-price {
+  padding-left: .06rem;
+  font-size: .2rem;
+  margin-left: .02rem;
+  position: relative;
+  color: #8C8C8C;
+  &:after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    width: 100%;
+    border-top: 1px solid #8C8C8C;
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5);
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    top: auto;
+    bottom: 50%;
+  }
 }

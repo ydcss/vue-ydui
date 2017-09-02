@@ -1,204 +1,199 @@
 @import "../common/variables";
 @import "../common/mixins";
 
-.m-list {
-  overflow: hidden;
-  position: relative;
-  .list-item:active {
-    background: none; /* for firefox */
-  }
-}
-
-.list-img {
-  height: 0;
-  width: 100%;
-  padding: 50% 0;
-  overflow: hidden;
-  img {
-    width: 100%;
-    margin-top: -50%;
-    background-color: #FFF;
-    border: none;
-  }
-}
-
-.list-mes {
-  background-color: #FFF;
-  .list-title {
-    color: #505050;
-    font-size: .26rem;
-    text-align: justify;
-    font-weight: 800;
-  }
-  .list-other {
+.@{css-prefix} {
+  &-list {
     overflow: hidden;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    color: #999;
-  }
-}
-
-.list-price {
-  font-size: .3rem;
-  color: #EB5211;
-  > em {
-    font-size: .22rem;
-  }
-}
-
-.list-del-price {
-  padding-left: .06rem;
-  font-size: .2rem;
-  margin-left: .02rem;
-  position: relative;
-  color: #8C8C8C;
-  &:after {
-    .top-line(#8C8C8C);
-    top: auto;
-    bottom: 50%;
-  }
-}
-
-.list-theme1 {
-  padding: 0 2px 0;
-  .list-item {
-    width: 50%;
-    float: left;
-    padding: 0 2px;
-    margin-top: 4px;
-    .list-mes {
-      padding: .1rem;
-      .list-title {
-        .text-overflow();
-        height: .36rem;
-      }
-    }
-  }
-}
-
-.list-theme2 {
-  .list-item {
-    width: 50%;
-    float: left;
-    padding-top: 4px;
-    &:nth-child(odd) {
-      padding-right: 2px;
-    }
-    &:nth-child(even) {
-      padding-left: 2px;
-    }
-    .list-mes {
-      padding: .1rem;
-      .list-title {
-        .text-overflow();
-        height: .36rem;
-      }
-    }
-  }
-}
-
-.list-theme3 {
-  .list-item {
-    width: 50%;
-    float: left;
-    padding: .2rem;
     position: relative;
-    z-index: 0;
+    &-item:active {
+      background: none; /* for firefox */
+    }
+
+    &-img {
+      height: 0;
+      width: 100%;
+      padding: 50% 0;
+      overflow: hidden;
+      img {
+        width: 100%;
+        margin-top: -50%;
+        background-color: #FFF;
+        border: none;
+      }
+    }
+
+    &-mes {
+      background-color: #FFF;
+    }
+
+    &-title {
+      color: #505050;
+      font-size: .26rem;
+      text-align: justify;
+      font-weight: 800;
+    }
+
+    &-other {
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      color: #999;
+    }
+  }
+
+  &-list-theme1 {
+    padding: 0 2px 0;
+    .@{css-prefix}-list-item {
+      width: 50%;
+      float: left;
+      padding: 0 2px;
+      margin-top: 4px;
+      .@{css-prefix}-list {
+        &-mes {
+          padding: .1rem;
+        }
+        &-title {
+          .text-overflow();
+          height: .36rem;
+        }
+      }
+    }
+  }
+
+  &-list-theme2 {
+    .@{css-prefix}-list-item {
+      width: 50%;
+      float: left;
+      padding-top: 4px;
+      &:nth-child(odd) {
+        padding-right: 2px;
+      }
+      &:nth-child(even) {
+        padding-left: 2px;
+      }
+      .@{css-prefix}-list {
+        &-mes {
+          padding: .1rem;
+        }
+        &-title {
+          .text-overflow();
+          height: .36rem;
+        }
+      }
+    }
+  }
+
+  &-list-theme3 {
+    .@{css-prefix}-list-item {
+      width: 50%;
+      float: left;
+      padding: .2rem;
+      position: relative;
+      z-index: 0;
+      background-color: #FFF;
+      &:before {
+        .bottom-line(@line-color);
+      }
+      &:nth-child(odd):after {
+        .right-line(@line-color);
+      }
+      .@{css-prefix}-list {
+        &-mes {
+          padding-top: .1rem;
+        }
+        &-title {
+          .text-overflow();
+          height: .36rem;
+        }
+      }
+      &:active {
+        background: #FFF; /* for old android */
+      }
+    }
+  }
+
+  &-list-theme4 {
+    padding: 0 7px;
     background-color: #FFF;
-    &:before {
-      .bottom-line(@line-color);
-    }
-    &:nth-child(odd):after {
-      .right-line(@line-color);
-    }
-    .list-mes {
-      padding-top: .1rem;
-      .list-title {
-        .text-overflow();
-        height: .36rem;
+    .@{css-prefix}-list-item {
+      overflow: hidden;
+      display: flex;
+      padding: 7px 0 8px 0;
+      position: relative;
+      &:not(:last-child):after {
+        .bottom-line(@line-color);
       }
-    }
-    &:active {
-      background: #FFF; /* for old android */
-    }
-  }
-}
-
-.list-theme4 {
-  padding: 0 7px;
-  background-color: #FFF;
-  .list-item {
-    overflow: hidden;
-    display: flex;
-    padding: 7px 0 8px 0;
-    position: relative;
-    &:not(:last-child):after {
-      .bottom-line(@line-color);
-    }
-    .list-img {
-      width: 2rem;
-      padding: 1rem 0;
-    }
-    .list-mes {
-      flex: 1;
-      padding-left: 7px;
-      .list-title {
-        .line-clamp(3, .38rem);
-      }
-      .list-other {
-        padding-top: .1rem;
+      .@{css-prefix}-list {
+        &-img {
+          width: 2rem;
+          padding: 1rem 0;
+        }
+        &-mes {
+          flex: 1;
+          padding-left: 7px;
+        }
+        &-title {
+          .line-clamp(3, .38rem);
+        }
+        &-other {
+          padding-top: .1rem;
+        }
       }
     }
   }
-}
 
-.list-theme5 {
-  background-color: #FFF;
-  .list-item {
-    display: block;
-    position: relative;
-    z-index: 1;
-    padding: .2rem .2rem 0 .2rem;
-    &:after {
-      .bottom-line(@line-color);
-    }
-    .list-mes {
-      padding: .2rem 0 .15rem;
-      .list-other {
-        padding-top: .06rem;
+  &-list-theme5 {
+    background-color: #FFF;
+    .@{css-prefix}-list-item {
+      display: block;
+      position: relative;
+      z-index: 1;
+      padding: .2rem .2rem 0 .2rem;
+      &:after {
+        .bottom-line(@line-color);
+      }
+      .@{css-prefix}-list {
+        &-mes {
+          padding: .2rem 0 .15rem;
+        }
+        &-other {
+          padding-top: .06rem;
+        }
       }
     }
   }
 }
 
 @media screen and (min-width: 768px) {
-  .list-theme1 {
-    padding: 0 4px;
-    .list-item {
+  .@{css-prefix}-list {
+    &-theme1 {
       padding: 0 4px;
-      margin-top: 8px;
-    }
-  }
-
-  .list-theme2 {
-    .list-item {
-      padding-top: 8px;
-      &:nth-child(odd) {
-        padding-right: 4px;
-      }
-      &:nth-child(even) {
-        padding-left: 4px;
+      .@{css-prefix}-list-item {
+        padding: 0 4px;
+        margin-top: 8px;
       }
     }
-  }
 
-  .list-theme4 {
-    padding: 0 9px;
-    .list-item {
-      padding: 9px 0 10px 0;
-      .list-mes {
-        padding-left: 9px;
+    &-theme2 {
+      .@{css-prefix}-list-item {
+        padding-top: 8px;
+        &:nth-child(odd) {
+          padding-right: 4px;
+        }
+        &:nth-child(even) {
+          padding-left: 4px;
+        }
+      }
+    }
+
+    &-theme4 {
+      padding: 0 9px;
+      .@{css-prefix}-list-item {
+        padding: 9px 0 10px 0;
+        .@{css-prefix}-list-mes {
+          padding-left: 9px;
+        }
       }
     }
   }

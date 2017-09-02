@@ -1,5 +1,5 @@
 <template>
-    <div class="list-other">
+    <div class="yd-list-other">
         <slot></slot>
     </div>
 </template>

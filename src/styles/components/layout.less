@@ -1,53 +1,55 @@
 @import "../common/variables";
 
-.g-view {
-  margin: 0 auto;
-  max-width: @max-width;
-  min-width: @min-width;
-  &:before {
-    content: '';
-    display: block;
-    width: 100%;
-    height: @navbar-height;
+.@{css-prefix} {
+  &-view {
+    margin: 0 auto;
+    max-width: @max-width;
+    min-width: @min-width;
+    &:before {
+      content: '';
+      display: block;
+      width: 100%;
+      height: @navbar-height;
+    }
+    &:after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: @body-padding-bottom * 3;
+    }
   }
-  &:after {
-    content: '';
-    display: block;
+
+  &-flexview {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: @max-width;
+    min-width: @min-width;
+  }
+
+  &-scrollview {
     width: 100%;
-    height: @body-padding-bottom * 3;
+    height: 100%;
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+    margin-bottom: -1px;
+    &:after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: @body-padding-bottom;
+    }
   }
 }
 
-.g-flexview {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-  max-width: @max-width;
-  min-width: @min-width;
-}
-
-.g-scrollview {
-  width: 100%;
-  height: 100%;
-  flex: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-  position: relative;
-  margin-bottom: -1px;
-  &:after {
-    content: '';
-    display: block;
-    width: 100%;
-    height: @body-padding-bottom;
-  }
-}
-
-.ios .g-scrollview {
+.ios .@{css-prefix}-scrollview {
   margin-top: 1px;
 }
 
-.hairline .g-scrollview {
+.hairline .@{css-prefix}-scrollview {
   margin-top: 0.5px;
 }

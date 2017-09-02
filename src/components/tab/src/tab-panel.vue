@@ -1,5 +1,5 @@
 <template>
-    <div class="tab-panel-item" :class="classes">
+    <div class="yd-tab-panel-item" :class="classes">
         <slot></slot>
     </div>
 </template>
@@ -14,16 +14,16 @@
         },
         computed: {
             classes() {
-                return this.$parent.activeIndex == this._uid ? 'tab-active' : '';
+                return this.$parent.activeIndex == this._uid ? 'yd-tab-active' : '';
             }
         },
         watch: {
             active() {
                 this.$parent.init(true);
             },
-	          label() {
+            label() {
                 this.$parent.init('label')
-	          }
+            }
         }
     }
 </script>

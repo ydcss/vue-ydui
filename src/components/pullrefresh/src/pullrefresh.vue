@@ -2,7 +2,7 @@
     <div>
         <div ref="dragBox">
             <slot></slot>
-            <div class="pullrefresh-dragtip" ref="dragTip"
+            <div class="yd-pullrefresh-dragtip" ref="dragTip"
                  v-show="touches.isDraging"
                  :class="dragTip.animationTiming"
                  :style="{ 'transform': 'translate3d(0, ' + dragTip.translate + 'px, 0) scale(' + dragTip.scale + ')' }"
@@ -12,7 +12,7 @@
                 ></span>
             </div>
         </div>
-        <div class="pullrefresh-draghelp" v-if="showHelpTag" @click="showHelpTag = false">
+        <div class="yd-pullrefresh-draghelp" v-if="showHelpTag" @click="showHelpTag = false">
             <div><span>下拉更新</span></div>
         </div>
     </div>
@@ -25,10 +25,12 @@
         name: 'yd-pullrefresh',
         props: {
             onInfinite: {
-                type: Function,
-                required: true,
+                type: Function
             },
-            stopDrag: {
+            callback: {
+                type: Function
+            },
+			stopDrag: {
                 type: Boolean,
                 default: false
             }
@@ -173,11 +175,11 @@
                     return;
                 }
 
-                this.dragTip.animationTiming = 'pullrefresh-animation-timing';
+                this.dragTip.animationTiming = 'yd-pullrefresh-animation-timing';
 
                 if (touches.moveOffset >= this.dragTip.distance) {
                     this.dragTip.translate = this.dragTip.distance / 1.5;
-                    this.dragTip.loadingIcon = 'pullrefresh-loading';
+                    this.dragTip.loadingIcon = 'yd-pullrefresh-loading';
                     this.triggerLoad();
                     return;
                 }
@@ -187,7 +189,8 @@
             },
             triggerLoad() {
                 this.touches.loading = true;
-                this.onInfinite();
+                this.onInfinite && this.onInfinite();
+                this.callback && this.callback();
             },
             finishLoad() {
                 setTimeout(() => {

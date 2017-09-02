@@ -1,17 +1,31 @@
-.m-flexbox {
-  display: flex;
-  align-items: center;
-  &.flexbox-horizontal {
+@import "../common/variables";
 
-  }
-  &.flexbox-vertical {
-    flex-direction: column;
-    height: 100%;
-    .flexbox-item {
-      width: 100%;
+.@{css-prefix} {
+  &-flexbox {
+    display: flex;
+    align-items: center;
+    &-horizontal {
+
     }
-  }
-  .flexbox-item {
-    flex: 1;
+    &-vertical {
+      flex-direction: column;
+      height: 100%;
+      .@{css-prefix}-flexbox-item {
+        width: 100%;
+      }
+    }
+    &-item {
+      flex: 1;
+      &-start {
+        align-self: flex-start;
+        justify-self: flex-end;
+      }
+      &-center {
+        align-self: center;
+      }
+      &-end {
+        align-self: flex-end;
+      }
+    }
   }
 }

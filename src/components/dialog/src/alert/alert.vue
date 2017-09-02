@@ -1,9 +1,9 @@
 <template>
-    <div class="mask-black-dialog">
-        <div class="m-confirm m-alert">
-            <div class="confirm-bd" v-html="mes"></div>
-            <div class="confirm-ft">
-                <a href="javascript:;" class="confirm-btn primary" @click.stop="closeAlert">确定</a>
+    <div class="yd-dialog-black-mask">
+        <div class="yd-confirm yd-alert">
+            <div class="yd-confirm-bd" v-html="mes"></div>
+            <div class="yd-confirm-ft">
+                <a href="javascript:;" class="yd-confirm-btn primary" @click.stop="closeAlert">确定</a>
             </div>
         </div>
     </div>

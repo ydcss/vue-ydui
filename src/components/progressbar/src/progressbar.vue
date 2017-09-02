@@ -1,6 +1,6 @@
 <template>
-    <div class="m-progressbar">
-        <div class="progressbar-content" v-if="type != 'line'"><slot></slot></div>
+    <div class="yd-progressbar">
+        <div class="yd-progressbar-content" v-if="type != 'line'"><slot></slot></div>
         <svg :viewBox="viewBox" v-show="show" :preserveAspectRatio="type == 'line' ? 'none' : ''">
             <path :fill-opacity="!!fillColor ? 1 : 0"
                   :d="getPathString"
@@ -90,7 +90,7 @@
 
                 this.show = true;
 
-                if (this.type == 'line') {
+                if (this.type === 'line') {
                     this.viewBox = '0 0 100 ' + (this.strokeWidth ? this.strokeWidth : this.trailWidth);
                 }
 
@@ -121,7 +121,7 @@
         },
         computed: {
             getPathString() {
-                if (this.type == 'line') {
+                if (this.type === 'line') {
                     return 'M 0,{R} L 100,{R}'.replace(/\{R\}/g, this.trailWidth / 2);
                 } else {
                     const r = 50 - (this.strokeWidth ? this.strokeWidth : this.trailWidth) / 2;

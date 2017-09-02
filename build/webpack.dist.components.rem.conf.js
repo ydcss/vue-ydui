@@ -25,7 +25,6 @@ module.exports = merge(distCommonWebpackConfig, {
         "/lib.rem/switch/index": "./src/components/switch/index.js",
         "/lib.rem/tab/index": "./src/components/tab/index.js",
         "/lib.rem/tabbar/index": "./src/components/tabbar/index.js",
-        "/lib.rem/lazyimg/index": "./src/components/lazyimg/index.js",
         "/lib.rem/countup/index": "./src/components/countup/index.js",
         "/lib.rem/popup/index": "./src/components/popup/index.js",
         "/lib.rem/rate/index": "./src/components/rate/index.js",
@@ -39,5 +38,8 @@ module.exports = merge(distCommonWebpackConfig, {
         "/lib.rem/accordion/index": "./src/components/accordion/index.js",
         "/lib.rem/datetime/index": "./src/components/datetime/index.js",
         "/lib.rem/lightbox/index": "./src/components/lightbox/index.js",
+        "/lib.rem/timeline/index": "./src/components/timeline/index.js",
+        "/lib.rem/step/index": "./src/components/step/index.js",
+        "/lib.rem/checklist/index": "./src/components/checklist/index.js",
     }
 });

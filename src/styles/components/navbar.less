@@ -1,84 +1,89 @@
 @import "../common/variables";
 @import "../common/mixins";
 
-.m-navbar {
-  height: @navbar-height;
-  position: relative;
-  display: flex;
-  &:after {
-    .bottom-line(@navbar-border-color, 2);
-  }
-  &.navbar-fixed {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: @base-zindex * 100;
-  }
-}
-
-.navbar-item {
-  flex: 0 0 (100% - @navbar-center-width) / 2;
-  padding: 0 @body-padding-vertical / 1.2;
-  font-size: @navbar-item-fontsize;
-  white-space: nowrap;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  color: inherit;
-  &:first-child {
-    order: 1;
-    margin-right: -(100% - @navbar-center-width) / 2;
-  }
-  &:last-child {
-    order: 3;
-    justify-content: flex-end;
-    > a {
-      justify-content: flex-end;
-    }
-  }
-  > a {
-    display: flex;
-    align-items: center;
+.@{css-prefix} {
+  &-navbar {
     height: @navbar-height;
-    min-width: (100% - @navbar-center-width) / 2; /* for low version android */
-    flex: 1;
-  }
-}
-
-.navbar-center-box {
-  order: 2;
-  height: @navbar-height;
-  width: @navbar-center-width;
-  margin-left: (100% - @navbar-center-width) / 2;
-  .navbar-center {
-    width: 100%;
+    position: relative;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: inherit;
-    .center-title {
+    &:after {
+      .bottom-line(@navbar-border-color, 2);
+    }
+
+    &-fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: @base-zindex * 100;
+    }
+
+    &-item {
+      flex: 0 0 (100% - @navbar-center-width) / 2;
+      padding: 0 @body-padding-vertical / 1.2;
+      font-size: @navbar-item-fontsize;
       white-space: nowrap;
       overflow: hidden;
-      text-overflow: ellipsis;
+      display: flex;
+      align-items: center;
+      color: inherit;
+      &:first-child {
+        order: 1;
+        margin-right: -(100% - @navbar-center-width) / 2;
+      }
+      &:last-child {
+        order: 3;
+        justify-content: flex-end;
+        > a {
+          justify-content: flex-end;
+        }
+      }
+      > a {
+        display: flex;
+        align-items: center;
+        height: @navbar-height;
+        min-width: (100% - @navbar-center-width) / 2; /* for low version android */
+        flex: 1;
+      }
     }
-    img {
-      height: 60%;
+
+    &-center-box {
+      order: 2;
+      height: @navbar-height;
+      width: @navbar-center-width;
+      margin-left: (100% - @navbar-center-width) / 2;
+    }
+
+    &-center {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: inherit;
+      &-title {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      img {
+        height: 60%;
+      }
     }
   }
-}
 
-.back-icon:before, .next-icon:before {
-  display: inline-block;
-  font-family: @iconfont-inlay;
-  font-size: @navbar-icon-fontsize;
-  color: inherit;
-}
+  &-back-icon:before,
+  &-next-icon:before {
+    display: inline-block;
+    font-family: @iconfont-inlay;
+    font-size: @navbar-icon-fontsize;
+    color: inherit;
+  }
 
-.back-icon:before {
-  content: '\e607';
-}
+  &-back-icon:before {
+    content: '\e607';
+  }
 
-.next-icon:before {
-  content: '\e608';
+  &-next-icon:before {
+    content: '\e608';
+  }
 }

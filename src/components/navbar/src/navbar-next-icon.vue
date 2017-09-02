@@ -1,5 +1,5 @@
 <template>
-    <span><slot></slot><i class="next-icon" :style="{color: color}"></i></span>
+    <span><slot></slot><i class="yd-next-icon" :style="{color: color}"></i></span>
 </template>
 
 <script type="text/babel">

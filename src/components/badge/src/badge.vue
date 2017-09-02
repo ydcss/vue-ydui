@@ -1,5 +1,5 @@
 <template>
-    <span class="badge" :class="typesClass" :style="{backgroundColor: bgcolor, color: color}">
+    <span class="yd-badge" :class="typesClass" :style="{backgroundColor: bgcolor, color: color}">
         <slot></slot>
     </span>
 </template>
@@ -37,11 +37,11 @@
             typesClass() {
                 if (this.bgcolor) {
                     if (this.shape == 'square') {
-                        return ' badge-radius';
+                        return ' yd-badge-radius';
                     }
                     return '';
                 }
-                return (this.type ? 'badge-' + this.type : '') + (this.shape == 'square' ? ' badge-radius' : '');
+                return (this.type ? 'yd-badge-' + this.type : '') + (this.shape == 'square' ? ' yd-badge-radius' : '');
             }
         }
     }

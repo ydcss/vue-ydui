@@ -47,7 +47,7 @@
             run() {
                 if (!this.time) return;
 
-                if (this.timetype == 'second') {
+                if (this.timetype === 'second') {
                     this.lastTime = Math.floor(new Date() / 1000) + ~~this.time;
                 } else {
                     this.lastTime = Math.floor(new Date(this.time).getTime() / 1000);
@@ -63,7 +63,7 @@
                 if (leftTime > 0) {
                     this.str = this.timestampTotime(leftTime);
                 } else {
-                    typeof this.callback == 'function' && this.callback();
+                    this.callback && this.callback();
                     this.str = this.doneText;
                     clearInterval(this.timer);
                 }

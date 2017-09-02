@@ -1,5 +1,5 @@
 <template>
-    <div class="rollnotice-item"><slot></slot></div>
+    <div class="yd-rollnotice-item"><slot></slot></div>
 </template>
 
 <script type="text/babel">

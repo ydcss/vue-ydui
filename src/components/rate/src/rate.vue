@@ -1,11 +1,11 @@
 <template>
-    <span class="m-rate" :style="{fontSize: size, color: color}">
+    <span class="yd-rate" :style="{fontSize: size, color: color}">
         <a href="javascript:;" v-for="item in ~~count"
            :class="index >= item ? 'rate-active' : ''"
            :style="{color: index >= item ? activeColor : color, paddingRight: padding}"
            @click="!readonly && choose(item)"
         ></a>
-        <span class="rate-text" v-if="!!str" v-html="str"></span>
+        <span class="yd-rate-text" v-if="!!str" v-html="str"></span>
     </span>
 </template>
 

@@ -22,7 +22,6 @@ import {Slider, SliderItem} from './components/slider';
 import {Spinner} from './components/spinner';
 import {CitySelect} from './components/cityselect';
 import {ProgressBar} from './components/progressbar';
-import {LazyImg} from './components/lazyimg';
 import {CountDown} from './components/countdown';
 import {Rate} from './components/rate';
 import {TextArea} from './components/textarea';
@@ -37,6 +36,9 @@ import {BackTop} from './components/backtop';
 import {Accordion, AccordionItem} from './components/accordion';
 import {DateTime} from './components/datetime';
 import {LightBox, LightBoxImg, LightBoxTxt} from './components/lightbox';
+import {TimeLine, TimeLineItem} from './components/timeline';
+import {Step, StepItem} from './components/step';
+import {CheckList, CheckListItem} from './components/checklist';
 
 window.document.addEventListener('touchstart', function (event) {
     /* Do Nothing */
@@ -75,7 +77,6 @@ const install = function (Vue) {
     Vue.component(Spinner.name, Spinner);
     Vue.component(CitySelect.name, CitySelect);
     Vue.component(ProgressBar.name, ProgressBar);
-    Vue.component(LazyImg.name, LazyImg);
     Vue.component(CountDown.name, CountDown);
     Vue.component(Rate.name, Rate);
     Vue.component(TextArea.name, TextArea);
@@ -97,6 +98,12 @@ const install = function (Vue) {
     Vue.component(LightBox.name, LightBox);
     Vue.component(LightBoxImg.name, LightBoxImg);
     Vue.component(LightBoxTxt.name, LightBoxTxt);
+    Vue.component(TimeLine.name, TimeLine);
+    Vue.component(TimeLineItem.name, TimeLineItem);
+    Vue.component(Step.name, Step);
+    Vue.component(StepItem.name, StepItem);
+    Vue.component(CheckList.name, CheckList);
+    Vue.component(CheckListItem.name, CheckListItem);
 
     Vue.prototype.$dialog = {
         confirm: Confirm,

@@ -1,15 +1,15 @@
 <template>
-    <div class="m-scrolltab">
-        <div class="scrolltab-nav">
-            <a href="javascript:;" class="scrolltab-item"
+    <div class="yd-scrolltab">
+        <div class="yd-scrolltab-nav">
+            <a href="javascript:;" class="yd-scrolltab-item"
                v-for="item in navList"
-               :class="activeIndex == item._uid ? 'scrolltab-active' : ''"
+               :class="activeIndex == item._uid ? 'yd-scrolltab-active' : ''"
                @click="moveHandler(item._uid)">
-                <div class="scrolltab-icon"><i :class="item.icon"></i></div>
-                <div class="scrolltab-title">{{item.label}}</div>
+                <div class="yd-scrolltab-icon"><i :class="item.icon"></i></div>
+                <div class="yd-scrolltab-title">{{item.label}}</div>
             </a>
         </div>
-        <div class="scrolltab-content" ref="scrollView">
+        <div class="yd-scrolltab-content" ref="scrollView">
             <slot></slot>
         </div>
     </div>

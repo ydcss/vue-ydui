@@ -1,5 +1,5 @@
 <template>
-    <div @click.stop="open" class="datetime-input">{{value}}</div>
+    <div @click.stop="open" class="yd-datetime-input">{{value}}</div>
 </template>
 
 <script type="text/babel">

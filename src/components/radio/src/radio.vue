@@ -1,9 +1,9 @@
 <template>
-    <label class="m-radio">
+    <label class="yd-radio">
         <input type="radio" @change="changeHandler" :disabled="disabled" :checked="checked"/>
-        <span class="radio-icon" :style="[{color: $parent.color}, styles(1)]"><i :style="styles(2)"></i></span>
-        <span class="radio-text" v-if="!$slots.default">{{val}}</span>
-        <span class="radio-text" v-else><slot></slot></span>
+        <span class="yd-radio-icon" :style="[{color: $parent.color}, styles(1)]"><i :style="styles(2)"></i></span>
+        <span class="yd-radio-text" v-if="!$slots.default">{{val}}</span>
+        <span class="yd-radio-text" v-else><slot></slot></span>
     </label>
 </template>
 

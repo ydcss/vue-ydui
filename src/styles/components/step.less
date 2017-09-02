@@ -1,0 +1,169 @@
+@import "../common/variables";
+
+.@{css-prefix} {
+  &-step {
+    font-size: 13px;
+    &-content {
+      display: flex;
+    }
+
+    &-item {
+      flex: 1;
+      position: relative;
+      &:not(:first-child):before {
+        content: '';
+        height: 2px;
+        position: absolute;
+        top: -1px;
+        background-color: #CCC;
+      }
+      > em {
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        background-color: #CCC;
+      }
+
+      &-top, &-bottom {
+        position: absolute;
+        left: 0;
+        text-align: center;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        width: 100%;
+        padding: 0 4px;
+      }
+
+      &-top-text > span {
+        color: #989898;
+      }
+
+      &-bottom {
+        color: #333;
+      }
+    }
+  }
+
+}
+
+.@{css-prefix}-step-theme1 {
+  .@{css-prefix}-step {
+    &-content {
+      padding: 10px 0 42px 0;
+    }
+
+    &-item {
+
+      &:not(:first-child):before {
+        width: 70%;
+        left: -35%;
+      }
+      > em {
+        width: 20px;
+        height: 20px;
+        margin-left: -10px;
+        margin-top: -10px;
+        text-align: center;
+        line-height: 20px;
+        font-size: 12px;
+        > i {
+          color: #FFF;
+        }
+      }
+
+      &-top {
+        bottom: 18px;
+      }
+
+      &-bottom {
+        top: 18px;
+      }
+
+      &-current {
+        &:before {
+          background-color: currentColor;
+        }
+
+        > em {
+          background-color: currentColor;
+          &.@{css-prefix}-step-checkmark:after {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 8px;
+            border: 1px solid #FFF;
+            border-top: 0;
+            border-left: 0;
+            transform: rotate(45deg);
+            width: 5px;
+            height: 10px;
+          }
+        }
+
+        .@{css-prefix}-step-item-bottom {
+          color: currentColor;
+        }
+      }
+    }
+  }
+}
+
+.@{css-prefix}-step-theme2 {
+  .@{css-prefix}-step {
+    &-content {
+      padding: 42px 0;
+    }
+    &-item {
+      &:not(:first-child):before {
+        width: 80%;
+        left: -40%;
+      }
+      > em {
+        width: 10px;
+        height: 10px;
+        margin-left: -5px;
+        margin-top: -5px;
+      }
+
+      &-top {
+        bottom: 15px;
+      }
+
+      &-bottom {
+        top: 15px;
+      }
+
+      &-current {
+        .@{css-prefix}-step-item-top {
+          &-text {
+            display: inline-block;
+            background-color: currentColor;
+            padding: 5px 11px 3px;
+            border-radius: 100px;
+            position: relative;
+            z-index: 1;
+            > span {
+              color: #FFF;
+            }
+          }
+        }
+        > em {
+          background-color: currentColor;
+          &:after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid currentColor;
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            margin-left: -6px;
+          }
+        }
+      }
+    }
+  }
+}

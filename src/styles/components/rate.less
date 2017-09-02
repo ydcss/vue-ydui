@@ -1,23 +1,25 @@
 @import "../common/variables";
 @import "../common/mixins";
 
-.m-rate {
-  display: flex;
-  align-items: center;
-  a {
-    &:after {
-      content: '\E630';
-      font-family: @iconfont-inlay;
-      font-size: inherit;
-      color: inherit;
+.@{css-prefix} {
+  &-rate {
+    display: flex;
+    align-items: center;
+    a {
+      &:after {
+        content: '\E630';
+        font-family: @iconfont-inlay;
+        font-size: inherit;
+        color: inherit;
+      }
+      &.rate-active:after {
+        content: '\E631';
+      }
     }
-    &.rate-active:after {
-      content: '\E631';
+    &-text {
+      color: #657180;
+      margin-left: .1rem;
+      font-size: .3rem;
     }
-  }
-  .rate-text {
-    color: #657180;
-    margin-left: .1rem;
-    font-size: .3rem;
   }
 }

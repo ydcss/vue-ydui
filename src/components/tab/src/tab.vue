@@ -1,14 +1,14 @@
 <template>
-    <div class="m-tab">
-        <ul class="tab-nav">
-            <li class="tab-nav-item"
+    <div class="yd-tab">
+        <ul class="yd-tab-nav">
+            <li class="yd-tab-nav-item"
                 v-for="item in navList"
-                :class="item._uid == activeIndex ? 'tab-active' : ''"
+                :class="item._uid == activeIndex ? 'yd-tab-active' : ''"
                 @click="changeHandler(item._uid, item.label, item.tabkey)">
                 <a href="javascript:;">{{item.label}}</a>
             </li>
         </ul>
-        <div class="tab-panel">
+        <div class="yd-tab-panel">
             <slot></slot>
         </div>
     </div>
@@ -25,7 +25,8 @@
             }
         },
         props: {
-            change: Function
+            change: Function,
+            callback: Function,
         },
         methods: {
             init(update) {
@@ -37,7 +38,7 @@
                     if(update === 'label') {
                       return this.navList[index] = panel;
                     }
-                  
+
                     if (!update) {
                         this.navList.push({
                             label: panel.label,
@@ -59,7 +60,9 @@
                 });
             },
             emitChange(label, tabkey) {
-                typeof this.change == 'function' && this.change(label, tabkey);
+                // TODO 参数更名，即将删除
+                this.change && this.change(label, tabkey);
+                this.callback && this.callback(label, tabkey);
             },
             changeHandler(uid, label, tabkey) {
                 if (this.tmpIndex != uid) {

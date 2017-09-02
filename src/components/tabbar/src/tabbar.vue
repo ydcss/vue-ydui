@@ -1,5 +1,5 @@
 <template>
-    <footer class="m-tabbar tabbbar-top-line-color" :class="classes" :style="styles">
+    <footer class="yd-tabbar tabbbar-top-line-color" :class="classes" :style="styles">
         <slot></slot>
     </footer>
 </template>

@@ -7,7 +7,7 @@
         </yd-navbar>
 
         <yd-cell-group class="demo-small-pitch">
-            <div class="cell-title">值和标签一致 - 【值：{{radio1}}】</div>
+            <div class="yd-cell-title">值和标签一致 - 【值：{{radio1}}】</div>
             <yd-cell-item>
                 <yd-radio-group v-model="radio1" slot="left">
                     <yd-radio val="啦啦啦"></yd-radio>
@@ -18,7 +18,7 @@
         </yd-cell-group>
 
         <yd-cell-group>
-            <div class="cell-title">值和标签不同 - 【值：{{radio2}}】</div>
+            <div class="yd-cell-title">值和标签不同 - 【值：{{radio2}}】</div>
             <yd-cell-item>
                 <yd-radio-group v-model="radio2" slot="left">
                     <yd-radio val="1">啦啦啦</yd-radio>
