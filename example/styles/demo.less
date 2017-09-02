@@ -483,7 +483,7 @@
   font-family: arial, serif;
 }
 
-.flexbox-horizontal .demo-flexbox-text {
+.yd-flexbox-horizontal .demo-flexbox-text {
   background-color: #dcdcdc;
   margin: 0 4px;
   height: .7rem;
@@ -495,7 +495,7 @@
   font-size: .2rem;
 }
 
-.flexbox-vertical {
+.yd-flexbox-vertical {
   padding: 8px;
   .demo-flexbox-text {
     background-color: #dcdcdc;
@@ -556,4 +556,34 @@
   height: 100px;
   border: 1px solid #ECECEC;
   margin-right: 15px;
+}
+
+.list-price {
+  font-size: .3rem;
+  color: #EB5211;
+  > em {
+    font-size: .22rem;
+  }
+}
+
+.list-del-price {
+  padding-left: .06rem;
+  font-size: .2rem;
+  margin-left: .02rem;
+  position: relative;
+  color: #8C8C8C;
+  &:after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    width: 100%;
+    border-top: 1px solid #8C8C8C;
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5);
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    top: auto;
+    bottom: 50%;
+  }
 }

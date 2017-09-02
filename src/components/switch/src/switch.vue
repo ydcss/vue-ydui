@@ -1,5 +1,5 @@
 <template>
-    <input type="checkbox" class="m-switch" :disabled="disabled" v-model="checked" :style="{color: color}"/>
+    <input type="checkbox" class="yd-switch" :disabled="disabled" v-model="checked" :style="{color: color}"/>
 </template>
 
 <script type="text/babel">

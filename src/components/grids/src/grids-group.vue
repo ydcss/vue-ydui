@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="m-gridstitle" v-if="title">{{title}}</div>
+        <div class="yd-gridstitle" v-if="title">{{title}}</div>
         <div :class="classes">
             <slot></slot>
         </div>
@@ -21,7 +21,7 @@
         },
         computed: {
             classes() {
-                return 'm-grids-' + this.rows;
+                return 'yd-grids-' + this.rows;
             }
         }
     }

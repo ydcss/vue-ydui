@@ -1,18 +1,18 @@
 <template>
     <div>
-        <div class="mask-keyboard" v-if="triggerClose" v-show="show" @click.stop="close"></div>
-        <div class="mask-keyboard" v-else v-show="show"></div>
-        <div class="m-keyboard" :class="show ? 'keyboard-active' : ''">
-            <div class="keyboard-head">
+        <div class="yd-keyboard-mask" v-if="triggerClose" v-show="show" @click.stop="close"></div>
+        <div class="yd-mask-keyboard" v-else v-show="show"></div>
+        <div class="yd-keyboard" :class="show ? 'yd-keyboard-active' : ''">
+            <div class="yd-keyboard-head">
                 <strong>输入数字密码</strong>
             </div>
-            <div class="keyboard-error">{{error}}</div>
-            <ul class="keyboard-password">
+            <div class="yd-keyboard-error">{{error}}</div>
+            <ul class="yd-keyboard-password">
                 <li v-for="n in 6"><i v-show="nums.length >= n"></i></li>
             </ul>
-            <div class="keyboard-content">
-                <div class="keyboard-title">{{title}}</div>
-                <ul class="keyboard-numbers">
+            <div class="yd-keyboard-content">
+                <div class="yd-keyboard-title">{{title}}</div>
+                <ul class="yd-keyboard-numbers">
                     <li v-for="i in 4">
                         <template v-if="triggerClose">
                             <a href="javascript:;" v-if="i == 4" @click.stop="close">取消</a>

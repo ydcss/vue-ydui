@@ -1,5 +1,5 @@
 <template>
-    <div class="flexbox-item" :class="classes">
+    <div class="yd-flexbox-item" :class="classes">
         <slot></slot>
     </div>
 </template>
@@ -18,11 +18,11 @@
         computed: {
             classes() {
                 if (this.align === 'top') {
-                    return 'flexbox-item-start';
+                    return 'yd-flexbox-item-start';
                 } else if (this.align === 'bottom') {
-                    return 'flexbox-item-end';
+                    return 'yd-flexbox-item-end';
                 } else {
-                    return 'flexbox-item-center';
+                    return 'yd-flexbox-item-center';
                 }
             }
         }

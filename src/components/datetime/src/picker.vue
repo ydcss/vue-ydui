@@ -1,21 +1,21 @@
 <template>
     <div>
-        <div class="mask-datetime" v-show="show" @click.stop="close"></div>
-        <div class="m-datetime" :class="show ? 'datetime-active' : ''">
-            <div class="datetime-head">
+        <div class="yd-datetime-mask" v-show="show" @click.stop="close"></div>
+        <div class="yd-datetime" :class="show ? 'yd-datetime-active' : ''">
+            <div class="yd-datetime-head">
                 <a href="javascript:;" @click.stop="close">取消</a>
                 <a href="javascript:;" @click.stop="setValue">确定</a>
             </div>
-            <div class="datetime-content">
-                <div class="datetime-item" v-for="column in columns">
-                    <div class="datetime-item-box" :ref="'Component_' + column">
-                        <div class="datetime-item-content" :ref="'Content_' + column">
+            <div class="yd-datetime-content">
+                <div class="yd-datetime-item" v-for="column in columns">
+                    <div class="yd-datetime-item-box" :ref="'Component_' + column">
+                        <div class="yd-datetime-item-content" :ref="'Content_' + column">
                             <span v-for="item in items[column]" :data-value="item.value" v-html="item.name"></span>
                         </div>
                     </div>
                 </div>
-                <div class="datetime-mask"></div>
-                <div class="datetime-indicator"><span></span></div>
+                <div class="yd-datetime-shade"></div>
+                <div class="yd-datetime-indicator"><span></span></div>
             </div>
         </div>
     </div>

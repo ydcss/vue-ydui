@@ -1,11 +1,11 @@
 <template>
     <div>
-        <div class="m-popup-mask" v-show="show" @click.stop="close"></div>
-        <div :class="classes()" :style="styles()" ref="box">
+        <div class="yd-popup-mask" v-show="show" @click.stop="close"></div>
+        <div :class="classes" :style="styles()" ref="box">
             <div v-if="!!$slots.top && position != 'center'" ref="top">
                 <slot name="top"></slot>
             </div>
-            <div class="popup-content">
+            <div class="yd-popup-content">
                 <div ref="content">
                     <slot></slot>
                 </div>
@@ -77,6 +77,12 @@
                 this.show = val;
             }
         },
+        computed: {
+            classes() {
+                return (this.position === 'center' ? 'yd-popup-center ' : 'yd-popup yd-popup-' + this.position) +
+                        (this.show ? ' yd-popup-show ' : '');
+            }
+        },
         methods: {
             stopPropagation(e) {
                 e.stopPropagation();
@@ -89,11 +95,6 @@
                 } else {
                     return {width: this.width};
                 }
-            },
-            classes() {
-                return (this.position === 'center' ? 'm-popup-center ' : 'm-popup ') +
-                        (this.show ? 'popup-show ' : '') +
-                        'popup-' + this.position;
             },
             close() {
                 isIOS && removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');

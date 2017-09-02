@@ -1,11 +1,11 @@
 <template>
     <div>
-        <div class="accordion-title" @click="toggle">
+        <div class="yd-accordion-title" @click="toggle">
             <span v-if="$slots.title"><slot name="title"></slot></span>
             <span v-else>{{title}}</span>
             <i :class="show ? 'accordion-rotated' : ''"></i>
         </div>
-        <div class="accordion-content" :style="styleHeight">
+        <div class="yd-accordion-content" :style="styleHeight">
             <div ref="content">
                 <slot></slot>
             </div>

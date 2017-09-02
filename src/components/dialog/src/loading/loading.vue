@@ -1,8 +1,8 @@
 <template>
-    <div class="mask-white-dialog">
-        <div class="m-loading">
-            <div class="loading-icon"></div>
-            <div class="loading-txt" v-html="title"></div>
+    <div class="yd-dialog-white-mask">
+        <div class="yd-loading">
+            <div class="yd-loading-icon"></div>
+            <div class="yd-loading-txt" v-html="title"></div>
         </div>
     </div>
 </template>

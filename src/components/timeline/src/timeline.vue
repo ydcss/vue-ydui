@@ -1,6 +1,6 @@
 <template>
-    <div class="m-timeline">
-        <ul class="timeline-content">
+    <div class="yd-timeline">
+        <ul class="yd-timeline-content">
             <slot></slot>
         </ul>
     </div>

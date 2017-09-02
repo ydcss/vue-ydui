@@ -1,14 +1,14 @@
 <template>
-    <header class="m-navbar navbar-bottom-line-color" :class="classes" :style="{backgroundColor: bgcolor, height: height}">
-        <div class="navbar-item">
+    <header class="yd-navbar navbar-bottom-line-color" :class="classes" :style="{backgroundColor: bgcolor, height: height}">
+        <div class="yd-navbar-item">
             <slot name="left"></slot>
         </div>
-        <div class="navbar-center-box" :style="{height: height}">
-            <div class="navbar-center">
-                <slot name="center"><span class="center-title" :style="{color: color, fontSize: fontsize}">{{title}}</span></slot>
+        <div class="yd-navbar-center-box" :style="{height: height}">
+            <div class="yd-navbar-center">
+                <slot name="center"><span class="yd-navbar-center-title" :style="{color: color, fontSize: fontsize}">{{title}}</span></slot>
             </div>
         </div>
-        <div class="navbar-item">
+        <div class="yd-navbar-item">
             <slot name="right"></slot>
         </div>
     </header>
@@ -51,7 +51,7 @@
         },
         computed: {
             classes() {
-                return this.fixed ? 'navbar-fixed' : '';
+                return this.fixed ? 'yd-navbar-fixed' : '';
             }
         }
     }

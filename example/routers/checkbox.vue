@@ -7,14 +7,14 @@
         </yd-navbar>
 
         <yd-cell-group class="demo-small-pitch">
-            <div class="cell-title">单独使用 - {{checkbox1}}</div>
+            <div class="yd-cell-title">单独使用 - {{checkbox1}}</div>
             <yd-cell-item>
                 <yd-checkbox v-model="checkbox1" slot="left">啦啦啦啦</yd-checkbox>
             </yd-cell-item>
         </yd-cell-group>
 
         <yd-cell-group class="demo-small-pitch">
-            <div class="cell-title">值和标签一致 -> {{checkbox2}}</div>
+            <div class="yd-cell-title">值和标签一致 -> {{checkbox2}}</div>
             <yd-cell-item>
                 <yd-checkbox-group v-model="checkbox2" slot="left">
                     <yd-checkbox val="啦啦啦"></yd-checkbox>
@@ -25,7 +25,7 @@
         </yd-cell-group>
 
         <yd-cell-group class="demo-small-pitch">
-            <div class="cell-title">值和标签不同 -> {{checkbox3}}</div>
+            <div class="yd-cell-title">值和标签不同 -> {{checkbox3}}</div>
             <yd-cell-item>
                 <yd-checkbox-group v-model="checkbox3" slot="left">
                     <yd-checkbox val="1">啦啦啦</yd-checkbox>

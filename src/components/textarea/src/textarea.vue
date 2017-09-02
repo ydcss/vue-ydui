@@ -1,11 +1,11 @@
 <template>
-    <div class="m-textarea">
+    <div class="yd-textarea">
         <textarea v-model="mlstr"
                   :placeholder="placeholder"
                   :maxlength="maxlength"
                   :readonly="readonly"
         ></textarea>
-        <div class="textarea-counter" v-if="showCounter && maxlength">{{num}}/{{maxlength}}</div>
+        <div class="yd-textarea-counter" v-if="showCounter && maxlength">{{num}}/{{maxlength}}</div>
     </div>
 </template>
 
@@ -21,7 +21,7 @@
         props: {
             maxlength: {
                 validator(val) {
-                    if(!val) return true;
+                    if (!val) return true;
                     return /^(([1-9]\d*)|0)$/.test(val);
                 }
             },
@@ -41,22 +41,27 @@
             },
             change: {
                 type: Function
+            },
+            callback: {
+                type: Function
             }
         },
         watch: {
             mlstr(val) {
                 this.$emit('input', val);
-                typeof this.change == 'function' && this.change();
+                // TODO 参数更名，即将删除
+                this.change && this.change();
+                this.callback && this.change();
                 if (this.showCounter) this.num = val.length;
             },
-			value(val) {
+            value(val) {
                 this.mlstr = val;
-			}
+            }
         },
         mounted() {
             this.$nextTick(() => {
                 const v = this.value;
-                if (!v)return;
+                if (!v) return;
                 this.mlstr = v.length > this.maxlength ? v.substr(v, this.maxlength) : v;
             });
         }

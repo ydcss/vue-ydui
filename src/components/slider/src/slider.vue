@@ -1,18 +1,18 @@
 <template>
-    <div class="m-slider" ref="slider">
-        <div class="slider-wrapper" ref="warpper"
-             :class="direction == 'vertical' ? 'slider-wrapper-vertical' : ''"
+    <div class="yd-slider" ref="slider">
+        <div class="yd-slider-wrapper" ref="warpper"
+             :class="direction == 'vertical' ? 'yd-slider-wrapper-vertical' : ''"
              :style="dragStyleObject"
         >
-            <div class="slider-item" :style="itemHeight" v-html="lastItem"></div>
+            <div class="yd-slider-item" :style="itemHeight" v-html="lastItem"></div>
             <slot></slot>
-            <div class="slider-item" :style="itemHeight" v-html="firtstItem"></div>
+            <div class="yd-slider-item" :style="itemHeight" v-html="firtstItem"></div>
         </div>
-        <div class="slider-pagination" v-if="itemsArr.length > 1 && showPagination"
-             :class="direction == 'vertical' ? 'slider-pagination-vertical' : ''">
-            <span class="slider-pagination-item"
+        <div class="yd-slider-pagination" v-if="itemsArr.length > 1 && showPagination"
+             :class="direction == 'vertical' ? 'yd-slider-pagination-vertical' : ''">
+            <span class="yd-slider-pagination-item"
                   v-for="(t, i) in itemNums"
-                  :class="paginationIndex == i ? 'slider-pagination-item-active': ''"
+                  :class="paginationIndex == i ? 'yd-slider-pagination-item-active': ''"
             ></span>
         </div>
     </div>

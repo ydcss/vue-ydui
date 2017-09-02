@@ -1,10 +1,6 @@
 @import "../common/variables";
 @import "../common/mixins";
 
-.m-button {
-  padding: 0 @body-padding-vertical;
-}
-
 .btn-variant() {
   text-align: center;
   position: relative;
@@ -12,57 +8,66 @@
   pointer-events: auto;
 }
 
-.btn {
-  .btn-variant();
-  height: @btn-height;
-  font-size: @btn-fontsize;
-  display: inline-block;
-  padding: 0 .2rem;
-  box-sizing: content-box;
-  border-radius: @btn-radius;
+.@{css-prefix} {
+  &-button {
+    padding: 0 @body-padding-vertical;
+  }
+
+  &-btn {
+    .btn-variant();
+    height: @btn-height;
+    font-size: @btn-fontsize;
+    display: inline-block;
+    padding: 0 .2rem;
+    box-sizing: content-box;
+    border-radius: @btn-radius;
+  }
+
+  &-btn-block {
+    .btn-variant();
+    width: 100%;
+    display: block;
+    font-size: @btn-block-fontsize;
+    height: @btn-block-height;
+    margin-top: @btn-block-margin-top;
+    border-radius: @btn-block-radius;
+  }
+
+  &-btn-circle {
+    border-radius: 200px;
+  }
+
+  &-btn-primary {
+    .tap-color(@btn-primary-bg);
+    color: @btn-default-color;
+  }
+
+  &-btn-danger {
+    .tap-color(@btn-danger-bg);
+    color: @btn-default-color;
+  }
+
+  &-btn-warning {
+    .tap-color(@btn-warning-bg);
+    color: @btn-default-color;
+  }
+
+  &-btn-disabled {
+    .tap-color(@btn-disabled-bg);
+    color: @btn-disabled-color;
+    pointer-events: none;
+  }
+
+  &-btn-hollow {
+    .tap-color(@btn-hollow-bg, .97);
+    color: @btn-hollow-color;
+    border: 1px solid @btn-hollow-border-color;
+  }
 }
 
-.btn-block {
-  .btn-variant();
-  width: 100%;
-  display: block;
-  font-size: @btn-block-fontsize;
-  height: @btn-block-height;
-  margin-top: @btn-block-margin-top;
-  border-radius: @btn-block-radius;
+.hairline .@{css-prefix} {
+  &-btn-hollow {
+    border: .5px solid @btn-hollow-border-color * 0.95;
+  }
 }
 
-.btn-circle {
-  border-radius: 200px;
-}
-
-.btn-primary {
-  .tap-color(@btn-primary-bg);
-  color: @btn-default-color;
-}
-
-.btn-danger {
-  .tap-color(@btn-danger-bg);
-  color: @btn-default-color;
-}
-
-.btn-warning {
-  .tap-color(@btn-warning-bg);
-  color: @btn-default-color;
-}
-
-.btn-disabled {
-  .tap-color(@btn-disabled-bg);
-  color: @btn-disabled-color;
-  pointer-events: none;
-}
-
-.btn-hollow {
-  .tap-color(@btn-hollow-bg, .97);
-  color: @btn-hollow-color;
-  border: 1px solid @btn-hollow-border-color;
-}
-
-.hairline .btn-hollow {
-  border: .5px solid @btn-hollow-border-color * 0.95;
-}

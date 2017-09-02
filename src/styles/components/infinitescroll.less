@@ -1,28 +1,32 @@
-.list-loading {
-  padding: .1rem 0;
-  text-align: center;
-  font-size: .26rem;
-  color: #999;
-  height: .66rem;
-  box-sizing: content-box;
-  .list-loading-box {
-    height: .66rem;
-    overflow: hidden;
-    line-height: .66rem;
-  }
-  img {
-    height: .66rem;
-    display: inline-block;
-  }
-  svg {
-    width: .66rem;
-    height: .66rem;
-  }
-}
+@import "../common/variables";
 
-.list-donetip {
-  font-size: .24rem;
-  text-align: center;
-  padding: .25rem 0;
-  color: #777;
+.@{css-prefix} {
+  &-list-loading {
+    padding: .1rem 0;
+    text-align: center;
+    font-size: .26rem;
+    color: #999;
+    height: .66rem;
+    box-sizing: content-box;
+    &-box {
+      height: .66rem;
+      overflow: hidden;
+      line-height: .66rem;
+    }
+    img {
+      height: .66rem;
+      display: inline-block;
+    }
+    svg {
+      width: .66rem;
+      height: .66rem;
+    }
+  }
+
+  &-list-donetip {
+    font-size: .24rem;
+    text-align: center;
+    padding: .25rem 0;
+    color: #777;
+  }
 }

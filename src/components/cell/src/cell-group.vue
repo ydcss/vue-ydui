@@ -1,7 +1,7 @@
 <template>
-    <div class="m-cell-box">
-        <div class="m-cell">
-            <div class="cell-title" v-if="title">{{title}}</div>
+    <div class="yd-cell-box">
+        <div class="yd-cell">
+            <div class="yd-cell-title" v-if="title">{{title}}</div>
             <slot></slot>
         </div>
         <slot name="bottom"></slot>

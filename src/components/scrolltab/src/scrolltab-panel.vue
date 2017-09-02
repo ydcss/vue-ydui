@@ -1,6 +1,6 @@
 <template>
-    <div class="scrolltab-content-item">
-        <strong class="scrolltab-content-title">{{label}}</strong>
+    <div class="yd-scrolltab-content-item">
+        <strong class="yd-scrolltab-content-title">{{label}}</strong>
         <slot></slot>
     </div>
 </template>

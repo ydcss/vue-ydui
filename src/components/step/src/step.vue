@@ -1,6 +1,6 @@
 <template>
-    <div class="m-step" :class="'step-theme' + theme">
-        <ul class="step-content"
+    <div class="yd-step" :class="'yd-step-theme' + theme">
+        <ul class="yd-step-content"
             :style="{paddingBottom: hasBottom ? '42px' : '10px', paddingTop: hasTop ? '42px' : '10px', color: currentColor}">
             <slot></slot>
         </ul>

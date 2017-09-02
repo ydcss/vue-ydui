@@ -1,5 +1,5 @@
 <template>
-    <div class="m-checklist" :style="{color: color}" :class="align == 'right' ? 'checklist-align-right' : ''">
+    <div class="yd-checklist" :style="{color: color}" :class="align == 'right' ? 'yd-checklist-alignright' : ''">
         <slot></slot>
     </div>
 </template>

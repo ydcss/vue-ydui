@@ -1,9 +1,9 @@
 <template>
-    <div class="m-rollnotice" :style="{height: height + 'px'}">
-        <div class="rollnotice-box" :style="styles" :class="'align-' + align">
-            <div class="rollnotice-item" v-html="lastItem"></div>
+    <div class="yd-rollnotice" :style="{height: height + 'px'}">
+        <div class="yd-rollnotice-box" :style="styles" :class="'yd-rollnotice-align-' + align">
+            <div class="yd-rollnotice-item" v-html="lastItem"></div>
             <slot></slot>
-            <div class="rollnotice-item" v-html="firtstItem"></div>
+            <div class="yd-rollnotice-item" v-html="firtstItem"></div>
         </div>
     </div>
 </template>

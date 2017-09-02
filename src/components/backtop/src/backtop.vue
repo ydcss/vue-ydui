@@ -1,7 +1,7 @@
 <template>
     <div v-show="show" @click.stop="backtop">
         <slot v-if="!!$slots.default"></slot>
-        <div v-else class="m-backtop"></div>
+        <div v-else class="yd-backtop"></div>
     </div>
 </template>
 

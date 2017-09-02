@@ -1,29 +1,29 @@
 <template>
     <div>
-        <div class="mask-cityselect" v-show="show" @click.stop="close" ref="mask"></div>
-        <div class="m-cityselect" :class="show ? 'cityselect-active' : ''">
-            <div class="cityselect-header">
-                <p class="cityselect-title" @touchstart.stop.prevent="">{{title}}</p>
-                <div v-show="ready" class="cityselect-nav">
+        <div class="yd-cityselect-mask" v-show="show" @click.stop="close" ref="mask"></div>
+        <div class="yd-cityselect" :class="show ? 'yd-cityselect-active' : ''">
+            <div class="yd-cityselect-header">
+                <p class="yd-cityselect-title" @touchstart.stop.prevent="">{{title}}</p>
+                <div v-show="ready" class="yd-cityselect-nav">
                     <a href="javascript:;"
                        v-for="index in columnNum"
                        v-show="!!nav['txt' + index]"
                        @click.stop="navEvent(index)"
-                       :class="index == navIndex ? 'cityselect-nav-active' : ''"
+                       :class="index == navIndex ? 'yd-cityselect-nav-active' : ''"
                     >{{nav['txt' + index]}}</a>
                 </div>
             </div>
-            <div v-if="!ready" class="cityselect-loading">
+            <div v-if="!ready" class="yd-cityselect-loading">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
                     <path stroke="none" d="M3 50A47 47 0 0 0 97 50A47 49 0 0 1 3 50" fill="#bababa" transform="rotate(317.143 50 51)">
                         <animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 51;360 50 51" keyTimes="0;1" dur="0.6s" begin="0s" repeatCount="indefinite"></animateTransform>
                     </path>
                 </svg>
             </div>
-            <ul v-show="ready" class="cityselect-content" :class="activeClasses">
-                <li class="cityselect-item" v-for="index in columnNum" :ref="'itemBox' + index">
+            <ul v-show="ready" class="yd-cityselect-content" :class="activeClasses">
+                <li class="yd-cityselect-item" v-for="index in columnNum" :ref="'itemBox' + index">
                     <template v-if="columns['columnItems' + index].length > 0">
-                        <div class="cityselect-item-box">
+                        <div class="yd-cityselect-item-box">
                             <a href="javascript:;"
                                v-for="item in columns['columnItems' + index]"
                                :class="currentClass(item.v, item.n, index)"
@@ -32,7 +32,7 @@
                         </div>
                     </template>
                     <template v-else>
-                        <div class="cityselect-item-box" @touchstart.stop.prevent=""></div>
+                        <div class="yd-cityselect-item-box" @touchstart.stop.prevent=""></div>
                     </template>
                 </li>
             </ul>
@@ -168,7 +168,7 @@
                 }
             },
             currentClass(v, n, index) {
-                return (v && v == this.active['itemValue' + index]) || (n && n === this.active['itemName' + index]) ? 'cityselect-item-active' : '';
+                return (v && v == this.active['itemValue' + index]) || (n && n === this.active['itemName' + index]) ? 'yd-cityselect-item-active' : '';
             },
             clearNavTxt(index) {
                 for (let i = 0; i < this.columnNum; i++) {
@@ -224,10 +224,10 @@
                 this.show = false;
             },
             backoffView(animate) {
-                this.activeClasses = (animate ? 'cityselect-move-animate' : '') + ' cityselect-prev';
+                this.activeClasses = (animate ? 'yd-cityselect-move-animate' : '') + ' yd-cityselect-prev';
             },
             forwardView(animate) {
-                this.activeClasses = (animate ? 'cityselect-move-animate' : '') + ' cityselect-next';
+                this.activeClasses = (animate ? 'yd-cityselect-move-animate' : '') + ' yd-cityselect-next';
             }
         },
         created() {

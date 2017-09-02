@@ -43,16 +43,16 @@
         },
         computed: {
             classes() {
-                let s = this.size === 'large' ? 'btn-block' : 'btn';
-                let b = 'btn-' + this.type;
+                let s = this.size === 'large' ? 'yd-btn-block' : 'yd-btn';
+                let b = 'yd-btn-' + this.type;
                 if (this.disabled) {
-                    b = 'btn-disabled';
+                    b = 'yd-btn-disabled';
                 }
 
                 if (this.bgcolor) {
                     b = '';
                 }
-                return s + ' ' + b + (this.shape === 'circle' ? ' btn-circle' : '');
+                return s + ' ' + b + (this.shape === 'circle' ? ' yd-btn-circle' : '');
             }
         }
     }

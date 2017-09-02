@@ -1,15 +1,15 @@
 <template>
-    <li class="step-item" :class="currentClass">
+    <li class="yd-step-item" :class="currentClass">
         <template v-if="theme == 1">
-            <em :class="stepNumber < current ? 'step-checkmark' : ''"><i>{{stepNumber >= current ? stepNumber : ''}}</i></em>
+            <em :class="stepNumber < current ? 'yd-step-checkmark' : ''"><i>{{stepNumber >= current ? stepNumber : ''}}</i></em>
         </template>
         <template v-else>
             <em></em>
         </template>
-        <div class="step-item-top">
-            <div class="step-item-top-text"><span><slot name="top"></slot></span></div>
+        <div class="yd-step-item-top">
+            <div class="yd-step-item-top-text"><span><slot name="top"></slot></span></div>
         </div>
-        <div class="step-item-bottom">
+        <div class="yd-step-item-bottom">
             <slot name="bottom"></slot>
         </div>
     </li>
@@ -29,10 +29,10 @@
         methods: {
             setCurrentClass() {
                 if (this.theme == 2) {
-                    this.currentClass = this.stepNumber == this.current ? 'step-item-current' : '';
+                    this.currentClass = this.stepNumber == this.current ? 'yd-step-item-current' : '';
                     return;
                 }
-                this.currentClass = this.stepNumber <= this.current ? 'step-item-current' : '';
+                this.currentClass = this.stepNumber <= this.current ? 'yd-step-item-current' : '';
             }
         },
         mounted() {

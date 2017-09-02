@@ -1,27 +1,31 @@
-.m-flexbox {
-  display: flex;
-  align-items: center;
-  &.flexbox-horizontal {
+@import "../common/variables";
 
-  }
-  &.flexbox-vertical {
-    flex-direction: column;
-    height: 100%;
-    .flexbox-item {
-      width: 100%;
+.@{css-prefix} {
+  &-flexbox {
+    display: flex;
+    align-items: center;
+    &-horizontal {
+
     }
-  }
-  .flexbox-item {
-    flex: 1;
-    &.flexbox-item-start {
-      align-self: flex-start;
-      justify-self: flex-end;
+    &-vertical {
+      flex-direction: column;
+      height: 100%;
+      .@{css-prefix}-flexbox-item {
+        width: 100%;
+      }
     }
-    &.flexbox-item-center {
-      align-self: center;
-    }
-    &.flexbox-item-end {
-      align-self: flex-end;
+    &-item {
+      flex: 1;
+      &-start {
+        align-self: flex-start;
+        justify-self: flex-end;
+      }
+      &-center {
+        align-self: center;
+      }
+      &-end {
+        align-self: flex-end;
+      }
     }
   }
 }

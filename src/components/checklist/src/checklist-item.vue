@@ -1,14 +1,14 @@
 <template>
-    <div class="checklist-item" @click="emitChangeHandler">
-        <div class="checklist-item-icon" v-if="label">
+    <div class="yd-checklist-item" @click="emitChangeHandler">
+        <div class="yd-checklist-item-icon" v-if="label">
             <input type="checkbox" :disabled="disabled" :checked="checked">
-            <span class="checklist-icon"><i></i></span>
+            <span class="yd-checklist-icon"><i></i></span>
         </div>
-        <label class="checklist-item-icon" v-else>
+        <label class="yd-checklist-item-icon" v-else>
             <input type="checkbox" :disabled="disabled" :checked="checked" @change="changeHandler">
-            <span class="checklist-icon"><i></i></span>
+            <span class="yd-checklist-icon"><i></i></span>
         </label>
-        <div class="checklist-content">
+        <div class="yd-checklist-content">
             <slot></slot>
         </div>
     </div>

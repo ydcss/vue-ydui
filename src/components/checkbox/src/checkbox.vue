@@ -1,5 +1,5 @@
 <template>
-    <label class="m-checkbox" :class="shape == 'circle' ? 'm-checkbox-circle' : ''">
+    <label class="yd-checkbox" :class="shape == 'circle' ? 'yd-checkbox-circle' : ''">
         <template v-if="group">
             <input type="checkbox" v-model="model" :value="val" @change="changeHandler" :disabled="disabled" />
         </template>
@@ -7,13 +7,13 @@
             <input type="checkbox" v-model="checked" :disabled="disabled" />
         </template>
 
-        <span class="checkbox-icon" :style="iconStyles()"><i :style="checkIconStyles()"></i></span>
+        <span class="yd-checkbox-icon" :style="iconStyles()"><i :style="checkIconStyles()"></i></span>
 
         <template v-if="!$slots.default">
-            <span class="checkbox-text">{{val}}</span>
+            <span class="yd-checkbox-text">{{val}}</span>
         </template>
         <template v-else>
-            <span class="checkbox-text"><slot></slot></span>
+            <span class="yd-checkbox-text"><slot></slot></span>
         </template>
     </label>
 </template>

@@ -13,7 +13,7 @@ ToastConstructor.prototype.closeToast = function () {
 
     pageScroll.unlock();
 
-    typeof this.callback == 'function' && this.callback();
+    typeof this.callback === 'function' && this.callback();
 };
 
 const Toast = (options = {}) => {

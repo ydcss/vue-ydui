@@ -1,157 +1,160 @@
 @import "../common/variables";
 @import "../common/mixins";
 
-.m-cell-box {
-  margin-bottom: .35rem;
-}
+.@{css-prefix} {
 
-.m-cell {
-  background-color: #FFF;
-  position: relative;
-  z-index: 5;
-  &:after {
-    .bottom-line(@line-high-color);
+  &-cell-box {
+    margin-bottom: .35rem;
   }
-  a.cell-item,
-  label.cell-item {
-    .tap-color(#FFF, .96);
-  }
-}
 
-.cell-item {
-  display: flex;
-  position: relative;
-  padding-left: @body-padding-vertical;
-  overflow: hidden;
-  &:not(:last-child):after {
-    margin-left: @body-padding-vertical;
-    .bottom-line(@line-color);
-  }
-}
-
-.cell-left {
-  color: @cell-left-color;
-  font-size: @cell-left-fontsize;
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-}
-
-.cell-right {
-  flex: 1;
-  width: 100%;
-  min-height: @cell-height;
-  color: @cell-right-color;
-  text-align: right;
-  font-size: @cell-right-fontsize;
-  padding-right: @body-padding-vertical;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  input[type="datetime-local"],
-  input[type="date"],
-  input[type="time"] {
-    line-height: @cell-height;
-  }
-  input[type="radio"],
-  input[type="checkbox"]:not(.m-switch) {
-    position: absolute;
-    left: -9999em;
-    & + .cell-radio-icon:after,
-    & + .cell-checkbox-icon:after {
-      font-family: @iconfont-inlay;
-      font-size: .44rem;
+  &-cell {
+    background-color: #FFF;
+    position: relative;
+    z-index: 5;
+    &:after {
+      .bottom-line(@line-high-color);
     }
-    & + .cell-radio-icon:after {
-      content: '\e600';
-      color: #4CD864;
-      display: none;
-    }
-    & + .cell-checkbox-icon:after {
-      content: '\e604';
-      color: #D9D9D9;
-    }
-    &:checked {
-      & + .cell-radio-icon:after {
-        display: inline-block;
-      }
-      & + .cell-checkbox-icon:after {
-        color: #4CD864;
-        content: '\e601';
-      }
+    a.@{css-prefix}-cell-item,
+    label.@{css-prefix}-cell-item {
+      .tap-color(#FFF, .96);
     }
   }
-  &:active {
-    background: none; /* for firefox */
-  }
-  .input-clear,
-  .input-password {
-    height: @cell-height;
-  }
-}
 
-.cell-right {
-  input[type="text"]:not(.spinner-input),
-  input[type="number"],
-  input[type="tel"],
-  input[type="url"],
-  input[type="email"],
-  input[type="password"],
-  input[type="datetime-local"],
-  input[type="date"],
-  input[type="time"],
-  .datetime-input {
-    flex: 1;
-    height: @cell-height;
-    border: none;
-    font-size: @cell-input-fontsize;
-    background: transparent;
-    color: @cell-input-color;
+  &-cell-item {
     display: flex;
-    justify-content: flex-start;
+    position: relative;
+    padding-left: @body-padding-vertical;
+    overflow: hidden;
+    &:not(:last-child):after {
+      margin-left: @body-padding-vertical;
+      .bottom-line(@line-color);
+    }
+  }
+
+  &-cell-left {
+    color: @cell-left-color;
+    font-size: @cell-left-fontsize;
+    white-space: nowrap;
+    display: flex;
     align-items: center;
-    text-align: left; /* fuck UC */
   }
-  select {
+
+  &-cell-right {
     flex: 1;
-    height: @cell-height;
-    border: none;
+    width: 100%;
+    min-height: @cell-height;
+    color: @cell-right-color;
+    text-align: right;
+    font-size: @cell-right-fontsize;
+    padding-right: @body-padding-vertical;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    input[type="datetime-local"],
+    input[type="date"],
+    input[type="time"] {
+      line-height: @cell-height;
+    }
+    input[type="radio"],
+    input[type="checkbox"]:not(.@{css-prefix}-switch) {
+      position: absolute;
+      left: -9999em;
+      & + .@{css-prefix}-cell-radio-icon:after,
+      & + .@{css-prefix}-cell-checkbox-icon:after {
+        font-family: @iconfont-inlay;
+        font-size: .44rem;
+      }
+      & + .@{css-prefix}-cell-radio-icon:after {
+        content: '\e600';
+        color: #4CD864;
+        display: none;
+      }
+      & + .@{css-prefix}-cell-checkbox-icon:after {
+        content: '\e604';
+        color: #D9D9D9;
+      }
+      &:checked {
+        & + .@{css-prefix}-cell-radio-icon:after {
+          display: inline-block;
+        }
+        & + .@{css-prefix}-cell-checkbox-icon:after {
+          color: #4CD864;
+          content: '\e601';
+        }
+      }
+    }
+    &:active {
+      background: none; /* for firefox */
+    }
+    .@{css-prefix}-input-clear,
+    .@{css-prefix}-input-password {
+      height: @cell-height;
+    }
+  }
+
+  &-cell-right {
+    input[type="text"]:not(.@{css-prefix}-spinner-input),
+    input[type="number"],
+    input[type="tel"],
+    input[type="url"],
+    input[type="email"],
+    input[type="password"],
+    input[type="datetime-local"],
+    input[type="date"],
+    input[type="time"],
+    .@{css-prefix}-datetime-input {
+      flex: 1;
+      height: @cell-height;
+      border: none;
+      font-size: @cell-input-fontsize;
+      background: transparent;
+      color: @cell-input-color;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      text-align: left; /* fuck UC */
+    }
+    select {
+      flex: 1;
+      height: @cell-height;
+      border: none;
+      display: block;
+      color: @cell-select-color;
+      font-size: @cell-select-fontsize;
+      margin-left: -.08rem; /* 去除select默认缩进 */
+    }
+  }
+
+  &-cell-icon {
     display: block;
-    color: @cell-select-color;
-    font-size: @cell-select-fontsize;
-    margin-left: -.08rem; /* 去除select默认缩进 */
+    margin-right: .1rem;
+    img {
+      height: 0.4rem;
+    }
   }
-}
 
-.cell-icon {
-  display: block;
-  margin-right: .1rem;
-  img {
-    height: 0.4rem;
+  &-cell-arrow {
+    &:after {
+      margin-left: .05rem;
+      margin-right: -.08rem;
+      display: block;
+      font-family: @iconfont-inlay;
+      font-size: @cell-arrow-fontsize;
+      color: @cell-arrow-color;
+      content: '\e608';
+    }
   }
-}
 
-.cell-arrow {
-  &:after {
-    margin-left: .05rem;
-    margin-right: -.08rem;
-    display: block;
-    font-family: @iconfont-inlay;
-    font-size: @cell-arrow-fontsize;
-    color: @cell-arrow-color;
-    content: '\e608';
-  }
-}
-
-.cell-title {
-  padding: 0 @body-padding-vertical .1rem;
-  font-size: @cell-title-fontsize;
-  text-align: left;
-  color: @cell-title-color;
-  position: relative;
-  z-index: 1;
-  background-color: @body-bg;
-  &:after {
-    .bottom-line(@line-color, 3);
+  &-cell-title {
+    padding: 0 @body-padding-vertical .1rem;
+    font-size: @cell-title-fontsize;
+    text-align: left;
+    color: @cell-title-color;
+    position: relative;
+    z-index: 1;
+    background-color: @body-bg;
+    &:after {
+      .bottom-line(@line-color, 3);
+    }
   }
 }

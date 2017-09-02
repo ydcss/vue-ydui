@@ -8,7 +8,7 @@ const instance = new ConfirmConstructor({
 });
 
 ConfirmConstructor.prototype.closeConfirm = function (stay, callback) {
-    typeof callback == 'function' && callback();
+    typeof callback === 'function' && callback();
 
     if (stay)return;
 
