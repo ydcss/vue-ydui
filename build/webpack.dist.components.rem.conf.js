@@ -38,7 +38,7 @@ module.exports = merge(distCommonWebpackConfig, {
         "/lib.rem/accordion/index": "./src/components/accordion/index.js",
         "/lib.rem/datetime/index": "./src/components/datetime/index.js",
         "/lib.rem/lightbox/index": "./src/components/lightbox/index.js",
-        "/lib.rem/timeaxis/index": "./src/components/timeaxis/index.js",
+        "/lib.rem/timeline/index": "./src/components/timeline/index.js",
         "/lib.rem/step/index": "./src/components/step/index.js",
         "/lib.rem/checklist/index": "./src/components/checklist/index.js",
     }

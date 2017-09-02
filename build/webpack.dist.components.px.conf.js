@@ -40,7 +40,7 @@ module.exports = merge(distCommonWebpackConfig, {
         "/lib.px/accordion/index": "./src/components/accordion/index.js",
         "/lib.px/datetime/index": "./src/components/datetime/index.js",
         "/lib.px/lightbox/index": "./src/components/lightbox/index.js",
-        "/lib.px/tiemaxis/index": "./src/components/tiemaxis/index.js",
+        "/lib.px/timeline/index": "./src/components/timeline/index.js",
         "/lib.px/step/index": "./src/components/step/index.js",
         "/lib.px/checklist/index": "./src/components/checklist/index.js",
     },
