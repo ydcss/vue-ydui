@@ -57,11 +57,16 @@
             emitInput(setValue, check) {
                 const arr = [];
                 const childrens = this.$children.filter(item => item.$options.name === 'yd-checklist-item');
+                let disabledNum = 0;
                 childrens.forEach(item => {
-                    if (setValue) item.checked = check;
+                    if (item.disabled) {
+                        disabledNum++;
+                    } else {
+                        if (setValue) item.checked = check;
+                    }
                     item.checked && arr.push(item.val);
                 });
-                this.isCheckAll = arr.length >= childrens.length;
+                this.isCheckAll = arr.length >= childrens.length - disabledNum;
                 this.$emit('input', arr);
             },
             checkAll(check) {
