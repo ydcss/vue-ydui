@@ -8,7 +8,7 @@
             <yd-button size="large" type="danger" @click.native="show4 = true">右侧弹出</yd-button>
         </yd-button-group>
 
-        <yd-popup v-model="show1" position="center" width="90%">
+        <yd-popup v-model="show1" position="center" width="90%" :close-on-click-modal="closeOnClickModal">
             <p>
                 我为什么喜欢在京东买东西，因为今天买明天就可以送到。我为什么每个商品的评价都一样，因为在京东买的东西太多太多了，
                 导致积累了很多未评价的订单，所以我统一用段话作为评价内容。京东购物这么久，有买到很好的产品，也有买到比较坑的产品，
@@ -50,7 +50,8 @@
                 show1: false,
                 show2: false,
                 show3: false,
-                show4: false
+                show4: false,
+                closeOnClickModal:false
             }
         }
     }
