@@ -61,6 +61,7 @@
         },
         destroyed() {
             this.close();
+            pageScroll.unlock();
         },
         mounted() {
             this.scrollView = getScrollview(this.$el);

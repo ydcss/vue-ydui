@@ -6,6 +6,7 @@
     import Vue from 'vue';
     import Utils from './utils';
     import PickerComponent from './picker.vue';
+    import {pageScroll} from '../../../utils/assist';
 
     export default {
         name: 'yd-datetime',
@@ -149,6 +150,7 @@
             this.render();
         },
         beforeDestroy() {
+            pageScroll.unlock();
             this.removeElement();
         }
     }

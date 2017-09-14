@@ -158,6 +158,7 @@
         },
         destroyed() {
             this.close();
+            pageScroll.unlock();
         }
     }
 </script>

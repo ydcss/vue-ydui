@@ -105,6 +105,9 @@
         },
         mounted() {
             this.scrollView = getScrollview(this.$el);
+        },
+        destroyed() {
+            pageScroll.unlock();
         }
     }
 </script>
