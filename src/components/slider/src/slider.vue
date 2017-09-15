@@ -272,7 +272,6 @@
                 this.$el.addEventListener('touchend', this.touchEndHandler);
 
                 this.$el.addEventListener('click', (e) => {
-
                     if (!this.touches.allowClick) {
                         e.preventDefault();
                     }
@@ -312,6 +311,11 @@
                 this.unbindEvents();
                 this.stopAutoplay();
             }
+        },
+        mounted() {
+            this.supportTouch = (window.Modernizr && !!window.Modernizr.touch) || (function () {
+                return !!(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch);
+            })();
         },
         destroyed() {
             this.destroy();
