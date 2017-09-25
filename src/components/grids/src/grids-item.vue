@@ -14,7 +14,7 @@
     export default {
         name: 'yd-grids-item',
         props: {
-            link: String
+            link: [String, Object]
         },
         computed: {
             checkIcon() {
