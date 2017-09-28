@@ -49,7 +49,7 @@
         },
         computed: {
             classes() {
-                return this.fixed ? 'tabbar-fixed' : '';
+                return this.fixed ? 'yd-tabbar-fixed' : '';
             },
             styles() {
                 return {
