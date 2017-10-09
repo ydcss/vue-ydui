@@ -4,7 +4,7 @@
         <div class="yd-mask-keyboard" v-else v-show="show"></div>
         <div class="yd-keyboard" :class="show ? 'yd-keyboard-active' : ''">
             <div class="yd-keyboard-head">
-                <strong>输入数字密码</strong>
+                <strong>{{inputText}}</strong>
             </div>
             <div class="yd-keyboard-error">{{error}}</div>
             <ul class="yd-keyboard-password">
@@ -15,7 +15,7 @@
                 <ul class="yd-keyboard-numbers">
                     <li v-for="i in 4">
                         <template v-if="triggerClose">
-                            <a href="javascript:;" v-if="i == 4" @click.stop="close">取消</a>
+                            <a href="javascript:;" v-if="i == 4" @click.stop="close">{{cancelText}}</a>
                         </template>
                         <template v-else>
                             <a href="javascript:;" v-if="i == 4"></a>
@@ -65,6 +65,14 @@
             title: {
                 type: String,
                 default: 'YDUI安全键盘'
+            },
+            cancelText: {
+                type: String,
+                default: '取消'
+            },
+            inputText: {
+                type: String,
+                default: '输入数字密码'
             },
             triggerClose: {
                 type: Boolean,
