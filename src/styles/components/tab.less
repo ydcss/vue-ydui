@@ -22,7 +22,7 @@
         display: block;
         .tap-color(@tab-bg, .97);
 
-        a {
+        > a {
           display: inherit;
           color: inherit;
         }
@@ -39,7 +39,7 @@
         }
       }
       .@{css-prefix}-tab-active {
-        color: @tab-active-color;
+        color: currentColor;
         .tap-color(@tab-bg, 1);
         &:before {
           content: '';

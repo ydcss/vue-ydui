@@ -1,9 +1,15 @@
 <template>
     <div>
-        <div class="yd-accordion-title" @click="toggle">
-            <span v-if="$slots.title"><slot name="title"></slot></span>
-            <span v-else>{{title}}</span>
-            <i :class="show ? 'accordion-rotated' : ''"></i>
+        <div class="yd-accordion-head">
+            <div class="yd-accordion-head-content">
+                <slot name="icon"></slot>
+                <div @click="toggle" class="yd-accordion-title" :class="!$slots.icon && !$slots.txt ? 'yd-accordion-title-full' : ''">
+                    <span v-if="$slots.title"><slot name="title"></slot></span>
+                    <span v-else>{{title}}</span>
+                </div>
+                <slot name="txt"></slot>
+            </div>
+            <i :class="show ? 'yd-accordion-rotated' : ''"></i>
         </div>
         <div class="yd-accordion-content" :style="styleHeight">
             <div ref="content">
@@ -28,6 +34,10 @@
             open: {
                 type: Boolean,
                 default: false
+            },
+            auto: {
+                type: Boolean,
+                default: true
             }
         },
         watch: {
@@ -37,6 +47,7 @@
         },
         methods: {
             toggle() {
+                if(!this.auto) return;
                 this.$parent.open(this._uid);
             },
             openItem() {
