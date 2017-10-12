@@ -1,5 +1,5 @@
 <template>
-    <router-link class="yd-grids-item" :to="link || ''">
+    <router-link class="yd-grids-item" :to="link || ''" :style="styles" :class="$parent.itemHeight != 0 ? 'yd-grids-item-center' : ''">
         <div class="yd-grids-icon" v-if="checkIcon">
             <slot name="icon"></slot>
         </div>
@@ -22,6 +22,14 @@
             },
             checkText() {
                 return !!this.$slots.text;
+            },
+            styles() {
+                if(this.$parent.itemHeight != 0) {
+                    return {
+                        height: this.$parent.itemHeight,
+                        padding: 0
+                    }
+                }
             }
         }
     }
