@@ -1,6 +1,6 @@
 <template>
     <div class="yd-tab">
-        <ul class="yd-tab-nav">
+        <ul class="yd-tab-nav" :style="{color: activeColor}">
             <li class="yd-tab-nav-item"
                 v-for="item in navList"
                 :class="item._uid == activeIndex ? 'yd-tab-active' : ''"
@@ -15,6 +15,8 @@
 </template>
 
 <script type="text/babel">
+    import {isColor} from '../../../utils/assist';
+
     export default {
         name: 'yd-tab',
         data() {
@@ -27,6 +29,13 @@
         props: {
             change: Function,
             callback: Function,
+            activeColor: {
+                validator(value) {
+                    if(!value) return true;
+                    return isColor(value);
+                },
+                default: '#FF5E53'
+            }
         },
         methods: {
             init(update) {

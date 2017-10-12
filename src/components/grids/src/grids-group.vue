@@ -10,6 +10,11 @@
 <script type="text/babel">
     export default{
         name: 'yd-grids-group',
+        data() {
+            return {
+                height: 55
+            }
+        },
         props: {
             rows: {
                 validator(value) {
@@ -17,7 +22,16 @@
                 },
                 default: '4'
             },
-            title: String
+            title: String,
+            itemHeight: {
+                validator(value) {
+                    if(value == 0) {
+                        return true;
+                    }
+                    return /^(\.|\d+\.)?\d+(px|rem)$/.test(value);
+                },
+                default: 0
+            }
         },
         computed: {
             classes() {

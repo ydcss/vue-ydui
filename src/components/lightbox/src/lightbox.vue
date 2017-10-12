@@ -23,6 +23,10 @@
                 validator(val) {
                     return /^\d*$/.test(val);
                 }
+            },
+            closeText: {
+                type: String,
+                default: '关闭'
             }
         },
         watch: {
@@ -66,7 +70,8 @@
                         index: index,
                         currentIndex: index,
                         imgItems: this.imgItems,
-                        txtHTML: mes[0] && mes[0].$el ? mes[0].$el.innerHTML : ''
+                        txtHTML: mes[0] && mes[0].$el ? mes[0].$el.innerHTML : '',
+                        closeText: this.closeText
                     }
                 });
                 document.body.appendChild(this.box.$el);

@@ -30,5 +30,38 @@
             </yd-grids-item>
         </yd-grids-group>
 
+        <yd-grids-group :rows="3" title="设置 yd-grids-item 的高度" itemHeight="2.6rem" class="demo-small-pitch">
+            <yd-grids-item>
+                <div slot="else" style="text-align: center;">
+                    <img src="http://img1.shikee.com/try/2017/09/30/16303520934640655826.jpg_295x295.jpg" style="height: 1rem;">
+                </div>
+            </yd-grids-item>
+            <yd-grids-item>
+                <div slot="else" style="text-align: center;">
+                    <p style="padding: 5px;color:#F00;">当页面内容高度不一致时，设置item的高度就不会导致页面错乱</p>
+                </div>
+            </yd-grids-item>
+            <yd-grids-item>
+                <div slot="else" style="text-align: center;">
+                    <img src="http://img1.shikee.com/try/2017/09/30/16303520934640655826.jpg_295x295.jpg" style="height: .6rem;">
+                </div>
+            </yd-grids-item>
+            <yd-grids-item>
+                <div slot="else" style="text-align: center;">
+                    <img src="http://img1.shikee.com/try/2017/09/30/16303520934640655826.jpg_295x295.jpg" style="height: .3rem;">
+                </div>
+            </yd-grids-item>
+            <yd-grids-item>
+                <div slot="else" style="text-align: center;">
+                    <img src="http://img1.shikee.com/try/2017/09/30/16303520934640655826.jpg_295x295.jpg" style="height: .6rem;">
+                </div>
+            </yd-grids-item>
+            <yd-grids-item>
+                <div slot="else" style="text-align: center;">
+                    <img src="http://img1.shikee.com/try/2017/09/30/16303520934640655826.jpg_295x295.jpg" style="height: 1rem;">
+                </div>
+            </yd-grids-item>
+        </yd-grids-group>
+
     </yd-layout>
 </template>

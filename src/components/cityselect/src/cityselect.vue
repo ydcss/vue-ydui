@@ -50,7 +50,7 @@
                 show: this.value,
                 navIndex: 1,
                 nav: {
-                    txt1: '请选择',
+                    txt1: this.chooseTitle,
                     txt2: '',
                     txt3: ''
                 },
@@ -78,6 +78,10 @@
             title: {
                 type: String,
                 default: '所在地区'
+            },
+            chooseTitle: {
+                type: String,
+                default: '请选择'
             },
             value: {
                 type: Boolean,
@@ -122,7 +126,7 @@
 
                         if ((i - 1) === 0) {
                             this.navIndex = i;
-                            this.nav['txt' + i] = '请选择';
+                            this.nav['txt' + i] = this.chooseTitle;
                             this.$refs['itemBox' + i][0].scrollTop = 0;
                             this.backoffView(false);
                         } else {
@@ -164,7 +168,7 @@
                     this.returnValue();
                 } else {
                     this.navIndex = index + 1;
-                    this.nav['txt' + (index + 1)] = '请选择';
+                    this.nav['txt' + (index + 1)] = this.chooseTitle;
                 }
             },
             currentClass(v, n, index) {

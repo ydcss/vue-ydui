@@ -3,7 +3,7 @@
         <div class="yd-lightbox">
             <div class="yd-lightbox-head" :class="show ? '' : 'yd-lightbox-up-hide'">
                 <span>{{currentIndex}} / {{imgItems.length}}</span>
-                <a href="javascript:;" @click="close">关闭</a>
+                <a href="javascript:;" @click="close">{{closeText}}</a>
             </div>
             <div class="yd-lightbox-img" @click="show = !show">
                 <slider autoplay="0" :showPagination="false" :callback="changeIndex" :index="index">
@@ -39,7 +39,8 @@
                 index: 1,
                 imgItems: [],
                 show: true,
-                txtHTML: ''
+                txtHTML: '',
+                closeText: ''
             }
         },
         methods: {

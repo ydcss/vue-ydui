@@ -6,8 +6,7 @@
     background-color: #fff;
   }
 
-  &-accordion-title {
-    min-height: 1rem;
+  &-accordion-head {
     display: flex;
     align-items: center;
     position: relative;
@@ -17,11 +16,10 @@
     &:after {
       .bottom-line(@line-color);
     }
-    > span {
-      display: block;
+    &-content {
       flex: 1;
-      font-size: .28rem;
-      color: #444;
+      display: flex;
+      align-items: center;
     }
     > i {
       overflow: hidden;
@@ -33,19 +31,30 @@
         border-right: 5px solid transparent;
         border-bottom: 7px solid #A0A0A0;
         display: block;
-        transition: transform .2s linear;
+        transition: transform .1s linear;
         transform: rotate(0deg);
       }
-      &.accordion-rotated:after {
+      &.@{css-prefix}-accordion-rotated:after {
         transform: rotate(-180deg);
       }
+    }
+  }
+
+  &-accordion-title {
+    min-height: 1rem;
+    display: flex;
+    align-items: center;
+    font-size: .28rem;
+    color: #444;
+    &-full {
+      flex: 1;
     }
   }
 
   &-accordion-content {
     position: relative;
     overflow: hidden;
-    transition: height .2s linear;
+    transition: height .1s linear;
     &:after {
       .bottom-line(@line-color);
     }
