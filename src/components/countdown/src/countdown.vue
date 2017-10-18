@@ -18,7 +18,7 @@
         },
         props: {
             time: {
-                type: [String, Number]
+                type: [String, Number, Date]
             },
             format: {
                 type: String,
