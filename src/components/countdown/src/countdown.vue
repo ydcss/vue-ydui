@@ -18,7 +18,7 @@
         },
         props: {
             time: {
-                type: [String, Number]
+                type: [String, Number, Date]
             },
             format: {
                 type: String,
@@ -49,9 +49,12 @@
 
                 if (this.timetype === 'second') {
                     this.lastTime = Math.floor(new Date() / 1000) + ~~this.time;
+                } else if (this.time instanceof Date){
+                    this.lastTime = Math.floor(this.time.getTime() / 1000);
                 } else {
                     this.lastTime = Math.floor(new Date(this.time).getTime() / 1000);
                 }
+
 
                 this.doRun();
 
