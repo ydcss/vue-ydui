@@ -255,7 +255,7 @@
                         this.setTranslate(this.speed, -this.currentIndex * warpperSize);
                     } else {
                         this.setTranslate(this.speed, -((moveOffset > 0 ? --this.currentIndex : ++this.currentIndex) * warpperSize));
-                        this.callback && this.callback(f === 0 ? this.itemNums : this.currentIndex % this.itemNums);
+                        this.sendIndex();
                     }
                     this.autoPlay();
                     return;
@@ -288,7 +288,17 @@
                     }
                     this.setTranslate(this.speed, -(++this.currentIndex * size));
 
+                    this.sendIndex();
+
                 }, this.autoplay);
+            },
+            sendIndex() {
+                if (!this.loop) {
+                    this.callback && this.callback(this.currentIndex);
+                } else {
+                    let _index = this.currentIndex % this.itemNums;
+                    this.callback && this.callback(_index === 0 ? this.itemNums-1 : _index - 1);
+                }
             },
             stopAutoplay() {
                 clearInterval(this.autoPlayTimer);

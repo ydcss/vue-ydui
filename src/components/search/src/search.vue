@@ -10,6 +10,7 @@
                             v-model="currentValue"
                             :readonly="fullpage"
                             @click.native="open"
+                            ref="search"
                     ></yd-search-input>
                 </form>
                 <a href="javascript:;" class="cancel-text" v-show="currentValue !== ''"
@@ -126,9 +127,9 @@
                 this.currentValue = '';
             },
             submit() {
+                this.$refs.search.setBlur();
                 this.onSubmit && this.onSubmit(this.currentValue);
                 this.close();
-                this.$refs.search.setBlur();
             },
             clickHandler(item) {
                 this.itemClick && this.itemClick(item);

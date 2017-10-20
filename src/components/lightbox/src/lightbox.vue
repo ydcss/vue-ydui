@@ -63,7 +63,6 @@
                 const boxComponent = Vue.extend(Box);
                 const mes = this.$children.filter(item => item.$options.name === 'yd-lightbox-txt');
 
-                index += 1;
                 this.box = new boxComponent({
                     el: document.createElement('div'),
                     data: {
@@ -74,6 +73,7 @@
                         closeText: this.closeText
                     }
                 });
+
                 document.body.appendChild(this.box.$el);
             }
         },
