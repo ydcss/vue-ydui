@@ -43,6 +43,7 @@ module.exports = merge(distCommonWebpackConfig, {
         "/lib.px/timeline/index": "./src/components/timeline/index.js",
         "/lib.px/step/index": "./src/components/step/index.js",
         "/lib.px/checklist/index": "./src/components/checklist/index.js",
+        "/lib.px/search/index": "./src/components/search/index.js",
     },
     module: {
         loaders: [

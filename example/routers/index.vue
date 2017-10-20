@@ -48,6 +48,7 @@
                     {icon: 'demo-icons-timeline', name: 'TimeLine', link: '/timeline'},
                     {icon: 'demo-icons-step', name: 'Step', link: '/step'},
                     {icon: 'demo-icons-checklist', name: 'CheckList', link: '/checklist'},
+                    {icon: 'demo-icons-search', name: 'Search', link: '/search'},
                 ]
             }
         }

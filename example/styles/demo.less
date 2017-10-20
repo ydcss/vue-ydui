@@ -1,6 +1,11 @@
 //微软雅黑字体
 @FONT-YAHEI: \5fae\8f6f\96c5\9ed1;
 
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
 .demo-logo {
   text-align: center;
   img {
@@ -193,7 +198,7 @@
 
 @font-face {
   font-family: @demo-icons;
-  src: url('//at.alicdn.com/t/font_87685_vlbssumywn42huxr.ttf') format('truetype');
+  src: url('//at.alicdn.com/t/font_87685_9c665a7emnc7syvi.ttf') format('truetype');
 }
 
 [class^="demo-icons-"]:before, [class*=" demo-icons-"]:before {
@@ -203,6 +208,11 @@
 
 .demo-icons-weixin:before {
   content: '\e60b';
+}
+
+.demo-icons-search:before {
+  content: '\e7A9';
+  color: #FF685E;
 }
 
 .demo-icons-datetime:before {
@@ -539,18 +549,6 @@
   color: #F00;
 }
 
-.demo-meizu-box {
-  width: .7rem;
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
-.demo-meizu {
-  background-color: #38B4EB;
-  padding: 0 .02rem 0 .1rem;
-}
-
 .demo-checklist-img {
   width: 100px;
   height: 100px;
@@ -586,4 +584,11 @@
     top: auto;
     bottom: 50%;
   }
+}
+
+.demo-search-title {
+  margin-top: .35rem;
+  font-size: .28rem;
+  color: #999;
+  padding: 0 12px 5px;
 }
