@@ -14,6 +14,9 @@
       height: 100%;
       border: none;
       font-size: inherit;
+      &::-webkit-search-cancel-button {
+        -webkit-appearance: none;
+      }
     }
 
     &-clear,
@@ -21,12 +24,17 @@
     &-warn,
     &-password,
     &-success {
-      padding-left: .2rem;
       display: flex;
       align-items: center;
       &:after {
         font-family: @iconfont-inlay;
       }
+    }
+
+    &-clear {
+      height: 100%;
+      padding-right: .15rem;
+      padding-left: .2rem;
     }
 
     &-clear {

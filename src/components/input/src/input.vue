@@ -1,39 +1,42 @@
 <template>
     <div class="yd-input">
         <template v-if="regex == 'mobile'">
-            <input type="tel" pattern="[0-9]*"
-                   v-model="currentValue" :name="name" @focus="showClear = true" @blur="blurHandler" maxlength="11" :placeholder="placeholder" :autocomplete="autocomplete" :readonly="readonly" :disabled="disabled"
+            <input ref="input" type="tel" pattern="[0-9]*"
+                   v-model="currentValue" :name="name" @focus="focusHandler" @blur="blurHandler" maxlength="11" :placeholder="placeholder" :autocomplete="autocomplete" :readonly="readonly" :disabled="disabled"
             >
         </template>
         <template v-else>
             <template v-if="type == 'password'">
-                <input v-if="!showPwd" type="password"
-                       v-model="currentValue" :name="name" @focus="showClear = true" @blur="blurHandler" :maxlength="max" :placeholder="placeholder" :autocomplete="autocomplete" :readonly="readonly" :disabled="disabled"
+                <input ref="input" v-if="!showPwd" type="password"
+                       v-model="currentValue" :name="name" @focus="focusHandler" @blur="blurHandler" :maxlength="max" :placeholder="placeholder" :autocomplete="autocomplete" :readonly="readonly" :disabled="disabled"
                 >
-                <input v-if="showPwd" type="text"
-                       v-model="currentValue" :name="name" @focus="showClear = true" @blur="blurHandler" :maxlength="max" :placeholder="placeholder" :autocomplete="autocomplete" :readonly="readonly" :disabled="disabled"
+                <input ref="input" v-if="showPwd" type="text"
+                       v-model="currentValue" :name="name" @focus="focusHandler" @blur="blurHandler" :maxlength="max" :placeholder="placeholder" :autocomplete="autocomplete" :readonly="readonly" :disabled="disabled"
                 >
             </template>
-            <input v-if="type == 'text'" type="text"
-                   v-model="currentValue" :name="name" @focus="showClear = true" @blur="blurHandler" :maxlength="max" :placeholder="placeholder" :autocomplete="autocomplete" :readonly="readonly" :disabled="disabled"
+            <input ref="input" v-if="type == 'text'" type="text"
+                   v-model="currentValue" :name="name" @focus="focusHandler" @blur="blurHandler" :maxlength="max" :placeholder="placeholder" :autocomplete="autocomplete" :readonly="readonly" :disabled="disabled"
             >
-            <input v-if="type == 'number'" type="number"
-                   v-model="currentValue" :name="name" @focus="showClear = true" @blur="blurHandler" :maxlength="max" :placeholder="placeholder" :autocomplete="autocomplete" :readonly="readonly" :disabled="disabled"
+            <input ref="input" v-if="type == 'search'" type="search"
+                   v-model="currentValue" :name="name" @focus="focusHandler" @blur="blurHandler" :maxlength="max" :placeholder="placeholder" :autocomplete="autocomplete" :readonly="readonly" :disabled="disabled"
             >
-            <input v-if="type == 'email'" type="email"
-                   v-model="currentValue" :name="name" @focus="showClear = true" @blur="blurHandler" :maxlength="max" :placeholder="placeholder" :autocomplete="autocomplete" :readonly="readonly" :disabled="disabled"
+            <input ref="input" v-if="type == 'number'" type="number"
+                   v-model="currentValue" :name="name" @focus="focusHandler" @blur="blurHandler" :maxlength="max" :placeholder="placeholder" :autocomplete="autocomplete" :readonly="readonly" :disabled="disabled"
             >
-            <input v-if="type == 'tel'" type="tel"
-                   v-model="currentValue" :name="name" @focus="showClear = true" @blur="blurHandler" :maxlength="max" :placeholder="placeholder" :autocomplete="autocomplete" :readonly="readonly" :disabled="disabled"
+            <input ref="input" v-if="type == 'email'" type="email"
+                   v-model="currentValue" :name="name" @focus="focusHandler" @blur="blurHandler" :maxlength="max" :placeholder="placeholder" :autocomplete="autocomplete" :readonly="readonly" :disabled="disabled"
             >
-            <input v-if="type == 'datetime-local'" type="datetime-local"
-                   v-model="currentValue" :name="name" @focus="showClear = true" @blur="blurHandler" :maxlength="max" :placeholder="placeholder" :autocomplete="autocomplete" :readonly="readonly" :disabled="disabled"
+            <input ref="input" v-if="type == 'tel'" type="tel"
+                   v-model="currentValue" :name="name" @focus="focusHandler" @blur="blurHandler" :maxlength="max" :placeholder="placeholder" :autocomplete="autocomplete" :readonly="readonly" :disabled="disabled"
             >
-            <input v-if="type == 'date'" type="date"
-                   v-model="currentValue" :name="name" @focus="showClear = true" @blur="blurHandler" :maxlength="max" :placeholder="placeholder" :autocomplete="autocomplete" :readonly="readonly" :disabled="disabled"
+            <input ref="input" v-if="type == 'datetime-local'" type="datetime-local"
+                   v-model="currentValue" :name="name" @focus="focusHandler" @blur="blurHandler" :maxlength="max" :placeholder="placeholder" :autocomplete="autocomplete" :readonly="readonly" :disabled="disabled"
             >
-            <input v-if="type == 'time'" type="time"
-                   v-model="currentValue" :name="name" @focus="showClear = true" @blur="blurHandler" :maxlength="max" :placeholder="placeholder" :autocomplete="autocomplete" :readonly="readonly" :disabled="disabled"
+            <input ref="input" v-if="type == 'date'" type="date"
+                   v-model="currentValue" :name="name" @focus="focusHandler" @blur="blurHandler" :maxlength="max" :placeholder="placeholder" :autocomplete="autocomplete" :readonly="readonly" :disabled="disabled"
+            >
+            <input ref="input" v-if="type == 'time'" type="time"
+                   v-model="currentValue" :name="name" @focus="focusHandler" @blur="blurHandler" :maxlength="max" :placeholder="placeholder" :autocomplete="autocomplete" :readonly="readonly" :disabled="disabled"
             >
         </template>
         <a href="javascript:;" class="yd-input-clear" tabindex="-1" @click="clearInput" v-show="showClearIcon && showClear && !isempty"></a>
@@ -99,7 +102,7 @@
             },
             type: {
                 validator (value) {
-                    return ['text', 'password', 'email', 'number', 'tel', 'datetime-local', 'date', 'time'].indexOf(value) > -1;
+                    return ['text', 'password', 'search', 'email', 'number', 'tel', 'datetime-local', 'date', 'time'].indexOf(value) > -1;
                 },
                 default: 'text'
             },
@@ -112,6 +115,12 @@
                 validator(val) {
                     return /^\d*$/.test(val);
                 }
+            },
+            onBlur: {
+                type: Function
+            },
+            onFocus: {
+                type: Function
             }
         },
         watch: {
@@ -161,12 +170,18 @@
                 this.errorMsg = '';
                 this.errorCode = '';
             },
-            blurHandler() {
+            blurHandler(e) {
                 this.validatorInput(this.currentValue, true);
 
                 setTimeout(() => {
                     this.showClear = false;
                 }, 200);
+
+                this.onBlur && this.onBlur(e);
+            },
+            focusHandler(e) {
+                this.showClear = true;
+                this.onFocus && this.onFocus(e);
             },
             clearInput() {
                 this.currentValue = '';
@@ -192,6 +207,12 @@
                     return str.replace(new RegExp('^\\' + char + '+|\\' + char + '+$', 'g'), '');
                 }
                 return str;
+            },
+            setFocus() {
+                this.$refs.input.focus();
+            },
+            setBlur() {
+                this.$refs.input.blur();
             }
         },
         mounted() {

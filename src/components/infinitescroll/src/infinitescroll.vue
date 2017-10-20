@@ -2,7 +2,7 @@
     <div>
         <slot name="list"></slot>
 
-        <div ref="tag" style="height: 1px;"></div>
+        <div ref="tag" style="height: 0;"></div>
 
         <div class="yd-list-loading" v-if="!isDone">
             <div v-show="isLoading">

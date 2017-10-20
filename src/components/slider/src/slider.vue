@@ -4,14 +4,14 @@
              :class="direction == 'vertical' ? 'yd-slider-wrapper-vertical' : ''"
              :style="dragStyleObject"
         >
-            <div class="yd-slider-item" :style="itemHeight" v-html="lastItem"></div>
+            <div class="yd-slider-item" v-if="loop" :style="itemHeight" v-html="lastItem"></div>
             <slot></slot>
-            <div class="yd-slider-item" :style="itemHeight" v-html="firtstItem"></div>
+            <div class="yd-slider-item" v-if="loop" :style="itemHeight" v-html="firtstItem"></div>
         </div>
         <div class="yd-slider-pagination" v-if="itemsArr.length > 1 && showPagination"
              :class="direction == 'vertical' ? 'yd-slider-pagination-vertical' : ''">
             <span class="yd-slider-pagination-item"
-                  v-for="(t, i) in itemNums"
+                  v-for="(t, i) in itemNums" :key="i"
                   :class="paginationIndex == i ? 'yd-slider-pagination-item-active': ''"
             ></span>
         </div>
@@ -49,7 +49,7 @@
         },
         props: {
             index: {
-                default: 1,
+                default: 0,
                 validator(val) {
                     return /^\d*$/.test(val);
                 }
@@ -78,6 +78,10 @@
             },
             callback: {
                 type: Function
+            },
+            loop: {
+                type: Boolean,
+                default: true
             }
         },
         watch: {
@@ -94,7 +98,11 @@
             currentIndex(val) {
                 const itemNums = this.itemNums;
                 const tm = (val - 1) % itemNums;
-                this.paginationIndex = tm < 0 ? itemNums - 1 : tm;
+                if (this.loop) {
+                    this.paginationIndex = tm < 0 ? itemNums - 1 : tm;
+                } else {
+                    this.paginationIndex = val;
+                }
             }
         },
         methods: {
@@ -106,6 +114,10 @@
                 this.itemsArr = this.$children.filter(item => item.$options.name === 'yd-slider-item');
 
                 this.itemNums = this.itemsArr.length;
+
+                if (this.loop) {
+                    this.currentIndex = 1;
+                }
 
                 this.cloneItem();
 
@@ -129,7 +141,7 @@
                 }
             },
             cloneItem() {
-                if (this.itemsArr.length <= 1) return;
+                if (this.itemsArr.length <= 1 || !this.loop) return;
 
                 const itemArr = this.itemsArr;
 
@@ -155,15 +167,28 @@
 
                     const itemNums = this.itemNums;
 
-                    if (this.currentIndex === 0) {
-                        this.currentIndex = itemNums;
-                        this.setTranslate(0, -itemNums * (this.isVertical ? this.$el.clientHeight : this.$refs.warpper.offsetWidth));
-                        return;
-                    }
+                    if (!this.loop) {
+                        if (this.currentIndex === -1) {
+                            this.currentIndex = itemNums - 1;
+                            this.setTranslate(0, -(itemNums - 1) * (this.isVertical ? this.$el.clientHeight : this.$refs.warpper.offsetWidth));
+                            return;
+                        }
 
-                    if (this.currentIndex > itemNums) {
-                        this.currentIndex = 1;
-                        this.setTranslate(0, this.isVertical ? -this.$el.clientHeight : -this.$refs.warpper.offsetWidth);
+                        if (this.currentIndex > itemNums - 1) {
+                            this.currentIndex = 1;
+                            this.setTranslate(0, this.isVertical ? -this.$el.clientHeight : -this.$refs.warpper.offsetWidth);
+                        }
+                    } else {
+                        if (this.currentIndex === 0) {
+                            this.currentIndex = itemNums;
+                            this.setTranslate(0, -itemNums * (this.isVertical ? this.$el.clientHeight : this.$refs.warpper.offsetWidth));
+                            return;
+                        }
+
+                        if (this.currentIndex > itemNums) {
+                            this.currentIndex = 1;
+                            this.setTranslate(0, this.isVertical ? -this.$el.clientHeight : -this.$refs.warpper.offsetWidth);
+                        }
                     }
                 }
             },
@@ -201,7 +226,7 @@
                     }
 
                     if (touches.moveTag === 2) {
-                        this.setTranslate(0, -this.currentIndex * (this.isVertical ? this.$el.clientHeight : this.$refs.warpper.offsetWidth) + deltaSlide);
+                        this.setTranslate(0, -this.currentIndex * (this.isVertical ? this.$el.clientHeight : this.$refs.warpper.offsetWidth) + deltaSlide / 2);
                     }
                 }
             },
@@ -224,14 +249,13 @@
 
                     const timeDiff = Date.now() - touches.touchStartTime;
 
-                    if (timeDiff > 300 && Math.abs(moveOffset) <= warpperSize * .5 || this.itemsArr.length <= 1) {
+                    const unloopDrag = (!this.loop && ((this.currentIndex === 0 && moveOffset > 0) || (this.currentIndex >= this.itemNums - 1 && moveOffset < 0)));
+
+                    if (timeDiff > 300 && Math.abs(moveOffset) <= warpperSize * .5 || this.itemsArr.length <= 1 || unloopDrag) {
                         this.setTranslate(this.speed, -this.currentIndex * warpperSize);
                     } else {
-
                         this.setTranslate(this.speed, -((moveOffset > 0 ? --this.currentIndex : ++this.currentIndex) * warpperSize));
-
-                        const f = this.currentIndex % this.itemNums;
-                        this.callback && this.callback(f === 0 ? this.itemNums : f);
+                        this.callback && this.callback(f === 0 ? this.itemNums : this.currentIndex % this.itemNums);
                     }
                     this.autoPlay();
                     return;
@@ -247,6 +271,12 @@
 
                 this.autoPlayTimer = setInterval(() => {
                     const size = this.isVertical ? this.$el.clientHeight : this.$refs.warpper.offsetWidth;
+
+                    if (!this.loop) {
+                        if (this.currentIndex + 1 >= this.itemNums) {
+                            this.currentIndex = -1;
+                        }
+                    }
 
                     if (this.currentIndex > this.itemNums) {
                         this.currentIndex = 1;

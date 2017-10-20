@@ -39,6 +39,7 @@ import {LightBox, LightBoxImg, LightBoxTxt} from './components/lightbox';
 import {TimeLine, TimeLineItem} from './components/timeline';
 import {Step, StepItem} from './components/step';
 import {CheckList, CheckListItem} from './components/checklist';
+import {Search} from './components/search';
 
 window.document.addEventListener('touchstart', function (event) {
     /* Do Nothing */
@@ -104,6 +105,7 @@ const install = function (Vue) {
     Vue.component(StepItem.name, StepItem);
     Vue.component(CheckList.name, CheckList);
     Vue.component(CheckListItem.name, CheckListItem);
+    Vue.component(Search.name, Search);
 
     Vue.prototype.$dialog = {
         confirm: Confirm,

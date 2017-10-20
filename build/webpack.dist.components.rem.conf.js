@@ -41,5 +41,6 @@ module.exports = merge(distCommonWebpackConfig, {
         "/lib.rem/timeline/index": "./src/components/timeline/index.js",
         "/lib.rem/step/index": "./src/components/step/index.js",
         "/lib.rem/checklist/index": "./src/components/checklist/index.js",
+        "/lib.rem/search/index": "./src/components/search/index.js",
     }
 });
