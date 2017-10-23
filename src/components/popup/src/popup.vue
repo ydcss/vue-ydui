@@ -44,6 +44,10 @@
             },
             value: {
                 type: Boolean
+            },
+            closeOnClickModal: {
+                type: Boolean,
+                default:true
             }
         },
         watch: {
@@ -99,8 +103,10 @@
             close() {
                 isIOS && removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
 
-                this.show = false;
-                this.$emit('input', false);
+                if (this.closeOnClickModal){
+                    this.show = false;
+                    this.$emit('input', false);
+                }
             }
         },
         mounted() {
