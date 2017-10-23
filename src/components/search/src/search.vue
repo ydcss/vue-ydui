@@ -74,13 +74,6 @@
             itemClick: {
                 type: Function
             },
-            callback: {
-                type: Function
-            },
-            autofocus: {
-                type: Boolean,
-                default: true
-            },
             value: {
                 type: String,
                 default: ''
