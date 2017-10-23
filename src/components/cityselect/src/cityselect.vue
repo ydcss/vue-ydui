@@ -6,7 +6,8 @@
                 <p class="yd-cityselect-title" @touchstart.stop.prevent="">{{title}}</p>
                 <div v-show="ready" class="yd-cityselect-nav">
                     <a href="javascript:;"
-                       v-for="index in columnNum"
+                       :key="key"
+                       v-for="index, key in columnNum"
                        v-show="!!nav['txt' + index]"
                        @click.stop="navEvent(index)"
                        :class="index == navIndex ? 'yd-cityselect-nav-active' : ''"
@@ -21,11 +22,12 @@
                 </svg>
             </div>
             <ul v-show="ready" class="yd-cityselect-content" :class="activeClasses">
-                <li class="yd-cityselect-item" v-for="index in columnNum" :ref="'itemBox' + index">
+                <li class="yd-cityselect-item" v-for="index, key in columnNum" :ref="'itemBox' + index" :key="key">
                     <template v-if="columns['columnItems' + index].length > 0">
                         <div class="yd-cityselect-item-box">
                             <a href="javascript:;"
-                               v-for="item in columns['columnItems' + index]"
+                               :key="key"
+                               v-for="item, key in columns['columnItems' + index]"
                                :class="currentClass(item.v, item.n, index)"
                                @click.stop="itemEvent(index, item.n, item.v, item.c)"
                             ><span>{{item.n}}</span></a>

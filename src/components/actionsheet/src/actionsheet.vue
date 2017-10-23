@@ -2,7 +2,7 @@
     <div>
         <div class="yd-actionsheet-mask" v-show="show" @click.stop="close"></div>
         <div class="yd-actionsheet" :class="show ? 'yd-actionsheet-active' : ''">
-            <a v-for="item in items" @click.stop="itemClick(item)" href="javascript:;" class="yd-actionsheet-item" >{{item.label}}</a>
+            <a v-for="item, key in items" @click.stop="itemClick(item)" href="javascript:;" class="yd-actionsheet-item" :key="key">{{item.label}}</a>
             <a v-if="cancel" @click.stop="close" href="javascript:;" class="yd-actionsheet-action">{{cancel}}</a>
         </div>
     </div>

@@ -11,8 +11,10 @@
             </template>
             <template v-else>
                 <div class="yd-confirm-ft">
-                    <a href="javascript:;" class="yd-confirm-btn"
-                       v-for="item in opts"
+                    <a href="javascript:;"
+                       class="yd-confirm-btn"
+                       :key="key"
+                       v-for="item, key in opts"
                        :class="typeof item.color == 'boolean' ? (item.color ? 'primary' : 'default') : ''"
                        :style="{color: item.color}"
                        @click.stop="closeConfirm(item.stay, item.callback)"

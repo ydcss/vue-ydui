@@ -1,6 +1,8 @@
 <template>
     <span class="yd-rate" :style="{fontSize: size, color: color}">
-        <a href="javascript:;" v-for="item in ~~count"
+        <a href="javascript:;"
+           v-for="item, key in ~~count"
+           :key="key"
            :class="index >= item ? 'rate-active' : ''"
            :style="{color: index >= item ? activeColor : color, paddingRight: padding}"
            @click="!readonly && choose(item)"
