@@ -11,7 +11,7 @@
         <div class="yd-slider-pagination" v-if="itemsArr.length > 1 && showPagination"
              :class="direction == 'vertical' ? 'yd-slider-pagination-vertical' : ''">
             <span class="yd-slider-pagination-item"
-                  v-for="(t, i) in itemNums" :key="i"
+                  v-for="t, i in itemNums" :key="i"
                   :class="paginationIndex == i ? 'yd-slider-pagination-item-active': ''"
             ></span>
         </div>

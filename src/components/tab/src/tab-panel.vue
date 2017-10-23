@@ -22,8 +22,13 @@
                 this.$parent.init(true);
             },
             label() {
-                this.$parent.init('label')
+                this.$parent.init(false, 'label');
             }
+        },
+        mounted() {
+            this.$nextTick(() => {
+                this.$parent.init(false);
+            });
         }
     }
 </script>

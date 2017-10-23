@@ -8,12 +8,12 @@
             </div>
             <div class="yd-keyboard-error">{{error}}</div>
             <ul class="yd-keyboard-password">
-                <li v-for="n in 6"><i v-show="nums.length >= n"></i></li>
+                <li v-for="n, k in 6" :key="k"><i v-show="nums.length >= n"></i></li>
             </ul>
             <div class="yd-keyboard-content">
                 <div class="yd-keyboard-title">{{title}}</div>
                 <ul class="yd-keyboard-numbers">
-                    <li v-for="i in 4">
+                    <li v-for="i, k in 4" :key="k">
                         <template v-if="triggerClose">
                             <a href="javascript:;" v-if="i == 4" @click.stop="close">{{cancelText}}</a>
                         </template>
@@ -21,10 +21,10 @@
                             <a href="javascript:;" v-if="i == 4"></a>
                         </template>
                         <template v-if="isMobile">
-                            <a href="javascript:;" v-for="n in numsArr.slice((i - 1) * 3, i * 3)" @touchstart.stop="numclick(n)">{{n}}</a>
+                            <a href="javascript:;" v-for="n, k in numsArr.slice((i - 1) * 3, i * 3)" @touchstart.stop="numclick(n)" :key="k">{{n}}</a>
                         </template>
                         <template v-else>
-                            <a href="javascript:;" v-for="n in numsArr.slice((i - 1) * 3, i * 3)" @click.stop="numclick(n)">{{n}}</a>
+                            <a href="javascript:;" v-for="n, k in numsArr.slice((i - 1) * 3, i * 3)" @click.stop="numclick(n)" :key="k">{{n}}</a>
                         </template>
                         <a href="javascript:;" v-if="i == 4" @click.stop="backspace"></a>
                     </li>

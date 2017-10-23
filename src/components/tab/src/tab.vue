@@ -1,8 +1,9 @@
 <template>
     <div class="yd-tab">
-        <ul class="yd-tab-nav" :style="{color: activeColor}">
+        <ul class="yd-tab-nav" :style="{color: activeColor}" v-show="navList.length > 0">
             <li class="yd-tab-nav-item"
-                v-for="item in navList"
+                v-for="item, key in navList"
+                :key="key"
                 :class="item._uid == activeIndex ? 'yd-tab-active' : ''"
                 @click="changeHandler(item._uid, item.label, item.tabkey)">
                 <a href="javascript:;">{{item.label}}</a>
@@ -31,29 +32,29 @@
             callback: Function,
             activeColor: {
                 validator(value) {
-                    if(!value) return true;
+                    if (!value) return true;
                     return isColor(value);
                 },
                 default: '#FF5E53'
             }
         },
         methods: {
-            init(update) {
+            init(update, status) {
                 const tabPanels = this.$children.filter(item => item.$options.name === 'yd-tab-panel');
 
                 let num = 0;
 
+                if (!update) {
+                    this.navList = [];
+                }
+
                 tabPanels.forEach((panel, index) => {
-                    if(update === 'label') {
-                      return this.navList[index] = panel;
+                    if (status === 'label') {
+                        return this.navList[index] = panel;
                     }
 
                     if (!update) {
-                        this.navList.push({
-                            label: panel.label,
-                            _uid: panel._uid,
-                            tabkey: panel.tabkey
-                        });
+                        this.navList.push({_uid: panel._uid, label: panel.label, tabkey: panel.tabkey});
                     }
 
                     if (panel.active) {
@@ -79,9 +80,6 @@
                     this.emitChange(label, tabkey);
                 }
             }
-        },
-        mounted() {
-            this.init(false);
         }
     }
 </script>

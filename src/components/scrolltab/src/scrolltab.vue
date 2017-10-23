@@ -1,8 +1,10 @@
 <template>
     <div class="yd-scrolltab">
         <div class="yd-scrolltab-nav">
-            <a href="javascript:;" class="yd-scrolltab-item"
-               v-for="item in navList"
+            <a href="javascript:;"
+               class="yd-scrolltab-item"
+               v-for="item, key in navList"
+               :key="key"
                :class="activeIndex == item._uid ? 'yd-scrolltab-active' : ''"
                @click="moveHandler(item._uid)">
                 <div class="yd-scrolltab-icon"><i :class="item.icon"></i></div>
