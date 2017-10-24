@@ -159,13 +159,22 @@
                 this.nav['txt' + index] = name;
                 this.columns['columnItems' + (index + 1)] = children;
 
-                if (index > 1 && children && this.columnNum > 2) {
+                if (index > 1 && children && children.length > 0 && this.columnNum > 2) {
                     this.forwardView(true);
                 }
 
                 this.clearNavTxt(index);
 
                 if (index === this.columnNum || children.length <= 0) {
+                    if (index !== this.columnNum) {
+                        for (let i = this.columnNum; i >= 0; i--) {
+                            if (i > index) {
+                                this.active['itemValue' + i] = '';
+                                this.active['itemName' + i] = '';
+                                this.nav['txt' + i] = '';
+                            }
+                        }
+                    }
                     this.navIndex = index;
                     this.returnValue();
                 } else {

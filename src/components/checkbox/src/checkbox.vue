@@ -4,7 +4,7 @@
             <input type="checkbox" v-model="model" :value="val" @change="changeHandler" :disabled="disabled" />
         </template>
         <template v-else>
-            <input type="checkbox" v-model="checked" :disabled="disabled" />
+            <input type="checkbox" v-model="checked" v-checkall="update" :disabled="disabled" />
         </template>
 
         <span class="yd-checkbox-icon" :style="iconStyles()"><i :style="checkIconStyles()"></i></span>
@@ -27,10 +27,21 @@
             return {
                 model: [],
                 group: false,
-                checked: this.value
+                checked: this.value,
+                update: this.change
+            }
+        },
+        directives: {
+            checkall: {
+                bind(el, binding) {
+                    el.addEventListener('click', binding.value);
+                }
             }
         },
         props: {
+            change: {
+                type: Function
+            },
             value: {
                 type: Boolean,
                 default: false
