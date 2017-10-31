@@ -135,8 +135,6 @@
                 if (this.picker && this.picker.$el) document.body.removeChild(this.picker.$el);
             },
             render(reloadMonth) {
-                this.tmpNum = 0;
-
                 this.removeElement();
 
                 const Picker = Vue.extend(PickerComponent);

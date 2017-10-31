@@ -133,23 +133,20 @@
                     if (currentValue) {
                         const currentDate = new Date(currentValue);
 
-                        if (_this.inDatas(yearItems, _this.currentYear)) {
-                            _this.currentYear = currentDate.getFullYear();
-                        } else {
+                        _this.currentYear = currentDate.getFullYear();
+                        if (!_this.inDatas(yearItems, _this.currentYear)) {
                             _this.currentYear = yearItems[0].value;
                         }
 
                         this.reloadMonth && this.setMonths(_this.currentYear);
 
-                        if (_this.inDatas(monthItems, _this.currentMonth)) {
-                            _this.currentMonth = Utils.mentStr(currentDate.getMonth() + 1);
-                        } else {
+                        _this.currentMonth = Utils.mentStr(currentDate.getMonth() + 1);
+                        if (!_this.inDatas(monthItems, _this.currentMonth)) {
                             _this.currentMonth = monthItems[0].value;
                         }
 
-                        if (_this.inDatas(dayItems, _this.currentDay)) {
-                            _this.currentDay = Utils.mentStr(currentDate.getDate());
-                        } else {
+                        _this.currentDay = Utils.mentStr(currentDate.getDate());
+                        if (!_this.inDatas(dayItems, _this.currentDay)) {
                             _this.currentDay = dayItems[0].value;
                         }
                     } else {
@@ -186,19 +183,20 @@
                     }
 
                     if (currentValue) {
-                        const inHourDatas = _this.inDatas(hourItems, _this.currentHour);
-                        const inMinuteDatas = _this.inDatas(minuteItems, _this.currentMinute);
-
                         if (Utils.isDateTimeString(currentValue)) {
                             const currentDate = new Date(currentValue);
-
-                            _this.currentHour = inHourDatas ? Utils.mentStr(currentDate.getHours()) : hourItems[0].value;
-                            _this.currentMinute = inMinuteDatas ? Utils.mentStr(currentDate.getMinutes()) : minuteItems[0].value;
+                            _this.currentHour = Utils.mentStr(currentDate.getHours());
+                            _this.currentMinute = Utils.mentStr(currentDate.getMinutes());
                         } else {
                             const timeArr = currentValue.split(':');
-
-                            _this.currentHour = inHourDatas ? Utils.mentStr(timeArr[0]) : hourItems[0].value;
-                            _this.currentMinute = inMinuteDatas ? Utils.mentStr(timeArr[1]) : minuteItems[0].value;
+                            _this.currentHour = Utils.mentStr(timeArr[0]);
+                            _this.currentMinute = Utils.mentStr(timeArr[1]);
+                        }
+                        if (!_this.inDatas(hourItems, _this.currentHour)) {
+                            _this.currentHour = hourItems[0].value;
+                        }
+                        if (!_this.inDatas(minuteItems, _this.currentMinute)) {
+                            _this.currentMinute = minuteItems[0].value;
                         }
                     } else {
                         _this.currentHour = hourItems[0].value;
