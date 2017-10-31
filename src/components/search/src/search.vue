@@ -33,7 +33,7 @@
                     <a href="javascript:;" class="cancel-text" @click="close">{{cancelText}}</a>
                 </div>
                 <div class="yd-search-list" :style="{paddingBottom: top}">
-                    <p class="yd-search-list-item" v-for="item, key in result" @click="clickHandler(item)" :key="key">{{item}}</p>
+                    <p class="yd-search-list-item" v-for="item, key in result" @click="clickHandler(item)" :key="key">{{item.label || item}}</p>
                 </div>
             </div>
         </template>

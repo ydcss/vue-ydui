@@ -1,5 +1,5 @@
 <template>
-    <div class="yd-textarea">
+    <div class="yd-textarea" :class="readonly ? 'yd-textarea-readonly' : ''">
         <textarea v-model="mlstr"
                   :placeholder="placeholder"
                   :maxlength="maxlength"
@@ -50,7 +50,10 @@
             mlstr(val) {
                 this.$emit('input', val);
                 // TODO 参数更名，即将删除
-                this.change && this.change();
+                if (this.change) {
+                    this.change();
+                    console.warn('From VUE-YDUI: The parameter "change" is destroyed, please use "callback".');
+                }
                 this.callback && this.change();
                 if (this.showCounter) this.num = val.length;
             },

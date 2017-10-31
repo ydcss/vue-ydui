@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="yd-actionsheet-mask" v-show="show" @click.stop="close"></div>
+        <yd-mask v-model="show" @click.native="close"></yd-mask>
         <div class="yd-actionsheet" :class="show ? 'yd-actionsheet-active' : ''">
             <a v-for="item, key in items" @click.stop="itemClick(item)" href="javascript:;" class="yd-actionsheet-item" :key="key">{{item.label}}</a>
             <a v-if="cancel" @click.stop="close" href="javascript:;" class="yd-actionsheet-action">{{cancel}}</a>
@@ -9,10 +9,13 @@
 </template>
 
 <script type="text/babel">
-    import {addClass, removeClass, getScrollview, pageScroll, isIOS} from '../../../utils/assist';
+    import Mask from '../../mask/src/mask.vue';
 
     export default {
         name: 'yd-actionsheet',
+        components: {
+            'yd-mask': Mask
+        },
         data() {
             return {
                 show: this.value
@@ -31,16 +34,6 @@
         },
         watch: {
             value(val) {
-                if (isIOS) {
-                    if (val) {
-                        pageScroll.lock();
-                        addClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
-                    } else {
-                        pageScroll.unlock();
-                        removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
-                    }
-                }
-
                 this.show = val;
             }
         },
@@ -48,23 +41,20 @@
             itemClick(item) {
                 if(item) {
                     // TODO 参数更名，即将删除
-                    typeof item.method === 'function' && item.method(item);
+                    if (typeof item.method === 'function') {
+                        item.method(item);
+                        console.warn('From VUE-YDUI: The parameter "method" is destroyed, please use "callback".');
+                    }
                     typeof item.callback === 'function' && item.callback(item);
                     !item.stay && this.close();
                 }
             },
             close() {
-                isIOS && removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
-
                 this.$emit('input', false);
             }
         },
         destroyed() {
             this.close();
-            pageScroll.unlock();
-        },
-        mounted() {
-            this.scrollView = getScrollview(this.$el);
         }
     }
 </script>

@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div class="yd-popup-mask" v-show="show" @click.stop="close"></div>
-        <div :class="classes" :style="styles()" ref="box">
+        <yd-mask v-model="show" @click.native="close"></yd-mask>
+        <div :class="classes" :style="styles" ref="box">
             <div v-if="!!$slots.top && position != 'center'" ref="top">
                 <slot name="top"></slot>
             </div>
@@ -18,10 +18,14 @@
 </template>
 
 <script type="text/ecmascript-6">
-    import {addClass, removeClass, getScrollview, pageScroll, isIOS} from '../../../utils/assist';
+    import {isIOS} from '../../../utils/assist';
+    import Mask from '../../mask/src/mask.vue';
 
     export default {
         name: 'yd-popup',
+        components: {
+            'yd-mask': Mask
+        },
         data() {
             return {
                 show: this.value
@@ -53,28 +57,19 @@
         watch: {
             value(val) {
                 if (isIOS) {
-
                     const $refs = this.$refs;
                     const topHeight = !!this.$slots.top && this.position !== 'center' ? $refs.top.offsetHeight : 0;
                     const bottomHeight = !!this.$slots.bottom && this.position !== 'center' ? $refs.bottom.offsetHeight : 0;
                     const contentHeight = topHeight + $refs.content.offsetHeight + bottomHeight;
 
                     if (val) {
-                        pageScroll.lock();
-
                         if (contentHeight > $refs.box.offsetHeight) {
                             $refs.box.addEventListener('touchmove', this.stopPropagation);
                         }
-
-                        addClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
                     } else {
-                        pageScroll.unlock();
-
                         if (contentHeight > $refs.box.offsetHeight) {
                             $refs.box.removeEventListener('touchmove', this.stopPropagation);
                         }
-
-                        removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
                     }
                 }
 
@@ -85,11 +80,6 @@
             classes() {
                 return (this.position === 'center' ? 'yd-popup-center ' : 'yd-popup yd-popup-' + this.position) +
                         (this.show ? ' yd-popup-show ' : '');
-            }
-        },
-        methods: {
-            stopPropagation(e) {
-                e.stopPropagation();
             },
             styles() {
                 if (this.position === 'left' || this.position === 'right') {
@@ -99,23 +89,18 @@
                 } else {
                     return {width: this.width};
                 }
+            }
+        },
+        methods: {
+            stopPropagation(e) {
+                e.stopPropagation();
             },
             close() {
-                isIOS && removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
-
                 if (this.closeOnMasker) {
                     this.show = false;
                     this.$emit('input', false);
                 }
             }
-        },
-        mounted() {
-            this.scrollView = getScrollview(this.$el);
-        },
-        destroyed() {
-            isIOS && removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
-
-            pageScroll.unlock();
         }
     }
 </script>

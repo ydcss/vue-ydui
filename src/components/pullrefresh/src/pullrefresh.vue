@@ -85,7 +85,7 @@
                 dragBox.addEventListener('touchmove', this.touchMoveHandler);
                 dragBox.addEventListener('touchend', this.touchEndHandler);
 
-                document.body.addEventListener('touchmove', this.stopDragEvent);
+                document.body.addEventListener('touchmove', this.stopDragEvent, {passive: false});
             },
             unbindEvents() {
                 const dragBox = this.$refs.dragBox;
@@ -94,7 +94,7 @@
                 dragBox.removeEventListener('touchmove', this.touchMoveHandler);
                 dragBox.removeEventListener('touchend', this.touchEndHandler);
 
-                document.body.removeEventListener('touchmove', this.stopDragEvent);
+                document.body.removeEventListener('touchmove', this.stopDragEvent, {passive: false});
             },
             stopDragEvent(event) {
                 this.touches.isDraging && event.preventDefault();
@@ -189,7 +189,11 @@
             },
             triggerLoad() {
                 this.touches.loading = true;
-                this.onInfinite && this.onInfinite();
+                // TODO 参数更名，即将删除
+                if (this.onInfinite) {
+                    this.onInfinite();
+                    console.warn('From VUE-YDUI: The parameter "onInfinite" is destroyed, please use "callback".');
+                }
                 this.callback && this.callback();
             },
             finishLoad() {

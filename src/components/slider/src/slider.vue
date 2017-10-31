@@ -297,7 +297,7 @@
                     this.callback && this.callback(this.currentIndex);
                 } else {
                     let _index = this.currentIndex % this.itemNums;
-                    this.callback && this.callback(_index === 0 ? this.itemNums-1 : _index - 1);
+                    this.callback && this.callback(_index === 0 ? this.itemNums - 1 : _index - 1);
                 }
             },
             stopAutoplay() {
@@ -319,7 +319,7 @@
 
                 window.addEventListener('resize', this.resizeSlides);
 
-                document.body.addEventListener('touchmove', this.stopDrag);
+                document.body.addEventListener('touchmove', this.stopDrag, {passive: false});
             },
             unbindEvents() {
                 this.$el.removeEventListener('touchstart', this.touchStartHandler);
@@ -328,7 +328,7 @@
 
                 window.removeEventListener('resize', this.resizeSlides);
 
-                document.body.removeEventListener('touchmove', this.stopDrag);
+                document.body.removeEventListener('touchmove', this.stopDrag, {passive: false});
             },
             setTranslate(speed, translate) {
                 this.dragStyleObject.transitionDuration = speed + 'ms';

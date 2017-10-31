@@ -1,7 +1,6 @@
 <template>
     <div>
-        <div class="yd-keyboard-mask" v-if="triggerClose" v-show="show" @click.stop="close"></div>
-        <div class="yd-mask-keyboard" v-else v-show="show"></div>
+        <yd-mask v-model="show" @click.native="close"></yd-mask>
         <div class="yd-keyboard" :class="show ? 'yd-keyboard-active' : ''">
             <div class="yd-keyboard-head">
                 <strong>{{inputText}}</strong>
@@ -35,10 +34,13 @@
 </template>
 
 <script type="text/babel">
-    import {addClass, removeClass, getScrollview, pageScroll, isIOS} from '../../../utils/assist';
+    import Mask from '../../mask/src/mask.vue';
 
     export default {
         name: 'yd-keyboard',
+        components: {
+            'yd-mask': Mask
+        },
         data() {
             return {
                 nums: '',
@@ -81,16 +83,6 @@
         },
         watch: {
             value(val) {
-                if (isIOS) {
-                    if (val) {
-                        pageScroll.lock();
-                        addClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
-                    } else {
-                        pageScroll.unlock();
-                        removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
-                    }
-                }
-
                 this.nums = '';
                 this.error = '';
                 this.show = val;
@@ -102,15 +94,16 @@
             nums(val) {
                 if (val.length >= 6) {
                     // TODO 参数更名，即将删除
-                    this.inputDone && this.inputDone(val);
+                    if (this.inputDone) {
+                        this.inputDone(val);
+                        console.warn('From VUE-YDUI: The parameter "inputDone" is destroyed, please use "callback".');
+                    }
                     this.callback && this.callback(val);
                 }
             }
         },
         methods: {
             init() {
-                this.scrollView = getScrollview(this.$el);
-
                 this.$on('ydui.keyboard.error', (error) => {
                     this.setError(error);
                 });
@@ -148,8 +141,7 @@
                 return arr;
             },
             close() {
-                isIOS && removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
-
+                if(!this.triggerClose) return;
                 this.$emit('input', false);
             },
             setError(error) {
@@ -166,7 +158,6 @@
         },
         destroyed() {
             this.close();
-            pageScroll.unlock();
         }
     }
 </script>

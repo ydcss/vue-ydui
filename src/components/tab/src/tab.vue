@@ -71,7 +71,10 @@
             },
             emitChange(label, tabkey) {
                 // TODO 参数更名，即将删除
-                this.change && this.change(label, tabkey);
+                if (this.change) {
+                    this.change(label, tabkey);
+                    console.warn('From VUE-YDUI: The parameter "change" is destroyed, please use "callback".');
+                }
                 this.callback && this.callback(label, tabkey);
             },
             changeHandler(uid, label, tabkey) {

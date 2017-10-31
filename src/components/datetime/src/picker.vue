@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="yd-datetime-mask" v-show="show" @click.stop="close"></div>
+        <yd-mask v-model="show" @click.native="close"></yd-mask>
         <div class="yd-datetime" :class="show ? 'yd-datetime-active' : ''">
             <div class="yd-datetime-head">
                 <a href="javascript:;" @click.stop="close">{{cancelText}}</a>
@@ -10,7 +10,11 @@
                 <div class="yd-datetime-item" v-for="column, key in columns" :key="key">
                     <div class="yd-datetime-item-box" :ref="'Component_' + column">
                         <div class="yd-datetime-item-content" :ref="'Content_' + column">
-                            <span v-for="item, key in items[column]" :data-value="item.value" v-html="item.name" :key="key"></span>
+                            <span v-for="item, key in items[column]"
+                                  :data-value="item.value"
+                                  v-html="item.name"
+                                  :key="key"
+                            ></span>
                         </div>
                     </div>
                 </div>
@@ -22,14 +26,16 @@
 </template>
 
 <script type="text/babel">
+    import Mask from '../../mask/src/mask.vue';
     import Scroller from './scroller';
     import Utils from './utils';
-    import {addClass, removeClass, getScrollview, isIOS, pageScroll} from '../../../utils/assist';
 
     export default {
         data() {
             return {
+                itemHeight: 38,
                 value: '',
+                reloadMonth: false,
                 show: false,
                 parentEL: null,
                 columns: [],
@@ -68,6 +74,9 @@
                 startHour: 0,
                 endHour: 23
             }
+        },
+        components: {
+            'yd-mask': Mask
         },
         watch: {
             currentYear(val) {
@@ -124,18 +133,23 @@
                     if (currentValue) {
                         const currentDate = new Date(currentValue);
 
-                        _this.currentYear = currentDate.getFullYear();
-                        if (!_this.inDatas(yearItems, _this.currentYear)) {
+                        if (_this.inDatas(yearItems, _this.currentYear)) {
+                            _this.currentYear = currentDate.getFullYear();
+                        } else {
                             _this.currentYear = yearItems[0].value;
                         }
 
-                        _this.currentMonth = Utils.mentStr(currentDate.getMonth() + 1);
-                        if (!_this.inDatas(monthItems, _this.currentMonth)) {
+                        this.reloadMonth && this.setMonths(_this.currentYear);
+
+                        if (_this.inDatas(monthItems, _this.currentMonth)) {
+                            _this.currentMonth = Utils.mentStr(currentDate.getMonth() + 1);
+                        } else {
                             _this.currentMonth = monthItems[0].value;
                         }
 
-                        _this.currentDay = Utils.mentStr(currentDate.getDate());
-                        if (!_this.inDatas(dayItems, _this.currentDay)) {
+                        if (_this.inDatas(dayItems, _this.currentDay)) {
+                            _this.currentDay = Utils.mentStr(currentDate.getDate());
+                        } else {
                             _this.currentDay = dayItems[0].value;
                         }
                     } else {
@@ -172,20 +186,19 @@
                     }
 
                     if (currentValue) {
+                        const inHourDatas = _this.inDatas(hourItems, _this.currentHour);
+                        const inMinuteDatas = _this.inDatas(minuteItems, _this.currentMinute);
+
                         if (Utils.isDateTimeString(currentValue)) {
                             const currentDate = new Date(currentValue);
-                            _this.currentHour = Utils.mentStr(currentDate.getHours());
-                            _this.currentMinute = Utils.mentStr(currentDate.getMinutes());
+
+                            _this.currentHour = inHourDatas ? Utils.mentStr(currentDate.getHours()) : hourItems[0].value;
+                            _this.currentMinute = inMinuteDatas ? Utils.mentStr(currentDate.getMinutes()) : minuteItems[0].value;
                         } else {
                             const timeArr = currentValue.split(':');
-                            _this.currentHour = Utils.mentStr(timeArr[0]);
-                            _this.currentMinute = Utils.mentStr(timeArr[1]);
-                        }
-                        if (!_this.inDatas(hourItems, _this.currentHour)) {
-                            _this.currentHour = hourItems[0].value;
-                        }
-                        if (!_this.inDatas(minuteItems, _this.currentMinute)) {
-                            _this.currentMinute = minuteItems[0].value;
+
+                            _this.currentHour = inHourDatas ? Utils.mentStr(timeArr[0]) : hourItems[0].value;
+                            _this.currentMinute = inMinuteDatas ? Utils.mentStr(timeArr[1]) : minuteItems[0].value;
                         }
                     } else {
                         _this.currentHour = hourItems[0].value;
@@ -195,6 +208,10 @@
 
                 if (_this.type === 'datetime') {
                     _this.columns = ['Year', 'Month', 'Day', 'Hour', 'Minute'];
+                } else if (_this.type === 'month') {
+                    _this.columns = ['Year', 'Month'];
+                } else if (_this.type === 'day') {
+                    _this.columns = ['Month', 'Day'];
                 } else if (_this.type === 'date') {
                     _this.columns = ['Year', 'Month', 'Day'];
                 } else {
@@ -209,20 +226,21 @@
                     const content = _this.$refs['Content_' + item][0];
 
                     _this.scroller[item] = new Scroller(component, content, {
-                        itemHeight: 38,
+                        itemHeight: _this.itemHeight,
                         onSelect(value) {
                             _this['current' + item] = value;
                             _this.scrolling[item] = false;
                         },
                         callback(top, isDragging) {
-                            if(isDragging) {
+                            if (isDragging) {
                                 _this.scrolling[item] = true;
                             }
                             content.style.webkitTransform = 'translate3d(0, ' + (-top) + 'px, 0)'
                         }
                     });
 
-                    _this.scroller[item].setDimensions(component.clientHeight, content.offsetHeight, _this.items[item].length);
+                    const len = _this.items[item].length;
+                    _this.scroller[item].setDimensions(7 * _this.itemHeight, len * _this.itemHeight, len);
                     _this.scroller[item].select(_this['current' + item], false);
                     _this.scrolling[item] = false;
                 });
@@ -297,7 +315,8 @@
                 const scroller = _this.scroller[type];
                 if (!scroller) return;
 
-                scroller.setDimensions(_this.$refs['Component_' + type][0].clientHeight, _this.$refs['Content_' + type][0].offsetHeight, allDatas.length);
+                const len = allDatas.length;
+                scroller.setDimensions(7 * _this.itemHeight, len * _this.itemHeight, len);
 
                 setTimeout(() => {
                     const indatas = _this.inDatas(allDatas, _this['current' + type]);
@@ -312,6 +331,10 @@
 
                 if (this.type === 'datetime') {
                     value = `${this.currentYear}-${this.currentMonth}-${this.currentDay} ${this.currentHour}:${this.currentMinute}`;
+                } else if (this.type === 'month') {
+                    value = `${this.currentYear}-${this.currentMonth}`;
+                } else if (this.type === 'day') {
+                    value = `${this.currentMonth}-${this.currentDay}`;
                 } else if (this.type === 'date') {
                     value = `${this.currentYear}-${this.currentMonth}-${this.currentDay}`;
                 } else {
@@ -332,25 +355,15 @@
             open() {
                 if (this.readonly) return;
                 this.show = true;
-                if (isIOS) {
-                    pageScroll.lock();
-                    addClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
-                }
             },
             close() {
                 this.show = false;
-                if (isIOS) {
-                    pageScroll.unlock();
-                    removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
-                }
             }
         },
         created() {
             this.init();
         },
         mounted() {
-            this.scrollView = getScrollview(this.parentEL);
-
             this.$nextTick(this.render);
         },
         beforeDestroy() {

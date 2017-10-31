@@ -103,7 +103,10 @@
                 if (tagOffsetTop > offsetTop && tagOffsetTop - (distance + offsetTop) * this.num <= contentHeight && this.$el.offsetHeight > scrollviewHeight) {
                     this.isLoading = true;
                     // TODO 参数更名，即将删除
-                    this.onInfinite && this.onInfinite();
+                    if (this.onInfinite) {
+                        this.onInfinite();
+                        console.warn('From VUE-YDUI: The parameter "onInfinite" is destroyed, please use "callback".');
+                    }
                     this.callback && this.callback();
                     this.num++;
                 }

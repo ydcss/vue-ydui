@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="yd-cityselect-mask" v-show="show" @click.stop="close" ref="mask"></div>
+        <yd-mask v-model="show" @click.native="close"></yd-mask>
         <div class="yd-cityselect" :class="show ? 'yd-cityselect-active' : ''">
             <div class="yd-cityselect-header">
                 <p class="yd-cityselect-title" @touchstart.stop.prevent="">{{title}}</p>
@@ -43,10 +43,13 @@
 </template>
 
 <script type="text/babel">
-    import {addClass, removeClass, getScrollview, isIOS, pageScroll} from '../../../utils/assist';
+    import Mask from '../../mask/src/mask.vue';
 
     export default {
         name: 'yd-cityselect',
+        components: {
+            'yd-mask': Mask
+        },
         data() {
             return {
                 show: this.value,
@@ -96,16 +99,6 @@
         },
         watch: {
             value(val) {
-                if (isIOS) {
-                    if (val) {
-                        pageScroll.lock(this.$refs.mask);
-                        addClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
-                    } else {
-                        pageScroll.unlock(this.$refs.mask);
-                        removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
-                    }
-                }
-
                 this.show = val;
             },
             ready(val) {
@@ -114,8 +107,6 @@
         },
         methods: {
             init() {
-                this.scrollView = getScrollview(this.$el);
-
                 if (!this.ready) return;
 
                 this.isArray(this.items) && this.provance && this.setDefalutValue(this.items, 'provance', 1);
@@ -228,13 +219,14 @@
             },
             returnValue() {
                 // TODO 参数更名，即将删除
-                this.done && this.done(this.active);
+                if (this.done) {
+                    this.done(this.active);
+                    console.warn('From VUE-YDUI: The parameter "done" is destroyed, please use "callback".');
+                }
                 this.callback && this.callback(this.active);
                 this.close();
             },
             close() {
-                isIOS && removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
-
                 this.$emit('input', false);
                 this.show = false;
             },
