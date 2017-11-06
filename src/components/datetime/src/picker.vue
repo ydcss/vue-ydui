@@ -26,6 +26,7 @@
 </template>
 
 <script type="text/babel">
+    import {isIOS, pageScroll} from '../../../utils/assist';
     import Mask from '../../mask/src/mask.vue';
     import Scroller from './scroller';
     import Utils from './utils';
@@ -353,9 +354,11 @@
             open() {
                 if (this.readonly) return;
                 this.show = true;
+                isIOS && pageScroll.lock();
             },
             close() {
                 this.show = false;
+                isIOS && pageScroll.unlock();
             }
         },
         created() {

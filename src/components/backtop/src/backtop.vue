@@ -17,7 +17,17 @@
         },
         methods: {
             backtop() {
-                const top = this.scrollView === window ? document.body.scrollTop : this.scrollView.scrollTop;
+                let top = 0;
+                if (this.scrollView === window) {
+                    if (document.documentElement && document.documentElement.scrollTop) {
+                        top = document.documentElement.scrollTop;
+                    } else {
+                        top = document.body.scrollTop;
+                    }
+                } else {
+                    top = this.scrollView.scrollTop
+                }
+
                 scrollTop(this.scrollView, top, 0);
             },
             scrollHandler() {

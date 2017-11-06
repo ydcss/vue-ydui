@@ -34,6 +34,7 @@
 </template>
 
 <script type="text/babel">
+    import {isIOS, pageScroll} from '../../../utils/assist';
     import Mask from '../../mask/src/mask.vue';
 
     export default {
@@ -83,6 +84,10 @@
         },
         watch: {
             value(val) {
+                if (isIOS) {
+                    val ? pageScroll.lock() : pageScroll.unlock();
+                }
+
                 this.nums = '';
                 this.error = '';
                 this.show = val;
@@ -158,6 +163,7 @@
         },
         destroyed() {
             this.close();
+            pageScroll.unlock();
         }
     }
 </script>

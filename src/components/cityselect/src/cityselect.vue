@@ -1,6 +1,6 @@
 <template>
     <div>
-        <yd-mask v-model="show" @click.native="close"></yd-mask>
+        <yd-mask v-model="show" @click.native="close" ref="mask"></yd-mask>
         <div class="yd-cityselect" :class="show ? 'yd-cityselect-active' : ''">
             <div class="yd-cityselect-header">
                 <p class="yd-cityselect-title" @touchstart.stop.prevent="">{{title}}</p>
@@ -43,6 +43,7 @@
 </template>
 
 <script type="text/babel">
+    import {isIOS, pageScroll} from '../../../utils/assist';
     import Mask from '../../mask/src/mask.vue';
 
     export default {
@@ -99,6 +100,9 @@
         },
         watch: {
             value(val) {
+                if (isIOS) {
+                    val ? pageScroll.lock(this.$refs.mask.$el) : pageScroll.unlock(this.$refs.mask.$el);
+                }
                 this.show = val;
             },
             ready(val) {

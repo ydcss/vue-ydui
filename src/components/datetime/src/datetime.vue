@@ -6,6 +6,7 @@
 </template>
 
 <script type="text/babel">
+    import {pageScroll} from '../../../utils/assist';
     import Vue from 'vue';
     import Utils from './utils';
     import PickerComponent from './picker.vue';
@@ -108,7 +109,8 @@
                 type: Boolean,
                 default: true
             },
-            placeholder: String
+            placeholder: String,
+            callback: Function
         },
         watch: {
             value(val) {
@@ -153,6 +155,7 @@
                     if (this.tmpNum > 0 || this.initEmit) {
                         this.currentValue = value;
                         this.$emit('input', value);
+                        this.callback && this.callback(value);
                     }
                     this.tmpNum++;
                 });
@@ -162,6 +165,7 @@
             this.render();
         },
         beforeDestroy() {
+            pageScroll.unlock();
             this.removeElement();
         }
     }

@@ -18,7 +18,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-    import {isIOS} from '../../../utils/assist';
+    import {isIOS, pageScroll} from '../../../utils/assist';
     import Mask from '../../mask/src/mask.vue';
 
     export default {
@@ -63,10 +63,14 @@
                     const contentHeight = topHeight + $refs.content.offsetHeight + bottomHeight;
 
                     if (val) {
+                        pageScroll.lock();
+
                         if (contentHeight > $refs.box.offsetHeight) {
                             $refs.box.addEventListener('touchmove', this.stopPropagation);
                         }
                     } else {
+                        pageScroll.unlock();
+
                         if (contentHeight > $refs.box.offsetHeight) {
                             $refs.box.removeEventListener('touchmove', this.stopPropagation);
                         }
@@ -101,6 +105,9 @@
                     this.$emit('input', false);
                 }
             }
+        },
+        destroyed() {
+            pageScroll.unlock();
         }
     }
 </script>

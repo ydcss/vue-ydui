@@ -3,7 +3,7 @@
 </template>
 
 <script type="text/babel">
-    import {addClass, removeClass, getScrollview, pageScroll, isIOS} from '../../../utils/assist';
+    import {addClass, removeClass, getScrollview, isIOS} from '../../../utils/assist';
 
     export default {
         name: 'yd-mask',
@@ -37,10 +37,8 @@
                 this.show = val;
                 if (isIOS) {
                     if (val) {
-                        pageScroll.lock();
                         addClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
                     } else {
-                        pageScroll.unlock();
                         setTimeout(() => {
                             removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
                         }, 200);
