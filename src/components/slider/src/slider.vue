@@ -25,7 +25,7 @@
             return {
                 firtstItem: '',
                 lastItem: '',
-                currentIndex: ~~this.index,
+                currentIndex: 0,
                 itemNums: 0,
                 itemsArr: [],
                 autoPlayTimer: null,
@@ -92,8 +92,9 @@
                     val = this.itemNums;
                 }
 
-                this.currentIndex = val;
-                this.showItem(val);
+                this.currentIndex = this.loop ? val + 1 : val;
+
+                this.showItem(this.currentIndex);
             },
             currentIndex(val) {
                 const itemNums = this.itemNums;
@@ -117,6 +118,14 @@
 
                 if (this.loop) {
                     this.currentIndex = 1;
+                    if (this.index > 0) {
+                        this.currentIndex = ~~this.index + 1;
+                    }
+                } else {
+                    this.currentIndex = 0;
+                    if (this.index > 0) {
+                        this.currentIndex = ~~this.index;
+                    }
                 }
 
                 this.cloneItem();
@@ -284,6 +293,7 @@
                         setTimeout(() => {
                             this.setTranslate(this.speed, -(++this.currentIndex * size));
                         }, 100);
+                        this.callback && this.callback(this.currentIndex);
                         return;
                     }
                     this.setTranslate(this.speed, -(++this.currentIndex * size));

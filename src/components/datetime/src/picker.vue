@@ -107,101 +107,120 @@
                     currentValue = _this.currentValue = _this.endDate;
                 }
 
-                const yearItems = _this.items['Year'] = Utils.getYearItems({
-                    format: _this.yearFormat,
-                    startDate: _this.startDate,
-                    endDate: _this.endDate,
-                    startYear: _this.startYear,
-                    endYear: _this.endYear
-                });
-
-                const monthItems = Utils.getMonthItems({
-                    format: _this.monthFormat,
-                    currentYear: yearItems[0].value,
-                    startDate: _this.startDate,
-                    endDate: _this.endDate
-                });
-
-                const dayItems = Utils.getDateItems({
-                    format: _this.dayFormat,
-                    currentYear: yearItems[0].value,
-                    currentMonth: monthItems[0].value,
-                    startDate: _this.startDate,
-                    endDate: _this.endDate
-                });
+                const currentDate = new Date(currentValue);
+                let _currentYear = currentDate.getFullYear();
+                let _currentMonth = currentDate.getMonth() + 1;
+                let _currentDay = currentDate.getDate();
+                let _currentHour = currentDate.getHours();
+                let _currentMinutes = currentDate.getMinutes();
 
                 if (_this.type !== 'time') {
-                    if (currentValue) {
-                        const currentDate = new Date(currentValue);
+                    const _yearItems = _this.items['Year'] = Utils.getYearItems({
+                        format: _this.yearFormat,
+                        startDate: _this.startDate,
+                        endDate: _this.endDate,
+                        startYear: _this.startYear,
+                        endYear: _this.endYear
+                    });
+                    if (!currentValue) {
+                        _currentYear = _yearItems[0].value;
+                    }
 
-                        _this.currentYear = currentDate.getFullYear();
-                        if (!_this.inDatas(yearItems, _this.currentYear)) {
-                            _this.currentYear = yearItems[0].value;
+                    const _monthItems = Utils.getMonthItems({
+                        format: _this.monthFormat,
+                        currentYear: _currentYear,
+                        startDate: _this.startDate,
+                        endDate: _this.endDate
+                    });
+                    if (!currentValue) {
+                        _currentMonth = _monthItems[0].value;
+                    }
+
+                    const _dayItems = Utils.getDayItems({
+                        format: _this.dayFormat,
+                        currentYear: _currentYear,
+                        currentMonth: _currentMonth,
+                        startDate: _this.startDate,
+                        endDate: _this.endDate
+                    });
+                    if (!currentValue) {
+                        _currentDay = _dayItems[0].value;
+                    }
+
+                    if (currentValue) {
+                        _this.currentYear = _currentYear;
+                        if (!_this.inDatas(_yearItems, _this.currentYear)) {
+                            _this.currentYear = _yearItems[0].value;
                         }
 
                         this.reloadMonth && this.setMonths(_this.currentYear);
 
-                        _this.currentMonth = Utils.mentStr(currentDate.getMonth() + 1);
-                        if (!_this.inDatas(monthItems, _this.currentMonth)) {
-                            _this.currentMonth = monthItems[0].value;
+                        _this.currentMonth = Utils.mentStr(_currentMonth);
+                        if (!_this.inDatas(_monthItems, _this.currentMonth)) {
+                            _this.currentMonth = _monthItems[0].value;
                         }
 
-                        _this.currentDay = Utils.mentStr(currentDate.getDate());
-                        if (!_this.inDatas(dayItems, _this.currentDay)) {
-                            _this.currentDay = dayItems[0].value;
+                        _this.currentDay = Utils.mentStr(_currentDay);
+                        if (!_this.inDatas(_dayItems, _this.currentDay)) {
+                            _this.currentDay = _dayItems[0].value;
                         }
                     } else {
-                        _this.currentYear = yearItems[0].value;
-                        _this.currentMonth = monthItems[0].value;
-                        _this.currentDay = dayItems[0].value;
+                        _this.currentYear = _currentYear;
+                        _this.currentMonth = _currentMonth;
+                        _this.currentDay = _currentDay;
                     }
                 }
 
                 if (_this.type === 'datetime' || _this.type === 'time') {
-                    const hourItems = Utils.getHourItems({
+                    const _hourItems = Utils.getHourItems({
                         format: _this.hourFormat,
-                        currentYear: yearItems[0].value,
-                        currentMonth: monthItems[0].value,
-                        currentDay: dayItems[0].value,
+                        currentYear: _currentYear,
+                        currentMonth: _currentMonth,
+                        currentDay: _currentDay,
                         startDate: _this.startDate,
                         endDate: _this.endDate,
                         startHour: _this.startHour,
                         endHour: _this.endHour
                     });
+                    if(!currentValue) {
+                        _currentHour = _hourItems[0].value
+                    }
 
-                    const minuteItems = Utils.getMinuteItems({
+                    const _minuteItems = Utils.getMinuteItems({
                         format: _this.minuteFormat,
-                        currentYear: yearItems[0].value,
-                        currentMonth: monthItems[0].value,
-                        currentDay: dayItems[0].value,
-                        currentHour: hourItems[0].value,
+                        currentYear: _currentYear,
+                        currentMonth: _currentMonth,
+                        currentDay: _currentDay,
+                        currentHour: _currentHour,
                         startDate: _this.startDate,
                         endDate: _this.endDate
                     });
+                    if(!currentValue) {
+                        _currentMinutes = _minuteItems[0].value
+                    }
 
                     if (_this.type === 'time') {
-                        _this.items['Hour'] = hourItems;
+                        _this.items['Hour'] = _hourItems;
                     }
 
                     if (currentValue) {
                         if (Utils.isDateTimeString(currentValue)) {
-                            const currentDate = new Date(currentValue);
-                            _this.currentHour = Utils.mentStr(currentDate.getHours());
-                            _this.currentMinute = Utils.mentStr(currentDate.getMinutes());
+                            _this.currentHour = Utils.mentStr(_currentHour);
+                            _this.currentMinute = Utils.mentStr(_currentMinutes);
                         } else {
                             const timeArr = currentValue.split(':');
                             _this.currentHour = Utils.mentStr(timeArr[0]);
                             _this.currentMinute = Utils.mentStr(timeArr[1]);
                         }
-                        if (!_this.inDatas(hourItems, _this.currentHour)) {
-                            _this.currentHour = hourItems[0].value;
+                        if (!_this.inDatas(_hourItems, _this.currentHour)) {
+                            _this.currentHour = _hourItems[0].value;
                         }
-                        if (!_this.inDatas(minuteItems, _this.currentMinute)) {
-                            _this.currentMinute = minuteItems[0].value;
+                        if (!_this.inDatas(_minuteItems, _this.currentMinute)) {
+                            _this.currentMinute = _minuteItems[0].value;
                         }
                     } else {
-                        _this.currentHour = hourItems[0].value;
-                        _this.currentMinute = minuteItems[0].value;
+                        _this.currentHour = _currentHour;
+                        _this.currentMinute = _currentMinutes;
                     }
                 }
 
@@ -263,7 +282,7 @@
             setDays(currentMonth) {
                 const _this = this;
 
-                const allDays = _this.items['Day'] = Utils.getDateItems({
+                const allDays = _this.items['Day'] = Utils.getDayItems({
                     format: _this.dayFormat,
                     currentYear: _this.currentYear,
                     currentMonth: currentMonth,

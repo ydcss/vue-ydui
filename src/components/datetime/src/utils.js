@@ -89,7 +89,7 @@ export default {
 
         return months;
     },
-    getDateItems(config) {
+    getDayItems(config) {
         let dates = [];
         let today = new Date();
         let year = today.getFullYear();
