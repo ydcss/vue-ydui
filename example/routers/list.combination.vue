@@ -1,32 +1,32 @@
 <template>
     <yd-layout>
 
-        <yd-navbar slot="navbar" title="InfiniteScroll">
+        <yd-navbar slot="navbar" title="Combination">
             <router-link to="/list" slot="left">
                 <yd-navbar-back-icon></yd-navbar-back-icon>
             </router-link>
         </yd-navbar>
 
-        <yd-infinitescroll :callback="loadList" ref="lsdemo">
+        <yd-pullrefresh :callback="loadList1" ref="prdemo">
 
-            <yd-list theme="1" slot="list">
-                <yd-list-item v-for="item in list">
-                    <img slot="img" :src="item.img">
-                    <span slot="title">{{item.title}}</span>
-                    <yd-list-other slot="other">
-                        <div>
-                            <span class="list-price"><em>¥</em>{{item.marketprice}}</span>
-                            <span class="list-del-price">¥{{item.productprice}}</span>
-                        </div>
-                        <div>content</div>
-                    </yd-list-other>
-                </yd-list-item>
-            </yd-list>
+            <yd-infinitescroll :callback="loadList2" ref="lsdemo">
+                <yd-list theme="1" slot="list">
+                    <yd-list-item v-for="item in list">
+                        <img slot="img" :src="item.img">
+                        <span slot="title">{{item.title}}</span>
+                        <yd-list-other slot="other">
+                            <div>
+                                <span class="list-price"><em>¥</em>{{item.marketprice}}</span>
+                                <span class="list-del-price">¥{{item.productprice}}</span>
+                            </div>
+                            <div>content</div>
+                        </yd-list-other>
+                    </yd-list-item>
+                </yd-list>
+                <span slot="doneTip">啦啦啦，啦啦啦，没有数据啦~~</span>
 
-            <!-- 数据全部加载完毕显示 -->
-            <span slot="doneTip">啦啦啦，啦啦啦，没有数据啦~~</span>
-
-        </yd-infinitescroll>
+            </yd-infinitescroll>
+        </yd-pullrefresh>
 
         <yd-backtop></yd-backtop>
     </yd-layout>
@@ -36,7 +36,8 @@
     export default {
         data() {
             return {
-                page: 1,
+                page1: 1,
+                page2: 1,
                 pageSize: 10,
                 list: [
                     {
@@ -91,10 +92,28 @@
             }
         },
         methods: {
-            loadList() {
+            loadList1() {
+                const url = 'http://list.ydui.org/getdata.php';
+
+                this.$http.jsonp(url, {params: {type: 'pulldown', page: this.page1}}).then((response) => {
+
+                    const _list = response.body;
+
+                    this.list = [..._list, ...this.list];
+
+                    this.$dialog.toast({
+                        mes: _list.length > 0 ? '为您更新了' + _list.length + '条内容' : '已是最新内容'
+                    });
+
+                    this.$refs.prdemo.$emit('ydui.pullrefresh.finishLoad');
+
+                    this.page1++;
+                });
+            },
+            loadList2() {
                 this.$http.jsonp('http://list.ydui.org/getdata.php?type=backposition', {
                     params: {
-                        page: this.page,
+                        page: this.page2,
                         pagesize: this.pageSize
                     }
                 }).then(function (response) {
@@ -103,7 +122,7 @@
 
                         this.list = [...this.list, ..._list];
 
-                        if (_list.length < this.pageSize || this.page >= 4) {
+                        if (_list.length < this.pageSize || this.page2 >= 4) {
                             // 所有数据加载完毕
                             this.$refs.lsdemo.$emit('ydui.infinitescroll.loadedDone');
                             return;
@@ -112,7 +131,7 @@
                         // 单次请求数据完毕
                         this.$refs.lsdemo.$emit('ydui.infinitescroll.finishLoad');
 
-                        this.page++;
+                        this.page2++;
                     }, 1000);
                 });
             }

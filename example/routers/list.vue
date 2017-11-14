@@ -28,6 +28,10 @@
                 <span slot="left">Pull Refresh</span>
                 <span slot="right">下拉刷新</span>
             </yd-cell-item>
+            <yd-cell-item arrow type="link" href="/list.combination">
+                <span slot="left">Combination</span>
+                <span slot="right">下拉刷新 + 滚动加载</span>
+            </yd-cell-item>
         </yd-cell-group>
 
     </yd-layout>
