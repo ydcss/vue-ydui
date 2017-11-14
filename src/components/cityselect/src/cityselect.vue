@@ -61,7 +61,7 @@
                     txt3: ''
                 },
                 columns: {
-                    columnItems1: this.items,
+                    columnItems1: [],
                     columnItems2: [],
                     columnItems3: []
                 },
@@ -106,14 +106,20 @@
                 this.show = val;
             },
             ready(val) {
-                val && this.$nextTick(this.init);
+                val && this.init();
             }
         },
         methods: {
             init() {
-                if (!this.ready) return;
+                if (!this.ready || !(this.items && this.items[0]) || !this.isArray(this.items)) return;
 
-                this.isArray(this.items) && this.provance && this.setDefalutValue(this.items, 'provance', 1);
+                this.getColumsNum(this.items[0]);
+
+                this.columns.columnItems1 = this.items;
+
+                this.provance && this.$nextTick(() => {
+                    this.setDefalutValue(this.items, 'provance', 1);
+                });
 
                 this.$on('ydui.cityselect.reset', () => {
                     for (let i = 1; i <= this.columnNum; i++) {
@@ -145,7 +151,6 @@
                         this.backoffView(true);
                     }
                 }
-
                 this.navIndex = index;
             },
             itemEvent(index, name, value, children) {
@@ -240,9 +245,6 @@
             forwardView(animate) {
                 this.activeClasses = (animate ? 'yd-cityselect-move-animate' : '') + ' yd-cityselect-next';
             }
-        },
-        created() {
-            this.items && this.items[0] && this.getColumsNum(this.items[0]);
         },
         mounted() {
             this.init();

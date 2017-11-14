@@ -59,12 +59,10 @@
 
                     if (panel.active) {
                         this.activeIndex = this.tmpIndex = panel._uid;
-                        this.emitChange(panel.label, panel.tabkey);
                     } else {
                         ++num;
                         if (num >= tabPanels.length) {
                             this.activeIndex = this.tmpIndex = tabPanels[0]._uid;
-                            this.emitChange(tabPanels[0].label, tabPanels[0].tabkey);
                         }
                     }
                 });
