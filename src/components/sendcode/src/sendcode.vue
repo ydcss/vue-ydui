@@ -2,6 +2,7 @@
     <yd-sendcode-button
             :size="size"
             :type="type"
+            :action-type="actionType"
             :disabled="start"
             :class="start ? 'btn-disabled' : ''"
             :style="{backgroundColor: bgcolor, color: color}"
