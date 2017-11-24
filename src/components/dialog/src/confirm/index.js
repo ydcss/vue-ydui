@@ -15,9 +15,14 @@ const hashChange = function () {
 };
 
 ConfirmConstructor.prototype.closeConfirm = function (stay, callback) {
-    typeof callback === 'function' && callback();
+    let stopClose = true;
 
-    if (stay)return;
+    if(typeof callback === 'function') {
+        stopClose = callback();
+        if(stopClose === undefined) stopClose = true;
+    }
+
+    if(!stopClose || stay) return;
 
     pageScroll.unlock();
 
