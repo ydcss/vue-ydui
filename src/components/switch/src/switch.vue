@@ -1,5 +1,12 @@
 <template>
-    <input type="checkbox" class="yd-switch" :disabled="disabled" v-model="checked" :style="{color: color}"/>
+    <input type="checkbox"
+           class="yd-switch"
+           :true-value="trueValue"
+           :false-value="falseValue"
+           :disabled="disabled"
+           v-model="checked"
+           :style="{color: color}"
+    />
 </template>
 
 <script type="text/babel">
@@ -16,7 +23,7 @@
             }
         },
         props: {
-            value: Boolean,
+            value: [String, Number, Boolean],
             disabled: {
                 type: Boolean,
                 default: false
@@ -27,6 +34,14 @@
                     return isColor(value);
                 },
                 default: '#4CD864'
+            },
+            trueValue: {
+                type: [String, Number, Boolean],
+                default: true
+            },
+            falseValue: {
+                type: [String, Number, Boolean],
+                default: false
             }
         },
         watch: {

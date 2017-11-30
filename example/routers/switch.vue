@@ -21,10 +21,15 @@
             <span>自定义颜色：{{switch3}}</span>
         </div>
 
+        <div class="demo-cr demo-small-pitch">
+            <yd-switch v-model="switch4" true-value="aaaaa" false-value="bbbbb"></yd-switch>
+            <span>true-value & false-value：{{switch4}}</span>
+        </div>
+
         <yd-cell-group title="结合Cell组件" class="demo-small-pitch">
             <yd-cell-item type="label">
-                <span slot="left">值为：{{switch4}}</span>
-                <yd-switch slot="right" v-model="switch4"></yd-switch>
+                <span slot="left">值为：{{switch5}}</span>
+                <yd-switch slot="right" v-model="switch5"></yd-switch>
             </yd-cell-item>
             <p slot="bottom" style="text-align:right;padding: .05rem .24rem;color:#555;">设置属性type为label即可点击整行控制switch组件</p>
         </yd-cell-group>
@@ -39,7 +44,8 @@
                 switch1: false,
                 switch2: true,
                 switch3: true,
-                switch4: true
+                switch4: 'aaaaa',
+                switch5: true,
             }
         }
     }

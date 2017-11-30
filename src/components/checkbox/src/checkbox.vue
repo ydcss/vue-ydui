@@ -4,7 +4,13 @@
             <input type="checkbox" v-model="model" :value="val" @change="changeHandler" :disabled="disabled" />
         </template>
         <template v-else>
-            <input type="checkbox" v-model="checked" v-checkall="update" :disabled="disabled" />
+            <input type="checkbox"
+                   v-model="checked"
+                   v-checkall="update"
+                   :disabled="disabled"
+                   :true-value="trueValue"
+                   :false-value="falseValue"
+            />
         </template>
 
         <span class="yd-checkbox-icon" :style="iconStyles()"><i :style="checkIconStyles()"></i></span>
@@ -43,7 +49,7 @@
                 type: Function
             },
             value: {
-                type: Boolean,
+                type: [Boolean, String, Number],
                 default: false
             },
             val: {
@@ -71,6 +77,14 @@
                     return ['square', 'circle'].indexOf(value) > -1;
                 },
                 default: 'square'
+            },
+            trueValue: {
+                type: [String, Number, Boolean],
+                default: true
+            },
+            falseValue: {
+                type: [String, Number, Boolean],
+                default: false
             }
         },
         methods: {
