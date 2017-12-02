@@ -1,10 +1,10 @@
 <template>
     <yd-layout title="Search">
         <p class="demo-search-title">行内模式：</p>
-        <yd-search v-model="value1" :onSubmit="submitHandler"></yd-search>
+        <yd-search v-model="value1" :onSubmit="submitHandler" :onCancel="cancelHandler" ></yd-search>
 
         <p class="demo-search-title">全屏模式（带匹配结果）：</p>
-        <yd-search :result="result" fullpage v-model="value2" :itemClick="clickHandler" :onSubmit="submitHandler"></yd-search>
+        <yd-search :result="result" fullpage v-model="value2" :itemClick="clickHandler" :onSubmit="submitHandler" :onCancel="cancelHandler"></yd-search>
     </yd-layout>
 </template>
 
@@ -30,6 +30,9 @@
             },
             submitHandler(value) {
                 this.$dialog.toast({mes: `搜索：${value}`});
+            },
+            cancelHandler() {
+                this.$dialog.toast({mes: '取消搜索回调'});
             }
         },
         watch: {
