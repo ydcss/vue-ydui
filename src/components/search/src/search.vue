@@ -14,7 +14,7 @@
                     ></yd-search-input>
                 </form>
                 <a href="javascript:;" class="cancel-text" v-show="currentValue !== ''"
-                   @click="close">{{cancelText}}</a>
+                   @click="close(false)">{{cancelText}}</a>
             </div>
         </div>
 
@@ -30,7 +30,7 @@
                                 ref="search"
                         ></yd-search-input>
                     </form>
-                    <a href="javascript:;" class="cancel-text" @click="close">{{cancelText}}</a>
+                    <a href="javascript:;" class="cancel-text" @click="close(false)">{{cancelText}}</a>
                 </div>
                 <div class="yd-search-list" :style="{paddingBottom: top}">
                     <p class="yd-search-list-item" v-for="item, key in result" @click="clickHandler(item)" :key="key">{{item.label || item}}</p>
@@ -90,6 +90,9 @@
             },
             onSubmit: {
                 type: Function
+            },
+            onCancel: {
+                type: Function
             }
         },
         watch: {
@@ -115,18 +118,21 @@
                     this.show = true;
                 }
             },
-            close() {
+            close(internalClose) {
                 this.show = false;
                 this.currentValue = '';
+                if (!internalClose) {
+                  this.onCancel();
+                }
             },
             submit() {
                 this.$refs.search.setBlur();
                 this.onSubmit && this.onSubmit(this.currentValue);
-                this.close();
+                this.close(true);
             },
             clickHandler(item) {
                 this.itemClick && this.itemClick(item);
-                this.close();
+                this.close(true);
             }
         },
         destroyed() {
