@@ -6,14 +6,25 @@ const pageScroll = (function () {
     let islock = false;
 
     return {
-        lock: function (el) {
+        lock(el) {
             if (islock) return;
             islock = true;
             (el || document).addEventListener('touchmove', fn);
         },
-        unlock: function (el) {
+        unlock(el) {
             islock = false;
             (el || document).removeEventListener('touchmove', fn);
+        }
+    };
+})();
+
+const preventScroll = (function () {
+    return {
+        lock(el) {
+            isIOS && addClass(el || document.body, 'g-fix-ios-prevent-scroll');
+        },
+        unlock(el) {
+            isIOS && removeClass(el || document.body, 'g-fix-ios-prevent-scroll');
         }
     };
 })();
@@ -106,4 +117,4 @@ const scrollTop = function (el, from = 0, to, duration = 500) {
     scroll(from, to, step);
 };
 
-export {pageScroll, isIOS, isColor, getScrollview, checkInview, addClass, removeClass, scrollTop};
+export {pageScroll, preventScroll, isIOS, isColor, getScrollview, checkInview, addClass, removeClass, scrollTop};

@@ -17,8 +17,8 @@
     </div>
 </template>
 
-<script type="text/ecmascript-6">
-    import {isIOS, pageScroll} from '../../../utils/assist';
+<script type="text/babel">
+    import {preventScroll} from '../../../utils/assist';
     import Mask from '../../mask/src/mask.vue';
 
     export default {
@@ -56,26 +56,7 @@
         },
         watch: {
             value(val) {
-                if (isIOS) {
-                    const $refs = this.$refs;
-                    const topHeight = !!this.$slots.top && this.position !== 'center' ? $refs.top.offsetHeight : 0;
-                    const bottomHeight = !!this.$slots.bottom && this.position !== 'center' ? $refs.bottom.offsetHeight : 0;
-                    const contentHeight = topHeight + $refs.content.offsetHeight + bottomHeight;
-
-                    if (val) {
-                        pageScroll.lock();
-
-                        if (contentHeight > $refs.box.offsetHeight) {
-                            $refs.box.addEventListener('touchmove', this.stopPropagation);
-                        }
-                    } else {
-                        pageScroll.unlock();
-
-                        if (contentHeight > $refs.box.offsetHeight) {
-                            $refs.box.removeEventListener('touchmove', this.stopPropagation);
-                        }
-                    }
-                }
+                val ? preventScroll.lock() : preventScroll.unlock();
 
                 this.show = val;
             }
@@ -96,9 +77,6 @@
             }
         },
         methods: {
-            stopPropagation(e) {
-                e.stopPropagation();
-            },
             close() {
                 if (this.closeOnMasker) {
                     this.show = false;
@@ -107,7 +85,7 @@
             }
         },
         destroyed() {
-            pageScroll.unlock();
+            preventScroll.unlock();
         }
     }
 </script>
