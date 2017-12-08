@@ -5,11 +5,13 @@
             <div class="yd-pullrefresh-dragtip" ref="dragTip"
                  v-show="touches.isDraging"
                  :class="dragTip.animationTiming"
-                 :style="{ 'transform': 'translate3d(0, ' + dragTip.translate + 'px, 0) scale(' + dragTip.scale + ')' }"
+                 :style="{ 'transform': 'translate3d(0, ' + dragTip.translate + 'px, 0)' }"
             >
-                <span :class="dragTip.loadingIcon"
-                      :style="{ 'transform': 'rotate(' + dragTip.iconRotate + 'deg)', opacity: dragTip.iconOpacity }"
-                ></span>
+                <span class="yd-pullrefresh-dragtip-icon">
+                    <i :class="dragTip.loadingIcon"
+                       :style="{ 'transform': 'rotate(' + dragTip.iconRotate + 'deg)' }"></i>
+                    {{dragTip.statusText}}
+                </span>
             </div>
         </div>
         <div class="yd-pullrefresh-draghelp" v-if="showHelpTag" @click="showHelpTag = false">
@@ -30,22 +32,37 @@
             callback: {
                 type: Function
             },
-			stopDrag: {
+            stopDrag: {
                 type: Boolean,
                 default: false
+            },
+            pullText: {
+                type: String,
+                default: '下拉刷新'
+            },
+            dropText: {
+                type: String,
+                default: '松开加载'
+            },
+            loadingText: {
+                type: String,
+                default: '加载中...'
+            },
+            showInitTip: {
+                type: Boolean,
+                default: true
             }
         },
         data() {
             return {
                 showHelpTag: false,
                 dragTip: {
-                    iconOpacity: 0.5,
+                    statusText: this.pullText,
+                    animationTiming: '',
+                    translate: 0,
+                    distance: 36,
                     iconRotate: 0,
                     loadingIcon: '',
-                    animationTiming: '',
-                    scale: 1,
-                    translate: 0,
-                    distance: 100
                 },
                 touches: {
                     loading: false,
@@ -53,7 +70,8 @@
                     moveOffset: 0,
                     isDraging: false
                 },
-                limitSpeed: 0
+                limitSpeed: 0,
+                isDragToUp: false
             }
         },
         methods: {
@@ -62,11 +80,13 @@
 
                 this.bindEvents();
 
-                this.$on('ydui.pullrefresh.finishLoad', this.finishLoad);
+                this.$on('ydui.pullrefresh.finishLoad', this.resetParams);
 
                 this.showHelp();
             },
             showHelp() {
+                if (!this.showInitTip) return;
+
                 const _key = 'PULLREFRESH-TIP';
                 const storage = window.localStorage;
 
@@ -99,6 +119,13 @@
             stopDragEvent(event) {
                 this.touches.isDraging && event.preventDefault();
             },
+            getScrollTop(element) {
+                if (element === window) {
+                    return Math.max(window.pageYOffset || 0, document.documentElement.scrollTop);
+                } else {
+                    return element.scrollTop;
+                }
+            },
             touchStartHandler(event) {
                 if (this.stopDrag) return;
 
@@ -117,7 +144,7 @@
             touchMoveHandler(event) {
                 const touches = this.touches;
 
-                if (this.stopDrag) return;
+                if (this.stopDrag || this.isDragToUp) return;
 
                 if (this.touches.loading) {
                     event.preventDefault();
@@ -133,34 +160,44 @@
                 const currentY = event.touches[0].clientY;
                 const currentX = event.touches[0].clientX;
 
+                if (currentY - touches.startClientY < 0) {
+                    this.isDragToUp = true;
+                    return;
+                }
+
                 if (touches.startClientY > currentY || this.$refs.dragBox.getBoundingClientRect().top < this.offsetTop) {
                     return;
+                }
+
+                if (this.getScrollTop(this.scrollview) === 0) {
+                    event.preventDefault();
                 }
 
                 touches.isDraging = true;
 
                 const touchAngle = Math.atan2(Math.abs(currentY - touches.startClientY), Math.abs(currentX - touches.startClientX)) * 180 / Math.PI;
+                if (90 - touchAngle > 45) return;
 
                 let deltaSlide = currentY - touches.startClientY;
 
-                if (90 - touchAngle > 45) return;
-
-                this.dragTip.iconOpacity = deltaSlide / 100;
-
                 if (deltaSlide >= this.dragTip.distance) {
+                    this.dragTip.statusText = this.dropText;
                     deltaSlide = this.dragTip.distance;
                 }
 
                 this.dragTip.iconRotate = deltaSlide / 0.25;
 
-                this.limitSpeed += 10;
+                this.limitSpeed += 5;
                 if (this.limitSpeed < deltaSlide) {
                     deltaSlide = this.limitSpeed;
                 }
+
                 touches.moveOffset = this.dragTip.translate = deltaSlide;
             },
             touchEndHandler(event) {
                 if (this.stopDrag) return;
+
+                this.isDragToUp = false;
 
                 const touches = this.touches;
 
@@ -169,8 +206,6 @@
                     return;
                 }
 
-                this.limitSpeed = 0;
-
                 if (this.$refs.dragBox.getBoundingClientRect().top < this.offsetTop) {
                     return;
                 }
@@ -178,13 +213,12 @@
                 this.dragTip.animationTiming = 'yd-pullrefresh-animation-timing';
 
                 if (touches.moveOffset >= this.dragTip.distance) {
-                    this.dragTip.translate = this.dragTip.distance / 1.5;
+                    this.dragTip.statusText = this.loadingText;
                     this.dragTip.loadingIcon = 'yd-pullrefresh-loading';
                     this.triggerLoad();
                     return;
                 }
 
-                this.dragTip.translate = 0;
                 this.resetParams();
             },
             triggerLoad() {
@@ -196,26 +230,21 @@
                 }
                 this.callback && this.callback();
             },
-            finishLoad() {
-                setTimeout(() => {
-                    this.dragTip.iconRotate = 0;
-                    this.dragTip.scale = 0;
-                    this.resetParams();
-                }, 200);
-            },
             resetParams() {
+                this.dragTip.translate = 0;
                 setTimeout(() => {
                     const touches = this.touches;
                     const dragTip = this.dragTip;
                     touches.isDraging = false;
                     touches.loading = false;
-                    touches.moveOffset = 0;
                     dragTip.animationTiming = '';
-                    dragTip.iconOpacity = 0.5;
+                    touches.moveOffset = 0;
                     dragTip.translate = 0;
-                    dragTip.scale = 1;
+                    dragTip.statusText = this.pullText;
                     dragTip.loadingIcon = '';
-                }, 150);
+                    dragTip.iconRotate = 0;
+                    this.limitSpeed = 0;
+                }, 200);
             }
         },
         mounted() {

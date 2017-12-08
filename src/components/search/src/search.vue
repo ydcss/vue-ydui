@@ -122,7 +122,7 @@
                 this.show = false;
                 this.currentValue = '';
                 if (!internalClose) {
-                  this.onCancel();
+                  this.onCancel && this.onCancel();
                 }
             },
             submit() {

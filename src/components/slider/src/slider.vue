@@ -6,7 +6,7 @@
         >
             <div class="yd-slider-item" v-if="loop" :style="itemHeight" v-html="lastItem"></div>
             <slot></slot>
-            <div class="yd-slider-item" v-if="loop" :style="itemHeight" v-html="firtstItem"></div>
+            <div class="yd-slider-item" v-if="loop" :style="itemHeight" v-html="firstItem"></div>
         </div>
         <div class="yd-slider-pagination" v-if="itemsArr.length > 1 && showPagination"
              :class="direction == 'vertical' ? 'yd-slider-pagination-vertical' : ''">
@@ -23,7 +23,7 @@
         name: 'yd-slider',
         data() {
             return {
-                firtstItem: '',
+                firstItem: '',
                 lastItem: '',
                 currentIndex: 0,
                 itemNums: 0,
@@ -154,7 +154,7 @@
 
                 const itemArr = this.itemsArr;
 
-                this.firtstItem = itemArr[0].$el.innerHTML;
+                this.firstItem = itemArr[0].$el.innerHTML;
                 this.lastItem = itemArr[itemArr.length - 1].$el.innerHTML;
             },
             touchStartHandler(event) {
