@@ -29,7 +29,7 @@
             },
             items: {
                 type: Array,
-                require: true
+                required: true
             },
             cancel: String
         },

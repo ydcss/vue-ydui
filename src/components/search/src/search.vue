@@ -80,7 +80,7 @@
             },
             fullpage: {
                 type: Boolean,
-                defaut: false
+                default: false
             },
             top: {
                 validator(value) {

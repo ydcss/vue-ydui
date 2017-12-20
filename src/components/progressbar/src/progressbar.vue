@@ -64,7 +64,7 @@
                     return /^\d*$/.test(val);
                 },
                 default: 0,
-                require: true
+                required: true
             },
             trailColor: {
                 validator(value) {
