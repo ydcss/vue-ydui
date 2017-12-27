@@ -1,0 +1,138 @@
+@import "../common/variables";
+@import "../common/mixins";
+
+.@{css-prefix} {
+  &-scrollnav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &-tab {
+      display: flex;
+      position: relative;
+      &-item {
+        white-space: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        flex: 1;
+        > li {
+          padding: 0 .2rem;
+          font-size: .28rem;
+          display: inline-block;
+          position: relative;
+          height: inherit;
+
+          &.yd-scrollnav-current {
+            color: currentColor !important;
+            padding-left: .32rem;
+            > i {
+              width: .32rem;
+              height: inherit;
+              position: absolute;
+              top: 0;
+              left: .5px;
+              display: flex;
+              align-items: center;
+              &:before {
+                content: '\E651';
+                font-family: @iconfont-inlay;
+                font-size: .32rem;
+                line-height: 1;
+              }
+            }
+          }
+
+          > span {
+            height: inherit;
+            display: flex;
+            align-items: center;
+          }
+        }
+      }
+    }
+
+    &-toggle {
+      width: 1rem;
+      height: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &:after {
+        content: '\E68C';
+        font-family: @iconfont-inlay;
+        display: block;
+        transform: rotate(0deg);
+        transition: transform .08s linear;
+        font-size: .32rem;
+        color: currentColor;
+      }
+      &-active:after {
+        transform: rotate(180deg);
+      }
+    }
+
+    &-unfold {
+      position: absolute;
+      z-index: 2;
+      width: 100%;
+      top: 0;
+      pointer-events: none;
+      opacity: 0;
+      transform: translate(0, -100%);
+      transition: all .08s linear;
+      &-active {
+        opacity: 1;
+        transform: translate(0, 0);
+      }
+
+      &-header {
+        display: flex;
+        align-items: center;
+        position: relative;
+        border-width: 0 0 1px 0;
+        border-style: solid;
+        > div {
+          flex: 1;
+          padding-left: .3rem;
+          font-size: .28rem;
+          color: #333;
+        }
+        > span {
+          width: 1rem;
+        }
+      }
+
+      > ul {
+        pointer-events: auto;
+        overflow: hidden;
+        padding-bottom: .2rem;
+        padding-top: .2rem;
+        > li {
+          float: left;
+          width: 33.333%;
+          padding-left: .3rem;
+          line-height: .7rem;
+          font-size: .28rem;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          &.yd-scrollnav-current {
+            color: currentColor !important;
+          }
+        }
+      }
+    }
+
+    &-content {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+}

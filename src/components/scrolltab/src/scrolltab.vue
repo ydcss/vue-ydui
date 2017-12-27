@@ -1,12 +1,13 @@
 <template>
     <div class="yd-scrolltab">
-        <div class="yd-scrolltab-nav">
+        <div class="yd-scrolltab-nav" ref="navbox">
             <a href="javascript:;"
                class="yd-scrolltab-item"
                v-for="item, key in navList"
                :key="key"
-               :class="activeIndex == item._uid ? 'yd-scrolltab-active' : ''"
-               @click="moveHandler(item._uid)">
+               :ref="`tabitem_${key}`"
+               :class="activeIndex == key ? 'yd-scrolltab-active' : ''"
+               @click="moveHandler(key)">
                 <div class="yd-scrolltab-icon"><i :class="item.icon"></i></div>
                 <div class="yd-scrolltab-title">{{item.label}}</div>
             </a>
@@ -24,8 +25,20 @@
             return {
                 scrolling: false,
                 navList: [],
-                activeIndex: 0,
-                timer: null
+                activeIndex: this.index,
+                timer: null,
+                navtop: 0
+            }
+        },
+        props: {
+            index: {
+                validator(val) {
+                    return /^(([1-9]\d*)|0)$/.test(val);
+                },
+                default: 0
+            },
+            callback: {
+                type: Function
             }
         },
         methods: {
@@ -47,36 +60,46 @@
                 window.addEventListener('resize', this.scrollHandler);
             },
             setDefault() {
-                const panels = this.getPanels();
-
-                let num = 0;
-                panels.forEach((panel) => {
-                    if (panel.active) {
-                        this.activeIndex = panel._uid;
-                        this.moveHandler(panel._uid);
-                    } else {
-                        ++num;
-                        if (num >= panels.length)
-                            this.activeIndex = panels[0]._uid;
+                this.getPanels().every((panel, index) => {
+                    if (this.activeIndex === index) {
+                        this.moveHandler(index);
+                        return false;
                     }
+                    return true;
                 });
             },
-            moveHandler(uid) {
-                if (this.scrolling)return;
+            moveHandler(index) {
+                this.activeIndex = index;
+
+                this.scrollContent(index);
+            },
+            scrollContent(index) {
+                if (this.scrolling) return;
                 this.scrolling = true;
 
-                const panels = this.getPanels();
-                const itemOffsetTop = panels.filter(item => item._uid == uid)[0].$el.getBoundingClientRect().top;
-
+                const itemOffsetTop = this.getPanels()[index].$el.getBoundingClientRect().top;
                 this.scrollView.scrollTop = itemOffsetTop + this.scrollView.scrollTop - this.contentOffsetTop + 2;
-                this.activeIndex = uid;
 
                 setTimeout(() => {
                     this.scrolling = false;
-                }, 6);
+                }, 10);
+            },
+            navInView(index = 0) {
+                const navitem = this.$refs['tabitem_' + index][0];
+                const height = ~~navitem.offsetHeight;
+
+                if (navitem.offsetTop - height <= this.navtop) {
+                    this.navtop -= height;
+                } else {
+                    if (navitem.offsetTop + height * 3 >= this.scrollView.offsetHeight) {
+                        this.navtop += height;
+                    }
+                }
+
+                this.$refs.navbox.scrollTop = this.navtop;
             },
             scrollHandler() {
-                if (this.scrolling)return;
+                if (this.scrolling) return;
 
                 const panels = this.getPanels();
                 const panelsLength = panels.length;
@@ -86,13 +109,13 @@
                 const panelItemHeight = panels[0].$el.offsetHeight;
 
                 if (scrollBoxTop >= panelItemHeight * panelsLength - scrollBoxHeight) {
-                    this.activeIndex = panels[panelsLength - 1]._uid;
+                    this.activeIndex = panelsLength - 1;
                     return;
                 }
 
-                panels.forEach((panel) => {
+                panels.forEach((panel, index) => {
                     if (panel.$el.getBoundingClientRect().top <= this.contentOffsetTop) {
-                        this.activeIndex = panel._uid;
+                        this.activeIndex = index;
                     }
                 });
             }
@@ -100,6 +123,14 @@
         watch: {
             navList() {
                 this.setDefault();
+            },
+            activeIndex(index) {
+                this.navInView(index);
+                this.callback && this.callback(index);
+            },
+            index(index) {
+                this.scrollContent(index);
+                this.activeIndex = index;
             }
         },
         mounted() {

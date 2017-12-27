@@ -33,7 +33,8 @@
                     <a href="javascript:;" class="cancel-text" @click="close(false)">{{cancelText}}</a>
                 </div>
                 <div class="yd-search-list" :style="{paddingBottom: top}">
-                    <p class="yd-search-list-item" v-for="item, key in result" @click="clickHandler(item)" :key="key">{{item.label || item}}</p>
+                    <p class="yd-search-list-item" v-for="item, key in result" @click="clickHandler(item)" :key="key">
+                        {{item.label || item}}</p>
                 </div>
             </div>
         </template>
@@ -120,9 +121,8 @@
             },
             close(internalClose) {
                 this.show = false;
-                this.currentValue = '';
                 if (!internalClose) {
-                  this.onCancel && this.onCancel();
+                    this.onCancel && this.onCancel();
                 }
             },
             submit() {
@@ -131,6 +131,7 @@
                 this.close(true);
             },
             clickHandler(item) {
+                this.currentValue = item;
                 this.itemClick && this.itemClick(item);
                 this.close(true);
             }

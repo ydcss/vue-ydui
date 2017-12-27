@@ -49,6 +49,9 @@
                     {icon: 'demo-icons-step', name: 'Step', link: '/step'},
                     {icon: 'demo-icons-checklist', name: 'CheckList', link: '/checklist'},
                     {icon: 'demo-icons-search', name: 'Search', link: '/search'},
+                    {icon: 'demo-icons-scrollnav', name: 'ScrollNav', link: '/scrollnav'},
+                    {icon: 'demo-icons-scrolltab', name: 'ScrollTab', link: '/scrolltab'},
+                    {icon: 'demo-icons-preview', name: 'Preview', link: '/preview'},
                 ]
             }
         }

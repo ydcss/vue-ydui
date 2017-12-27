@@ -44,6 +44,8 @@ module.exports = merge(distCommonWebpackConfig, {
         "/lib.px/step/index": "./src/components/step/index.js",
         "/lib.px/checklist/index": "./src/components/checklist/index.js",
         "/lib.px/search/index": "./src/components/search/index.js",
+        "/lib.px/scrollnav/index": "./src/components/scrollnav/index.js",
+        "/lib.px/preview/index": "./src/components/preview/index.js",
     },
     module: {
         loaders: [

@@ -48,6 +48,8 @@ import TimeLine from './routers/timeline.vue';
 import Step from './routers/step.vue';
 import CheckList from './routers/checklist.vue';
 import Search from './routers/search.vue';
+import ScrollNav from './routers/scrollnav.vue';
+import Preview from './routers/preview.vue';
 
 import App from './app.vue';
 
@@ -105,6 +107,8 @@ const router = new VueRouter({
         {path: '/step', name: 'step', component: Step},
         {path: '/checklist', name: 'checklist', component: CheckList},
         {path: '/search', name: 'search', component: Search},
+        {path: '/scrollnav', name: 'scrollnav', component: ScrollNav},
+        {path: '/preview', name: 'preview', component: Preview},
     ]
 });
 

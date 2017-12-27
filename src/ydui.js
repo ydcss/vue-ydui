@@ -40,6 +40,8 @@ import {TimeLine, TimeLineItem} from './components/timeline';
 import {Step, StepItem} from './components/step';
 import {CheckList, CheckListItem} from './components/checklist';
 import {Search} from './components/search';
+import {ScrollNav, ScrollNavPanel} from './components/scrollnav';
+import {Preview, PreviewHeader, PreviewItem} from './components/preview';
 
 window.document.addEventListener('touchstart', function (event) {
     /* Do Nothing */
@@ -106,6 +108,11 @@ const install = function (Vue) {
     Vue.component(CheckList.name, CheckList);
     Vue.component(CheckListItem.name, CheckListItem);
     Vue.component(Search.name, Search);
+    Vue.component(ScrollNav.name, ScrollNav);
+    Vue.component(ScrollNavPanel.name, ScrollNavPanel);
+    Vue.component(Preview.name, Preview);
+    Vue.component(PreviewHeader.name, PreviewHeader);
+    Vue.component(PreviewItem.name, PreviewItem);
 
     Vue.prototype.$dialog = {
         confirm: Confirm,

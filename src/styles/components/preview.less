@@ -1,0 +1,104 @@
+@import "../common/variables";
+@import "../common/mixins";
+
+.@{css-prefix} {
+  &-preview {
+    background-color: #fff;
+    position: relative;
+    z-index: 2;
+    &:before {
+      .top-line(@line-color);
+    }
+    &:after {
+      .bottom-line(@line-color);
+    }
+
+    &-header {
+      height: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-left: .24rem;
+      padding-right: .24rem;
+      position: relative;
+      color: #999;
+      font-size: .28rem;
+      margin-bottom: .2rem;
+      &:after {
+        .bottom-line(@line-color);
+      }
+      > * {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block;
+        flex: 1;
+        &:first-child {
+          margin-right: .2rem;
+        }
+        &:last-child {
+          text-align: right;
+          color: #333;
+          font-size: .32rem;
+        }
+      }
+    }
+
+    &-item {
+      padding: 0 .24rem;
+      font-size: .27rem;
+      color: #999;
+      display: flex;
+      padding-bottom: .15rem;
+      > * {
+        display: block;
+        &:first-child {
+          min-width: 1.1rem;
+          text-align-last: justify;
+          margin-right: .4rem;
+          height: 100%;
+          text-align: right;
+        }
+        &:last-child {
+          word-break: normal;
+          word-wrap: break-word;
+          text-align: right;
+          line-height: .45rem;
+          flex: 1;
+        }
+      }
+    }
+
+    &-item:last-child {
+      padding-bottom: .25rem;
+    }
+
+    &-footer {
+      position: relative;
+      display: flex;
+      height: 1rem;
+      align-items: center;
+      font-size: .28rem;
+      color: #999;
+      margin-top: .1rem;
+      > * {
+        flex: 1;
+        height: inherit;
+        display: flex;
+        align-items: center;
+        position: relative;
+        justify-content: center;
+        &:not(:first-child):after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          .left-line(@line-color);
+        }
+      }
+      &:before {
+        .top-line(@line-color);
+      }
+    }
+  }
+}
