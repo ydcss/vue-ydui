@@ -131,7 +131,7 @@
                 this.close(true);
             },
             clickHandler(item) {
-                this.currentValue = item;
+                this.currentValue = item.label ? item.label : item;
                 this.itemClick && this.itemClick(item);
                 this.close(true);
             }

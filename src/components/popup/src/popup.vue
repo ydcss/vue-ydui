@@ -40,11 +40,11 @@
             },
             height: {
                 type: String,
-                default: '50%'
+                default: 'auto'
             },
             width: {
                 type: String,
-                default: '50%'
+                default: 'auto'
             },
             value: {
                 type: Boolean
@@ -72,7 +72,7 @@
                 } else if (this.position === 'bottom') {
                     return {width: '100%', height: this.height};
                 } else {
-                    return {width: this.width};
+                    return {width: this.width, height: this.height};
                 }
             }
         },

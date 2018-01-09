@@ -36,7 +36,7 @@
             <yd-button type="danger" style="margin: 20px;" @click.native="show3 = false">Close Left Popup</yd-button>
         </yd-popup>
 
-        <yd-popup v-model="show4" position="right">
+        <yd-popup v-model="show4" position="right" width="50%">
             <yd-button type="danger" style="margin: 20px;" @click.native="show4 = false">Close Right Popup</yd-button>
         </yd-popup>
 
