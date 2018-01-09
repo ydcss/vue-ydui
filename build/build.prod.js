@@ -45,15 +45,9 @@ gulp.task('css:ydui', function () {
 });
 
 gulp.task('js:ydui', function () {
-    gulp.src('../dist/ydui.js')
+    gulp.src('../dist/ydui.rem.js')
         .pipe(replaceRem2Px())
         .pipe(rename('ydui.px.js'))
-        .pipe(gulp.dest('../dist'));
-});
-
-gulp.task('copy:ydui', function () {
-    gulp.src('../dist/ydui.js')
-        .pipe(rename('ydui.rem.js'))
         .pipe(gulp.dest('../dist'));
 });
 
@@ -63,4 +57,4 @@ gulp.task('flexible', function () {
         .pipe(gulp.dest('../dist'));
 });
 
-gulp.task('default', ['css:base', 'css:ydui', 'js:ydui', 'copy:ydui', 'flexible']);
+gulp.task('default', ['css:base', 'css:ydui', 'js:ydui', 'flexible']);
