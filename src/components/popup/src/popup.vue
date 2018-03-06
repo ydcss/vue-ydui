@@ -84,7 +84,7 @@
                 }
             }
         },
-        destroyed() {
+        beforeDestroy() {
             preventScroll.unlock();
         }
     }

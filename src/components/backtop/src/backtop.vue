@@ -57,7 +57,7 @@
             this.scrollView.addEventListener('scroll', this.throttledCheck, false);
             this.scrollView.addEventListener('resize', this.scrollHandler, false);
         },
-        destroyed() {
+        beforeDestroy() {
             this.scrollView.removeEventListener('scroll', this.throttledCheck, false);
             this.scrollView.removeEventListener('resize', this.scrollHandler, false);
         }

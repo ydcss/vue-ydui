@@ -223,11 +223,6 @@
             },
             triggerLoad() {
                 this.touches.loading = true;
-                // TODO 参数更名，即将删除
-                if (this.onInfinite) {
-                    this.onInfinite();
-                    console.warn('From VUE-YDUI: The parameter "onInfinite" is destroyed, please use "callback".');
-                }
                 this.callback && this.callback();
             },
             resetParams() {

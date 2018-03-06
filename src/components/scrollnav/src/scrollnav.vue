@@ -204,7 +204,7 @@
         mounted() {
             this.$nextTick(this.init);
         },
-        destroyed() {
+        beforeDestroy() {
             this.scrollView.removeEventListener('scroll', this.scrollHandler);
             window.removeEventListener('resize', this.scrollHandler);
         }

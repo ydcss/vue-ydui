@@ -44,11 +44,6 @@
         methods: {
             itemClick(item) {
                 if(item) {
-                    // TODO 参数更名，即将删除
-                    if (typeof item.method === 'function') {
-                        item.method(item);
-                        console.warn('From VUE-YDUI: The parameter "method" is destroyed, please use "callback".');
-                    }
                     typeof item.callback === 'function' && item.callback(item);
                     !item.stay && this.close();
                 }

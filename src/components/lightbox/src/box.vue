@@ -8,7 +8,7 @@
             <div class="yd-lightbox-img" @click="show = !show">
                 <slider autoplay="0" :show-pagination="false" :loop="false" :callback="changeIndex" :index="index">
                     <slider-item v-for="item, key in imgItems" :key="key">
-                        <img :src="getImgSrc(item.$el)">
+                        <img :src="getImgSrc(item.$el)" style="background-color: #000">
                     </slider-item>
                 </slider>
                 <div class="yd-lightbox-loading">

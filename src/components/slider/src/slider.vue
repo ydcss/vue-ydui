@@ -367,7 +367,7 @@
                 return !!(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch);
             })();
         },
-        destroyed() {
+        beforeDestroy() {
             this.destroy();
         }
     }

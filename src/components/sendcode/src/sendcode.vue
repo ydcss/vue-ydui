@@ -96,7 +96,7 @@
                 if (this.initStr) this.tmpStr = this.initStr;
             }
         },
-        destroyed() {
+        beforeDestroy() {
             !this.storageKey && this.stop();
         }
     }

@@ -98,11 +98,6 @@
             },
             nums(val) {
                 if (val.length >= 6) {
-                    // TODO 参数更名，即将删除
-                    if (this.inputDone) {
-                        this.inputDone(val);
-                        console.warn('From VUE-YDUI: The parameter "inputDone" is destroyed, please use "callback".');
-                    }
                     this.callback && this.callback(val);
                 }
             }
@@ -161,7 +156,7 @@
 
             this.$nextTick(this.init);
         },
-        destroyed() {
+        beforeDestroy() {
             this.close();
             pageScroll.unlock();
         }

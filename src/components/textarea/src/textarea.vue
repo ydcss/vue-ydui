@@ -49,11 +49,6 @@
         watch: {
             mlstr(val) {
                 this.$emit('input', val);
-                // TODO 参数更名，即将删除
-                if (this.change) {
-                    this.change();
-                    console.warn('From VUE-YDUI: The parameter "change" is destroyed, please use "callback".');
-                }
                 this.callback && this.change();
                 if (this.showCounter) this.num = val.length;
             },

@@ -59,7 +59,7 @@
         mounted() {
             this.scrollView = getScrollview(this.$el);
         },
-        destroyed() {
+        beforeDestroy() {
             isIOS && removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
         }
     }

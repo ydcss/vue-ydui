@@ -94,7 +94,7 @@
         mounted() {
             this.init();
         },
-        destroyed() {
+        beforeDestroy() {
             this.instance = null;
         }
     };

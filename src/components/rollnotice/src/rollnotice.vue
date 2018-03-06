@@ -102,7 +102,7 @@
                 clearInterval(this.timer);
             }
         },
-        destroyed() {
+        beforeDestroy() {
             this.destroy();
         }
     }

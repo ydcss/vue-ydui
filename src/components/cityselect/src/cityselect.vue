@@ -227,11 +227,6 @@
                 });
             },
             returnValue() {
-                // TODO 参数更名，即将删除
-                if (this.done) {
-                    this.done(this.active);
-                    console.warn('From VUE-YDUI: The parameter "done" is destroyed, please use "callback".');
-                }
                 this.callback && this.callback(this.active);
                 this.close();
             },
@@ -249,7 +244,7 @@
         mounted() {
             this.init();
         },
-        destroyed() {
+        beforeDestroy() {
             this.close();
         }
     }
