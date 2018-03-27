@@ -1,8 +1,8 @@
 <template>
     <div>
-        <yd-mask v-model="show" @click.native="close"></yd-mask>
+        <yd-mask v-model="show" @click.native="close" :opacity="maskerOpacity"></yd-mask>
         <div :class="classes" :style="styles" ref="box">
-            <div v-if="!!$slots.top && position != 'center'" ref="top">
+            <div v-if="!!$slots.top && position !== 'center'" ref="top">
                 <slot name="top"></slot>
             </div>
             <div class="yd-popup-content">
@@ -10,7 +10,7 @@
                     <slot></slot>
                 </div>
             </div>
-            <div v-if="!!$slots.bottom && position != 'center'" ref="bottom">
+            <div v-if="!!$slots.bottom && position !== 'center'" ref="bottom">
                 <slot name="bottom"></slot>
             </div>
         </div>
@@ -52,6 +52,12 @@
             closeOnMasker: {
                 type: Boolean,
                 default: true
+            },
+            maskerOpacity: {
+                validator(val) {
+                    return /^([0]|[1-9]\d*)?(\.\d*)?$/.test(val);
+                },
+                default: .5
             }
         },
         watch: {

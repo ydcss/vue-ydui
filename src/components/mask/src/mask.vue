@@ -25,7 +25,7 @@
                 default: 1500
             },
             opacity: {
-                default: .4
+                default: .5
             },
             animated: {
                 type: Boolean,

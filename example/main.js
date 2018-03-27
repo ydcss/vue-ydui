@@ -19,7 +19,6 @@ import Badge from './routers/badge.vue';
 import AsideBar from './routers/asidebar.vue';
 import TabBar from './routers/tabbar.vue';
 import NavBar from './routers/navbar.vue';
-import Tabs from './routers/tabs.vue';
 import Tab from './routers/tab.vue';
 import ScrollTab from './routers/scrolltab.vue';
 import ActionSheet from './routers/actionsheet.vue';
@@ -78,7 +77,6 @@ const router = new VueRouter({
         {path: '/asidebar', name: 'asidebar', component: AsideBar},
         {path: '/tabbar', name: 'tabbar', component: TabBar},
         {path: '/navbar', name: 'navbar', component: NavBar},
-        {path: '/tabs', name: 'tabs', component: Tabs},
         {path: '/tab', name: 'tab', component: Tab},
         {path: '/scrolltab', name: 'scrolltab', component: ScrollTab},
         {path: '/actionsheet', name: 'actionsheet', component: ActionSheet},

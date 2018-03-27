@@ -1,6 +1,6 @@
 <template>
     <div>
-        <yd-mask v-model="show" @click.native="close"></yd-mask>
+        <yd-mask v-model="show" @click.native="close" :opacity="maskerOpacity"></yd-mask>
         <div class="yd-keyboard" :class="show ? 'yd-keyboard-active' : ''">
             <div class="yd-keyboard-head">
                 <strong>{{inputText}}</strong>
@@ -80,6 +80,12 @@
             triggerClose: {
                 type: Boolean,
                 default: true
+            },
+            maskerOpacity: {
+                validator(val) {
+                    return /^([0]|[1-9]\d*)?(\.\d*)?$/.test(val);
+                },
+                default: .5
             }
         },
         watch: {

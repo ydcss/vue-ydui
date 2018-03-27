@@ -1,6 +1,6 @@
 <template>
     <div>
-        <yd-mask v-model="show" @click.native="close"></yd-mask>
+        <yd-mask v-model="show" @click.native="close" :opacity="maskerOpacity"></yd-mask>
         <div class="yd-datetime" :class="show ? 'yd-datetime-active' : ''">
             <div class="yd-datetime-head">
                 <a href="javascript:;" @click.stop="close">{{cancelText}}</a>
@@ -73,7 +73,8 @@
                 startYear: 0,
                 endYear: 0,
                 startHour: 0,
-                endHour: 23
+                endHour: 23,
+                maskerOpacity: .5
             }
         },
         components: {

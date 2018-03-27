@@ -23,10 +23,13 @@
 </template>
 
 <script type="text/babel">
-    import {isColor} from '../../../utils/assist';
-
     export default {
         name: 'yd-tabbar-item',
+        data() {
+            return {
+                isCurrent: false
+            }
+        },
         props: {
             type: {
                 validator (value) {
@@ -42,10 +45,10 @@
         },
         computed: {
             classes() {
-                return this.active ? 'yd-tabbar-active' : '';
+                return this.active || this.isCurrent ? 'yd-tabbar-active' : '';
             },
             styles() {
-                return !this.active ? {color: this.$parent.color} : {};
+                return !this.active && !this.isCurrent ? {color: this.$parent.color} : {};
             }
         }
     }

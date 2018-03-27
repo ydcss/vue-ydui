@@ -71,14 +71,14 @@
             },
             toastSuccess() {
                 this.$dialog.toast({
-                    mes: '鼠标不错哟！',
+                    mes: '保存成功',
                     timeout: 1500,
                     icon: 'success'
                 });
             },
             toastError() {
                 this.$dialog.toast({
-                    mes: '别乱点啊！',
+                    mes: '保存失败',
                     timeout: 1500,
                     icon: 'error',
                     callback: () => {

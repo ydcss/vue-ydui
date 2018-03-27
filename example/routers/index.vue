@@ -25,7 +25,7 @@
                     {icon: 'demo-icons-list', name: 'List', link: '/list'},
                     {icon: 'demo-icons-badge', name: 'Badge', link: '/badge'},
                     {icon: 'demo-icons-tabbar', name: 'AsideBar', link: '/asidebar'},
-                    {icon: 'demo-icons-tabs', name: 'Tabs', link: '/tabs'},
+                    {icon: 'demo-icons-tabs', name: 'Tab', link: '/tab'},
                     {icon: 'demo-icons-actionsheet', name: 'ActionSheet', link: '/actionsheet'},
                     {icon: 'demo-icons-sendcode', name: 'SendCode', link: '/sendcode'},
                     {icon: 'demo-icons-progressbar', name: 'ProgressBar', link: '/progressbar'},

@@ -7,6 +7,11 @@
 <script type="text/babel">
     export default {
         name: 'yd-tab-panel',
+        data() {
+            return {
+                isCurrent: false
+            }
+        },
         props: {
             label: String,
             active: Boolean,
@@ -14,20 +19,20 @@
         },
         computed: {
             classes() {
-                return this.$parent.activeIndex == this._uid ? 'yd-tab-active' : '';
+                return this.$parent.activeIndex === this._uid || this.isCurrent ? 'yd-tab-active' : '';
             }
         },
         watch: {
             active() {
-                this.$parent.init(true);
+                this.$parent.init();
             },
             label() {
-                this.$parent.init(false, 'label');
+                this.$parent.init();
             }
         },
         mounted() {
             this.$nextTick(() => {
-                this.$parent.init(false);
+                this.$parent.init();
             });
         }
     }

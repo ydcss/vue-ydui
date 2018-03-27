@@ -110,7 +110,13 @@
                 default: true
             },
             placeholder: String,
-            callback: Function
+            callback: Function,
+            maskerOpacity: {
+                validator(val) {
+                    return /^([0]|[1-9]\d*)?(\.\d*)?$/.test(val);
+                },
+                default: .5
+            }
         },
         watch: {
             value(val) {

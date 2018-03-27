@@ -1,6 +1,6 @@
 <template>
     <div>
-        <yd-mask v-model="show" @click.native="close"></yd-mask>
+        <yd-mask v-model="show" @click.native="close" :opacity="maskerOpacity"></yd-mask>
         <div class="yd-actionsheet" :class="show ? 'yd-actionsheet-active' : ''">
             <a v-for="item, key in items" @click.stop="itemClick(item)" href="javascript:;" class="yd-actionsheet-item" :key="key">{{item.label}}</a>
             <a v-if="cancel" @click.stop="close" href="javascript:;" class="yd-actionsheet-action">{{cancel}}</a>
@@ -31,7 +31,13 @@
                 type: Array,
                 required: true
             },
-            cancel: String
+            cancel: String,
+            maskerOpacity: {
+                validator(val) {
+                    return /^([0]|[1-9]\d*)?(\.\d*)?$/.test(val);
+                },
+                default: .5
+            }
         },
         watch: {
             value(val) {

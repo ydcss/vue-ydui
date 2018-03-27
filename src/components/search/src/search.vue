@@ -117,6 +117,7 @@
             open() {
                 if (this.fullpage) {
                     this.show = true;
+                    this.$refs.search.setFocus();
                 }
             },
             close(internalClose) {

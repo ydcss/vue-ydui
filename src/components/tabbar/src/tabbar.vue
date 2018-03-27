@@ -9,7 +9,13 @@
 
     export default {
         name: 'yd-tabbar',
+        data() {
+            return {
+                activeIndex: this.value,
+            }
+        },
         props: {
+            value: Number,
             fixed: Boolean,
             exact: {
                 type: Boolean,
@@ -58,6 +64,22 @@
                     fontSize: this.fontsize
                 }
             }
+        },
+        methods: {
+            setCurrent(index) {
+                const tabPanels = this.$children.filter(item => item.$options.name === 'yd-tabbar-item');
+                tabPanels.forEach((item, key) => {
+                    this.$set(item, 'isCurrent', index === key);
+                });
+            }
+        },
+        watch: {
+            value(val) {
+                this.setCurrent(val);
+            }
+        },
+        mounted() {
+            this.setCurrent(this.activeIndex);
         }
     }
 </script>
