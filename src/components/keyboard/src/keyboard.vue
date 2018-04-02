@@ -51,9 +51,6 @@
             }
         },
         props: {
-            inputDone: {
-                type: Function
-            },
             callback: {
                 type: Function
             },

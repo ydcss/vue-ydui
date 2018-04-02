@@ -7,7 +7,7 @@
                     v-for="item, key in navList"
                     :key="key"
                     :class="item._uid == activeIndex || key === activeIndex ? 'yd-tab-active' : ''"
-                    @click="changeHandler(key, item._uid)">
+                    @click="changeHandler(item.label, key, item._uid)">
                     <a href="javascript:">{{item.label}}</a>
                 </li>
             </ul>
@@ -27,13 +27,13 @@
             return {
                 navList: [],
                 activeIndex: this.value || 0,
-                currentIndex: 0,
-                width: 'auto'
+                index: 0,
+                width: 'auto',
+                currentIndex: 0
             }
         },
         props: {
             value: Number,
-            change: Function,
             callback: Function,
             itemClick: Function,
             preventDefault: {
@@ -64,7 +64,7 @@
                     val = 0;
                 }
 
-                this.activeIndex = this.currentIndex = val > tabPanels.length - 1 ? tabPanels.length - 1 : val;
+                this.activeIndex = this.index = val > tabPanels.length - 1 ? tabPanels.length - 1 : val;
                 let label = '';
 
                 tabPanels.forEach((item, key) => {
@@ -91,10 +91,11 @@
                     this.navList.push({_uid: panel._uid, label: panel.label, tabkey: panel.tabkey});
 
                     if (panel.active || this.activeIndex === index) {
-                        this.activeIndex = this.currentIndex = panel._uid;
+                        this.activeIndex = this.index = panel._uid;
+                        this.currentIndex = index;
                     } else {
                         if (index >= tabPanels.length) {
-                            this.activeIndex = this.currentIndex = tabPanels[0]._uid;
+                            this.activeIndex = this.index = tabPanels[0]._uid;
                         }
                     }
                 });
@@ -122,16 +123,22 @@
                 }
                 return childArrTem;
             },
-            changeHandler(key, uid) {
+            changeHandler(label, key, uid) {
                 if (!this.preventDefault) {
                     this.itemClick && this.itemClick(key);
                     return;
                 }
 
-                if (this.currentIndex !== uid) {
-                    this.activeIndex = this.currentIndex = uid;
+                if (this.index !== uid) {
+                    this.activeIndex = this.index = uid;
                     this.$emit('input', key);
                 }
+
+                if(!this.value && this.value !== 0 && this.currentIndex !== key) {
+                    this.callback && this.callback(label, key);
+                }
+
+                this.currentIndex = key;
             }
         }
     }

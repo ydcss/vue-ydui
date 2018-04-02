@@ -1,7 +1,9 @@
 <template>
-    <footer class="yd-tabbar tabbbar-top-line-color" :class="classes" :style="styles">
-        <slot></slot>
-    </footer>
+    <div :style="{height: barHeight}">
+        <footer class="yd-tabbar tabbbar-top-line-color" :class="classes" :style="styles" ref="navbar">
+            <slot></slot>
+        </footer>
+    </div>
 </template>
 
 <script type="text/babel">
@@ -12,6 +14,7 @@
         data() {
             return {
                 activeIndex: this.value,
+                barHeight: 'auto'
             }
         },
         props: {
@@ -80,6 +83,12 @@
         },
         mounted() {
             this.setCurrent(this.activeIndex);
+
+            if (this.fixed) {
+                this.$nextTick(() => {
+                    this.barHeight = this.$refs.navbar.offsetHeight;
+                });
+            }
         }
     }
 </script>

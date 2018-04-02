@@ -79,7 +79,6 @@
             provance: String,
             city: String,
             area: String,
-            done: Function,
             callback: Function,
             title: {
                 type: String,

@@ -33,9 +33,6 @@
             }
         },
         props: {
-            onInfinite: {
-                type: Function
-            },
             callback: {
                 type: Function
             },

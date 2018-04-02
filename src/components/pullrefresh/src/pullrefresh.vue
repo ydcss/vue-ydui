@@ -26,9 +26,6 @@
     export default {
         name: 'yd-pullrefresh',
         props: {
-            onInfinite: {
-                type: Function
-            },
             callback: {
                 type: Function
             },
