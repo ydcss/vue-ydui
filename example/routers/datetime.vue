@@ -4,52 +4,10 @@
         <yd-cell-group title="常规" class="demo-small-pitch">
             <yd-cell-item arrow>
                 <span slot="left">Time：</span>
-                <yd-datetime type="time" v-model="datetime1" slot="right"></yd-datetime>
-            </yd-cell-item>
-            <yd-cell-item arrow>
-                <span slot="left">Day：</span>
-                <yd-datetime type="day" v-model="datetime2" slot="right"></yd-datetime>
-            </yd-cell-item>
-            <yd-cell-item arrow>
-                <span slot="left">Month：</span>
-                <yd-datetime type="month" v-model="datetime3" slot="right"></yd-datetime>
-            </yd-cell-item>
-            <yd-cell-item arrow>
-                <span slot="left">Date：</span>
-                <yd-datetime type="date" v-model="datetime4" slot="right"></yd-datetime>
-            </yd-cell-item>
-            <yd-cell-item arrow>
-                <span slot="left">DateTime：</span>
-                <yd-datetime type="datetime" v-model="datetime5" slot="right"></yd-datetime>
-            </yd-cell-item>
-            <yd-cell-item arrow>
-                <span slot="left">自定义模板：</span>
-                <yd-datetime type="date" :yearFormat="yearFormat" :monthFormat="monthFormat" :dayFormat="dayFormat" v-model="datetime6" slot="right"></yd-datetime>
+                <yd-datetime type="date" :value="datetime1" :init-emit="false" @input="submitAs" slot="right"></yd-datetime>
             </yd-cell-item>
         </yd-cell-group>
 
-        <yd-cell-group title="可选时间" class="demo-small-pitch">
-            <yd-cell-item arrow>
-                <span slot="left">开始/结束年份：</span>
-                <yd-datetime startYear="1990" endYear="2020" type="date" v-model="datetime7" slot="right"></yd-datetime>
-            </yd-cell-item>
-            <yd-cell-item arrow>
-                <span slot="left">开始/结束小时：</span>
-                <yd-datetime startHour="9" endHour="18" type="time" v-model="datetime8" slot="right"></yd-datetime>
-            </yd-cell-item>
-        </yd-cell-group>
-
-        <yd-cell-group title="限制时间" class="demo-small-pitch">
-            <yd-cell-item arrow>
-                <span slot="left">时间段范围：</span>
-                <yd-datetime ref="datetime" startDate="2012-03-16 15:13" endDate="2019-10-21 22:21" v-model="datetime9" slot="right"></yd-datetime>
-            </yd-cell-item>
-            <p slot="bottom" class="demo-cell-bottom-tip">( 2012-03-16 15:13 ~ 2019-10-21 22:21 )</p>
-        </yd-cell-group>
-
-        <yd-button-group>
-            <yd-button size="large" @click.native="open">手动打开</yd-button>
-        </yd-button-group>
     </yd-layout>
 </template>
 
@@ -57,23 +15,13 @@
     export default {
         data() {
             return {
-                datetime1: '12:18',
-                datetime2: '2018-03-29',
-                datetime3: '2018-03-29',
-                datetime4: '2018-03-29',
-                datetime5: '2016-06-06 06:06',
-                datetime6: '2017-05-11',
-                datetime7: '',
-                datetime8: '10:20',
-                datetime9: '',
-                yearFormat: '<span style="color:#F00;">{value}<i style="font-size: 12px;margin-left: 1px;">年</i></span>',
-                monthFormat: '<span style="color:#0BB20C;">{value}<i style="font-size: 12px;margin-left: 1px;">月</i></span>',
-                dayFormat: '<span style="color:#FFB400;">{value}<i style="font-size: 12px;margin-left: 1px;">日</i></span>'
+                datetime1: ''
             }
         },
         methods: {
-            open() {
-                this.$refs.datetime.open();
+            submitAs(val) {
+                console.log(val);
+                this.$emit('submit-as', val);
             }
         }
     }

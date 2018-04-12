@@ -200,9 +200,11 @@
                 return (v && v == this.active['itemValue' + index]) || (n && n === this.active['itemName' + index]) ? 'yd-cityselect-item-active' : '';
             },
             clearNavTxt(index) {
-                for (let i = 0; i < this.columnNum; i++) {
+                for (let i = 0; i <= this.columnNum; i++) {
                     if (i > index) {
                         this.nav['txt' + (i + 1)] = '';
+                        this.active['itemValue' + i] = '';
+                        this.active['itemName' + i] = '';
                     }
                 }
             },
