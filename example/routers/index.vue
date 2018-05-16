@@ -52,6 +52,7 @@
                     {icon: 'demo-icons-scrollnav', name: 'ScrollNav', link: '/scrollnav'},
                     {icon: 'demo-icons-scrolltab', name: 'ScrollTab', link: '/scrolltab'},
                     {icon: 'demo-icons-preview', name: 'Preview', link: '/preview'},
+                    {icon: 'demo-icons-preview', name: 'PullRefresh', link: '/pullRefresh'},
                 ]
             }
         }

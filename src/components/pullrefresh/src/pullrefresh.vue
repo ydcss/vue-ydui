@@ -218,9 +218,15 @@
 
                 this.resetParams();
             },
-            triggerLoad() {
+            async triggerLoad() {
                 this.touches.loading = true;
-                this.callback && this.callback();
+                var fn = this.callback&&this.callback();
+                if(fn&&fn.then&&typeof fn.then =='function'){
+                    let ser = await fn;
+                    if(ser){
+                        this.resetParams();
+                    }
+                }
             },
             resetParams() {
                 this.dragTip.translate = 0;
