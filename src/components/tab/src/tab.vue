@@ -7,7 +7,7 @@
                     v-for="item, key in navList"
                     :key="key"
                     :class="item._uid == activeIndex || key === activeIndex ? 'yd-tab-active' : ''"
-                    @click="changeHandler(item.label, key, item._uid)">
+                    @click="changeHandler(item.label, item.tabkey, item._uid)">
                     <a href="javascript:">{{item.label}}</a>
                 </li>
             </ul>
