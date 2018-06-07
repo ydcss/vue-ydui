@@ -5,6 +5,7 @@
             <div class="yd-cityselect-header">
                 <p class="yd-cityselect-title">
                     <span class="yd-cityselect-title-text">{{title}}</span>
+                    <!-- feature 新增确定按钮，增加筛选灵活性 -->
                     <a href="javascript:;" class="yd-cityselect-title-btn" @click="this.returnValue">确定</a>
                 </p>
                 <div v-show="ready" class="yd-cityselect-nav">
