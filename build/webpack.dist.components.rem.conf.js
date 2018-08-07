@@ -29,6 +29,7 @@ module.exports = merge(distCommonWebpackConfig, {
         "/lib.rem/popup/index": "./src/components/popup/index.js",
         "/lib.rem/rate/index": "./src/components/rate/index.js",
         "/lib.rem/countdown/index": "./src/components/countdown/index.js",
+        "/lib.rem/textarea/index": "./src/components/textarea/index.js",
         "/lib.rem/rollnotice/index": "./src/components/rollnotice/index.js",
         "/lib.rem/input/index": "./src/components/input/index.js",
         "/lib.rem/flexbox/index": "./src/components/flexbox/index.js",
