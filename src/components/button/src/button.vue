@@ -1,5 +1,5 @@
 <template>
-    <button :disabled="disabled" :class="classes" :style="{backgroundColor: bgcolor, color: color}" :type="actionType">
+    <button @click="handleClick" :disabled="disabled" :class="classes" :style="{backgroundColor: bgcolor, color: color}" :type="actionType">
         <slot></slot>
     </button>
 </template>
@@ -59,6 +59,11 @@
                     b = '';
                 }
                 return s + ' ' + b + (this.shape === 'circle' ? ' yd-btn-circle' : '');
+            }
+        },
+        methods: {
+            handleClick(evt) {
+                this.$emit('click', evt);
             }
         }
     }
