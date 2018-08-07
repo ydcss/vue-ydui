@@ -9,7 +9,7 @@
                 </div>
                 <slot name="txt"></slot>
             </div>
-            <i :class="show ? 'yd-accordion-rotated' : ''"></i>
+            <div class="yd-accordion-head-arrow" @click.stop="toggle" :class="show ? 'yd-accordion-rotated' : ''"></div>
         </div>
         <div class="yd-accordion-content" :style="styleHeight">
             <div ref="content">

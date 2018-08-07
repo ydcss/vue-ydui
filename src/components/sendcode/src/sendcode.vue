@@ -2,6 +2,7 @@
     <yd-sendcode-button
             :size="size"
             :type="type"
+            :action-type="actionType"
             :disabled="start"
             :class="start ? 'btn-disabled' : ''"
             :style="{backgroundColor: bgcolor, color: color}"
@@ -20,14 +21,18 @@
         },
         data() {
             return {
-                tmpStr: '获取短信验证码',
+                tmpStr: this.initStr,
                 timer: null,
                 start: false,
-                runSecond: this.second
+                runSecond: this.second,
+                lastSecond: 0
             }
         },
         props: {
-            initStr: String,
+            initStr: {
+                type: String,
+                default: '获取短信验证码'
+            },
             second: {
                 default: 60,
                 validator(val) {
@@ -51,7 +56,8 @@
             }
         },
         methods: {
-            run(lastSecond) {
+            run() {
+                let lastSecond = this.lastSecond;
                 let second = lastSecond ? lastSecond : this.runSecond;
 
                 if (this.storageKey) {
@@ -66,10 +72,10 @@
                 this.timer = setInterval(() => {
                     second--;
                     this.tmpStr = this.getStr(second);
-                    second <= 0 && this.stop();
+                    second <= 0 && this.timeout();
                 }, 1000);
             },
-            stop() {
+            timeout() {
                 this.tmpStr = this.resetStr;
                 this.start = false;
                 this.$emit('input', false);
@@ -82,21 +88,28 @@
         watch: {
             value(val) {
                 this.start = val;
-                val && this.run();
+                if (!val) {
+                    clearInterval(this.timer);
+                    this.tmpStr = this.initStr;
+                    if (this.storageKey) {
+                        window.sessionStorage.removeItem(this.storageKey);
+                        this.lastSecond = 0;
+                    }
+                } else {
+                    this.run();
+                }
             }
         },
         created() {
             const lastSecond = ~~((window.sessionStorage.getItem(this.storageKey) - new Date().getTime()) / 1000);
             if (lastSecond > 0 && this.storageKey) {
+                this.$emit('input', true);
                 this.tmpStr = this.getStr(lastSecond);
-                this.start = true;
-                this.run(lastSecond);
-            } else {
-                if (this.initStr) this.tmpStr = this.initStr;
+                this.lastSecond = lastSecond;
             }
         },
-        destroyed() {
-            !this.storageKey && this.stop();
+        beforeDestroy() {
+            !this.storageKey && this.timeout();
         }
     }
 </script>

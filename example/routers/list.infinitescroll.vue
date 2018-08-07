@@ -11,7 +11,6 @@
 
             <yd-list theme="1" slot="list">
                 <yd-list-item v-for="item in list">
-
                     <img slot="img" :src="item.img">
                     <span slot="title">{{item.title}}</span>
                     <yd-list-other slot="other">

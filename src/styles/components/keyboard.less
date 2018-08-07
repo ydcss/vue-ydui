@@ -2,10 +2,6 @@
 @import "../common/mixins";
 
 .@{css-prefix} {
-  &-keyboard-mask {
-    .mask(rgba(0, 0, 0, .4), @base-zindex * 1500 + 2);
-  }
-
   &-keyboard {
     position: fixed;
     bottom: 0;
@@ -13,7 +9,7 @@
     width: 100%;
     z-index: @base-zindex * 1500 + 2;
     transform: translate(0, 100%);
-    transition: transform .3s;
+    transition: transform .2s;
     background-color: #F7F7F7;
     &-active {
       transform: translate(0, 0);
@@ -55,7 +51,7 @@
         > a {
           width: 1%; /* for old android */
           flex: 1;
-          color: #222;
+          color: #666;
           height: 1rem;
           position: relative;
           display: flex;
@@ -92,7 +88,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      color: #1F2324;
+      color: #444;
       font-size: .3rem;
       position: relative;
       &:after {

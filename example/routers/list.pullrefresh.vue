@@ -78,18 +78,19 @@
                 const url = 'http://list.ydui.org/getdata.php';
 
                 this.$http.jsonp(url, {params: {type: 'pulldown', page: this.page}}).then((response) => {
+                    setTimeout(() => {
+                        const _list = response.body;
 
-                    const _list = response.body;
+                        this.list = [..._list, ...this.list];
 
-                    this.list = [..._list, ...this.list];
+                        this.$dialog.toast({
+                            mes: _list.length > 0 ? '为您更新了' + _list.length + '条内容' : '已是最新内容'
+                        });
 
-                    this.$dialog.toast({
-                        mes: _list.length > 0 ? '为您更新了' + _list.length + '条内容' : '已是最新内容'
-                    });
+                        this.$refs.prdemo.$emit('ydui.pullrefresh.finishLoad');
 
-                    this.$refs.prdemo.$emit('ydui.pullrefresh.finishLoad');
-
-                    this.page++;
+                        this.page++;
+                    }, 1000);
                 });
             }
         }

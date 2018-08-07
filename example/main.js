@@ -14,11 +14,11 @@ import List from './routers/list.vue';
 import ListTheme from './routers/list.theme.vue';
 import ListInfinitescroll from './routers/list.infinitescroll.vue';
 import ListPullRefresh from './routers/list.pullrefresh.vue';
+import listCombination from './routers/list.combination.vue';
 import Badge from './routers/badge.vue';
 import AsideBar from './routers/asidebar.vue';
 import TabBar from './routers/tabbar.vue';
 import NavBar from './routers/navbar.vue';
-import Tabs from './routers/tabs.vue';
 import Tab from './routers/tab.vue';
 import ScrollTab from './routers/scrolltab.vue';
 import ActionSheet from './routers/actionsheet.vue';
@@ -47,6 +47,8 @@ import TimeLine from './routers/timeline.vue';
 import Step from './routers/step.vue';
 import CheckList from './routers/checklist.vue';
 import Search from './routers/search.vue';
+import ScrollNav from './routers/scrollnav.vue';
+import Preview from './routers/preview.vue';
 
 import App from './app.vue';
 
@@ -70,11 +72,11 @@ const router = new VueRouter({
         {path: '/list.theme/:id', name: 'list.theme/:id', component: ListTheme},
         {path: '/list.infinitescroll', name: 'list.infinitescroll', component: ListInfinitescroll},
         {path: '/list.pullrefresh', name: 'list.pullrefresh', component: ListPullRefresh},
+        {path: '/list.combination', name: 'list.combination', component: listCombination},
         {path: '/badge', name: 'badge', component: Badge},
         {path: '/asidebar', name: 'asidebar', component: AsideBar},
         {path: '/tabbar', name: 'tabbar', component: TabBar},
         {path: '/navbar', name: 'navbar', component: NavBar},
-        {path: '/tabs', name: 'tabs', component: Tabs},
         {path: '/tab', name: 'tab', component: Tab},
         {path: '/scrolltab', name: 'scrolltab', component: ScrollTab},
         {path: '/actionsheet', name: 'actionsheet', component: ActionSheet},
@@ -103,6 +105,8 @@ const router = new VueRouter({
         {path: '/step', name: 'step', component: Step},
         {path: '/checklist', name: 'checklist', component: CheckList},
         {path: '/search', name: 'search', component: Search},
+        {path: '/scrollnav', name: 'scrollnav', component: ScrollNav},
+        {path: '/preview', name: 'preview', component: Preview},
     ]
 });
 

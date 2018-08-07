@@ -6,7 +6,7 @@
         >
             <div class="yd-slider-item" v-if="loop" :style="itemHeight" v-html="lastItem"></div>
             <slot></slot>
-            <div class="yd-slider-item" v-if="loop" :style="itemHeight" v-html="firtstItem"></div>
+            <div class="yd-slider-item" v-if="loop" :style="itemHeight" v-html="firstItem"></div>
         </div>
         <div class="yd-slider-pagination" v-if="itemsArr.length > 1 && showPagination"
              :class="direction == 'vertical' ? 'yd-slider-pagination-vertical' : ''">
@@ -23,9 +23,9 @@
         name: 'yd-slider',
         data() {
             return {
-                firtstItem: '',
+                firstItem: '',
                 lastItem: '',
-                currentIndex: ~~this.index,
+                currentIndex: 0,
                 itemNums: 0,
                 itemsArr: [],
                 autoPlayTimer: null,
@@ -92,8 +92,9 @@
                     val = this.itemNums;
                 }
 
-                this.currentIndex = val;
-                this.showItem(val);
+                this.currentIndex = this.loop ? val + 1 : val;
+
+                this.showItem(this.currentIndex);
             },
             currentIndex(val) {
                 const itemNums = this.itemNums;
@@ -117,6 +118,14 @@
 
                 if (this.loop) {
                     this.currentIndex = 1;
+                    if (this.index > 0) {
+                        this.currentIndex = ~~this.index + 1;
+                    }
+                } else {
+                    this.currentIndex = 0;
+                    if (this.index > 0) {
+                        this.currentIndex = ~~this.index;
+                    }
                 }
 
                 this.cloneItem();
@@ -145,7 +154,7 @@
 
                 const itemArr = this.itemsArr;
 
-                this.firtstItem = itemArr[0].$el.innerHTML;
+                this.firstItem = itemArr[0].$el.innerHTML;
                 this.lastItem = itemArr[itemArr.length - 1].$el.innerHTML;
             },
             touchStartHandler(event) {
@@ -284,6 +293,7 @@
                         setTimeout(() => {
                             this.setTranslate(this.speed, -(++this.currentIndex * size));
                         }, 100);
+                        this.callback && this.callback(this.currentIndex);
                         return;
                     }
                     this.setTranslate(this.speed, -(++this.currentIndex * size));
@@ -297,7 +307,7 @@
                     this.callback && this.callback(this.currentIndex);
                 } else {
                     let _index = this.currentIndex % this.itemNums;
-                    this.callback && this.callback(_index === 0 ? this.itemNums-1 : _index - 1);
+                    this.callback && this.callback(_index === 0 ? this.itemNums - 1 : _index - 1);
                 }
             },
             stopAutoplay() {
@@ -319,7 +329,7 @@
 
                 window.addEventListener('resize', this.resizeSlides);
 
-                document.body.addEventListener('touchmove', this.stopDrag);
+                document.body.addEventListener('touchmove', this.stopDrag, {passive: false});
             },
             unbindEvents() {
                 this.$el.removeEventListener('touchstart', this.touchStartHandler);
@@ -328,7 +338,7 @@
 
                 window.removeEventListener('resize', this.resizeSlides);
 
-                document.body.removeEventListener('touchmove', this.stopDrag);
+                document.body.removeEventListener('touchmove', this.stopDrag, {passive: false});
             },
             setTranslate(speed, translate) {
                 this.dragStyleObject.transitionDuration = speed + 'ms';
@@ -357,7 +367,7 @@
                 return !!(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch);
             })();
         },
-        destroyed() {
+        beforeDestroy() {
             this.destroy();
         }
     }

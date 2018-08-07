@@ -21,8 +21,12 @@
       display: flex;
       align-items: center;
     }
-    > i {
+    &-arrow {
       overflow: hidden;
+      height: 100%;
+      min-height: 1rem;
+      display: flex;
+      align-items: center;
       &:after {
         content: '';
         width: 0;
@@ -32,10 +36,10 @@
         border-bottom: 7px solid #A0A0A0;
         display: block;
         transition: transform .1s linear;
-        transform: rotate(0deg);
+        transform: rotate(-180deg);
       }
       &.@{css-prefix}-accordion-rotated:after {
-        transform: rotate(-180deg);
+        transform: rotate(0deg);
       }
     }
   }

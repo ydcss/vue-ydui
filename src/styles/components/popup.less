@@ -2,15 +2,11 @@
 @import "../common/mixins";
 
 .@{css-prefix} {
-  &-popup-mask {
-    .mask(rgba(0, 0, 0, .4), @base-zindex * 1500);
-  }
-
   &-popup {
     position: fixed;
     background-color: #FFF;
     z-index: @base-zindex * 1500 + 1;
-    transition: transform .3s;
+    transition: transform .2s;
     pointer-events: none;
     display: flex;
     flex-direction: column;
@@ -48,20 +44,19 @@
     }
 
     &-center {
-      background-color: #FFF;
       z-index: @base-zindex * 1500 + 2;
       position: fixed;
       top: 50%;
       left: 50%;
       opacity: 0;
-      transform: translate(-50%, -50%) scale(.8);
+      transform: translate(-50%, -50%) scale(.95);
       transform-origin: 50% 50%;
-      transition: all .1s;
-      border-radius: 2px;
+      transition: transform .1s;
       pointer-events: none;
       * {
         pointer-events: none;
       }
+
       &.@{css-prefix}-popup-show {
         opacity: 1;
         transform: translate(-50%, -50%) scale(1);
@@ -70,6 +65,7 @@
           pointer-events: auto;
         }
       }
+
     }
   }
 }

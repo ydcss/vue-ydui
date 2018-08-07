@@ -1,7 +1,6 @@
 <template>
     <div>
-        <div class="yd-keyboard-mask" v-if="triggerClose" v-show="show" @click.stop="close"></div>
-        <div class="yd-mask-keyboard" v-else v-show="show"></div>
+        <yd-mask v-model="show" @click.native="close" :opacity="maskerOpacity"></yd-mask>
         <div class="yd-keyboard" :class="show ? 'yd-keyboard-active' : ''">
             <div class="yd-keyboard-head">
                 <strong>{{inputText}}</strong>
@@ -35,10 +34,14 @@
 </template>
 
 <script type="text/babel">
-    import {addClass, removeClass, getScrollview, pageScroll, isIOS} from '../../../utils/assist';
+    import {isIOS, pageScroll} from '../../../utils/assist';
+    import Mask from '../../mask/src/mask.vue';
 
     export default {
         name: 'yd-keyboard',
+        components: {
+            'yd-mask': Mask
+        },
         data() {
             return {
                 nums: '',
@@ -48,9 +51,6 @@
             }
         },
         props: {
-            inputDone: {
-                type: Function
-            },
             callback: {
                 type: Function
             },
@@ -77,18 +77,18 @@
             triggerClose: {
                 type: Boolean,
                 default: true
+            },
+            maskerOpacity: {
+                validator(val) {
+                    return /^([0]|[1-9]\d*)?(\.\d*)?$/.test(val);
+                },
+                default: .5
             }
         },
         watch: {
             value(val) {
                 if (isIOS) {
-                    if (val) {
-                        pageScroll.lock();
-                        addClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
-                    } else {
-                        pageScroll.unlock();
-                        removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
-                    }
+                    val ? pageScroll.lock() : pageScroll.unlock();
                 }
 
                 this.nums = '';
@@ -101,16 +101,12 @@
             },
             nums(val) {
                 if (val.length >= 6) {
-                    // TODO 参数更名，即将删除
-                    this.inputDone && this.inputDone(val);
                     this.callback && this.callback(val);
                 }
             }
         },
         methods: {
             init() {
-                this.scrollView = getScrollview(this.$el);
-
                 this.$on('ydui.keyboard.error', (error) => {
                     this.setError(error);
                 });
@@ -148,8 +144,7 @@
                 return arr;
             },
             close() {
-                isIOS && removeClass(this.scrollView, 'g-fix-ios-overflow-scrolling-bug');
-
+                if(!this.triggerClose) return;
                 this.$emit('input', false);
             },
             setError(error) {
@@ -164,7 +159,7 @@
 
             this.$nextTick(this.init);
         },
-        destroyed() {
+        beforeDestroy() {
             this.close();
             pageScroll.unlock();
         }

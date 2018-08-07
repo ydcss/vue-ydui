@@ -33,9 +33,6 @@
             }
         },
         props: {
-            onInfinite: {
-                type: Function
-            },
             callback: {
                 type: Function
             },
@@ -102,8 +99,6 @@
 
                 if (tagOffsetTop > offsetTop && tagOffsetTop - (distance + offsetTop) * this.num <= contentHeight && this.$el.offsetHeight > scrollviewHeight) {
                     this.isLoading = true;
-                    // TODO 参数更名，即将删除
-                    this.onInfinite && this.onInfinite();
                     this.callback && this.callback();
                     this.num++;
                 }
@@ -121,7 +116,7 @@
         mounted() {
             this.$nextTick(this.init);
         },
-        destroyed() {
+        beforeDestroy() {
             this.scrollview.removeEventListener('scroll', this.throttledCheck);
         }
     }

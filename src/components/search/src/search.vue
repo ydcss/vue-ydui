@@ -14,7 +14,7 @@
                     ></yd-search-input>
                 </form>
                 <a href="javascript:;" class="cancel-text" v-show="currentValue !== ''"
-                   @click="close">{{cancelText}}</a>
+                   @click="close(false)">{{cancelText}}</a>
             </div>
         </div>
 
@@ -30,10 +30,11 @@
                                 ref="search"
                         ></yd-search-input>
                     </form>
-                    <a href="javascript:;" class="cancel-text" @click="close">{{cancelText}}</a>
+                    <a href="javascript:;" class="cancel-text" @click="close(false)">{{cancelText}}</a>
                 </div>
                 <div class="yd-search-list" :style="{paddingBottom: top}">
-                    <p class="yd-search-list-item" v-for="item, key in result" @click="clickHandler(item)" :key="key">{{item}}</p>
+                    <p class="yd-search-list-item" v-for="item, key in result" @click="clickHandler(item)" :key="key">
+                        {{item.label || item}}</p>
                 </div>
             </div>
         </template>
@@ -74,20 +75,13 @@
             itemClick: {
                 type: Function
             },
-            callback: {
-                type: Function
-            },
-            autofocus: {
-                type: Boolean,
-                default: true
-            },
             value: {
                 type: String,
                 default: ''
             },
             fullpage: {
                 type: Boolean,
-                defaut: false
+                default: false
             },
             top: {
                 validator(value) {
@@ -96,6 +90,9 @@
                 default: '-1px'
             },
             onSubmit: {
+                type: Function
+            },
+            onCancel: {
                 type: Function
             }
         },
@@ -120,20 +117,24 @@
             open() {
                 if (this.fullpage) {
                     this.show = true;
+                    this.$refs.search.setFocus();
                 }
             },
-            close() {
+            close(internalClose) {
                 this.show = false;
-                this.currentValue = '';
+                if (!internalClose) {
+                    this.onCancel && this.onCancel();
+                }
             },
             submit() {
                 this.$refs.search.setBlur();
                 this.onSubmit && this.onSubmit(this.currentValue);
-                this.close();
+                this.close(true);
             },
             clickHandler(item) {
+                this.currentValue = item.label ? item.label : item;
                 this.itemClick && this.itemClick(item);
-                this.close();
+                this.close(true);
             }
         },
         destroyed() {

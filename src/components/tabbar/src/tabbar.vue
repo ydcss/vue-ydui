@@ -1,7 +1,9 @@
 <template>
-    <footer class="yd-tabbar tabbbar-top-line-color" :class="classes" :style="styles">
-        <slot></slot>
-    </footer>
+    <div :style="{height: barHeight}">
+        <footer class="yd-tabbar tabbbar-top-line-color" :class="classes" :style="styles" ref="navbar">
+            <slot></slot>
+        </footer>
+    </div>
 </template>
 
 <script type="text/babel">
@@ -9,7 +11,14 @@
 
     export default {
         name: 'yd-tabbar',
+        data() {
+            return {
+                activeIndex: this.value,
+                barHeight: 'auto'
+            }
+        },
         props: {
+            value: Number,
             fixed: Boolean,
             exact: {
                 type: Boolean,
@@ -57,6 +66,28 @@
                     backgroundColor: this.bgcolor,
                     fontSize: this.fontsize
                 }
+            }
+        },
+        methods: {
+            setCurrent(index) {
+                const tabPanels = this.$children.filter(item => item.$options.name === 'yd-tabbar-item');
+                tabPanels.forEach((item, key) => {
+                    this.$set(item, 'isCurrent', index === key);
+                });
+            }
+        },
+        watch: {
+            value(val) {
+                this.setCurrent(val);
+            }
+        },
+        mounted() {
+            this.setCurrent(this.activeIndex);
+
+            if (this.fixed) {
+                this.$nextTick(() => {
+                    this.barHeight = this.$refs.navbar.offsetHeight;
+                });
             }
         }
     }

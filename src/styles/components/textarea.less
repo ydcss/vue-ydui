@@ -6,12 +6,18 @@
     background-color: #fff;
     width: 100%;
 
-    textarea {
+    > textarea {
       border: none;
       width: 100%;
       display: block;
       height: 1.5rem;
       font-size: .3rem;
+      color: inherit;
+      background-color: transparent;
+    }
+
+    &-readonly {
+      opacity: .3;
     }
 
     &-counter {

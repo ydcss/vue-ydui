@@ -1,5 +1,5 @@
 <template>
-    <div class="yd-textarea">
+    <div class="yd-textarea" :class="readonly ? 'yd-textarea-readonly' : ''">
         <textarea v-model="mlstr"
                   :placeholder="placeholder"
                   :maxlength="maxlength"
@@ -49,8 +49,6 @@
         watch: {
             mlstr(val) {
                 this.$emit('input', val);
-                // TODO 参数更名，即将删除
-                this.change && this.change();
                 this.callback && this.change();
                 if (this.showCounter) this.num = val.length;
             },

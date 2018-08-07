@@ -29,6 +29,7 @@ module.exports = merge(distCommonWebpackConfig, {
         "/lib.rem/popup/index": "./src/components/popup/index.js",
         "/lib.rem/rate/index": "./src/components/rate/index.js",
         "/lib.rem/countdown/index": "./src/components/countdown/index.js",
+        "/lib.rem/textarea/index": "./src/components/textarea/index.js",
         "/lib.rem/rollnotice/index": "./src/components/rollnotice/index.js",
         "/lib.rem/input/index": "./src/components/input/index.js",
         "/lib.rem/flexbox/index": "./src/components/flexbox/index.js",
@@ -42,5 +43,7 @@ module.exports = merge(distCommonWebpackConfig, {
         "/lib.rem/step/index": "./src/components/step/index.js",
         "/lib.rem/checklist/index": "./src/components/checklist/index.js",
         "/lib.rem/search/index": "./src/components/search/index.js",
+        "/lib.rem/scrollnav/index": "./src/components/scrollnav/index.js",
+        "/lib.rem/preview/index": "./src/components/preview/index.js",
     }
 });

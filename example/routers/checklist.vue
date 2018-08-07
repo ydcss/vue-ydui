@@ -2,7 +2,7 @@
     <yd-layout title="CheckList">
 
         <div style="padding-left:12px;margin-bottom: 10px;" class="demo-small-pitch">
-            <yd-checkbox v-model="isCheckAll" shape="circle" @click.native="checkAll">全选 {{isCheckAll}} - <span style="font-size: 12px;">结合yd-checkbox组件实现全选</span></yd-checkbox>
+            <yd-checkbox v-model="isCheckAll" shape="circle" :change="checkAll">全选 {{isCheckAll}} - <span style="font-size: 12px;">结合yd-checkbox组件实现全选</span></yd-checkbox>
         </div>
         <yd-checklist v-model="checklist1" ref="checklistDemo" :callback="change">
             <yd-checklist-item val="1">

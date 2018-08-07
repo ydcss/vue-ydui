@@ -2,6 +2,12 @@ export default {
     isDateTimeString(str) {
         return /^\d{4}((\.|-|\/)(0[1-9]|1[0-2]))((\.|-|\/)(0[1-9]|[12][0-9]|3[0-1]))( ([01][0-9]|2[0-3]):([012345][0-9]))?$/.test(str);
     },
+    isMonthString(str) {
+        return /^\d{4}((\.|-|\/)(0[1-9]|1[0-2]))?$/.test(str);
+    },
+    isDayString(str) {
+        return /^((0[1-9]|1[0-2]))((\.|-|\/)(0[1-9]|[12][0-9]|3[0-1]))?$/.test(str);
+    },
     isTimeString(str) {
         return /^([01][0-9]|2[0-3]):([012345][0-9])$/.test(str);
     },
@@ -83,7 +89,7 @@ export default {
 
         return months;
     },
-    getDateItems(config) {
+    getDayItems(config) {
         let dates = [];
         let today = new Date();
         let year = today.getFullYear();

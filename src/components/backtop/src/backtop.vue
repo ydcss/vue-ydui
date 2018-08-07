@@ -17,7 +17,17 @@
         },
         methods: {
             backtop() {
-                const top = this.scrollView === window ? document.body.scrollTop : this.scrollView.scrollTop;
+                let top = 0;
+                if (this.scrollView === window) {
+                    if (document.documentElement && document.documentElement.scrollTop) {
+                        top = document.documentElement.scrollTop;
+                    } else {
+                        top = document.body.scrollTop;
+                    }
+                } else {
+                    top = this.scrollView.scrollTop
+                }
+
                 scrollTop(this.scrollView, top, 0);
             },
             scrollHandler() {
@@ -47,7 +57,7 @@
             this.scrollView.addEventListener('scroll', this.throttledCheck, false);
             this.scrollView.addEventListener('resize', this.scrollHandler, false);
         },
-        destroyed() {
+        beforeDestroy() {
             this.scrollView.removeEventListener('scroll', this.throttledCheck, false);
             this.scrollView.removeEventListener('resize', this.scrollHandler, false);
         }

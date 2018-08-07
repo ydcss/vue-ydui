@@ -1,5 +1,5 @@
 <template>
-    <button :disabled="disabled" :class="classes" :style="{backgroundColor: bgcolor, color: color}">
+    <button @click="handleClick" :disabled="disabled" :class="classes" :style="{backgroundColor: bgcolor, color: color}" :type="actionType">
         <slot></slot>
     </button>
 </template>
@@ -11,6 +11,12 @@
         name: 'yd-button',
         props: {
             disabled: Boolean,
+            actionType: {
+                validator(value) {
+                    return ['button', 'submit', 'reset'].indexOf(value) > -1;
+                },
+                default: 'button'
+            },
             type: {
                 validator(value) {
                     return ['primary', 'danger', 'warning', 'hollow', 'disabled'].indexOf(value) > -1;
@@ -53,6 +59,11 @@
                     b = '';
                 }
                 return s + ' ' + b + (this.shape === 'circle' ? ' yd-btn-circle' : '');
+            }
+        },
+        methods: {
+            handleClick(evt) {
+                this.$emit('click', evt);
             }
         }
     }
