@@ -6,8 +6,9 @@
     height: @navbar-height;
     position: relative;
     display: flex;
+    z-index: 5;
     &:after {
-      .bottom-line(@navbar-border-color, 2);
+      .bottom-line(currentColor);
     }
 
     &-fixed {
@@ -77,6 +78,8 @@
     font-family: @iconfont-inlay;
     font-size: @navbar-icon-fontsize;
     color: inherit;
+    vertical-align: middle;
+    margin-top: -.05rem;
   }
 
   &-back-icon:before {

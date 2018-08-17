@@ -39,14 +39,14 @@
         <yd-cell-group title="不显示清空图标">
             <yd-cell-item>
                 <span slot="left">姓名：</span>
-                <yd-input slot="right" v-model="input7" required :showClearIcon="false" placeholder="请输入您的姓名"></yd-input>
+                <yd-input slot="right" v-model="input7" required :show-clear-icon="false" placeholder="请输入您的姓名"></yd-input>
             </yd-cell-item>
         </yd-cell-group>
 
         <yd-cell-group title="不显示正确或错误图标">
             <yd-cell-item>
                 <span slot="left">手机号：</span>
-                <yd-input slot="right" v-model="input8" required :showSuccessIcon="false" :showErrorIcon="false" regex="mobile" placeholder="请输入手机号码"></yd-input>
+                <yd-input slot="right" v-model="input8" required :show-success-icon="false" :show-error-icon="false" regex="mobile" placeholder="请输入手机号码"></yd-input>
             </yd-cell-item>
         </yd-cell-group>
 

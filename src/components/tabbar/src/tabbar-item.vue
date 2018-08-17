@@ -8,7 +8,7 @@
             </span>
             <span class="yd-tabbar-dot" v-if="dot"></span>
         </span>
-        <span class="yd-tabbar-txt">{{title}}</span>
+        <span class="yd-tabbar-txt" v-if="!!title">{{title}}</span>
     </router-link>
     <a :href="link" class="yd-tabbar-item" :class="classes" :style="styles" v-else>
         <span class="yd-tabbar-icon">
@@ -18,7 +18,7 @@
             </span>
             <span class="yd-tabbar-dot" v-if="dot"></span>
         </span>
-        <span class="yd-tabbar-txt">{{title}}</span>
+        <span class="yd-tabbar-txt" v-if="!!title">{{title}}</span>
     </a>
 </template>
 
@@ -38,7 +38,10 @@
                 default: 'link'
             },
             tag: String,
-            link: [String, Object],
+            link: {
+                type: [String, Object],
+                default: ''
+            },
             title: String,
             active: Boolean,
             dot: Boolean
@@ -48,7 +51,9 @@
                 return this.active || this.isCurrent ? 'yd-tabbar-active' : '';
             },
             styles() {
-                return !this.active && !this.isCurrent ? {color: this.$parent.color} : {};
+                return {
+                    color: !this.active && !this.isCurrent ? this.$parent.color : this.$parent.activeColor
+                }
             }
         }
     }

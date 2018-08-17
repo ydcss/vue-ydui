@@ -1,7 +1,7 @@
 <template>
     <yd-layout title="AsideBar">
 
-        <yd-cell-group>
+        <yd-cell-group class="demo-small-pitch">
             <yd-cell-item arrow type="link" href="/navbar">
                 <span slot="left">NavBar</span>
             </yd-cell-item>

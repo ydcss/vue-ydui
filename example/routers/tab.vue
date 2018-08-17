@@ -36,6 +36,21 @@
         <yd-tab v-model="tab2" :callback="fn" :prevent-default="false" :item-click="itemClick">
             <yd-tab-panel v-for="item in items" :label="item.label">{{item.content}}</yd-tab-panel>
         </yd-tab>
+
+        <div class="demo-tab-title">添加标识</div>
+        <yd-tab>
+            <yd-tab-panel label="选项一">aaaaa</yd-tab-panel>
+            <yd-tab-panel label="选项二" badge="2">bbbbb</yd-tab-panel>
+            <yd-tab-panel label="选项三" dot>cccc</yd-tab-panel>
+            <yd-tab-panel label="选项四">dddd</yd-tab-panel>
+        </yd-tab>
+
+        <div class="demo-tab-title">自定义外观</div>
+        <yd-tab bg-color="#F00" color="#FFF" border-color="#000" active-color="#000" height="1.2rem" font-size=".36rem">
+            <yd-tab-panel label="选项一">aaaaa</yd-tab-panel>
+            <yd-tab-panel label="选项二">bbbbb</yd-tab-panel>
+            <yd-tab-panel label="选项三">cccc</yd-tab-panel>
+        </yd-tab>
     </yd-layout>
 </template>
 

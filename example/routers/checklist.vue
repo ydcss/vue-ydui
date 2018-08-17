@@ -16,8 +16,8 @@
             </yd-checklist-item>
         </yd-checklist>
 
-        <yd-checklist v-model="checklist2" class="demo-small-pitch" :label="false">
-            <yd-checklist-item val="aaa">
+        <yd-checklist v-model="checklist2" class="demo-small-pitch" :label="false" :callback="fn">
+            <yd-checklist-item val="aaa" :change="handleChange">
                 <yd-flexbox style="padding: 15px 0;">
                     <img src="//img12.360buyimg.com/n1/jfs/t2122/170/1006550413/171711/de099a6f/56399d01N67907749.jpg" class="demo-checklist-img">
                     <yd-flexbox-item align="top">
@@ -27,7 +27,7 @@
                     </yd-flexbox-item>
                 </yd-flexbox>
             </yd-checklist-item>
-            <yd-checklist-item val="bbb">
+            <yd-checklist-item val="bbb" :change="handleChange">
                 <yd-flexbox style="padding: 15px 0;">
                     <img src="//img10.360buyimg.com/n1/jfs/t6925/75/2382158459/437865/f3931d24/598be5b1N24d949fe.jpg" class="demo-checklist-img">
                     <yd-flexbox-item align="top">
@@ -35,7 +35,7 @@
                     </yd-flexbox-item>
                 </yd-flexbox>
             </yd-checklist-item>
-            <yd-checklist-item val="ccc">
+            <yd-checklist-item val="ccc" :change="handleChange">
                 <yd-flexbox style="padding: 15px 0;">
                     <img src="//img14.360buyimg.com/n1/jfs/t3232/69/539717695/176729/cf1ff3d8/57baa5d1N901ffea5.jpg" class="demo-checklist-img">
                     <yd-flexbox-item align="top">
@@ -58,6 +58,12 @@
             }
         },
         methods: {
+            fn(val, isCheckAll) {
+                console.log('来自 yd-checklist 的回调：是否全选：' + isCheckAll, '当前所选值是：' + JSON.stringify(val));
+            },
+            handleChange(val, isCheck) {
+                console.log('来自 yd-checklist-item 的回调：是否选中：' + isCheck, '值是：' + JSON.stringify(val));
+            },
             change(value, isCheckAll) {
                 this.isCheckAll = isCheckAll;
             },

@@ -4,13 +4,13 @@
 .@{css-prefix} {
 
   &-cell-box {
-    margin-bottom: .35rem;
+    margin-bottom: .2rem;
   }
 
   &-cell {
-    background-color: #FFF;
     position: relative;
     z-index: 5;
+    background-color: #FFF;
     &:after {
       .bottom-line(@line-high-color);
     }
@@ -62,7 +62,7 @@
       & + .@{css-prefix}-cell-radio-icon:after,
       & + .@{css-prefix}-cell-checkbox-icon:after {
         font-family: @iconfont-inlay;
-        font-size: .44rem;
+        font-size: .42rem;
       }
       & + .@{css-prefix}-cell-radio-icon:after {
         content: '\e600';
@@ -114,6 +114,7 @@
       justify-content: flex-start;
       align-items: center;
       text-align: left; /* fuck UC */
+      line-height: 4;
     }
     select {
       flex: 1;
@@ -130,7 +131,8 @@
     display: block;
     margin-right: .1rem;
     img {
-      height: 0.4rem;
+      height: 0.3rem;
+      vertical-align: middle;
     }
   }
 
@@ -147,15 +149,14 @@
   }
 
   &-cell-title {
-    padding: 0 @body-padding-vertical .1rem;
+    padding: .05rem @body-padding-vertical .1rem;
     font-size: @cell-title-fontsize;
     text-align: left;
     color: @cell-title-color;
     position: relative;
     z-index: 1;
-    background-color: @body-bg;
     &:after {
-      .bottom-line(@line-color, 3);
+      .bottom-line(@line-high-color);
     }
   }
 }

@@ -3,23 +3,25 @@
 
 .@{css-prefix} {
   &-backtop {
-    border: 1px solid #C0C0C0;
-    width: 1rem;
-    height: 1rem;
-    background-color: rgba(255, 255, 255, .85);
     position: fixed;
-    border-radius: 50%;
-    right: 5%;
-    bottom: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: @base-zindex * 1000;
-    &:after {
-      font-family: @iconfont-inlay;
-      content: '\E788';
-      font-size: .5rem;
-      color: #C0C0C0;
+
+    &-inlay {
+      border: 1px solid #C0C0C0;
+      width: 1rem;
+      height: 1rem;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, .85);
+
+      &:after {
+        font-family: @iconfont-inlay;
+        content: '\E788';
+        font-size: .5rem;
+        color: #C0C0C0;
+      }
     }
   }
 }

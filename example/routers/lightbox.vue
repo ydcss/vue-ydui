@@ -1,30 +1,32 @@
 <template>
     <yd-layout title="LightBox">
-
-        <p style="color: #00c3f5;padding-bottom: 5px;padding-left: 5px;font-size: 15px;" class="demo-small-pitch">双瞳如小窗 佳景观历历</p>
-
-        <yd-lightbox :num="list.length">
-
-            <yd-flexbox style="padding-right: 5px;">
-                <yd-flexbox-item v-for="(item, index) in list" v-if="index < 3">
-                    <yd-lightbox-img style="width: 100%;padding-left: 5px;" :src="item.src" :original="item.original"></yd-lightbox-img>
-                </yd-flexbox-item>
-            </yd-flexbox>
-
-            <yd-flexbox style="padding-right: 5px;padding-top: 5px;">
-                <yd-flexbox-item v-for="(item, index) in list" v-if="index >= 3">
-                    <yd-lightbox-img style="width: 100%;padding-left: 5px;" :src="item.src" :original="item.original"></yd-lightbox-img>
-                </yd-flexbox-item>
-            </yd-flexbox>
+        <p style="color: #00c3f5;padding-bottom: 5px;padding-left: 5px;font-size: 15px;" class="demo-small-pitch">
+            参照 京东APP 和 <a href="http://photoswipe.com/" style="text-decoration: underline;">Photoswipe</a> 功能实现。
+        </p>
+        <yd-lightbox>
+            <div class="demo-lightbox">
+                <div>
+                    <yd-lightbox-img :src="baseurl + 'scenery_s01.jpg'" :original="baseurl + 'scenery_01.jpg'"></yd-lightbox-img>
+                </div>
+                <div>
+                    <div>
+                        <div><yd-lightbox-img :src="baseurl + 'scenery_s02.jpg'" :original="baseurl + 'scenery_02.jpg'"></yd-lightbox-img></div>
+                        <div><yd-lightbox-img :src="baseurl + 'scenery_s03.jpg'" :original="baseurl + 'scenery_03.jpg'"></yd-lightbox-img></div>
+                    </div>
+                    <div>
+                        <div><yd-lightbox-img :src="baseurl + 'scenery_s04.jpg'" :original="baseurl + 'scenery_04.jpg'"></yd-lightbox-img></div>
+                        <div><yd-lightbox-img :src="baseurl + 'scenery_s05.jpg'" :original="baseurl + 'scenery_05.jpg'"></yd-lightbox-img></div>
+                    </div>
+                </div>
+            </div>
 
             <yd-lightbox-txt>
-                <h1 style="font-size: 15px;margin-bottom: 8px;color: #00c3f5;text-align: right;" slot="top">双瞳如小窗 佳景观历历</h1>
+                <h1 style="font-size: 15px;margin-bottom: 8px;color: #00c3f5;text-align: right;" slot="top">美丽风景</h1>
                 <div slot="content" style="text-align: right;">
-                    <p>相机：灵犀相通，妙不可言。</p>
-                    <p>设计：美不胜收，爱不释手。</p>
-                    <p>体验：强劲性能，持久动力。</p>
-                    <p>mCharge 4.0：上善若水，不止于快。</p>
-                    <p>mTouch：指尖轻点，安全随行。</p>
+                    <p>风景指的是供观赏的自然风光、景物，包括自然景观和人文景观</p>
+                    <p>风景是由光对物的反映所显露出来的一种景象</p>
+                    <p>犹言风光或景物、景色等，含义广泛</p>
+                    <p>而且还有一大部分作品是借景抒情，寓情于景</p>
                 </div>
             </yd-lightbox-txt>
         </yd-lightbox>
@@ -35,14 +37,7 @@
     export default {
         data() {
             return {
-                list: [
-                    {src: 'http://static.ydcss.com/uploads/lightbox/meizu_s1.jpg', original: 'http://static.ydcss.com/uploads/lightbox/meizu_1.jpg'},
-                    {src: 'http://static.ydcss.com/uploads/lightbox/meizu_s2.jpg', original: 'http://static.ydcss.com/uploads/lightbox/meizu_2.jpg'},
-                    {src: 'http://static.ydcss.com/uploads/lightbox/meizu_s3.jpg', original: 'http://static.ydcss.com/uploads/lightbox/meizu_3.jpg'},
-                    {src: 'http://static.ydcss.com/uploads/lightbox/meizu_s4.jpg', original: 'http://static.ydcss.com/uploads/lightbox/meizu_4.jpg'},
-                    {src: 'http://static.ydcss.com/uploads/lightbox/meizu_s5.jpg', original: 'http://static.ydcss.com/uploads/lightbox/meizu_5.jpg'},
-                    {src: 'http://static.ydcss.com/uploads/lightbox/meizu_s6.jpg', original: 'http://static.ydcss.com/uploads/lightbox/meizu_6.jpg'}
-                ]
+                baseurl: 'http://static.ydcss.com/uploads/lightbox/'
             }
         }
     }

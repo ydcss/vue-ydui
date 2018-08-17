@@ -26,7 +26,7 @@
             },
             timetype: {
                 validator (value) {
-                    return ['datetime', 'second'].indexOf(value) > -1;
+                    return ['datetime', 'second', 'timestamp'].indexOf(value) > -1;
                 },
                 default: 'datetime'
             },
@@ -40,6 +40,7 @@
         },
         watch: {
             time(val) {
+                clearInterval(this.timer);
                 val && this.run();
             }
         },
@@ -49,12 +50,15 @@
 
                 if (this.timetype === 'second') {
                     this.lastTime = Math.floor(new Date() / 1000) + ~~this.time;
-                } else if (this.time instanceof Date){
-                    this.lastTime = Math.floor(this.time.getTime() / 1000);
+                } else if (this.timetype === 'timestamp') {
+                    this.lastTime = Math.floor(new Date(this.time).getTime());
                 } else {
                     this.lastTime = Math.floor(new Date(this.time).getTime() / 1000);
                 }
 
+                if (this.time instanceof Date) {
+                    this.lastTime = Math.floor(this.time.getTime() / 1000);
+                }
 
                 this.doRun();
 
@@ -93,7 +97,7 @@
                     const day = ment(t[val]).toString().split('');
 
                     format = format.replace('{%' + val + '}', ment(t[val]));
-                    format = format.replace('{%' + val + '0}', ~~day[0] != 0 ? day[0] : '');
+                    format = format.replace('{%' + val + '0}', ~~day[day.length - 3] !== 0 ? day[day.length - 3] : '');
                     format = format.replace('{%' + val + '1}', ~~day[day.length - 2]);
                     format = format.replace('{%' + val + '2}', ~~day[day.length - 1]);
                 });

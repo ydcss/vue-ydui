@@ -1,9 +1,7 @@
 <template>
-    <div :style="{height: barHeight}">
-        <footer class="yd-tabbar tabbbar-top-line-color" :class="classes" :style="styles" ref="navbar">
-            <slot></slot>
-        </footer>
-    </div>
+    <footer class="yd-tabbar" :class="classes" :style="styles" ref="navbar">
+        <slot></slot>
+    </footer>
 </template>
 
 <script type="text/babel">
@@ -53,7 +51,23 @@
                 validator(value) {
                     return /^(\.|\d+\.)?\d+(px|rem)$/.test(value);
                 },
-                default: '.24rem'
+                default: '.22rem'
+            },
+            padding: {
+                validator(value) {
+                    if(Number(value) === 0) {
+                        return true;
+                    }
+                    return /^(\.|\d+\.)?\d+(px|rem)$/.test(value);
+                },
+                default: '.06rem'
+            },
+            borderColor: {
+                validator(value) {
+                    if(!value) return true;
+                    return isColor(value);
+                },
+                default: '#E4E4E4'
             }
         },
         computed: {
@@ -62,9 +76,10 @@
             },
             styles() {
                 return {
-                    color: this.activeColor,
+                    color: this.borderColor,
                     backgroundColor: this.bgcolor,
-                    fontSize: this.fontsize
+                    fontSize: this.fontsize,
+                    padding: `${this.padding} 0`
                 }
             }
         },
@@ -83,12 +98,6 @@
         },
         mounted() {
             this.setCurrent(this.activeIndex);
-
-            if (this.fixed) {
-                this.$nextTick(() => {
-                    this.barHeight = this.$refs.navbar.offsetHeight;
-                });
-            }
         }
     }
 </script>

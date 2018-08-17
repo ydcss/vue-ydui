@@ -45,7 +45,7 @@
                     if (!value) return true;
                     return isColor(value);
                 },
-                default: '#CCC'
+                default: '#EAEAEA'
             },
             activeColor: {
                 validator(value) {

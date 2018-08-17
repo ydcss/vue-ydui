@@ -42,6 +42,11 @@
                 <yd-badge shape="square" bgcolor="#000" color="#FFF">custom color</yd-badge>
             </div>
 
+            <div class="demo-badege-title">缩放角标：</div>
+            <div class="demo-small-pitch">
+                <yd-badge scale=".7" type="danger">1</yd-badge>
+                <yd-badge scale="1.2" type="danger">666</yd-badge>
+            </div>
         </div>
 
     </yd-layout>

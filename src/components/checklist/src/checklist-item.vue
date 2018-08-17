@@ -27,14 +27,20 @@
             changeHandler() {
                 if (this.disabled) return;
                 this.checked = !this.checked;
+                this.change(this.val, this.checked);
                 this.$parent.emitInput();
             },
             emitChangeHandler() {
                 if (!this.label) return;
+                this.change(this.val, this.checked);
                 this.changeHandler();
             }
         },
         props: {
+            change: {
+                type: Function,
+                default: () => {}
+            },
             disabled: {
                 type: Boolean,
                 default: false

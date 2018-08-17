@@ -29,7 +29,7 @@
                 <i slot="icon" class="demo-icons-like"></i>
                 <span slot="left">我的收藏</span>
 
-                <span slot="right"><yd-badge type="danger">8</yd-badge></span>
+                <span slot="right"><yd-badge type="danger" scale=".85">8</yd-badge></span>
             </yd-cell-item>
 
             <yd-cell-item arrow href="tel:400-888-8888" type="a">

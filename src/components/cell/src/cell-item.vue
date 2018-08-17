@@ -1,7 +1,7 @@
 <template>
     <label class="yd-cell-item" v-if="type == 'label' || type == 'checkbox' || type == 'radio'">
         <span class="yd-cell-left" v-if="checkLeft">
-            <span class="yd-cell-icon"><slot name="icon"></slot></span>
+            <span class="yd-cell-icon" v-if="$slots.icon"><slot name="icon"></slot></span>
             <slot name="left"></slot>
         </span>
         <label class="yd-cell-right" :class="classes">
@@ -12,7 +12,7 @@
     </label>
     <router-link class="yd-cell-item" :to="href" v-else-if="type == 'link'">
         <div class="yd-cell-left" v-if="checkLeft">
-            <span class="yd-cell-icon"><slot name="icon"></slot></span>
+            <span class="yd-cell-icon" v-if="$slots.icon"><slot name="icon"></slot></span>
             <slot name="left"></slot>
         </div>
         <div class="yd-cell-right" :class="classes">
@@ -21,7 +21,7 @@
     </router-link>
     <a class="yd-cell-item" :href="href" v-else-if="type == 'a'">
         <div class="yd-cell-left" v-if="checkLeft">
-            <span class="yd-cell-icon"><slot name="icon"></slot></span>
+            <span class="yd-cell-icon" v-if="$slots.icon"><slot name="icon"></slot></span>
             <slot name="left"></slot>
         </div>
         <div class="yd-cell-right" :class="classes">
@@ -30,7 +30,7 @@
     </a>
     <div class="yd-cell-item" v-else>
         <div class="yd-cell-left" v-if="checkLeft">
-            <span class="yd-cell-icon"><slot name="icon"></slot></span>
+            <span class="yd-cell-icon" v-if="$slots.icon"><slot name="icon"></slot></span>
             <slot name="left"></slot>
         </div>
         <div class="yd-cell-right" :class="classes">

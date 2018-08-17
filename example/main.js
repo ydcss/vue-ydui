@@ -56,12 +56,9 @@ Vue.use(VueRouter);
 Vue.use(Resource);
 Vue.use(YDUI);
 
-document.addEventListener('DOMContentLoaded', function () {
-    typeof FastClick === 'function' && FastClick.attach(document.body);
-}, false);
-
 const router = new VueRouter({
     routes: [
+        {path: "*", redirect: "/"},
         {path: '/', name: 'index', component: Index},
         {path: '/button', name: 'button', component: Button},
         {path: '/dialog', name: 'dialog', component: Dialog},

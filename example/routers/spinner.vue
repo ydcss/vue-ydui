@@ -39,6 +39,17 @@
             <yd-spinner :longpress="false" v-model="spinner6"></yd-spinner>
             <span class="demo-spinner-tip">[model: spinner6 = <strong>{{spinner6}}</strong>]</span>
         </div>
+        <div class="demo-spinner demo-small-pitch">
+            <span class="demo-spinner-title">自定义宽高</span>
+            <yd-spinner v-model="spinner7" width="180px" height="50px"></yd-spinner>
+            <span class="demo-spinner-tip">[model: spinner7 = <strong>{{spinner7}}</strong>]</span>
+        </div>
+
+        <div class="demo-spinner demo-small-pitch">
+            <span class="demo-spinner-title">设置圆形按钮样式</span>
+            <yd-spinner :callback="fn" val="9567" v-model="spinner8" height="30px" width="80px" button-style="circle"></yd-spinner>
+            <span class="demo-spinner-tip">[model: spinner8 = <strong>{{spinner8}}</strong>]</span>
+        </div>
 
     </yd-layout>
 </template>
@@ -52,12 +63,19 @@
                 spinner3: 0,
                 spinner4: 150,
                 spinner5: 0,
-                spinner6: 0
+                spinner6: 0,
+                spinner7: 0,
+                spinner8: 0
             }
         },
         watch: {
             spinner1(val) {
                 console.log('spinner1: ' + val);
+            }
+        },
+        methods: {
+            fn(val, num) {
+                console.log('啦啦啦', `值是：${val}`, `数量是：${num}`);
             }
         }
     }

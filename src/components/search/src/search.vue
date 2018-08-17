@@ -13,8 +13,7 @@
                             ref="search"
                     ></yd-search-input>
                 </form>
-                <a href="javascript:;" class="cancel-text" v-show="currentValue !== ''"
-                   @click="close(false)">{{cancelText}}</a>
+                <a href="javascript:;" class="cancel-text" v-show="currentValue !== '' && !fullpage" @click="close(false)">{{cancelText}}</a>
             </div>
         </div>
 
@@ -35,7 +34,9 @@
                 <div class="yd-search-list" :style="{paddingBottom: top}">
                     <p class="yd-search-list-item" v-for="item, key in result" @click="clickHandler(item)" :key="key">
                         {{item.label || item}}</p>
+                    <slot></slot>
                 </div>
+
             </div>
         </template>
     </div>
@@ -93,6 +94,9 @@
                 type: Function
             },
             onCancel: {
+                type: Function
+            },
+            onKeyup: {
                 type: Function
             }
         },

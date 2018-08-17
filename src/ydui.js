@@ -12,7 +12,7 @@ import {ListTheme, ListItem, ListOther} from './components/list';
 import {InfiniteScroll} from './components/infinitescroll';
 import {PullRefresh} from './components/pullrefresh';
 import {Badge, BadgeRadius} from './components/badge';
-import {TabBar, TabBarItem} from './components/tabbar';
+import {TabBar, TabBarItem, TabBarOther} from './components/tabbar';
 import {Tab, TabPanel} from './components/tab';
 import {ScrollTab, ScrollTabPanel} from './components/scrolltab';
 import {ActionSheet} from './components/actionsheet';
@@ -68,6 +68,7 @@ const install = function (Vue) {
     Vue.component(Badge.name, Badge);
     Vue.component(TabBar.name, TabBar);
     Vue.component(TabBarItem.name, TabBarItem);
+    Vue.component(TabBarOther.name, TabBarOther);
     Vue.component(Tab.name, Tab);
     Vue.component(TabPanel.name, TabPanel);
     Vue.component(ScrollTab.name, ScrollTab);

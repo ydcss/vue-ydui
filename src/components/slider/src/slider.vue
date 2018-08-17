@@ -1,7 +1,7 @@
 <template>
     <div class="yd-slider" ref="slider">
         <div class="yd-slider-wrapper" ref="warpper"
-             :class="direction == 'vertical' ? 'yd-slider-wrapper-vertical' : ''"
+             :class="direction === 'vertical' ? 'yd-slider-wrapper-vertical' : ''"
              :style="dragStyleObject"
         >
             <div class="yd-slider-item" v-if="loop" :style="itemHeight" v-html="lastItem"></div>
@@ -9,16 +9,19 @@
             <div class="yd-slider-item" v-if="loop" :style="itemHeight" v-html="firstItem"></div>
         </div>
         <div class="yd-slider-pagination" v-if="itemsArr.length > 1 && showPagination"
-             :class="direction == 'vertical' ? 'yd-slider-pagination-vertical' : ''">
+             :class="direction === 'vertical' ? 'yd-slider-pagination-vertical' : ''">
             <span class="yd-slider-pagination-item"
                   v-for="t, i in itemNums" :key="i"
-                  :class="paginationIndex == i ? 'yd-slider-pagination-item-active': ''"
+                  :class="paginationIndex === i ? 'yd-slider-pagination-item-active': ''"
+                  :style="{backgroundColor: paginationIndex === i ? paginationActiveColor : paginationColor}"
             ></span>
         </div>
     </div>
 </template>
 
 <script type="text/babel">
+    import {isColor} from '../../../utils/assist';
+
     export default {
         name: 'yd-slider',
         data() {
@@ -55,7 +58,7 @@
                 }
             },
             speed: {
-                default: 300,
+                default: 200,
                 validator(val) {
                     return /^\d*$/.test(val);
                 }
@@ -82,7 +85,21 @@
             loop: {
                 type: Boolean,
                 default: true
-            }
+            },
+            paginationColor: {
+                validator(value) {
+                    if (!value) return true;
+                    return isColor(value);
+                },
+                default: '#B7D0E1'
+            },
+            paginationActiveColor: {
+                validator(value) {
+                    if (!value) return true;
+                    return isColor(value);
+                },
+                default: '#FF0005'
+            },
         },
         watch: {
             index(val) {
@@ -217,7 +234,7 @@
 
                 const touchAngle = Math.atan2(Math.abs(currentY - touches.startY), Math.abs(currentX - touches.startX)) * 180 / Math.PI;
 
-                if ((!this.isVertical ? touchAngle > 45 : (90 - touchAngle > 45)) && this.supportTouch) {
+                if ((!this.isVertical ? touchAngle > 45 : (90 - touchAngle > 30)) && this.supportTouch) {
                     touches.moveTag = 3;
                     this.stopAutoplay();
                     this.setTranslate(0, -this.currentIndex * (this.isVertical ? this.$el.clientHeight : this.$refs.warpper.offsetWidth));
@@ -260,7 +277,7 @@
 
                     const unloopDrag = (!this.loop && ((this.currentIndex === 0 && moveOffset > 0) || (this.currentIndex >= this.itemNums - 1 && moveOffset < 0)));
 
-                    if (timeDiff > 300 && Math.abs(moveOffset) <= warpperSize * .5 || this.itemsArr.length <= 1 || unloopDrag) {
+                    if (timeDiff > 250 && Math.abs(moveOffset) <= warpperSize * .5 || this.itemsArr.length <= 1 || unloopDrag) {
                         this.setTranslate(this.speed, -this.currentIndex * warpperSize);
                     } else {
                         this.setTranslate(this.speed, -((moveOffset > 0 ? --this.currentIndex : ++this.currentIndex) * warpperSize));

@@ -122,7 +122,7 @@
             }
         },
         created() {
-            if (this.$parent.color) {
+            if (this.$parent.$options && this.$parent.$options.name === 'yd-checkbox-group') {
                 this.group = true;
             }
         }

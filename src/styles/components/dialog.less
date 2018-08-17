@@ -97,7 +97,7 @@
       margin-top: 14px;
       display: flex;
       &:after {
-        .top-line(@line-color);
+        .top-line(@line-high-color);
       }
       > a {
         position: relative;
@@ -106,7 +106,7 @@
         flex: 1;
         padding: 0 2px;
         &:not(:last-child):after {
-          .right-line(@line-color);
+          .right-line(@line-high-color);
         }
         &.default {
           color: #353535;
@@ -187,18 +187,18 @@
     top: 0;
     left: 0;
     width: 100%;
+    right: 0;
     background-color: rgba(40, 40, 40, .85);
     line-height: .28rem;
     font-size: .26rem;
     color: #FFF;
-    padding: .3rem .24rem;
+    padding: .4rem .24rem .3rem .24rem;
     opacity: 0;
     animation: yd-kf-down-in .2s linear forwards;
     word-break: break-all;
     text-align: center;
     z-index: @base-zindex * 2000;
     &-out {
-      opacity: 1;
       animation: yd-kf-up-out .15s linear forwards;
     }
   }

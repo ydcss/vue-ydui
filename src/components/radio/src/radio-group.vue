@@ -31,6 +31,10 @@
                     return /^([1-9]\d*)$/.test(val);
                 },
                 default: 20
+            },
+            callback: {
+                type: Function,
+                default: () => {}
             }
         },
         methods: {
@@ -45,6 +49,7 @@
                 }
             },
             change(val) {
+                this.callback(val);
                 this.currentValue = val;
                 this.updateValue();
                 this.$emit('input', val);

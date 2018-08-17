@@ -6,7 +6,6 @@
     &-box {
       overflow: auto;
       -webkit-overflow-scrolling: touch;
-      background-color: #fff;
     }
 
     &-nav-nomal {
@@ -15,7 +14,6 @@
         .yd-tab-nav-item {
           width: 1%;
           flex: 1;
-          display: block;
         }
       }
     }
@@ -32,37 +30,26 @@
     &-nav {
       position: relative;
       z-index: 0;
+
       &:after {
-        .bottom-line(@tab-bottom-border-color, 3);
+        .bottom-line(currentColor, 3);
       }
 
       &-item {
-        position: relative;
         text-align: center;
-        color: @tab-color;
-        font-size: @tab-fontsize;
-        line-height: @tab-height;
-        .tap-color(@tab-bg, .97);
-        > a {
-          display: inherit;
-          color: inherit;
-        }
+        height: 100%;
+        display: block;
+        position: relative;
 
-        &:not(:last-child):after {
-          position: absolute;
-          top: 35%;
-          right: 0;
-          content: '';
-          width: 1px;
-          height: 30%;
-          transform: scaleX(.5);
-          border-right: 1px solid @tab-break-color;
+        &-label {
+          color: inherit;
+          display: inline-block;
+          position: relative;
         }
       }
 
       .@{css-prefix}-tab-active {
         color: currentColor;
-        .tap-color(@tab-bg, 1);
         &:before {
           content: '';
           width: 70%;
@@ -80,12 +67,12 @@
     &-panel {
       position: relative;
       overflow: hidden;
-      background-color: #FFF;
 
       &-item {
         width: 100%;
         position: absolute;
         top: 0;
+        overflow: hidden;
         transform: translateX(-100%);
 
         &.@{css-prefix}-tab-active {
@@ -97,6 +84,24 @@
             transform: translateX(100%);
           }
         }
+      }
+    }
+
+    &-badge {
+      position: absolute;
+      top: 2px;
+      z-index: 9;
+      line-height: 0;
+    }
+
+    &-dot {
+      position: absolute;
+      top: -10px;
+      > i {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 100px;
       }
     }
   }

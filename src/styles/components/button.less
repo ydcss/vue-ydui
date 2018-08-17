@@ -1,11 +1,21 @@
 @import "../common/variables";
 @import "../common/mixins";
 
+@keyframes yd-kf-rolling {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .btn-variant() {
   text-align: center;
   position: relative;
   border: none;
   pointer-events: auto;
+  user-select: none;
 }
 
 .@{css-prefix} {
@@ -22,6 +32,20 @@
     box-sizing: content-box;
     border-radius: @btn-radius;
     white-space: nowrap;
+
+    &-loading {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
   }
 
   &-btn-block {
@@ -34,22 +58,34 @@
     border-radius: @btn-block-radius;
   }
 
-  &-btn-circle {
-    border-radius: 200px;
+  &-btn-mini {
+    .btn-variant();
+    font-size: 10px;
+    border-radius: 2px;
+    white-space: nowrap;
+    vertical-align: middle;
+    padding: 0 .2rem;
+    height: .44rem;
   }
 
   &-btn-primary {
-    .tap-color(@btn-primary-bg);
+    &:not(.yd-btn-loading) {
+      .tap-color(@btn-primary-bg);
+    }
     color: @btn-default-color;
   }
 
   &-btn-danger {
-    .tap-color(@btn-danger-bg);
+    &:not(.yd-btn-loading) {
+      .tap-color(@btn-danger-bg);
+    }
     color: @btn-default-color;
   }
 
   &-btn-warning {
-    .tap-color(@btn-warning-bg);
+    &:not(.yd-btn-loading) {
+      .tap-color(@btn-warning-bg);
+    }
     color: @btn-default-color;
   }
 
@@ -60,14 +96,102 @@
   }
 
   &-btn-hollow {
-    .tap-color(@btn-hollow-bg, .97);
+    &:not(.yd-btn-loading) {
+      .tap-color(@btn-hollow-bg, .97);
+    }
     color: @btn-hollow-color;
     border: 1px solid @btn-hollow-border-color;
+
+    &.yd-btn-mini {
+      border: none;
+      &:after {
+        position: absolute;
+        z-index: 2;
+        top: -50%;
+        left: -50%;
+        content: '';
+        width: 200%;
+        height: 200%;
+        transform: scale(.5);
+        border: 1px solid #CCC;
+        border-radius: 4px;
+      }
+    }
+
+    .yd-btn-rolling {
+      > i,
+      > i:after {
+        border: 1px solid #CCC;
+        border-top-color: transparent;
+      }
+    }
+  }
+
+  &-btn-circle {
+    border-radius: 200px;
+  }
+
+  &-btn-angle {
+    border-radius: 0;
+    &.yd-btn-hollow.yd-btn-mini:after {
+      border-radius: 0 !important;
+    }
+  }
+
+  &-btn-rolling {
+    position: relative;
+
+    &-mini {
+      width: 10px;
+      height: 10px;
+      > i {
+        margin-left: -5px;
+        margin-top: -5px;
+      }
+    }
+
+    &-small {
+      width: 12px;
+      height: 12px;
+      > i {
+        margin-left: -6px;
+        margin-top: -6px;
+      }
+    }
+
+    &-large {
+      width: 18px;
+      height: 18px;
+      > i {
+        margin-left: -9px;
+        margin-top: -9px;
+      }
+    }
+
+    > i,
+    > i:after {
+      width: inherit;
+      height: inherit;
+      border: 1px solid #FFF;
+      position: absolute;
+      border-top-color: transparent;
+      border-radius: 50%;
+    }
+
+    > i {
+      top: 50%;
+      left: 50%;
+      animation: yd-kf-rolling .5s linear infinite;
+    }
+
+    > i:after {
+      transform: rotate(90deg);
+    }
   }
 }
 
 .hairline .@{css-prefix} {
-  &-btn-hollow {
+  &-btn-block:not(&-btn-mini) {
     border: .5px solid @btn-hollow-border-color * 0.95;
   }
 }

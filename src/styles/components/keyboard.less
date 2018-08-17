@@ -59,10 +59,11 @@
           align-items: center;
           overflow: hidden;
           &:not(:last-child):after {
-            .right-line(@line-color);
+            .right-line(#F5F5F5);
           }
           &:before {
-            .top-line(@line-color);
+            .top-line(#F5F5F5);
+            top: 0;
           }
         }
         &:last-child {
@@ -93,6 +94,9 @@
       position: relative;
       &:after {
         .bottom-line(@line-color);
+      }
+      > strong {
+        font-weight: normal;
       }
     }
 

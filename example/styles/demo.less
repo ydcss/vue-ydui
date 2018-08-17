@@ -59,6 +59,7 @@
     border-bottom: 1px dashed #B2B2B2;
     transform: scaleY(.5);
     transform-origin: 0 100%;
+    z-index: 5;
   }
   i {
     margin-right: 3px;
@@ -203,7 +204,7 @@
 
 [class^="demo-icons-"]:before, [class*=" demo-icons-"]:before {
   font-family: @demo-icons;
-  font-size: .54rem;
+  font-size: .46rem;
 }
 
 .demo-icons-weixin:before {
@@ -250,19 +251,19 @@
 .demo-icons-phone:before {
   content: '\e60e';
   color: #A6A5A5;
-  font-size: .42rem;
+  font-size: .38rem;
 }
 
 .demo-icons-tel:before {
   content: '\e616';
   color: #A6A5A5;
-  font-size: .42rem;
+  font-size: .38rem;
 }
 
 .demo-icons-like:before {
   content: '\e60d';
   color: #A6A5A5;
-  font-size: .42rem;
+  font-size: .38rem;
 }
 
 .demo-icons-lightbox:before {
@@ -272,7 +273,7 @@
 
 .demo-icons-order:before {
   content: '\e60f';
-  font-size: .42rem;
+  font-size: .38rem;
   color: #A6A5A5;
 }
 
@@ -550,10 +551,9 @@
   background-color: #fff;
   padding: .24rem;
   display: flex;
+  align-items: center;
   > span {
-    height: 32px;
-    line-height: 36px;
-    margin-left: 10px;
+    margin-right: 8px;
   }
 }
 
@@ -614,4 +614,58 @@
   font-size: 14px;
   padding: 5px 0 10px 0;
   margin-top: 20px;
+}
+
+.demo-lightbox {
+  display: flex;
+  width: 100%;
+  padding: 0 2px;
+  > div {
+    flex: 1;
+    &:first-child {
+      flex: .6558;
+      margin-right: 2px;
+    }
+    > img {
+      width: 100%;
+    }
+    > div {
+      display: flex;
+      > div {
+        flex: 1;
+        &:first-child {
+          margin-right: 2px;
+        }
+        > img {
+          width: 100%;
+          display: block;
+        }
+      }
+      &:first-child {
+        margin-bottom: 2px;
+      }
+    }
+  }
+}
+
+.demo-backtop {
+  width: 70px;
+  height: 70px;
+  position: relative;
+  > span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 70px;
+    color: blue;
+    text-shadow: 0 0 1px rgba(255, 255, 255, 1);
+    margin-left: -35px;
+    margin-top: -5px;
+    text-align: center;
+  }
+  > img {
+    width: 70px;
+    height: 70px;
+    border-radius: 100px;
+  }
 }

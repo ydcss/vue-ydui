@@ -7,10 +7,8 @@
     position: relative;
     display: flex;
     align-items: center;
-    padding: .104rem 0 .07rem;
-    background-color: @tabbar-bg;
     &:after {
-      .top-line(@tabbar-border-color);
+      .top-line(currentColor);
     }
 
     &-fixed {
@@ -22,6 +20,7 @@
 
     &-item {
       flex: 1;
+      height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -37,7 +36,7 @@
 
     &-badge {
       position: absolute;
-      top: -.02rem;
+      top: -.1rem;
       left: 100%;
       z-index: 999;
       margin-left: -.15rem;
@@ -45,24 +44,24 @@
 
     &-dot {
       display: block;
-      width: 10px;
-      height: 10px;
+      width: 8px;
+      height: 8px;
       background-color: #EF4F4F;
       border-radius: 50%;
       position: absolute;
-      top: .02rem;
+      border: 1px solid #FFF;
+      top: 0;
       left: 100%;
       z-index: 999;
-      margin-left: -.11rem;
+      margin-left: -4px;
     }
 
     &-icon {
-      height: @tabbar-icon-fontsize * 1.08;
       display: flex;
       align-items: center;
       position: relative;
       img {
-        height: 70%;
+        height: inherit;
       }
     }
 
@@ -70,6 +69,14 @@
       display: inline-block;
       font-size: inherit;
     }
+
+    &-other {
+      display: flex;
+      height: 100%;
+      align-items: center;
+      img {
+        display: block;
+      }
+    }
   }
 }
-

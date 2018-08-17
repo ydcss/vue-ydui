@@ -1,7 +1,8 @@
 <template>
     <div v-show="show" @click.stop="backtop">
-        <slot v-if="!!$slots.default"></slot>
-        <div v-else class="yd-backtop"></div>
+        <div class="yd-backtop" :class="!$slots.default && 'yd-backtop-inlay'" :style="{right: right, bottom: bottom}">
+            <slot v-if="!!$slots.default"></slot>
+        </div>
     </div>
 </template>
 
@@ -13,6 +14,16 @@
         data() {
             return {
                 show: false
+            }
+        },
+        props: {
+            right: {
+                type: String,
+                default: '5%'
+            },
+            bottom: {
+                type: String,
+                default: '70px'
             }
         },
         methods: {

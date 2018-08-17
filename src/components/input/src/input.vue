@@ -140,6 +140,7 @@
         },
         methods: {
             validatorInput(val, showError) {
+                if(!val) val = '';
 
                 this.initError = showError;
 

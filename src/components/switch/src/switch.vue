@@ -1,6 +1,7 @@
 <template>
     <input type="checkbox"
            class="yd-switch"
+           :class="`yd-switch-${size}`"
            :true-value="trueValue"
            :false-value="falseValue"
            :disabled="disabled"
@@ -42,11 +43,25 @@
             falseValue: {
                 type: [String, Number, Boolean],
                 default: false
+            },
+            size: {
+                validator(val) {
+                    return ['small', 'normal', 'large'].indexOf(val) > -1;
+                },
+                default: 'normal'
+            },
+            val: {
+                type: [Boolean, String, Number]
+            },
+            callback: {
+                type: Function,
+                default: () => {}
             }
         },
         watch: {
             checked(val) {
                 this.$emit('input', val);
+                this.callback(val, this.val);
             },
             value(val) {
                 this.checked = val;

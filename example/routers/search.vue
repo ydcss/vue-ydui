@@ -5,6 +5,11 @@
 
         <p class="demo-search-title">全屏模式（带匹配结果）：</p>
         <yd-search :result="result" fullpage v-model="value2" :itemClick="clickHandler" :on-submit="submitHandler" :on-cancel="cancelHandler"></yd-search>
+
+        <p class="demo-search-title">全屏模式（带匹配结果）：</p>
+        <yd-search fullpage v-model="value3" :itemClick="clickHandler" :on-submit="submitHandler" :on-cancel="cancelHandler">
+            <div>自定义内容{{value3}}</div>
+        </yd-search>
     </yd-layout>
 </template>
 
@@ -14,9 +19,11 @@
             return {
                 value1: '',
                 value2: '',
+                value3: '',
                 result: []
             }
         },
+
         methods: {
             getResult(val) {
                 if (!val) return [];

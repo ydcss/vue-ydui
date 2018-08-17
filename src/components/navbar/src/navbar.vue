@@ -1,5 +1,5 @@
 <template>
-    <header class="yd-navbar navbar-bottom-line-color" :class="classes" :style="{backgroundColor: bgcolor, height: height}">
+    <header class="yd-navbar" :class="classes" :style="{backgroundColor: bgcolor, height: height, color: borderColor}">
         <div class="yd-navbar-item">
             <slot name="left"></slot>
         </div>
@@ -36,11 +36,18 @@
                 },
                 default: '#5C5C5C'
             },
+            borderColor: {
+                validator(value) {
+                    if(!value) return true;
+                    return isColor(value);
+                },
+                default: '#E4E4E4'
+            },
             fontsize: {
                 validator(value) {
                     return /^(\.|\d+\.)?\d+(px|rem)$/.test(value);
                 },
-                default: '.4rem'
+                default: '.3rem'
             },
             height: {
                 validator(value) {

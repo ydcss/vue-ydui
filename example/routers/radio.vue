@@ -6,10 +6,10 @@
             </router-link>
         </yd-navbar>
 
-        <yd-cell-group class="demo-small-pitch">
-            <div class="yd-cell-title">值和标签一致 - 【值：{{radio1}}】</div>
+        <div class="yd-cell-title demo-small-pitch">值和标签一致 - 【值：{{radio1}}】</div>
+        <yd-cell-group>
             <yd-cell-item>
-                <yd-radio-group v-model="radio1" slot="left">
+                <yd-radio-group v-model="radio1" slot="left" :callback="fn">
                     <yd-radio val="啦啦啦"></yd-radio>
                     <yd-radio val="啊啊啊"></yd-radio>
                     <yd-radio val="喔喔喔"></yd-radio>
@@ -17,8 +17,8 @@
             </yd-cell-item>
         </yd-cell-group>
 
+        <div class="yd-cell-title">值和标签不同 - 【值：{{radio2}}】</div>
         <yd-cell-group>
-            <div class="yd-cell-title">值和标签不同 - 【值：{{radio2}}】</div>
             <yd-cell-item>
                 <yd-radio-group v-model="radio2" slot="left">
                     <yd-radio val="1">啦啦啦</yd-radio>
@@ -69,6 +69,11 @@
                 radio3: '喔喔喔',
                 radio4: '啊啊啊',
                 radio5: 2
+            }
+        },
+        methods: {
+            fn(val) {
+                console.log(val);
             }
         }
     }

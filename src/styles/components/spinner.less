@@ -3,47 +3,74 @@
 
 .@{css-prefix} {
   &-spinner {
-    border: 1px solid #EAE8E8;
     border-radius: 1px;
     display: inline-block;
+    position: relative;
     overflow: hidden;
-    > a {
+    > span {
       float: left;
       width: 25%;
-      height: inherit;
+      height: 100%;
       text-align: center;
       font-weight: bold;
       color: #666;
       letter-spacing: 0;
       position: relative;
-      .tap-color(#F8F8F8, .95);
       overflow: hidden;
-      &:after {
+      .tap-color(#FAFAFA, .95);
+      > i:after {
         font-family: @iconfont-inlay;
         color: #777;
-        font-size: .18rem;
+        font-size: .16rem;
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(-45%, -40%);
       }
-      &:first-child:after {
-        content: '\E60B';
-      }
-      &:last-child:after {
+      &:last-child > i:after {
         content: '\E602';
+      }
+      &:first-child > i:after {
+        content: '\E60B';
       }
     }
     > input {
       letter-spacing: 0;
       float: left;
-      width: 50%;
       height: inherit;
       text-align: center;
       color: #666;
       border: none;
       font-size: .26rem;
       background-color: #FFF;
+    }
+    &-square {
+      &:after {
+        .top-line(@line-color, 5);
+        top: 0;
+      }
+      &:before {
+        .bottom-line(@line-color, 5);
+      }
+      > span {
+        &:last-child {
+          &:after {
+            .right-line(@line-color, 5);
+          }
+        }
+        &:first-child {
+          &:before {
+            .left-line(@line-color, 5);
+          }
+        }
+      }
+    }
+    &-circle {
+      > span {
+        border-radius: 100px;
+        display: block;
+        background-color: #F5F5F5;
+      }
     }
   }
 }

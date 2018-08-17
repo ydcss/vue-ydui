@@ -1,14 +1,19 @@
 <template>
     <div class="yd-tab">
-        <div class="yd-tab-box" :class="horizontalScroll ? 'yd-tab-nav-scoll' : 'yd-tab-nav-nomal'">
-            <ul class="yd-tab-nav" ref="navbox" :style="{color: activeColor, width: width}"
+        <div class="yd-tab-box" :class="horizontalScroll ? 'yd-tab-nav-scoll' : 'yd-tab-nav-nomal'" :style="{backgroundColor: bgColor}">
+            <ul class="yd-tab-nav" ref="navbox" :style="{color: borderColor, width: width, fontSize: fontSize}"
                 v-show="navList.length > 0">
                 <li class="yd-tab-nav-item"
                     v-for="item, key in navList"
                     :key="key"
                     :class="item._uid == activeIndex || key === activeIndex ? 'yd-tab-active' : ''"
-                    @click="changeHandler(item.label, key, item._uid)">
-                    <a href="javascript:">{{item.label}}</a>
+                    :style="{color: item._uid == activeIndex || key === activeIndex ? activeColor: color, lineHeight: height}"
+                    @click="changeHandler(item.label, key, item._uid , item.tabkey)">
+                    {{item.label}}
+                    <span class="yd-tab-badge" v-if="item.badge">
+                        <yd-badge :scale="item.badgeScale" :color="item.badgeColor" :bgcolor="item.badgeBgcolor">{{item.badge}}</yd-badge>
+                    </span>
+                    <span class="yd-tab-dot" v-if="item.dot && !item.badge"><i :style="{backgroundColor: item.dotColor}"></i></span>
                 </li>
             </ul>
         </div>
@@ -39,6 +44,39 @@
             preventDefault: {
                 type: Boolean,
                 default: true
+            },
+            bgColor: {
+                validator(value) {
+                    if (!value) return true;
+                    return isColor(value);
+                },
+                default: '#FFF'
+            },
+            color: {
+                validator(value) {
+                    if (!value) return true;
+                    return isColor(value);
+                },
+                default: '#585858'
+            },
+            fontSize: {
+                validator(value) {
+                    return /^(\.|\d+\.)?\d+(px|rem)$/.test(value);
+                },
+                default: '.28rem'
+            },
+            height: {
+                validator(value) {
+                    return /^(\.|\d+\.)?\d+(px|rem)$/.test(value);
+                },
+                default: '.85rem'
+            },
+            borderColor: {
+                validator(value) {
+                    if (!value) return true;
+                    return isColor(value);
+                },
+                default: '#E4E4E4'
             },
             activeColor: {
                 validator(value) {
@@ -88,7 +126,18 @@
                 this.navList = [];
 
                 tabPanels.forEach((panel, index) => {
-                    this.navList.push({_uid: panel._uid, label: panel.label, tabkey: panel.tabkey});
+
+                    this.navList.push({
+                        _uid: panel._uid,
+                        label: panel.label,
+                        tabkey: panel.tabkey,
+                        badge: panel.badge,
+                        badgeColor: panel.badgeColor,
+                        badgeBgcolor: panel.badgeBgcolor,
+                        badgeScale: panel.badgeScale,
+                        dot: panel.dot,
+                        dotColor: panel.dotColor
+                    });
 
                     if (panel.active || this.activeIndex === index) {
                         this.activeIndex = this.index = panel._uid;
@@ -123,7 +172,7 @@
                 }
                 return childArrTem;
             },
-            changeHandler(label, key, uid) {
+            changeHandler(label, key, uid, tabkey) {
                 if (!this.preventDefault) {
                     this.itemClick && this.itemClick(key);
                     return;
@@ -134,7 +183,10 @@
                     this.$emit('input', key);
                 }
 
-                if(!this.value && this.value !== 0 && this.currentIndex !== key) {
+                if (!this.value && this.value !== 0 && this.currentIndex !== key) {
+                    if (!tabkey) {
+                        key = tabkey;
+                    }
                     this.callback && this.callback(label, key);
                 }
 

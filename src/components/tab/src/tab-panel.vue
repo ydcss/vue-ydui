@@ -5,6 +5,8 @@
 </template>
 
 <script type="text/babel">
+    import {isColor} from '../../../utils/assist';
+
     export default {
         name: 'yd-tab-panel',
         data() {
@@ -13,6 +15,38 @@
             }
         },
         props: {
+            badge: String,
+            badgeColor: {
+                validator(value) {
+                    if (!value) return true;
+                    return isColor(value);
+                },
+                default: '#FFF'
+            },
+            badgeBgcolor: {
+                validator(value) {
+                    if (!value) return true;
+                    return isColor(value);
+                },
+                default: '#F6514B'
+            },
+            badgeScale: {
+                validator(val) {
+                    return /^(\d*(.\d+)?)$/.test(val);
+                },
+                default: .7
+            },
+            dot: {
+                type: Boolean,
+                default: false
+            },
+            dotColor: {
+                validator(value) {
+                    if (!value) return true;
+                    return isColor(value);
+                },
+                default: '#F6514B'
+            },
             label: String,
             active: Boolean,
             tabkey: [String, Number]
@@ -27,6 +61,24 @@
                 this.$parent.init();
             },
             label() {
+                this.$parent.init();
+            },
+            badge() {
+                this.$parent.init();
+            },
+            badgeColor() {
+                this.$parent.init();
+            },
+            badgeScale() {
+                this.$parent.init();
+            },
+            badgeBgcolor() {
+                this.$parent.init();
+            },
+            dot() {
+                this.$parent.init();
+            },
+            dotColor() {
                 this.$parent.init();
             }
         },

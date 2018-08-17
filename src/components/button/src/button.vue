@@ -1,6 +1,10 @@
 <template>
-    <button :disabled="disabled" :class="classes" :style="{backgroundColor: bgcolor, color: color}" :type="actionType">
-        <slot></slot>
+    <button :disabled="disabled || loading" :class="classes" :style="{backgroundColor: bgcolor, color: color}" :type="actionType">
+        <span class="yd-btn-loading" v-if="loading">
+            <span class="yd-btn-rolling" :class="rollingClasses" :style="{marginRight: loadingTxt ? '8px' : '0'}"><i></i></span>
+            <template v-if="size === 'large'">{{loadingTxt}}</template>
+        </span>
+        <span :style="{visibility: loading ? 'hidden' : ''}"><slot></slot></span>
     </button>
 </template>
 
@@ -25,7 +29,7 @@
             },
             size: {
                 validator(value) {
-                    return ['small', 'large'].indexOf(value) > -1;
+                    return ['mini', 'small', 'large'].indexOf(value) > -1;
                 }
             },
             bgcolor: {
@@ -42,23 +46,62 @@
             },
             shape: {
                 validator(value) {
-                    return ['square', 'circle'].indexOf(value) > -1;
+                    return ['square', 'circle', 'angle'].indexOf(value) > -1;
                 },
                 default: 'square'
-            }
+            },
+            loading: {
+                type: Boolean,
+                default: false
+            },
+            loadingColor: {
+                validator(value) {
+                    if (!value) return true;
+                    return isColor(value);
+                },
+                default: '#FFF'
+            },
+            loadingTxt: String
         },
         computed: {
-            classes() {
-                let s = this.size === 'large' ? 'yd-btn-block' : 'yd-btn';
-                let b = 'yd-btn-' + this.type;
-                if (this.disabled) {
-                    b = 'yd-btn-disabled';
+            rollingClasses() {
+                let a = '';
+                if (this.size === 'mini') {
+                    a = 'yd-btn-rolling-mini';
+                } else if (!this.size || this.size === 'small') {
+                    a = 'yd-btn-rolling-small';
+                } else {
+                    a = 'yd-btn-rolling-large';
                 }
 
-                if (this.bgcolor) {
-                    b = '';
+                return a
+            },
+            classes() {
+                let s = '';
+                if(this.size === 'mini') {
+                    s = 'yd-btn-mini'
+                } else {
+                    s = this.size === 'large' ? 'yd-btn-block' : 'yd-btn';
                 }
-                return s + ' ' + b + (this.shape === 'circle' ? ' yd-btn-circle' : '');
+
+                let t = ' yd-btn-' + this.type;
+
+                if (this.bgcolor) {
+                    t = '';
+                }
+
+                if (this.disabled) {
+                    t = ' yd-btn-disabled';
+                }
+
+                let r = '';
+                if (this.shape === 'angle') {
+                    r = ' yd-btn-angle';
+                } else {
+                    r = this.shape === 'circle' ? ' yd-btn-circle' : ''
+                }
+
+                return s + t + r;
             }
         }
     }

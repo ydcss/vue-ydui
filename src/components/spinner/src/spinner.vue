@@ -1,12 +1,21 @@
 <template>
-    <span class="yd-spinner" :style="{height: height, width: width}">
-        <a href="javascript:;" ref="minus"></a>
-        <input type="number" pattern="[0-9]*" ref="numInput" class="yd-spinner-input" :readonly="readonly" v-model="counter" placeholder=""/>
-        <a href="javascript:;" ref="add"></a>
+    <span class="yd-spinner" :class="buttonStyle === 'circle' ? 'yd-spinner-circle' : 'yd-spinner-square'" :style="boxStyle">
+        <span ref="minus" :style="btnStyle"><i></i></span>
+        <input
+                type="number"
+                pattern="[0-9]*"
+                :style="{width: buttonStyle === 'circle' ? width : '50%'}"
+                ref="numInput"
+                class="yd-spinner-input"
+                :readonly="readonly"
+                v-model="counter"
+                placeholder=""
+        />
+        <span ref="add" :style="btnStyle"><i></i></span>
     </span>
 </template>
 
-<script type="text/ecmascript-6">
+<script type="text/babel">
     export default {
         name: 'yd-spinner',
         data() {
@@ -22,12 +31,39 @@
                 }
             }
         },
+        computed: {
+            boxStyle() {
+                if(this.buttonStyle === 'square') {
+                    return {height: this.height, width: this.width};
+                }
+                return {height: this.height}
+            },
+            btnStyle() {
+                if(this.buttonStyle === 'square') {
+                    return {};
+                }
+                const h = this.height;
+                return {
+                    width: h,
+                    height: h
+                }
+            }
+        },
         watch: {
-            value() {
+            value(val) {
+                this.callback(this.val, val);
                 this.setDefalutValue();
             }
         },
         props: {
+            callback: {
+                type: Function,
+                default: () => {}
+            },
+            val: {
+                type: [Boolean, String, Number],
+                default: ''
+            },
             unit: {
                 default: 1,
                 validator(val) {
@@ -70,6 +106,12 @@
                     return /^(\.|\d+\.)?\d+(px|rem)$/.test(value);
                 },
                 default: '.6rem'
+            },
+            buttonStyle: {
+                validator(value) {
+                    return ['square', 'circle'].indexOf(value) > -1;
+                },
+                default: 'square'
             }
         },
         methods: {
@@ -85,22 +127,22 @@
                 const unit = ~~this.unit;
                 const min = ~~this.min;
 
-                if (max < unit && max != 0) {
+                if (max < unit && max !== 0) {
                     console.error('[YDUI warn]: The parameter \'max\'(' + max + ') must be greater than or equal to \'unit\'(' + unit + ').');
                     return false;
                 }
 
-                if (max % unit != 0) {
+                if (max % unit !== 0) {
                     console.error('[YDUI warn]: The parameter \'max\'(' + max + ') and \'unit\'(' + unit + ') must be multiple.');
                     return false;
                 }
 
-                if (min % unit != 0 && min >= 0) {
+                if (min % unit !== 0 && min >= 0) {
                     console.error('[YDUI warn]: The parameter \'min\'(' + min + ') and \'unit\'(' + unit + ') must be multiple.');
                     return false;
                 }
 
-                if (max < min && max != 0) {
+                if (max < min && max !== 0) {
                     console.error('[YDUI warn]: The parameter \'max\'(' + max + ') must be greater than to \'min\'(' + min + ').');
                     return false;
                 }
@@ -129,15 +171,15 @@
                 let val = ~~this.counter;
                 let newval;
 
-                if (type == 'add') {
+                if (type === 'add') {
                     newval = val + unit;
-                    if (max != 0 && newval > max)return;
+                    if (max !== 0 && newval > max)return;
                 } else {
                     newval = val - unit;
                     if (newval < min)return;
                 }
 
-                this.setValue(newval);
+                this.$emit('input', newval);
 
                 if (this.longpress) {
                     this.longpressHandler(type);
@@ -150,17 +192,16 @@
 
                 if (!/^(([1-9]\d*)|0)$/.test(val)) val = unit;
 
-                if (val > max && max != 0) val = max;
+                if (val > max && max !== 0) val = max;
 
                 if (val % unit > 0) {
                     val = val - val % unit + unit;
-                    if (val > max && max != 0) val -= unit;
+                    if (val > max && max !== 0) val -= unit;
                 }
 
                 if (val < min) val = min - min % unit;
 
                 this.counter = val;
-                this.$emit('input', val);
             },
             longpressHandler(type) {
                 const currentDate = new Date().getTime() / 1000;
@@ -170,7 +211,7 @@
                 if (intervalTime < 1) intervalTime = 0.5;
 
                 let secondCount = intervalTime * 10;
-                if (intervalTime == 30) secondCount = 50;
+                if (intervalTime === 30) secondCount = 50;
                 if (intervalTime >= 40) secondCount = 100;
 
                 this.tapParams.timer = setTimeout(() => {
@@ -225,6 +266,8 @@
 
                 this.$refs.numInput.addEventListener('change', () => {
                     this.setValue(~~this.counter);
+                    this.$emit('input', ~~this.counter);
+                    this.callback(this.val, ~~this.counter);
                 });
             }
         },
