@@ -3,7 +3,11 @@
         <yd-mask v-model="show" @click.native="close" ref="mask" :opacity="maskerOpacity"></yd-mask>
         <div class="yd-cityselect" :class="show ? 'yd-cityselect-active' : ''">
             <div class="yd-cityselect-header">
-                <p class="yd-cityselect-title" @touchstart.stop.prevent="">{{title}}</p>
+                <p class="yd-cityselect-title">
+                    <span class="yd-cityselect-title-text">{{title}}</span>
+                    <!-- feature 新增确定按钮，增加筛选灵活性 -->
+                    <a href="javascript:;" class="yd-cityselect-title-btn" @click="this.returnValue">确定</a>
+                </p>
                 <div v-show="ready" class="yd-cityselect-nav">
                     <a href="javascript:;"
                        :key="key"
@@ -168,6 +172,13 @@
                 this.navIndex = index;
             },
             itemEvent(index, name, value, children) {
+                // bugfix 每次点击第某列的时候 把之前点击保存某列之后的数据清空
+                for (var i = this.columnNum; i >= index; i--) {
+                    this.active["itemValue" + i] = ""
+                    this.active["itemName" + i] = ""
+                    this.active["txt" + i] = ""
+                }
+
                 this.active['itemValue' + index] = value;
                 this.active['itemName' + index] = name;
                 this.nav['txt' + index] = name;
