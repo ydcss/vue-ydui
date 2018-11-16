@@ -10,7 +10,7 @@
 
         <slot name="top"></slot>
 
-        <section class="yd-scrollview" ref="scrollView" id="scrollView">
+        <section class="yd-scrollview" ref="scrollView" id="scrollView" @scroll="scroll">
             <slot></slot>
         </section>
 
@@ -23,14 +23,30 @@
 <script type="text/babel">
     export default {
         name: 'yd-layout',
+        data(){
+            return {scrollTop:0};
+        },
         props: {
             link: String,
             title: String,
             showNavbar: {
                 type: Boolean,
                 default: true
+            },
+            onScroll:{
+                type:Function,
+                default:null
             }
-        }
+        },
+        methods: {
+            scroll() {
+                this.scrollTop=event.target.scrollTop;
+                this.onScroll&&this.onScroll(event,this);
+            }
+        },
+        activated(){
+            this.$refs['scrollView'].scrollTop = this.scrollTop;
+        },
     }
 </script>
 
