@@ -107,7 +107,6 @@
         methods: {
             handleClickLink (event) {
                 this.$emit('click', event);
-                this.handleCheckClick(event);
             }
         }
     }
