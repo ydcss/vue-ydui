@@ -1,5 +1,5 @@
 <template>
-    <button :disabled="disabled || loading" :class="classes" :style="{backgroundColor: bgcolor, color: color}" :type="actionType">
+    <button :disabled="disabled || loading" :class="classes" :style="{backgroundColor: bgcolor, color: color}" :type="actionType" @click="handleClickLink">
         <span class="yd-btn-loading" v-if="loading">
             <span class="yd-btn-rolling" :class="rollingClasses" :style="{marginRight: loadingTxt ? '8px' : '0'}"><i></i></span>
             <template v-if="size === 'large'">{{loadingTxt}}</template>
@@ -102,6 +102,12 @@
                 }
 
                 return s + t + r;
+            }
+        },
+        methods: {
+            handleClickLink (event) {
+                this.$emit('click', event);
+                this.handleCheckClick(event);
             }
         }
     }

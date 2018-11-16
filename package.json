@@ -29,7 +29,7 @@
     "url": "https://github.com/ydcss/vue-ydui.git"
   },
   "scripts": {
-    "dev": "webpack-dev-server --content-base example/ --port 4321 --inline --hot --host 0.0.0.0 --config build/webpack.dev.conf.js",
+    "dev": "webpack-dev-server --content-base example/ --port 4321 --inline --hot --host localhost --config build/webpack.dev.conf.js",
     "build:rem:components": "webpack --config build/webpack.dist.components.rem.conf.js",
     "build:px:components": "webpack --config build/webpack.dist.components.px.conf.js",
     "build:prod": "webpack --config build/webpack.dist.prod.conf.js",
@@ -57,6 +57,7 @@
     "style-loader": "^0.13.1",
     "vue": "^2.5.2",
     "vue-loader": "^10.0.2",
+    "vue-resource": "^1.0.3",
     "vue-router": "^2.1.1",
     "vue-template-compiler": "^2.5.2",
     "webpack": "^1.14.0",
