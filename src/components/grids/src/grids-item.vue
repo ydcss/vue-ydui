@@ -1,5 +1,5 @@
 <template>
-    <router-link class="yd-grids-item" :to="link || ''" :style="styles" :class="$parent.itemHeight != 0 ? 'yd-grids-item-center' : ''" v-if="type == 'link'">
+    <router-link class="yd-grids-item" :to="link || ''" :style="styles" :class="$parent.itemHeight != 0 ? 'yd-grids-item-center' : ''" v-if="type == 'link'" @click="handleClickLink">
         <div class="yd-grids-icon" v-if="checkIcon">
             <slot name="icon"></slot>
         </div>
@@ -8,7 +8,7 @@
         </div>
         <slot name="else"></slot>
     </router-link>
-    <a class="yd-grids-item" :href="link || ''" :style="styles" :class="$parent.itemHeight != 0 ? 'yd-grids-item-center' : ''" v-else>
+    <a class="yd-grids-item" :href="link || ''" :style="styles" :class="$parent.itemHeight != 0 ? 'yd-grids-item-center' : ''" v-else @click="handleClickLink">
         <div class="yd-grids-icon" v-if="checkIcon">
             <slot name="icon"></slot>
         </div>
@@ -45,6 +45,11 @@
                         padding: 0
                     };
                 }
+            }
+        },
+        methods: {
+            handleClickLink (event) {
+                this.$emit('click', event);
             }
         }
     };

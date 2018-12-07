@@ -1,6 +1,6 @@
 <template>
     <span class="yd-badge" :class="typesClass"
-          :style="{backgroundColor: bgcolor, color: color, transform: 'scale('+scale+')'}">
+          :style="{backgroundColor: bgcolor, color: color, transform: 'scale('+scale+')'}" @click='click'>
         <slot></slot>
     </span>
 </template>
@@ -49,6 +49,11 @@
                     return '';
                 }
                 return (this.type ? 'yd-badge-' + this.type : '') + (this.shape === 'square' ? ' yd-badge-radius' : '');
+            }
+        },
+        methods:{
+            click(){
+                 this.$emit('click', event);
             }
         }
     }
