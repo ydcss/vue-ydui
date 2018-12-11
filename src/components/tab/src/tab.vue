@@ -184,7 +184,7 @@
                 }
 
                 if (!this.value && this.value !== 0 && this.currentIndex !== key) {
-                    if (!tabkey) {
+                    if (typeof(tabkey)!='undefined') {
                         key = tabkey;
                     }
                     this.callback && this.callback(label, key);

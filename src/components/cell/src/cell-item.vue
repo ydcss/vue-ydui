@@ -1,5 +1,5 @@
 <template>
-    <label class="yd-cell-item" v-if="type == 'label' || type == 'checkbox' || type == 'radio'">
+    <label class="yd-cell-item" v-if="type == 'label' || type == 'checkbox' || type == 'radio'" @click="handleClickLink">
         <span class="yd-cell-left" v-if="checkLeft">
             <span class="yd-cell-icon" v-if="$slots.icon"><slot name="icon"></slot></span>
             <slot name="left"></slot>
@@ -10,7 +10,7 @@
             <i v-if="type == 'radio'" class="yd-cell-radio-icon"></i>
         </label>
     </label>
-    <router-link class="yd-cell-item" :to="href" v-else-if="type == 'link'">
+    <router-link class="yd-cell-item" :to="href" v-else-if="type == 'link'" @click="handleClickLink">
         <div class="yd-cell-left" v-if="checkLeft">
             <span class="yd-cell-icon" v-if="$slots.icon"><slot name="icon"></slot></span>
             <slot name="left"></slot>
@@ -19,7 +19,7 @@
             <slot name="right"></slot>
         </div>
     </router-link>
-    <a class="yd-cell-item" :href="href" v-else-if="type == 'a'">
+    <a class="yd-cell-item" :href="href" v-else-if="type == 'a'" @click="handleClickLink">
         <div class="yd-cell-left" v-if="checkLeft">
             <span class="yd-cell-icon" v-if="$slots.icon"><slot name="icon"></slot></span>
             <slot name="left"></slot>
@@ -28,7 +28,7 @@
             <slot name="right"></slot>
         </div>
     </a>
-    <div class="yd-cell-item" v-else>
+    <div class="yd-cell-item" v-else @click="handleClickLink">
         <div class="yd-cell-left" v-if="checkLeft">
             <span class="yd-cell-icon" v-if="$slots.icon"><slot name="icon"></slot></span>
             <slot name="left"></slot>
@@ -63,6 +63,11 @@
             },
             classes() {
                 return this.arrow ? 'yd-cell-arrow' : '';
+            }
+        },
+        methods: {
+            handleClickLink (event) {
+                this.$emit('click', event);
             }
         }
     }
