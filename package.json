@@ -26,7 +26,7 @@
   "homepage": "http://vue.ydui.org",
   "repository": {
     "type": "git",
-    "url": "https://github.com/wzf/vue-ydui.git"
+    "url": "https://github.com/ydcss/vue-ydui.git"
   },
   "scripts": {
     "dev": "webpack-dev-server --content-base example/ --port 4321 --inline --hot --host 0.0.0.0 --config build/webpack.dev.conf.js",
