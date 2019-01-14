@@ -11,6 +11,9 @@ export default {
     isTimeString(str) {
         return /^([01][0-9]|2[0-3]):([012345][0-9])$/.test(str);
     },
+    isDateTimeFullString(str) {
+        return /^\d{4}((\.|-|\/)(0[1-9]|1[0-2]))((\.|-|\/)(0[1-9]|[12][0-9]|3[0-1]))( ([01][0-9]|2[0-3]):([012345][0-9]):([012345][0-9]))?$/.test(str);
+    },
     mentStr(str) {
         return (100 + ~~str + '').substr(1, 2);
     },
@@ -195,5 +198,36 @@ export default {
         }
 
         return minute;
+    },
+    getSecondItems(config) {
+        const second = [];
+        let start = 0;
+        let end = 59;
+
+        if (config.startDate) {
+            const startDate = new Date(config.startDate.replace(/-/g, '/'));
+            if (startDate.getFullYear() === ~~config.currentYear && startDate.getMonth() + 1 === ~~config.currentMonth && startDate.getDate() === ~~config.currentDay
+                && startDate.getHours() === ~~config.currentHour
+                && startDate.getMinutes() === ~~config.currentMinute) {
+                start = startDate.getSeconds();
+            }
+        }
+
+        if (config.endDate) {
+            const endDate = new Date(config.endDate.replace(/-/g, '/'));
+            if (endDate.getFullYear() === ~~config.currentYear && endDate.getMonth() + 1 === ~~config.currentMonth && endDate.getDate() === ~~config.currentDay
+                && endDate.getHours() === ~~config.currentHour
+                && endDate.getMinutes() === ~~config.currentMinute) {
+                end = endDate.getSeconds();
+            }
+        }
+
+        while (start <= end) {
+            let t = this.mentStr(start);
+            second.push({value: t, name: config.format.replace('{value}', t)});
+            start++;
+        }
+
+        return second;
     }
 }
