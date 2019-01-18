@@ -1,7 +1,7 @@
 <template>
     <div>
-        <yd-mask v-model="show" @click.native="close" :opacity="maskerOpacity"></yd-mask>
-        <div :class="classes" :style="styles" ref="box">
+        <yd-mask v-model="show" @click.native="close" :opacity="maskerOpacity" :style="maskStyle"></yd-mask>
+        <div :class="classes" :style="{ ...styles, ...mainStyle }" ref="box">
             <div v-if="!!$slots.top && position !== 'center'" ref="top">
                 <slot name="top"></slot>
             </div>
@@ -53,6 +53,10 @@
                 type: Boolean,
                 default: true
             },
+            zIndex: {
+                type: Number,
+                default: 0,
+            },
             maskerOpacity: {
                 validator(val) {
                     return /^([0]|[1-9]\d*)?(\.\d*)?$/.test(val);
@@ -80,7 +84,17 @@
                 } else {
                     return {width: this.width, height: this.height};
                 }
-            }
+            },
+            mainStyle () {
+                return {
+                    zIndex: this.zIndex === 0 ? false : this.zIndex + 1,
+                }
+            },
+            maskStyle () {
+                return {
+                    zIndex: this.zIndex === 0 ? false : this.zIndex,
+                }
+            },
         },
         methods: {
             close() {

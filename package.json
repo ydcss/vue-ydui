@@ -1,7 +1,7 @@
 {
   "name": "vue-ydui",
   "description": "A mobile components Library with Vue2.js.",
-  "version": "1.2.5",
+  "version": "1.2.7",
   "author": "ydcss.com",
   "main": "dist/ydui.rem.js",
   "style": "dist/ydui.rem.css",
