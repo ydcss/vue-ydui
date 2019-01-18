@@ -95,7 +95,7 @@ const router = new VueRouter({
         {path: '/radio', name: 'radio', component: Radio},
         {path: '/checkbox', name: 'checkbox', component: CheckBox},
         {path: '/backtop', name: 'backtop', component: BackTop},
-		    {path: '/accordion', name: 'accordion', component: Accordion},
+        {path: '/accordion', name: 'accordion', component: Accordion},
         {path: '/datetime', name: 'datetime', component: DateTime},
         {path: '/lightbox', name: 'lightbox', component: LightBox},
         {path: '/timeline', name: 'timeline', component: TimeLine},
