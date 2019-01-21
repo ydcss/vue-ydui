@@ -1,7 +1,7 @@
 <template>
     <div>
-        <yd-mask v-model="show" @click.native="close" :opacity="maskerOpacity"></yd-mask>
-        <div :class="classes" :style="styles" ref="box">
+        <yd-mask v-model="show" @click.native="close" :opacity="maskerOpacity" :style="maskStyle"></yd-mask>
+        <div :class="classes" :style="{ ...styles, ...mainStyle }" ref="box">
             <div v-if="!!$slots.top && position !== 'center'" ref="top">
                 <slot name="top"></slot>
             </div>
@@ -53,6 +53,10 @@
                 type: Boolean,
                 default: true
             },
+            zIndex: {
+                type: Number,
+                default: 0,
+            },
             maskerOpacity: {
                 validator(val) {
                     return /^([0]|[1-9]\d*)?(\.\d*)?$/.test(val);
@@ -69,18 +73,25 @@
         },
         computed: {
             classes() {
-                return (this.position === 'center' ? 'yd-popup-center ' : 'yd-popup yd-popup-' + this.position) +
+                return (this.position === 'center' ? 'yd-popup-center ' : `yd-popup yd-popup-${this.position}`) +
                         (this.show ? ' yd-popup-show ' : '');
             },
             styles() {
-                if (this.position === 'left' || this.position === 'right') {
-                    return {width: this.width};
-                } else if (this.position === 'bottom') {
-                    return {width: '100%', height: this.height};
-                } else {
-                    return {width: this.width, height: this.height};
+                return {
+                    width: this.position === 'bottom' ? '100%' : this.width,
+                    height: (this.position === 'left' || this.position === 'right') ? false : this.height,
                 }
-            }
+            },
+            mainStyle () {
+                return {
+                    zIndex: this.zIndex === 0 ? false : this.zIndex + 1,
+                }
+            },
+            maskStyle () {
+                return {
+                    zIndex: this.zIndex === 0 ? false : this.zIndex,
+                }
+            },
         },
         methods: {
             close() {

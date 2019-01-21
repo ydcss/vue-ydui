@@ -6,6 +6,8 @@
             <yd-button size="large" type="warning" @click.native="show2 = true">下部弹出</yd-button>
             <yd-button size="large" type="danger" @click.native="show3 = true">左侧弹出</yd-button>
             <yd-button size="large" type="danger" @click.native="show4 = true">右侧弹出</yd-button>
+            <yd-button size="large" type="hollow" @click.native="show5 = true">弹出z-index:3</yd-button>
+            <yd-button size="large" type="hollow" @click.native="show6 = true">弹出z-index:3000</yd-button>
         </yd-button-group>
 
         <yd-popup v-model="show1" position="center" width="90%">
@@ -42,6 +44,14 @@
             <yd-button type="danger" style="margin: 20px;" @click.native="show4 = false">Close Right Popup</yd-button>
         </yd-popup>
 
+        <yd-popup v-model="show5" position="right" width="100%" :z-index="3">
+            <yd-button type="danger" style="margin:35px 20px 0;" @click.native="show5 = false">Close z-index:3</yd-button>
+        </yd-popup>
+
+        <yd-popup v-model="show6" position="right" width="100%" :z-index="3000">
+            <yd-button type="danger" style="margin: 20px;" @click.native="show6 = false">Close z-index:3000</yd-button>
+        </yd-popup>
+
     </yd-layout>
 </template>
 
@@ -52,7 +62,9 @@
                 show1: false,
                 show2: false,
                 show3: false,
-                show4: false
+                show4: false,
+                show5: false,
+                show6: false,
             }
         }
     }
