@@ -12,7 +12,8 @@
         props: {
             mes: String,
             timeout: Number,
-            callback: Function
+            callback: Function,
+            clickCallback: Function
         }
     }
 </script>
