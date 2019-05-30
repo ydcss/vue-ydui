@@ -46,7 +46,7 @@ module.exports = merge(distCommonWebpackConfig, {
         "/lib.px/search/index": "./src/components/search/index.js",
         "/lib.px/scrollnav/index": "./src/components/scrollnav/index.js",
         "/lib.px/preview/index": "./src/components/preview/index.js",
-        "/lib.rem/imagepreview/index": "./src/components/imagepreview/index.js",
+        "/lib.px/imagepreview/index": "./src/components/imagepreview/index.js",
     },
     module: {
         loaders: [
