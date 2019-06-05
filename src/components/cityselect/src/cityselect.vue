@@ -178,8 +178,8 @@
                 }
 
                 this.clearNavTxt(index);
-
-                if (index === this.columnNum || children.length <= 0) {
+                // 修复没有子级时children.length报错
+                if (index === this.columnNum || !children || children.length <= 0) {
                     if (index !== this.columnNum) {
                         for (let i = this.columnNum; i >= 0; i--) {
                             if (i > index) {
