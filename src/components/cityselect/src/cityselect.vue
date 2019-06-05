@@ -24,7 +24,7 @@
                     </path>
                 </svg>
             </div>
-            <ul v-show="ready" class="yd-cityselect-content" :class="activeClasses">
+            <ul v-show="ready" class="yd-cityselect-content" :class="activeClasses" :style="navIndex > 2 ? `transform: translate(-${navIndex * 50 - 100}%);` : '`transform: translate(0%)'" >
                 <li class="yd-cityselect-item" v-for="index, key in columnNum" :ref="'itemBox' + index" :key="key">
                     <template v-if="columnsObj['columnItems' + index] && columnsObj['columnItems' + index].length > 0">
                         <div class="yd-cityselect-item-box">
@@ -178,8 +178,8 @@
                 }
 
                 this.clearNavTxt(index);
-
-                if (index === this.columnNum || children.length <= 0) {
+                // 修复没有子级时children.length报错
+                if (index === this.columnNum || !children || children.length <= 0) {
                     if (index !== this.columnNum) {
                         for (let i = this.columnNum; i >= 0; i--) {
                             if (i > index) {
@@ -268,4 +268,10 @@
 
 <style lang="less">
     @import "../../../styles/components/cityselect.less";
+    .yd-cityselect-nav {
+        overflow-x: auto;
+    }
+    .yd-cityselect-nav > a {
+        flex-shrink: 0;
+    }
 </style>
