@@ -49,14 +49,16 @@
                     Month: [],
                     Day: [],
                     Hour: [],
-                    Minute: []
+                    Minute: [],
+                    Second: [],
                 },
                 scrolling: {
                     Year: false,
                     Month: false,
                     Day: false,
                     Hour: false,
-                    Minute: false
+                    Minute: false,
+                    Second: false,
                 },
                 readonly: false,
                 currentYear: '',
@@ -70,6 +72,7 @@
                 dayFormat: '{value}日',
                 hourFormat: '{value}时',
                 minuteFormat: '{value}分',
+                secondFormat: '{value}秒',
                 startYear: 0,
                 endYear: 0,
                 startHour: 0,
@@ -92,6 +95,9 @@
             },
             currentHour(val) {
                 this.setMinutes(val);
+            },
+            currentMinute(val) {
+                this.setSeconds(val);
             }
         },
         methods: {
@@ -114,6 +120,7 @@
                 let _currentDay = currentDate.getDate();
                 let _currentHour = currentDate.getHours();
                 let _currentMinutes = currentDate.getMinutes();
+                let _currentSeconds = currentDate.getSeconds();
 
                 if (_this.type !== 'time') {
                     const _yearItems = _this.items['Year'] = Utils.getYearItems({
@@ -172,7 +179,7 @@
                     }
                 }
 
-                if (_this.type === 'datetime' || _this.type === 'time') {
+                if (_this.type === 'datetime' || _this.type === 'time' || _this.type === 'datetime_full') {
                     const _hourItems = Utils.getHourItems({
                         format: _this.hourFormat,
                         currentYear: _currentYear,
@@ -200,6 +207,19 @@
                         _currentMinutes = _minuteItems[0].value
                     }
 
+                    const _secondItems = Utils.getSecondItems({
+                        format: _this.secondFormat,
+                        currentYear: _currentYear,
+                        currentMonth: _currentMonth,
+                        currentDay: _currentDay,
+                        currentHour: _currentHour,
+                        startDate: _this.startDate,
+                        endDate: _this.endDate
+                    });
+                    if(!currentValue) {
+                        _currentSeconds = _secondItems[0].value
+                    }
+
                     if (_this.type === 'time') {
                         _this.items['Hour'] = _hourItems;
                     }
@@ -208,10 +228,12 @@
                         if (Utils.isDateTimeString(currentValue)) {
                             _this.currentHour = Utils.mentStr(_currentHour);
                             _this.currentMinute = Utils.mentStr(_currentMinutes);
+                            _this.currentSecond = Utils.mentStr(_currentMinutes);
                         } else {
                             const timeArr = currentValue.split(':');
                             _this.currentHour = Utils.mentStr(timeArr[0]);
                             _this.currentMinute = Utils.mentStr(timeArr[1]);
+                            _this.currentSecond = Utils.mentStr(timeArr[2]);
                         }
                         if (!_this.inDatas(_hourItems, _this.currentHour)) {
                             _this.currentHour = _hourItems[0].value;
@@ -219,9 +241,13 @@
                         if (!_this.inDatas(_minuteItems, _this.currentMinute)) {
                             _this.currentMinute = _minuteItems[0].value;
                         }
+                        if (!_this.inDatas(_secondItems, _this.currentSecond)) {
+                            _this.currentSecond = _secondItems[0].value;
+                        }
                     } else {
                         _this.currentHour = _currentHour;
                         _this.currentMinute = _currentMinutes;
+                        _this.currentSecond = _currentSeconds;
                     }
                 }
 
@@ -233,6 +259,8 @@
                     _this.columns = ['Month', 'Day'];
                 } else if (_this.type === 'date') {
                     _this.columns = ['Year', 'Month', 'Day'];
+                } else if (_this.type === 'datetime_full') {
+                    _this.columns = ['Year', 'Month', 'Day', 'Hour', 'Minute', 'Second'];
                 } else {
                     _this.columns = ['Hour', 'Minute'];
                 }
@@ -328,6 +356,22 @@
 
                 _this.scrolloToPosition('Minute', allMinute);
             },
+            setSeconds(currentSecond) {
+                const _this = this;
+
+                const allSecond = _this.items['Second'] = Utils.getSecondItems({
+                    format: _this.secondFormat,
+                    currentYear: _this.currentYear,
+                    currentMonth: _this.currentMonth,
+                    currentDay: _this.currentDay,
+                    currentHour: _this.currentHour,
+                    currentSecond: currentSecond,
+                    startDate: _this.startDate,
+                    endDate: _this.endDate
+                });
+
+                _this.scrolloToPosition('Second', allSecond);
+            },
             scrolloToPosition(type, allDatas, callback) {
                 const _this = this;
 
@@ -356,6 +400,8 @@
                     value = `${this.currentMonth}-${this.currentDay}`;
                 } else if (this.type === 'date') {
                     value = `${this.currentYear}-${this.currentMonth}-${this.currentDay}`;
+                } else if (this.type === 'datetime_full') {
+                    value = `${this.currentYear}-${this.currentMonth}-${this.currentDay} ${this.currentHour}:${this.currentMinute}:${this.currentSecond}`;
                 } else {
                     value = `${this.currentHour}:${this.currentMinute}`;
                 }

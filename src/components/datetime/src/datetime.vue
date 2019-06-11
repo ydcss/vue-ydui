@@ -28,7 +28,7 @@
             type: {
                 type: String,
                 validator(value) {
-                    return ['datetime', 'date', 'time', 'month', 'day'].indexOf(value) > -1;
+                    return ['datetime', 'date', 'time', 'month', 'day', 'datetime_full'].indexOf(value) > -1;
                 },
                 default: 'datetime'
             },
@@ -90,6 +90,10 @@
                 type: String,
                 default: '{value}分'
             },
+            secondFormat: {
+                type: String,
+                default: '{value}秒'
+            },
             cancelText: {
                 type: String,
                 default: '取消'
@@ -102,7 +106,7 @@
                 type: String,
                 validator(value) {
                     if (!value) return true;
-                    return Utils.isDateTimeString(value) || Utils.isTimeString(value) || Utils.isMonthString(value) || Utils.isDayString(value);
+                    return Utils.isDateTimeString(value) || Utils.isTimeString(value) || Utils.isMonthString(value) || Utils.isDayString(value) || Utils.isDateTimeFullString(value);
                 }
             },
             initEmit: {

@@ -23,6 +23,10 @@
                 <yd-datetime type="datetime" v-model="datetime5" slot="right"></yd-datetime>
             </yd-cell-item>
             <yd-cell-item arrow>
+                <span slot="left">DateTimeFull：</span>
+                <yd-datetime type="datetime_full" v-model="datetime10" slot="right"></yd-datetime>
+            </yd-cell-item>
+            <yd-cell-item arrow>
                 <span slot="left">自定义模板：</span>
                 <yd-datetime type="date" :yearFormat="yearFormat" :monthFormat="monthFormat" :dayFormat="dayFormat" v-model="datetime6" slot="right"></yd-datetime>
             </yd-cell-item>
@@ -66,6 +70,7 @@
                 datetime7: '',
                 datetime8: '10:20',
                 datetime9: '',
+                datetime10: '2016-06-06 06:06:02',
                 yearFormat: '<span style="color:#F00;">{value}<i style="font-size: 12px;margin-left: 1px;">年</i></span>',
                 monthFormat: '<span style="color:#0BB20C;">{value}<i style="font-size: 12px;margin-left: 1px;">月</i></span>',
                 dayFormat: '<span style="color:#FFB400;">{value}<i style="font-size: 12px;margin-left: 1px;">日</i></span>'

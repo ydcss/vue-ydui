@@ -49,6 +49,7 @@ import CheckList from './routers/checklist.vue';
 import Search from './routers/search.vue';
 import ScrollNav from './routers/scrollnav.vue';
 import Preview from './routers/preview.vue';
+import ImagePreview from './routers/imagepreview.vue';
 
 import App from './app.vue';
 
@@ -104,6 +105,7 @@ const router = new VueRouter({
         {path: '/search', name: 'search', component: Search},
         {path: '/scrollnav', name: 'scrollnav', component: ScrollNav},
         {path: '/preview', name: 'preview', component: Preview},
+        {path: '/imagepreview', name: 'imagepreview', component: ImagePreview},
     ]
 });
 

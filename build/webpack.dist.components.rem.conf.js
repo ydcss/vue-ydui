@@ -45,5 +45,6 @@ module.exports = merge(distCommonWebpackConfig, {
         "/lib.rem/search/index": "./src/components/search/index.js",
         "/lib.rem/scrollnav/index": "./src/components/scrollnav/index.js",
         "/lib.rem/preview/index": "./src/components/preview/index.js",
+        "/lib.rem/imagepreview/index": "./src/components/imagepreview/index.js",
     }
 });

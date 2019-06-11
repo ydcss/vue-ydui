@@ -42,6 +42,7 @@ import {CheckList, CheckListItem} from './components/checklist';
 import {Search} from './components/search';
 import {ScrollNav, ScrollNavPanel} from './components/scrollnav';
 import {Preview, PreviewHeader, PreviewItem} from './components/preview';
+import ImagePreview from './components/imagepreview';
 
 window.document.addEventListener('touchstart', function (event) {
     /* Do Nothing */
@@ -122,6 +123,9 @@ const install = function (Vue) {
         notify: Notify,
         loading: Loading,
     };
+
+    // wzf 使用图片预览组件
+    Vue.use(ImagePreview);
 };
 
 if (typeof window !== 'undefined' && window.Vue) {

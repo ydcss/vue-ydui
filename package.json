@@ -1,7 +1,7 @@
 {
   "name": "vue-ydui",
   "description": "A mobile components Library with Vue2.js.",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "author": "ydcss.com",
   "main": "dist/ydui.rem.js",
   "style": "dist/ydui.rem.css",
@@ -26,7 +26,7 @@
   "homepage": "http://vue.ydui.org",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ydcss/vue-ydui.git"
+    "url": "https://github.com/wzf/vue-ydui.git"
   },
   "scripts": {
     "dev": "webpack-dev-server --content-base example/ --port 4321 --inline --hot --host 0.0.0.0 --config build/webpack.dev.conf.js",
@@ -65,5 +65,8 @@
     "ydui-district": "^1.0.0",
     "ydui-rem2px": "^1.0.1"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "vue-resource": "^1.5.1"
+  }
 }
