@@ -60,7 +60,7 @@
     "vue-router": "^2.1.1",
     "vue-template-compiler": "^2.5.2",
     "webpack": "^1.14.0",
-    "webpack-dev-server": "1.16.3",
+    "webpack-dev-server": "5.2.1",
     "webpack-merge": "^2.4.0",
     "ydui-district": "^1.0.0",
     "ydui-rem2px": "^1.0.1"
